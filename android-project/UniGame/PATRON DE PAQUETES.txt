@@ -1,0 +1,7 @@
+negocio.servicios: Agrupa a las interfaces que separan la lógica de negocio
+negocio.servicios.Impl: Agrupa a las clases que implementan las interfaces de lógica de negocio
+negocio.util: Agrupa a las clases de apoyo (excepciones, autenticación....)
+
+presentacion.util: Utilidades de apoyo a la capa de presentación
+presentacion.controlador: Agrupa a las interfaces
+presentacion.controlador.Impl: Agrupa a las clases de que implementan las acciones
