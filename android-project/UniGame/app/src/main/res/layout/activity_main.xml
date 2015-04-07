@@ -1,74 +1,90 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#0099cc"
+    android:orientation="horizontal"
     tools:context="tk.theunigame.unigame.MainActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <!-- <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/dummy_content" /> -->
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.15">
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1">
+            </RelativeLayout>
+            <ImageView
+                android:layout_margin="5dip"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.2"
+                android:layout_gravity="center"
+                android:id="@+id/imageView"
+                android:src="@drawable/ug_250px"/>
+            <Button
+                android:id="@+id/individual_mode"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:text="@string/individual_mode"
+                android:textColor="@color/black_overlay"
+                android:background="@drawable/button_design"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:layout_weight="0.2"/>
+            <Button
+                android:id="@+id/tournament_mode"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:text="@string/tournament_mode"
+                android:textColor="@color/black_overlay"
+                android:background="@drawable/button_design"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:layout_margin="5dip"
+                android:layout_weight="0.2"/>
+            <Button
+                android:id="@+id/download_questions"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:text="@string/download_questions"
+                android:textColor="@color/black_overlay"
+                android:background="@drawable/button_design"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:layout_margin="5dip"
+                android:layout_weight="0.2"/>
+            <Button
+                android:id="@+id/use_questions"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:text="@string/use_questions"
+                android:textColor="@color/black_overlay"
+                android:background="@drawable/button_design"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:layout_margin="5dip"
+                android:layout_weight="0.2"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.10">
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.15">
+    </RelativeLayout>
 
-    <ImageView
-        android:layout_marginTop="40dp"
-        android:layout_width="250px"
-        android:layout_height="250px"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView"
-        android:src="@drawable/ug_250px"/>
-
-    <Button
-        android:id="@+id/individual_mode"
-        android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:text="@string/individual_mode"
-        android:textColor="@color/black_overlay"
-        android:background="@drawable/button_design"
-        android:clickable="false"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/imageView" />
-
-    <Button
-        android:id="@+id/tournament_mode"
-        android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:text="@string/tournament_mode"
-        android:textColor="@color/black_overlay"
-        android:background="@drawable/button_design"
-        android:clickable="false"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/individual_mode" />
-
-    <Button
-        android:id="@+id/download_questions"
-        android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:text="@string/download_questions"
-        android:textColor="@color/black_overlay"
-        android:background="@drawable/button_design"
-        android:clickable="false"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/tournament_mode" />
-
-    <Button
-        android:id="@+id/use_questions"
-        android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:text="@string/use_questions"
-        android:textColor="@color/black_overlay"
-        android:background="@drawable/button_design"
-        android:clickable="false"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/download_questions" />
-
-</RelativeLayout>
+</LinearLayout>
