@@ -8,11 +8,5 @@
         <size android:height="70dip" android:width="320dip"/>
     </shape>
 </item>
-<!-- <item android:left="20dip" android:right="280dip" android:bottom="25dip" android:top="25dip">
-    <shape android:shape="oval">
-        <padding android:bottom="10dip" android:top="10dip" android:left="10dip" android:right="10dp"/>
-        <solid android:color="#FF0000" />
-    </shape>
-</item> -->
 
 </layer-list>
