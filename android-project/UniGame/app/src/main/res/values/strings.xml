@@ -9,5 +9,10 @@
     <string name="tournament_mode">Modo Torneo</string>
     <string name="download_questions">Bajar Preguntas</string>
     <string name="use_questions">Usar Preguntas</string>
+    <string name="etxt_university">Universidad</string>
+    <string name="etxt_carrer">Carrera</string>
+    <string name="etxt_subject">Asignatura</string>
+    <string name="etxt_name_db">Nombre DB</string>
+    <string name="btn_create">Crear</string>
 
 </resources>
