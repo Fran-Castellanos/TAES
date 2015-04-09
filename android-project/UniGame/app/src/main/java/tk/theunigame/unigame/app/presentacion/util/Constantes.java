@@ -5,4 +5,5 @@ package tk.theunigame.unigame.app.presentacion.util;
  */
 public class Constantes {
     final static public String KDB_NOMBRE = "NOMBRE_DB";
+    final static public String KDB_PREGUNTA = "PREGUNTA_DB";
 }
