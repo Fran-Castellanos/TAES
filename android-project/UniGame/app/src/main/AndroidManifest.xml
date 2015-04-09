@@ -17,10 +17,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.presentacion.controlador.impl.UsarDBPreguntas"
+        <activity android:name=".app.presentacion.controlador.impl.UsarDB"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_usar_db_preguntas">
-
+            android:label="@string/title_activity_usar_db">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.CrearDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_crear_db">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.BajarDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_bajar_db">
         </activity>
 
     </application>

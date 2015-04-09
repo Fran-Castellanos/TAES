@@ -8,11 +8,10 @@ import tk.theunigame.unigame.R;
 /**
  * Created by John on 08/04/2015.
  */
-public class CrearDB extends Activity{
+public class BajarDB extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_db);
-
+        setContentView(R.layout.activity_bajar_db);
     }
 }

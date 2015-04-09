@@ -33,7 +33,15 @@ public class MainActivity extends Activity {
         btn_individual_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, UsarDBPreguntas.class);
+                Intent intent= new Intent(MainActivity.this, UsarDB.class);
+                startActivity(intent);
+            }
+        });
+        btn_download_questions=(Button)findViewById(R.id.download_questions);
+        btn_download_questions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this, BajarDB.class);
                 startActivity(intent);
             }
         });

@@ -38,6 +38,22 @@
                 android:layout_weight="0.8"
                 android:orientation="vertical">
                 <EditText
+                    android:id="@+id/etxt_tags_pregunta"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:hint="@string/etxt_tags_preguntas"
+                    android:ellipsize="end"
+                    android:paddingLeft="15sp"
+                    android:paddingRight="15sp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:background="@drawable/etxt_background"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="5dip"
+                    android:layout_weight="0.16"/>
+                <EditText
                     android:id="@+id/etxt_university"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
@@ -85,22 +101,6 @@
                     android:gravity="center"
                     android:layout_margin="5dip"
                     android:layout_weight="0.16"/>
-                <EditText
-                    android:id="@+id/etxt_name_db"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:hint="@string/etxt_name_db"
-                    android:ellipsize="end"
-                    android:paddingLeft="15sp"
-                    android:paddingRight="15sp"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:scrollHorizontally="true"
-                    android:background="@drawable/etxt_background"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_margin="5dip"
-                    android:layout_weight="0.16"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
@@ -115,7 +115,7 @@
                         android:layout_width="0dip"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
-                        android:text="@string/btn_create"
+                        android:text="@string/btn_browse"
                         android:textColor="@color/black_overlay"
                         android:background="@drawable/btn_blue_dessign"
                         android:layout_gravity="center"
