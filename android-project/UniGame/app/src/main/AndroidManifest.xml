@@ -29,6 +29,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_bajar_db">
         </activity>
+        <activity android:name=".app.presentacion.controlador.impl.ModoIndividual"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_modo_individual">
+        </activity>
 
     </application>
 

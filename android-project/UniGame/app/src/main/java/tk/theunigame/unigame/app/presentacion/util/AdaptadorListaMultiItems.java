@@ -14,6 +14,9 @@ import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
 
 /**
  * Created by John on 08/04/2015.
+ *
+ * Este clase será modoficada en función de los valores que se quieran mostrar
+ * a través de la consulta a la base de datos remota
  */
 public class AdaptadorListaMultiItems extends BaseAdapter {
 

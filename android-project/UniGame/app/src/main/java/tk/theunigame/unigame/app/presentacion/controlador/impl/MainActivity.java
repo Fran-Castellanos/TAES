@@ -29,11 +29,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //btn_individual_mode= (Button)findViewById(R.id.individual_mode);
-        btn_individual_mode= (Button)findViewById(R.id.use_questions);
+        btn_individual_mode=(Button)findViewById(R.id.individual_mode);
         btn_individual_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, UsarDB.class);
+                Intent intent= new Intent(MainActivity.this, ModoIndividual.class);
                 startActivity(intent);
             }
         });
@@ -42,6 +42,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(MainActivity.this, BajarDB.class);
+                startActivity(intent);
+            }
+        });
+        btn_use_questions= (Button)findViewById(R.id.use_questions);
+        btn_use_questions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this, UsarDB.class);
                 startActivity(intent);
             }
         });
