@@ -7,6 +7,7 @@
     <string name="title_activity_crear_db">Crear DB</string>
     <string name="title_activity_bajar_db">Bajar DB</string>
     <string name="title_activity_modo_individual">Modo Individual</string>
+    <string name="title_activity_lista_preguntas">Lista Preguntas</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="individual_mode">Modo Individual</string>
@@ -21,4 +22,5 @@
     <string name="btn_create">Crear</string>
     <string name="btn_browse">Buscar</string>
     <string name="txt_individual_mode">Elige las preguntas de la partida</string>
+    <string name="btn_individual_mode">Añadir pregunta</string>
 </resources>

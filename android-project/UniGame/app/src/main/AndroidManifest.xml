@@ -33,6 +33,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_modo_individual">
         </activity>
+        <activity android:name=".app.presentacion.controlador.impl.ListaPreguntas"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_lista_preguntas">
+        </activity>
 
     </application>
 

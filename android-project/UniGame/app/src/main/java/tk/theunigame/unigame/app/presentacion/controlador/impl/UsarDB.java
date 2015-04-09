@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaMultiItems;
+import tk.theunigame.unigame.app.presentacion.util.Constantes;
 
 /**
  * Created by John on 09/04/2015.
@@ -33,13 +34,22 @@ public class UsarDB extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String opcion= ((String)parent.getAdapter().getItem(position));
+                String opcion_db= ((String)parent.getAdapter().getItem(position));
 
-                if(opcion.equals("CrearDB")){
-                    Intent intent= new Intent(UsarDB.this, CrearDB.class);
-                    startActivity(intent);
+                Intent intent;
+                if(opcion_db.equals("CrearDB")){
+                    intent= new Intent(UsarDB.this, CrearDB.class);
+                }else{
+                    /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+                    //Debe pasar alguna referencia a la base de datos o la base de datos
+                    //Para generamos un Bundle y lo enviamos como un putExtras, o enviamos unicamente
+                    //el identificador a la siguiente Activity
+                    intent= new Intent(UsarDB.this, ListaPreguntas.class);
+                    //Introducimos en el Intent lo que queremos enviar a la siguiente activity
+                    intent.putExtra(Constantes.KDB_NOMBRE, opcion_db);
                 }
 
+                startActivity(intent);
             }
         });
     }
