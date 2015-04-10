@@ -1,41 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#0099cc"
-    android:orientation="horizontal"
-    tools:context=".app.presentacion.controlador.impl.ModoIndividual">
+    style="@style/ll_main_horizontal"
+    tools:context=".app.presentacion.controlador.impl.CrearDB">
 
     <RelativeLayout
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight="0.15">
+        style="@style/rl_main_left">
     </RelativeLayout>
     <RelativeLayout
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.7">
+        style="@style/rl_main_central">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            style="@style/ll_main_central_vertical">
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.1">
+                style="@style/rl_main_top">
             </RelativeLayout>
             <ImageView
-                android:layout_margin="5dip"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.2"
-                android:layout_gravity="center"
                 android:id="@+id/imageView"
-                android:src="@drawable/ug_250px"/>
+                style="@style/img_main_logo"/>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.8"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/ll_main_container">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,16 +35,11 @@
 
             </LinearLayout>
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.10">
+                style="@style/rl_main_bottom">
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.15">
+        style="@style/rl_main_right">
     </RelativeLayout>
-
 </LinearLayout>
