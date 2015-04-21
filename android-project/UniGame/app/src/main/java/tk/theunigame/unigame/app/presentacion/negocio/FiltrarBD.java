@@ -24,19 +24,19 @@ public class FiltrarBD {
         }catch(Exception e) {
 
         }
-
+        throw new RuntimeException("Not implemented yet");
     }
 
 
     public List<String> verCarreras(int idUniversidad)
     {
-
+        throw new RuntimeException("Not implemented yet");
     }
 
 
-    public List<String> verAsgnaturas(int idCarrera)
+    public List<String> verAsignaturas(int idCarrera)
     {
-
+        throw new RuntimeException("Not implemented yet");
     }
 
 
