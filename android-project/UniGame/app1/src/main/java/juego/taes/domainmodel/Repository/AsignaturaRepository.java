@@ -13,19 +13,24 @@ public class AsignaturaRepository {
 
     public int create(AsignaturaRepository asig)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
     public int update(AsignaturaRepository asig)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
     public int delete(AsignaturaRepository asig)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
 
     public List<AsignaturaRepository> getAll()
     {
-        return null;
+        throw new RuntimeException("Not implemented yet");
+    }
+
+    public AsignaturaRepository getById(int id)
+    {
+        throw new RuntimeException("Not implemented yet");
     }
 }
