@@ -17,19 +17,24 @@ public class UniversidadRepository {
 
     public int create()
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
     public int update (Universidad universidad)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
     public int delete(Universidad universidad)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
 
     public List<Universidad> getAll()
     {
-        return null;
+        throw new RuntimeException("Not implemented yet");
+    }
+
+    public UniversidadRepository getById(int id)
+    {
+        throw new RuntimeException("Not implemented yet");
     }
 }

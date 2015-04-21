@@ -16,13 +16,13 @@ public class UniversidadServidor {
     public static final String SIGLAS="siglas";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName= NOMBRE, canBeNull = false)
+    @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
-    @DatabaseField(columnName= SIGLAS, canBeNull = false)
+    @DatabaseField(columnName= SIGLAS, canBeNull = false, useGetSet = true)
     private String siglas;
 
     public UniversidadServidor() {

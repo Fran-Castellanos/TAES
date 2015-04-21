@@ -27,30 +27,29 @@ public class Usuario {
     public static final String LOGINOFFLINE="login_offline";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, id=true)
+    @DatabaseField(columnName=ID, id=true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName= NICK, canBeNull = false, unique=true)
+    @DatabaseField(columnName= NICK, canBeNull = false, unique=true, useGetSet = true)
     private String nick;
 
-    @DatabaseField(columnName= NOMBRE, canBeNull = false)
+    @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
-    @DatabaseField(columnName= APELLIDOS, canBeNull = false)
+    @DatabaseField(columnName= APELLIDOS, canBeNull = false, useGetSet = true)
     private String apellidos;
 
-    @DatabaseField(columnName= SEXO, unknownEnumName = "OTRO", canBeNull = false)
+    @DatabaseField(columnName= SEXO, unknownEnumName = "OTRO", canBeNull = false, useGetSet = true)
     private Sexo sexo;
 
-    @DatabaseField(columnName=LOGINOFFLINE)
+    @DatabaseField(columnName=LOGINOFFLINE, useGetSet = true)
     private boolean loginOffline;
 
     public Usuario() {
         // ORMLite needs a no-arg constructor
     }
 
-    public Usuario(int id, String nick, String nombre, String apellidos, Sexo sexo, boolean loginOffline) {
-        this.id = id;
+    public Usuario(String nick, String nombre, String apellidos, Sexo sexo, boolean loginOffline) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellidos = apellidos;

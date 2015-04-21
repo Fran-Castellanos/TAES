@@ -3,36 +3,33 @@ package juego.taes.domainmodel.Repository;
 import java.util.List;
 
 import juego.taes.domainmodel.Data.Example.DatabaseHelper;
-import juego.taes.domainmodel.Model.Cliente.Asignatura;
 
 /**
  * Created by Pedro on 21/04/2015.
  */
-public class AsignaturaRepository {
-
+public class UsuarioRepository {
     private DatabaseHelper db;
 
-    public int create(Asignatura asig)
+    public int create(UsuarioRepository usuario)
     {
         throw new RuntimeException("Not implemented yet");
     }
-    public int update(Asignatura asig)
+    public int update(UsuarioRepository usuario)
     {
         throw new RuntimeException("Not implemented yet");
     }
-    public int delete(Asignatura asig)
-    {
-        throw new RuntimeException("Not implemented yet");
-    }
-
-    public List<Asignatura> getAll()
+    public int delete(UsuarioRepository usuario)
     {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public AsignaturaRepository getById(int id)
+    public List<UsuarioRepository> getAll()
     {
         throw new RuntimeException("Not implemented yet");
     }
-    public List<Asignatura> getByUniversidad( int universidadId){ return null; }
+
+    public UsuarioRepository getById(int id)
+    {
+        throw new RuntimeException("Not implemented yet");
+    }
 }

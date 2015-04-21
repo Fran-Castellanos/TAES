@@ -20,33 +20,31 @@ public class BDPreguntas {
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName= ENSERVIDOR, canBeNull = false)
-    private String enServidor;
+    @DatabaseField(columnName= ENSERVIDOR, canBeNull = false, defaultValue="false", useGetSet = true)
+    private boolean enServidor;
 
-    @DatabaseField(columnName= IDSINCRONIZACION, unique = true)
+    @DatabaseField(columnName= IDSINCRONIZACION, unique = true, useGetSet = true)
     private int idSincronizacion;
 
-    @DatabaseField(columnName= FECHASINCRONIZACION)
+    @DatabaseField(columnName= FECHASINCRONIZACION, useGetSet = true)
     private Date fechaSincronizacion;
 
-    @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION)
+    @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION, useGetSet = true)
     private boolean modificadoDesdeUltimaSincronizacion;
 
     public BDPreguntas() {
         // ORMLite needs a no-arg constructor
     }
 
-    public BDPreguntas(String enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public BDPreguntas(boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
         this.enServidor = enServidor;
         this.idSincronizacion = idSincronizacion;
         this.fechaSincronizacion = fechaSincronizacion;
         this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
-
-    //Setters y getters
 
     public int getId() {
         return id;
@@ -56,11 +54,11 @@ public class BDPreguntas {
         this.id = id;
     }
 
-    public String getEnServidor() {
+    public boolean isEnServidor() {
         return enServidor;
     }
 
-    public void setEnServidor(String enServidor) {
+    public void setEnServidor(boolean enServidor) {
         this.enServidor = enServidor;
     }
 

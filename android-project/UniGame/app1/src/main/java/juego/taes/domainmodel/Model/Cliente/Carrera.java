@@ -15,18 +15,17 @@ public class Carrera {
     public static final String NOMBRE="nombre";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, id = true )
+    @DatabaseField(columnName=ID, id = true, useGetSet = true )
     private int id;
 
-    @DatabaseField(columnName= NOMBRE, canBeNull = false)
+    @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
     public Carrera() {
         // ORMLite needs a no-arg constructor
     }
 
-    public Carrera(int id, String nombre) {
-        this.id=id;
+    public Carrera(String nombre) {
         this.nombre=nombre;
     }
 

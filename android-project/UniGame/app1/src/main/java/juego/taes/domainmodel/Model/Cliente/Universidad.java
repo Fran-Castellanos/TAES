@@ -24,21 +24,20 @@ public class Universidad {
     public static final String SIGLAS="siglas";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, id = true )
+    @DatabaseField(columnName=ID, id = true, useGetSet = true )
     private int id;
 
-    @DatabaseField(columnName= NOMBRE, canBeNull = false)
+    @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
-    @DatabaseField(columnName= SIGLAS, canBeNull = false)
+    @DatabaseField(columnName= SIGLAS, canBeNull = false, useGetSet = true)
     private String siglas;
 
     public Universidad() {
         // ORMLite needs a no-arg constructor
     }
 
-    public Universidad(int id, String nombre, String siglas) {
-        this.id = id;
+    public Universidad(String nombre, String siglas) {
         this.nombre=nombre;
         this.siglas=siglas;
     }

@@ -14,19 +14,24 @@ public class CarreraRepository {
 
     public int create(Carrera carrera)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
     public int update(Carrera carrera)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
     public int delete(Carrera carrera)
     {
-        return 0;
+        throw new RuntimeException("Not implemented yet");
     }
 
     public List<Carrera> getAll()
     {
-        return null;
+        throw new RuntimeException("Not implemented yet");
+    }
+
+    public CarreraRepository getById(int id)
+    {
+        throw new RuntimeException("Not implemented yet");
     }
 }
