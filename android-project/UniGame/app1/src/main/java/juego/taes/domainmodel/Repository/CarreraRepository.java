@@ -30,7 +30,8 @@ public class CarreraRepository {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public CarreraRepository getById(int id)
+    public Carrera getById(int id){throw new RuntimeException("Not implemented yet");}
+    public List<Carrera> getByUniversidad(int id)
     {
         throw new RuntimeException("Not implemented yet");
     }

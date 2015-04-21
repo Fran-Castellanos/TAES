@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.presentacion.negocio;
+package tk.theunigame.unigame.app.presentacion.Fachadas;
 
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class FachadaPartida {
         List<String> nombres;
         try {
             nombres= new ArrayList<String>();
-            carreras = car.getById(idUniversidad);
+            carreras = car.getByUniversidad(idUniversidad);
             for(Carrera c : carreras)
                 nombres.add(c.getNombre());
 

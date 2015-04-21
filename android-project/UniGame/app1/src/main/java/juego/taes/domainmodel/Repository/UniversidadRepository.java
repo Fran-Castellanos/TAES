@@ -33,7 +33,7 @@ public class UniversidadRepository {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public UniversidadRepository getById(int id)
+    public Universidad getById(int id)
     {
         throw new RuntimeException("Not implemented yet");
     }

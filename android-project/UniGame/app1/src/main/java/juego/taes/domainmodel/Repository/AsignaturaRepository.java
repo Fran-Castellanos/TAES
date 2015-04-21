@@ -30,9 +30,9 @@ public class AsignaturaRepository {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public AsignaturaRepository getById(int id)
+    public Asignatura getById(int id)
     {
         throw new RuntimeException("Not implemented yet");
     }
-    public List<Asignatura> getByUniversidad( int universidadId){ return null; }
+    public List<Asignatura> getByCarrera( int carreraId){ return null; }
 }

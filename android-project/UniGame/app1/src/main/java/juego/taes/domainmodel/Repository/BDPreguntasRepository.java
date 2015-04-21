@@ -3,6 +3,7 @@ package juego.taes.domainmodel.Repository;
 import java.util.List;
 
 import juego.taes.domainmodel.Data.Example.DatabaseHelper;
+import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 
 /**
  * Created by Pedro on 21/04/2015.
@@ -10,25 +11,25 @@ import juego.taes.domainmodel.Data.Example.DatabaseHelper;
 public class BDPreguntasRepository {
     private DatabaseHelper db;
 
-    public int create(BDPreguntasRepository bd)
+    public int create(BDPreguntas bd)
     {
         throw new RuntimeException("Not implemented yet");
     }
-    public int update(BDPreguntasRepository bd)
+    public int update(BDPreguntas bd)
     {
         throw new RuntimeException("Not implemented yet");
     }
-    public int delete(BDPreguntasRepository bd)
-    {
-        throw new RuntimeException("Not implemented yet");
-    }
-
-    public List<BDPreguntasRepository> getAll()
+    public int delete(BDPreguntas bd)
     {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public BDPreguntasRepository getById(int id)
+    public List<BDPreguntas> getAll()
+    {
+        throw new RuntimeException("Not implemented yet");
+    }
+
+    public BDPreguntas getById(int id)
     {
         throw new RuntimeException("Not implemented yet");
     }
