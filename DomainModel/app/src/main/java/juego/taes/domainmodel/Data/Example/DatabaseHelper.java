@@ -1,4 +1,4 @@
-package juego.taes.domainmodel.Data;
+package juego.taes.domainmodel.Data.Example;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,7 +12,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
-import juego.taes.domainmodel.Model.Comment;
+import juego.taes.domainmodel.Model.Example.Comment;
 
 /**
  * Created by alienware18 on 9-8-13.

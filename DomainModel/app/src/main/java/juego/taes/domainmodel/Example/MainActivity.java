@@ -1,4 +1,4 @@
-package juego.taes.domainmodel;
+package juego.taes.domainmodel.Example;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -10,8 +10,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import juego.taes.domainmodel.Data.CommentsRepository;
-import juego.taes.domainmodel.Model.Comment;
+import juego.taes.domainmodel.Data.Example.CommentsRepository;
+import juego.taes.domainmodel.Model.Example.Comment;
+import juego.taes.domainmodel.R;
 
 public class MainActivity extends Activity {
 

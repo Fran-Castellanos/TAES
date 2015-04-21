@@ -1,4 +1,4 @@
-package juego.taes.domainmodel;
+package juego.taes.domainmodel.Example;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import juego.taes.domainmodel.Model.Comment;
+import juego.taes.domainmodel.Model.Example.Comment;
+import juego.taes.domainmodel.R;
 
 /**
  * Created by alienware18 on 9-8-13.

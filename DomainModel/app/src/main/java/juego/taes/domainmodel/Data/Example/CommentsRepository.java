@@ -1,15 +1,14 @@
-package juego.taes.domainmodel.Data;
+package juego.taes.domainmodel.Data.Example;
 
 import android.content.Context;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import juego.taes.domainmodel.Model.Comment;
+import juego.taes.domainmodel.Data.DatabaseManager;
+import juego.taes.domainmodel.Model.Example.Comment;
 
 /**
  * Created by alienware18 on 9-8-13.
