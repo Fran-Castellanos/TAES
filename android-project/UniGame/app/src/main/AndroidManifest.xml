@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tk.theunigame.unigame" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/FullscreenTheme" >
+        <activity
+            android:name=".app.presentacion.controlador.impl.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.UsarDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_usar_db">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.CrearDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_crear_db">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.BajarDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_bajar_db">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.ModoIndividual"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_modo_individual">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.ListaPreguntas"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_lista_preguntas">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.EditarPregunta"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:label="@string/title_activity_editar_pregunta">
+    </activity>
+
+    </application>
+
+</manifest>
