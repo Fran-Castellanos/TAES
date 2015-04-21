@@ -1,10 +1,9 @@
 package tk.theunigame.unigame.app.presentacion.negocio;
 
+
 import java.util.List;
 
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IAsignatura;
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.ICarrera;
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IUniversidad;
+import juego.taes.domainmodel.Repository.*;
 
 /**
  * Created by Paco on 21/04/2015.
@@ -12,15 +11,15 @@ import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IUniversidad;
 public class FiltrarBD {
 
     private int uniId;
-    private IUniversidad uni;
-    private ICarrera car;
-    private IAsignatura asig;
+    private UniversidadRepository uni;
+    private CarreraRepository car;
+    private AsignaturaRepository asig;
 
     public List<String> verUniversidades()
     {
         try
         {
-            uni.readAll();
+            uni.getAll();
         }catch(Exception e) {
 
         }
