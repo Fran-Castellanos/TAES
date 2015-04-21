@@ -49,8 +49,7 @@ public class Usuario {
         // ORMLite needs a no-arg constructor
     }
 
-    public Usuario(int id, String nick, String nombre, String apellidos, Sexo sexo, boolean loginOffline) {
-        this.id = id;
+    public Usuario(String nick, String nombre, String apellidos, Sexo sexo, boolean loginOffline) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellidos = apellidos;

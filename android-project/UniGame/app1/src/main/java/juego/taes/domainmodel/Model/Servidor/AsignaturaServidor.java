@@ -25,8 +25,7 @@ public class AsignaturaServidor {
         // ORMLite needs a no-arg constructor
     }
 
-    public AsignaturaServidor(int id, String nombre) {
-        this.id=id;
+    public AsignaturaServidor(String nombre) {
         this.nombre=nombre;
     }
 

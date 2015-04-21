@@ -28,7 +28,7 @@ public class Respuesta {
     private String contenido;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false)
-    private String enServidor;
+    private boolean enServidor;
 
     @DatabaseField(columnName= IDSINCRONIZACION, unique = true)
     private int idSincronizacion;
@@ -43,7 +43,7 @@ public class Respuesta {
         // ORMLite needs a no-arg constructor
     }
 
-    public Respuesta(String contenido, String enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public Respuesta(String contenido, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
         this.contenido = contenido;
         this.enServidor = enServidor;
         this.idSincronizacion = idSincronizacion;
@@ -52,6 +52,7 @@ public class Respuesta {
     }
 
     //Setters y getters
+
 
     public int getId() {
         return id;
@@ -69,11 +70,11 @@ public class Respuesta {
         this.contenido = contenido;
     }
 
-    public String getEnServidor() {
+    public boolean isEnServidor() {
         return enServidor;
     }
 
-    public void setEnServidor(String enServidor) {
+    public void setEnServidor(boolean enServidor) {
         this.enServidor = enServidor;
     }
 

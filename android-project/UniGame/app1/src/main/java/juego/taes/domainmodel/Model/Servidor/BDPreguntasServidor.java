@@ -1,0 +1,44 @@
+package juego.taes.domainmodel.Model.Servidor;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.Date;
+
+/**
+ * Created by alienware18 on 9-8-13.
+ */
+
+@DatabaseTable(tableName = "bd_preguntas")
+public class BDPreguntasServidor {
+
+    //Nombres de las columnas
+    public static final String ID="_id";
+    public static final String FECHAMODIFICADOSERVIDOR="fecha_modificado_servidor";
+
+    //Atributos de la base de datos
+    @DatabaseField(columnName=ID, generatedId = true)
+    private int id;
+
+    @DatabaseField(columnName= FECHAMODIFICADOSERVIDOR, canBeNull = false)
+    private Date fechaModificadoServidor;
+
+    public BDPreguntasServidor() {
+        // ORMLite needs a no-arg constructor
+    }
+
+    public BDPreguntasServidor(Date fechaModificadoServidor) {
+        this.fechaModificadoServidor = fechaModificadoServidor;
+    }
+
+//Setters y getters
+
+
+    public Date getFechaModificadoServidor() {
+        return fechaModificadoServidor;
+    }
+
+    public void setFechaModificadoServidor(Date fechaModificadoServidor) {
+        this.fechaModificadoServidor = fechaModificadoServidor;
+    }
+}

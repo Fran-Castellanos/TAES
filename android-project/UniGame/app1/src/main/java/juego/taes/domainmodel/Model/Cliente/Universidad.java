@@ -37,8 +37,7 @@ public class Universidad {
         // ORMLite needs a no-arg constructor
     }
 
-    public Universidad(int id, String nombre, String siglas) {
-        this.id = id;
+    public Universidad(String nombre, String siglas) {
         this.nombre=nombre;
         this.siglas=siglas;
     }

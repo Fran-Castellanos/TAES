@@ -28,7 +28,7 @@ public class Pregunta {
     private String contenido;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false)
-    private String enServidor;
+    private boolean enServidor;
 
     @DatabaseField(columnName= IDSINCRONIZACION, unique = true)
     private int idSincronizacion;
@@ -43,7 +43,7 @@ public class Pregunta {
         // ORMLite needs a no-arg constructor
     }
 
-    public Pregunta(String contenido, String enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public Pregunta(String contenido, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
         this.contenido = contenido;
         this.enServidor = enServidor;
         this.idSincronizacion = idSincronizacion;
@@ -51,7 +51,13 @@ public class Pregunta {
         this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 
-    //Setters y getters
+    public boolean isModificadoDesdeUltimaSincronizacion() {
+        return modificadoDesdeUltimaSincronizacion;
+    }
+
+    public void setModificadoDesdeUltimaSincronizacion(boolean modificadoDesdeUltimaSincronizacion) {
+        this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
+    }
 
     public int getId() {
         return id;
@@ -69,11 +75,11 @@ public class Pregunta {
         this.contenido = contenido;
     }
 
-    public String getEnServidor() {
+    public boolean isEnServidor() {
         return enServidor;
     }
 
-    public void setEnServidor(String enServidor) {
+    public void setEnServidor(boolean enServidor) {
         this.enServidor = enServidor;
     }
 
@@ -91,13 +97,5 @@ public class Pregunta {
 
     public void setFechaSincronizacion(Date fechaSincronizacion) {
         this.fechaSincronizacion = fechaSincronizacion;
-    }
-
-    public boolean isModificadoDesdeUltimaSincronizacion() {
-        return modificadoDesdeUltimaSincronizacion;
-    }
-
-    public void setModificadoDesdeUltimaSincronizacion(boolean modificadoDesdeUltimaSincronizacion) {
-        this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 }
