@@ -17,10 +17,10 @@ public class BDPreguntasServidor {
     public static final String FECHAMODIFICADOSERVIDOR="fecha_modificado_servidor";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName= FECHAMODIFICADOSERVIDOR, canBeNull = false)
+    @DatabaseField(columnName= FECHAMODIFICADOSERVIDOR, canBeNull = false, useGetSet = true)
     private Date fechaModificadoServidor;
 
     public BDPreguntasServidor() {

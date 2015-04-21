@@ -18,13 +18,13 @@ public class PreguntaServidor {
     public static final String FECHAMODIFICADOSERVIDOR="fecha_modificado_servidor";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName=CONTENIDO, canBeNull=false)
+    @DatabaseField(columnName=CONTENIDO, canBeNull=false, useGetSet = true)
     private String contenido;
 
-    @DatabaseField(columnName= FECHAMODIFICADOSERVIDOR, canBeNull = false)
+    @DatabaseField(columnName= FECHAMODIFICADOSERVIDOR, canBeNull = false, useGetSet = true)
     private Date fechaModificadoServidor;
 
 

@@ -15,10 +15,10 @@ public class AsignaturaServidor {
     public static final String NOMBRE="nombre";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName= NOMBRE, canBeNull = false)
+    @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
     public AsignaturaServidor() {

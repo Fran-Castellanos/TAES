@@ -32,37 +32,37 @@ public class UsuarioServidor {
     public static final String CUENTA_CERRADA ="cuenta_cerrada";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName= NICK, canBeNull = false, unique=true)
+    @DatabaseField(columnName= NICK, canBeNull = false, unique=true, useGetSet = true)
     private String nick;
 
-    @DatabaseField(columnName= PASS, canBeNull = false)
+    @DatabaseField(columnName= PASS, canBeNull = false, useGetSet = true)
     private String pass;
 
-    @DatabaseField(columnName= NOMBRE, canBeNull = false)
+    @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
-    @DatabaseField(columnName= APELLIDOS, canBeNull = false)
+    @DatabaseField(columnName= APELLIDOS, canBeNull = false, useGetSet = true)
     private String apellidos;
 
-    @DatabaseField(columnName= FECHA_NACIMIENTO, canBeNull=false)
+    @DatabaseField(columnName= FECHA_NACIMIENTO, canBeNull=false, useGetSet = true)
     private Date fechaNacimiento;
 
-    @DatabaseField(columnName= EMAIL, canBeNull = false, unique=true)
+    @DatabaseField(columnName= EMAIL, canBeNull = false, unique=true, useGetSet = true)
     private String email;
 
-    @DatabaseField(columnName= FECHA_REGISTRO, canBeNull = false)
+    @DatabaseField(columnName= FECHA_REGISTRO, canBeNull = false,useGetSet = true)
     private Date fechaRegistro;
 
-    @DatabaseField(columnName= ULTIMO_ACCESO)
+    @DatabaseField(columnName= ULTIMO_ACCESO, useGetSet = true)
     private Date ultimoAcceso;
 
-    @DatabaseField(columnName= SEXO, unknownEnumName = "OTRO", canBeNull = false)
+    @DatabaseField(columnName= SEXO, unknownEnumName = "OTRO", canBeNull = false, useGetSet = true)
     private Sexo sexo;
 
-    @DatabaseField(columnName= CUENTA_CERRADA, canBeNull = false)
+    @DatabaseField(columnName= CUENTA_CERRADA, canBeNull = false, useGetSet = true)
     private boolean cuentaCerrada;
 
     public UsuarioServidor() {

@@ -21,22 +21,22 @@ public class Respuesta {
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, generatedId = true)
+    @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName=CONTENIDO, canBeNull=false)
+    @DatabaseField(columnName=CONTENIDO, canBeNull=false, useGetSet = true)
     private String contenido;
 
-    @DatabaseField(columnName= ENSERVIDOR, canBeNull = false)
+    @DatabaseField(columnName= ENSERVIDOR, canBeNull = false, defaultValue="false", useGetSet = true)
     private boolean enServidor;
 
-    @DatabaseField(columnName= IDSINCRONIZACION, unique = true)
+    @DatabaseField(columnName= IDSINCRONIZACION, unique = true, useGetSet = true)
     private int idSincronizacion;
 
-    @DatabaseField(columnName= FECHASINCRONIZACION)
+    @DatabaseField(columnName= FECHASINCRONIZACION, useGetSet = true)
     private Date fechaSincronizacion;
 
-    @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION)
+    @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION, useGetSet = true)
     private boolean modificadoDesdeUltimaSincronizacion;
 
     public Respuesta() {
