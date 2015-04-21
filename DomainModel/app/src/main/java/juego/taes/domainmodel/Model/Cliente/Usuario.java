@@ -21,25 +21,17 @@ public class Usuario {
     //Nombres de las columnas
     public static final String ID="_id";
     public static final String NICK ="nick";
-    public static final String PASS = "pass";
     public static final String NOMBRE ="nombre";
     public static final String APELLIDOS ="apellidos";
-    public static final String FECHA_NACIMIENTO ="fecha_nacimiento";
-    public static final String EMAIL = "email";
-    public static final String FECHA_REGISTRO ="fecha_registro";
-    public static final String ULTIMO_ACCESO ="ultimo_acceso";
     public static final String SEXO ="sexo";
-    public static final String CUENTA_CERRADA ="cuenta_cerrada";
+    public static final String LOGINOFFLINE="login_offline";
 
     //Atributos de la base de datos
-    @DatabaseField(generatedId = true, columnName=ID)
+    @DatabaseField(columnName=ID, id=true)
     private int id;
 
     @DatabaseField(columnName= NICK, canBeNull = false, unique=true)
     private String nick;
-
-    @DatabaseField(columnName= PASS, canBeNull = false)
-    private String pass;
 
     @DatabaseField(columnName= NOMBRE, canBeNull = false)
     private String nombre;
@@ -47,44 +39,27 @@ public class Usuario {
     @DatabaseField(columnName= APELLIDOS, canBeNull = false)
     private String apellidos;
 
-    @DatabaseField(columnName= FECHA_NACIMIENTO, canBeNull=false)
-    private Date fechaNacimiento;
-
-    @DatabaseField(columnName= EMAIL, canBeNull = false, unique=true)
-    private String email;
-
-    @DatabaseField(columnName= FECHA_REGISTRO, canBeNull = false)
-    private Date fechaRegistro;
-
-    @DatabaseField(columnName= ULTIMO_ACCESO)
-    private Date ultimoAcceso;
-
     @DatabaseField(columnName= SEXO, unknownEnumName = "OTRO", canBeNull = false)
     private Sexo sexo;
 
-    @DatabaseField(columnName= CUENTA_CERRADA, canBeNull = false)
-    private boolean cuentaCerrada;
+    @DatabaseField(columnName=LOGINOFFLINE)
+    private boolean loginOffline;
 
     public Usuario() {
         // ORMLite needs a no-arg constructor
     }
 
-    public Usuario(String nick, String pass, String nombre, String apellidos,
-                   Date fechaNacimiento, String email, Date fechaRegistro, Date ultimoAcceso,
-                   Sexo sexo, boolean cuentaCerrada) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public Usuario(int id, String nick, String nombre, String apellidos, Sexo sexo, boolean loginOffline) {
+        this.id = id;
         this.nick = nick;
-        setPass(pass);
-        this.nombre=nombre;
-        this.apellidos=apellidos;
-        this.fechaNacimiento=fechaNacimiento;
-        this.email=email;
-        this.fechaRegistro=fechaRegistro;
-        this.ultimoAcceso = ultimoAcceso;
-        this.sexo=sexo;
-        this.cuentaCerrada = cuentaCerrada;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.loginOffline = loginOffline;
     }
 
     //Setters y getters
+
 
     public int getId() {
         return id;
@@ -94,33 +69,20 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNick()
-    {
+    public String getNick() {
         return nick;
     }
 
-    public void setNick(String nick)
-    {
-        this.nick=nick;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public String getNombre()
-    {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre)
-    {
-        this.nick=nombre;
-    }
-
-    public String getPass()
-    {
-        return pass;
-    }
-
-    public void setPass(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        this.pass = hashPassword(password);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellidos() {
@@ -131,38 +93,6 @@ public class Usuario {
         this.apellidos = apellidos;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public Date getUltimoAcceso() {
-        return ultimoAcceso;
-    }
-
-    public void setUltimoAcceso(Date ultimoAcceso) {
-        this.ultimoAcceso = ultimoAcceso;
-    }
-
     public Sexo getSexo() {
         return sexo;
     }
@@ -171,20 +101,12 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public boolean isCuentaCerrada() {
-        return cuentaCerrada;
+    public boolean isLoginOffline() {
+        return loginOffline;
     }
 
-    public void setCuentaCerrada(boolean cuentaCerrada) {
-        this.cuentaCerrada = cuentaCerrada;
-    }
-
-    public boolean isPasswordCorrect(String givenPassword) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        return TextUtils.equals(hashPassword(givenPassword), pass);
-    }
-
-    private String hashPassword(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        return AeSimpleSHA1.SHA1(password);
+    public void setLoginOffline(boolean loginOffline) {
+        this.loginOffline = loginOffline;
     }
 
     //Enumerador para el sexo del usuario

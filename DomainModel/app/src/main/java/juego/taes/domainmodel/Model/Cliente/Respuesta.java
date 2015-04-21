@@ -9,11 +9,12 @@ import java.util.Date;
  * Created by alienware18 on 9-8-13.
  */
 
-@DatabaseTable(tableName = "bd_preguntas")
-public class BDPreguntas {
+@DatabaseTable(tableName = "respuesta")
+public class Respuesta {
 
     //Nombres de las columnas
     public static final String ID="_id";
+    public static final String CONTENIDO="contenido";
     public static final String ENSERVIDOR="en_servidor";
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
@@ -22,6 +23,9 @@ public class BDPreguntas {
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true)
     private int id;
+
+    @DatabaseField(columnName=CONTENIDO, canBeNull=false)
+    private String contenido;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false)
     private String enServidor;
@@ -35,11 +39,12 @@ public class BDPreguntas {
     @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION)
     private boolean modificadoDesdeUltimaSincronizacion;
 
-    public BDPreguntas() {
+    public Respuesta() {
         // ORMLite needs a no-arg constructor
     }
 
-    public BDPreguntas(String enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public Respuesta(String contenido, String enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+        this.contenido = contenido;
         this.enServidor = enServidor;
         this.idSincronizacion = idSincronizacion;
         this.fechaSincronizacion = fechaSincronizacion;
@@ -54,6 +59,14 @@ public class BDPreguntas {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
     public String getEnServidor() {
