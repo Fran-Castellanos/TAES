@@ -5,19 +5,5 @@ package tk.theunigame.unigame.app.fachadas;
  */
 public class FachadaRespuesta {
 
-    private int id;
-    private String contenido;
-    private boolean correcto;
 
-
-    public FachadaRespuesta(String str){
-        contenido=str;
-        correcto=false;
-    }
-
-    public void setCorrecto(String id){
-
-    }
 }
-
-

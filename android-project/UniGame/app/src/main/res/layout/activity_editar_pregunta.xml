@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_main_horizontal"
+    tools:context=".app.presentacion.controlador.impl.CrearDB">
+
+    <RelativeLayout style="@style/rl_main_left"></RelativeLayout>
+
+    <RelativeLayout style="@style/rl_main_central">
+
+        <LinearLayout style="@style/ll_main_central_vertical">
+
+            <RelativeLayout style="@style/rl_main_top"></RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                style="@style/img_main_logo" />
+
+            <LinearLayout
+                style="@style/ll_main_container"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etxt_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.35"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/etxt_edit_question"
+                    android:ellipsize="end"
+                    android:padding="15sp" />
+
+                <LinearLayout
+                    style="@style/ll_show_answer">
+                    <EditText
+                        android:id="@+id/etxt_edit_answer_a"
+                        style="@style/etxt_show_answer"/>
+                    <Button
+                        android:id="@+id/btn_edit_answer_a"
+                        style="@style/btn_show_correct_answer"
+                        android:background="@drawable/btn_selected_answer_pressed"/>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/ll_show_answer">
+                    <EditText
+                        android:id="@+id/etxt_edit_answer_b"
+                        style="@style/etxt_show_answer"/>
+                    <Button
+                        android:id="@+id/btn_edit_answer_b"
+                        style="@style/btn_show_correct_answer"/>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/ll_show_answer">
+                    <EditText
+                        android:id="@+id/etxt_edit_answer_c"
+                        style="@style/etxt_show_answer"/>
+                    <Button
+                        android:id="@+id/btn_edit_answer_c"
+                        style="@style/btn_show_correct_answer"/>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/ll_show_answer">
+                    <EditText
+                        android:id="@+id/etxt_edit_answer_d"
+                        style="@style/etxt_show_answer"/>
+                    <Button
+                        android:id="@+id/btn_edit_answer_d"
+                        style="@style/btn_show_correct_answer"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/use_questions"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/button_design"
+                    android:clickable="true"
+                    android:text="@string/btn_create"
+                    android:onClick="Crear_Click"
+                    android:textColor="@color/black_overlay" />
+            </LinearLayout>
+
+            <RelativeLayout style="@style/rl_main_bottom"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/rl_main_right"></RelativeLayout>
+</LinearLayout>
