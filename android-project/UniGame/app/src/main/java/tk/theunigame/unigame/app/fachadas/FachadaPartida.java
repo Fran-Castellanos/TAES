@@ -138,7 +138,7 @@ public class FachadaPartida {
     }
 
 
-    public boolean responderPregunta(int pregunta, int respuesta)
+    public boolean comprobarPregunta(int pregunta, int respuesta)
     {
         PreguntaRepository preg = new PreguntaRepository();
         Pregunta p = preg.getById(pregunta);
@@ -146,5 +146,14 @@ public class FachadaPartida {
 
     }
 
+
+    public List<Pregunta> getPreguntas(List<BDPreguntas> bolsas)
+    {
+        BDPreguntasRepository bdrep = new BDPreguntasRepository();
+
+
+        return juego.obtenerPreguntas(bolsas);
+
+    }
 
 }
