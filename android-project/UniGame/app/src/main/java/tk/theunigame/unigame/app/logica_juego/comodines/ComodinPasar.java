@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.negocio.comodines;
+package tk.theunigame.unigame.app.logica_juego.comodines;
 
 /**
  * Created by Paco on 22/04/2015.

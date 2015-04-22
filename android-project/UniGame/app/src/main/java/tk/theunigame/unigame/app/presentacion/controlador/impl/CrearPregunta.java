@@ -1,14 +1,18 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.j256.ormlite.dao.ForeignCollection;
+
+import java.util.ArrayList;
+
+import juego.taes.domainmodel.Model.Cliente.*;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.*;
 
 
 /**
@@ -21,14 +25,25 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     EditText etxt_a, etxt_b, etxt_c, etxt_d;
     Button btn_a, btn_b, btn_c, btn_d;
+    private int idBD;
+    //Fachadas a emplear
+    FachadaBDPreguntas bolsaPreguntas;
+    FachadaRespuesta respuestaFachada;
+    FachadaPregunta preguntaFachada;
+    //arrays a usar
+    ArrayList<Pregunta> preguntas;
+    ArrayList<Respuesta> respuestas;
+    ArrayList<String> contenido;
+
 
     private EIDANSWER id_answer_selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editar_pregunta);
+        setContentView(R.layout.activity_crear_pregunta);
 
+        // bolsaPreguntas.RecuperarBDPreguntas(idDB);
         id_answer_selected = EIDANSWER.A;
 
         etxt_a = (EditText)findViewById(R.id.etxt_edit_answer_a);
@@ -45,6 +60,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         btn_b.setOnClickListener(this);
         btn_c.setOnClickListener(this);
         btn_d.setOnClickListener(this);
+
     }
 
 
@@ -61,9 +77,19 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-        TextView text;
-        text =  (TextView)findViewById(R.id.etxt_question);
-        text.setText("HOLA");
+        //obtenemos el contenido de los texbox
+        contenido.add(etxt_a.getText().toString());
+        contenido.add(etxt_b.getText().toString());
+        contenido.add(etxt_c.getText().toString());
+        contenido.add(etxt_d.getText().toString());
+        //creamos las respuestas
+        respuestas=respuestaFachada.obtenerRespuestas(contenido);
+        //creamos la pregunta
+        preguntas.add(preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString()));
+        preguntaFachada.indicarRespuestas(preguntas.get(preguntas.size()-1),respuestas);
+        //indicamos la respuestacorrecta
+        preguntaFachada.RespuestaCorrecta(preguntas.get(preguntas.size()-1),id_answer_selected.getId(),respuestaFachada);
+
     }
 
     private static enum EIDANSWER {

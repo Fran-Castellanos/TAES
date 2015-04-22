@@ -2,7 +2,7 @@ package juego.taes.domainmodel.Repository;
 
 import java.util.List;
 
-import juego.taes.domainmodel.Data.Example.DatabaseHelper;
+import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 
 /**
@@ -10,7 +10,7 @@ import juego.taes.domainmodel.Model.Cliente.Carrera;
  */
 public class CarreraRepository {
 
-    private DatabaseHelper db;
+    private DatabaseHelperExample db;
 
     public int create(Carrera carrera)
     {
