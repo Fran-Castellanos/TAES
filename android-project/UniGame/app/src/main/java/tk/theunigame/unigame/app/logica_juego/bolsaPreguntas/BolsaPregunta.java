@@ -1,7 +1,6 @@
 package tk.theunigame.unigame.app.logica_juego.bolsaPreguntas;
 
-import com.j256.ormlite.dao.ForeignCollection;
-
+import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -11,9 +10,9 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
  */
 public class BolsaPregunta {
 
-    private ForeignCollection<Pregunta> preguntas_eliminadas;
-    private ForeignCollection<Pregunta> preguntas_modificadas;
-    private ForeignCollection<Pregunta> preguntas_creadas;
+    private List<Pregunta> preguntas_eliminadas;
+    private List<Pregunta> preguntas_modificadas;
+    private List<Pregunta> preguntas_creadas;
     private BDPreguntas bolsa;
 
     public BolsaPregunta(BDPreguntas bd)
@@ -26,6 +25,7 @@ public class BolsaPregunta {
 
     public void CrearPregunta(Pregunta pregunta)
     {
+        pregunta.setBdPreguntas(bolsa);
         preguntas_creadas.add(pregunta);
     }
 
@@ -41,7 +41,10 @@ public class BolsaPregunta {
 
     public void actualizarCreadas()
     {
+        for(Pregunta x : preguntas_creadas)
+        {
 
+        }
     }
     public void actualizarBorradas()
     {
