@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.EditarPregunta"/>
+      <point      
+        x = "550"      
+        y = "150"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.BajarDB"/>
+      <point      
+        x = "480"      
+        y = "160"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.UsarDB"/>
+      <point      
+        x = "640"      
+        y = "160"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.ListaPreguntas"/>
+      <point      
+        x = "700"      
+        y = "300"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity"/>
+      <point      
+        x = "650"      
+        y = "250"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.ModoIndividual"/>
+      <point      
+        x = "800"      
+        y = "320"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.CrearDB"/>
+      <point      
+        x = "800"      
+        y = "400"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>
