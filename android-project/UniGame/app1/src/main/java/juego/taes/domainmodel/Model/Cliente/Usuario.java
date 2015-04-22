@@ -2,7 +2,9 @@ package juego.taes.domainmodel.Model.Cliente;
 
 import android.text.TextUtils;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.UnsupportedEncodingException;
@@ -12,7 +14,7 @@ import java.util.Date;
 import juego.taes.domainmodel.Utilities.AeSimpleSHA1;
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix on 22-4-2015.
  */
 
 @DatabaseTable(tableName = "usuario")
@@ -25,6 +27,9 @@ public class Usuario {
     public static final String APELLIDOS ="apellidos";
     public static final String SEXO ="sexo";
     public static final String LOGINOFFLINE="login_offline";
+
+    //Relaciones
+    public static final String BDS="fk_bds";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, id=true, useGetSet = true)
@@ -45,6 +50,10 @@ public class Usuario {
     @DatabaseField(columnName=LOGINOFFLINE, useGetSet = true)
     private boolean loginOffline;
 
+    //Relaciones
+    @ForeignCollectionField(eager=false, foreignFieldName = "bds", columnName = BDS)
+    private ForeignCollection<Usuario> bds;
+
     public Usuario() {
         // ORMLite needs a no-arg constructor
     }
@@ -58,7 +67,6 @@ public class Usuario {
     }
 
     //Setters y getters
-
 
     public int getId() {
         return id;
@@ -106,6 +114,31 @@ public class Usuario {
 
     public void setLoginOffline(boolean loginOffline) {
         this.loginOffline = loginOffline;
+    }
+
+    public ForeignCollection<Usuario> getBds() {
+        return bds;
+    }
+
+    public void setBds(ForeignCollection<Usuario> bds) {
+        this.bds = bds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario)) return false;
+
+        Usuario usuario = (Usuario) o;
+
+        if (id != usuario.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     //Enumerador para el sexo del usuario

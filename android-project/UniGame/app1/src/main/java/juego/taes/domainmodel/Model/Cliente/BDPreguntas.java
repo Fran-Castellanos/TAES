@@ -1,12 +1,14 @@
 package juego.taes.domainmodel.Model.Cliente;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix on 22-4-2015.
  */
 
 @DatabaseTable(tableName = "bd_preguntas")
@@ -18,6 +20,11 @@ public class BDPreguntas {
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
+
+    //Columnas foreign key
+    public static final String USUARIO="fk_usuario";
+    public static final String PREGUNTAS="fk_preguntas";
+    public static final String UNIVERSIDAD="fk_universidad";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
@@ -34,6 +41,16 @@ public class BDPreguntas {
 
     @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION, useGetSet = true)
     private boolean modificadoDesdeUltimaSincronizacion;
+
+    //Relaciones
+    @DatabaseField(columnName=USUARIO, foreign = true, canBeNull = false)
+    private Usuario usuario;
+
+    @DatabaseField(columnName = UNIVERSIDAD, foreign = true, canBeNull = false)
+    private Universidad universidad;
+
+    @ForeignCollectionField(eager=false,columnName = PREGUNTAS, foreignFieldName = "preguntas")
+    private ForeignCollection<Pregunta> preguntas;
 
     public BDPreguntas() {
         // ORMLite needs a no-arg constructor
@@ -84,5 +101,46 @@ public class BDPreguntas {
 
     public void setModificadoDesdeUltimaSincronizacion(boolean modificadoDesdeUltimaSincronizacion) {
         this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
+    }
+
+    public ForeignCollection<Pregunta> getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(ForeignCollection<Pregunta> preguntas) {
+        this.preguntas = preguntas;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Universidad getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BDPreguntas)) return false;
+
+        BDPreguntas that = (BDPreguntas) o;
+
+        if (id != that.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }
