@@ -10,7 +10,7 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
  */
 public interface IModoJuego {
 
-    public void jugar();
+    public void jugar(List<Pregunta> preguntas);
     public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas);
     public boolean comprobarRespuesta(Pregunta pregunta, Integer respuesta);
 

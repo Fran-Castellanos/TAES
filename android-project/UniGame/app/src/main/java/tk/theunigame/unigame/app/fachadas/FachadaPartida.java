@@ -132,6 +132,8 @@ public class FachadaPartida {
     public void jugarPartida(Millonario p) throws Exception {
         BDPreguntasRepository bdpreg = new BDPreguntasRepository();
 
+
+
         throw new Exception("Not implemented yet");
 
 
@@ -155,5 +157,9 @@ public class FachadaPartida {
         return juego.obtenerPreguntas(bolsas);
 
     }
+
+
+
+
 
 }
