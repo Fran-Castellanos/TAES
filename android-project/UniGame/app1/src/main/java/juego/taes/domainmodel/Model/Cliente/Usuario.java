@@ -2,7 +2,9 @@ package juego.taes.domainmodel.Model.Cliente;
 
 import android.text.TextUtils;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.UnsupportedEncodingException;
@@ -44,6 +46,10 @@ public class Usuario {
 
     @DatabaseField(columnName=LOGINOFFLINE, useGetSet = true)
     private boolean loginOffline;
+
+    //Relaciones
+    @ForeignCollectionField(eager=false)
+    public ForeignCollection<Usuario> usuarios;
 
     public Usuario() {
         // ORMLite needs a no-arg constructor
@@ -107,6 +113,7 @@ public class Usuario {
     public void setLoginOffline(boolean loginOffline) {
         this.loginOffline = loginOffline;
     }
+
 
     //Enumerador para el sexo del usuario
     private enum Sexo

@@ -19,6 +19,9 @@ public class BDPreguntas {
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
+    //Columnas foreign key
+    public static final String USUARIO="fk_usuario";
+
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
@@ -34,6 +37,9 @@ public class BDPreguntas {
 
     @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION, useGetSet = true)
     private boolean modificadoDesdeUltimaSincronizacion;
+
+    @DatabaseField(columnName=USUARIO, foreign = true)
+    private Usuario usuario;
 
     public BDPreguntas() {
         // ORMLite needs a no-arg constructor
