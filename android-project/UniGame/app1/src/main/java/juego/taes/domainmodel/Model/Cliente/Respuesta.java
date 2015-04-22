@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix on 22-4-2015.
  */
 
 @DatabaseTable(tableName = "respuesta")
@@ -19,6 +19,9 @@ public class Respuesta {
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
+
+    //Relaciones
+    public static final String PREGUNTA="fk_pregunta";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
@@ -38,6 +41,10 @@ public class Respuesta {
 
     @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION, useGetSet = true)
     private boolean modificadoDesdeUltimaSincronizacion;
+
+    //Relaciones
+    @DatabaseField(columnName = PREGUNTA, useGetSet = true, foreign = true, canBeNull = false)
+    private Pregunta pregunta;
 
     public Respuesta() {
         // ORMLite needs a no-arg constructor
@@ -100,5 +107,30 @@ public class Respuesta {
 
     public void setModificadoDesdeUltimaSincronizacion(boolean modificadoDesdeUltimaSincronizacion) {
         this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
+    }
+
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Respuesta)) return false;
+
+        Respuesta respuesta = (Respuesta) o;
+
+        if (id != respuesta.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

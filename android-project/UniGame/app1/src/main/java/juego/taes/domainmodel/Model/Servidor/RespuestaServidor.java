@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix on 22-4-2015.
  */
 
 @DatabaseTable(tableName = "respuesta")

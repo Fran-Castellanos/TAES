@@ -1,12 +1,14 @@
 package juego.taes.domainmodel.Model.Cliente;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix on 22-4-2015.
  */
 
 @DatabaseTable(tableName = "pregunta")
@@ -19,6 +21,10 @@ public class Pregunta {
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
+
+    //Relaciones
+    public static final String RESPUESTA_CORRECTA="fk_respuesta_correcta";
+    public static final String RESPUESTAS="fk_respuestas";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
@@ -38,6 +44,13 @@ public class Pregunta {
 
     @DatabaseField(columnName = MODIFICADODESDEULTIMASINCRONIZACION, useGetSet = true)
     private boolean modificadoDesdeUltimaSincronizacion;
+
+    //Relaciones
+    @DatabaseField(columnName = RESPUESTA_CORRECTA, foreign = true, canBeNull = false, useGetSet = true)
+    private Respuesta respuestaCorrecta;
+
+    @ForeignCollectionField(eager=false, foreignFieldName = "respuestas", columnName = RESPUESTAS)
+    private ForeignCollection<Respuesta> respuestas;
 
     public Pregunta() {
         // ORMLite needs a no-arg constructor
@@ -97,5 +110,38 @@ public class Pregunta {
 
     public void setFechaSincronizacion(Date fechaSincronizacion) {
         this.fechaSincronizacion = fechaSincronizacion;
+    }
+
+    public Respuesta getRespuestaCorrecta() {
+        return respuestaCorrecta;
+    }
+
+    public void setRespuestaCorrecta(Respuesta respuestaCorrecta) {
+        this.respuestaCorrecta = respuestaCorrecta;
+    }
+
+    public ForeignCollection<Respuesta> getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(ForeignCollection<Respuesta> respuestas) {
+        this.respuestas = respuestas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pregunta)) return false;
+
+        Pregunta pregunta = (Pregunta) o;
+
+        if (id != pregunta.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }
