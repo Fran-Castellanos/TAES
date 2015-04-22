@@ -5,11 +5,14 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
+import juego.taes.domainmodel.Data.Dao.CarreraDao;
+
 /**
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "carrera")
+@DatabaseTable(tableName = "carrera", daoClass = CarreraDao.class)
 public class Carrera {
 
     //Nombres de las columnas

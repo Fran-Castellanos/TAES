@@ -1,14 +1,17 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
+import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
 
 
 /**
@@ -21,13 +24,18 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     EditText etxt_a, etxt_b, etxt_c, etxt_d;
     Button btn_a, btn_b, btn_c, btn_d;
+    private int id;
+    //Fachadas a emplear
+    FachadaBDPreguntas bolsaPreguntas;
+    ArrayList<Pregunta> preguntas;
+
 
     private EIDANSWER id_answer_selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editar_pregunta);
+        setContentView(R.layout.activity_crear_pregunta);
 
         id_answer_selected = EIDANSWER.A;
 
@@ -61,9 +69,14 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-        TextView text;
-        text =  (TextView)findViewById(R.id.etxt_question);
-        text.setText("HOLA");
+      //  bolsaPreguntas.RecuperarBDPreguntas(id);
+        FachadaRespuesta respuestaA= new FachadaRespuesta(etxt_a.getText().toString());
+        FachadaRespuesta respuestaB= new FachadaRespuesta(etxt_b.getText().toString());
+        FachadaRespuesta respuestaC= new FachadaRespuesta(etxt_c.getText().toString());
+        FachadaRespuesta respuestaD= new FachadaRespuesta(etxt_d.getText().toString());
+
+        id_answer_selected.getId();
+
     }
 
     private static enum EIDANSWER {

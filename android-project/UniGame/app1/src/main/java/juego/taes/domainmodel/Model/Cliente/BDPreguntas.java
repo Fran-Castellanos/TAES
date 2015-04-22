@@ -7,15 +7,19 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+import juego.taes.domainmodel.Data.Dao.AsignaturaDao;
+import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
+
 /**
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "bd_preguntas")
+@DatabaseTable(tableName = "bd_preguntas", daoClass = BDPreguntasDao.class)
 public class BDPreguntas {
 
     //Nombres de las columnas
     public static final String ID="_id";
+    public static final String NOMBRE ="nombre";
     public static final String ENSERVIDOR="en_servidor";
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
@@ -29,6 +33,9 @@ public class BDPreguntas {
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
+
+    @DatabaseField(columnName=NOMBRE, useGetSet = true, canBeNull = false)
+    private String Nombre;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false, defaultValue="false", useGetSet = true)
     private boolean enServidor;
@@ -56,7 +63,8 @@ public class BDPreguntas {
         // ORMLite needs a no-arg constructor
     }
 
-    public BDPreguntas(boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public BDPreguntas(String nombre, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+        Nombre = nombre;
         this.enServidor = enServidor;
         this.idSincronizacion = idSincronizacion;
         this.fechaSincronizacion = fechaSincronizacion;
@@ -125,6 +133,14 @@ public class BDPreguntas {
 
     public void setUniversidad(Universidad universidad) {
         this.universidad = universidad;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
     }
 
     @Override

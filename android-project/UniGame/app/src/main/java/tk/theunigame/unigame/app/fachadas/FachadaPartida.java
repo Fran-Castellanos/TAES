@@ -32,6 +32,8 @@ public class FachadaPartida {
     private UniversidadRepository uni;
     private CarreraRepository car;
     private AsignaturaRepository asig;
+    private BDPreguntasRepository base;
+
 
     private HashMap<Pregunta,Integer> listaPreguntas;
     private IModoJuego juego;
@@ -58,60 +60,83 @@ public class FachadaPartida {
     }
 
     public List<String> verUniversidades() throws Exception {
-        List<Universidad> universidades;
-        List<String> nombres;
-        try {
-            nombres= new ArrayList<String>();
-            universidades = uni.getAll();
-            for(Universidad u : universidades)
-                nombres.add(u.getNombre());
 
+    public List<Universidad> verUniversidades() throws Exception {
+
+        List<Universidad> universidades;
+        try {
+
+            universidades = uni.getAll();
 
         }catch(Exception e){
             throw  new Exception("No se han obtenido universidades"+e.getMessage());
         }
-        return  nombres;
+        return  universidades;
     }
 
 
-    public List<String> verCarreras(int idUniversidad) throws Exception {
+    public List<Carrera> verCarreras(int idUniversidad) throws Exception {
         List<Carrera> carreras;
-        List<String> nombres;
-        try {
-            nombres= new ArrayList<String>();
-            carreras = car.getByUniversidad(idUniversidad);
-            for(Carrera c : carreras)
-                nombres.add(c.getNombre());
 
+        try{
+
+            carreras = car.getByUniversidad(idUniversidad);
 
         }catch(Exception e){
             throw  new Exception("No se han obtenido carreras para la Universidad"+e.getMessage());
         }
-        return  nombres;
+        return  carreras;
     }
 
 
-    public List<String> verAsignaturas(int idCarrera) throws Exception {
+    public List<Asignatura> verAsignaturas(int idCarrera) throws Exception {
         List<Asignatura> asignaturas;
-        List<String> nombres;
-        try {
-            nombres= new ArrayList<String>();
-            asignaturas = asig.getByCarrera(idCarrera);
-            for(Asignatura c : asignaturas)
-                nombres.add(c.getNombre());
 
+        try {
+
+            asignaturas = asig.getByCarrera(idCarrera);
 
         }catch(Exception e){
             throw  new Exception("No se han obtenido asignaturas para la carrera"+e.getMessage());
         }
-        return  nombres;
+        return  asignaturas;
+    }
+    public List<BDPreguntas> verBDPreguntasTodasUnis(int idAsig) throws Exception {
+        List<BDPreguntas> bases;
+
+        try {
+
+            bases = base.getByAsignatura(idAsig);
+
+        }catch(Exception e){
+            throw  new Exception("No se han obtenido asignaturas para la carrera"+e.getMessage());
+        }
+        return  bases;
+    }
+    public  List<BDPreguntas> verBDPreguntasUnaUni(int idAsig ,int idUni) throws Exception {
+        List<BDPreguntas> bases;
+
+        try {
+
+            bases = base.getByUniversidad(idAsig, idUni);
+
+        }catch(Exception e){
+            throw  new Exception("No se han obtenido asignaturas para la carrera"+e.getMessage());
+        }
+        return bases;
+
     }
 
+    public void jugarPartida(Millonario p) throws Exception {
 
 
     public void jugarPartida(Millonario p)
     {
         BDPreguntasRepository bdpreg = new BDPreguntasRepository();
+
+     throw new Exception("Not implemented yet");
+
+
     }
 
 
@@ -122,5 +147,6 @@ public class FachadaPartida {
         return juego.comprobarRespuesta(p, respuesta);
 
     }
+
 
 }

@@ -5,11 +5,13 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+import juego.taes.domainmodel.Data.Dao.RespuestaDao;
+
 /**
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "respuesta")
+@DatabaseTable(tableName = "respuesta", daoClass = RespuestaDao.class)
 public class Respuesta {
 
     //Nombres de las columnas

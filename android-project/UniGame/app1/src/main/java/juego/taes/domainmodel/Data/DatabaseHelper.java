@@ -1,4 +1,4 @@
-package juego.taes.domainmodel.Data.Example;
+package juego.taes.domainmodel.Data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +17,7 @@ import juego.taes.domainmodel.Model.Example.Comment;
 /**
  * Created by alienware18 on 9-8-13.
  */
-public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
+public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";

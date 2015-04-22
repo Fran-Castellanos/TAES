@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
-import juego.taes.domainmodel.Data.Example.DatabaseHelper;
+import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 
 
 /**
@@ -13,24 +13,24 @@ import juego.taes.domainmodel.Data.Example.DatabaseHelper;
 public class DatabaseManager {
 
 
-    private DatabaseHelper databaseHelper = null;
+    private DatabaseHelperExample databaseHelperExample = null;
 
     //gets a helper once one is created ensures it doesnt create a new one
-    public DatabaseHelper getHelper(Context context)
+    public DatabaseHelperExample getHelper(Context context)
     {
-        if (databaseHelper == null) {
-            databaseHelper =
-                    OpenHelperManager.getHelper(context, DatabaseHelper.class);
+        if (databaseHelperExample == null) {
+            databaseHelperExample =
+                    OpenHelperManager.getHelper(context, DatabaseHelperExample.class);
         }
-        return databaseHelper;
+        return databaseHelperExample;
     }
 
     //releases the helper once usages has ended
-    public void releaseHelper(DatabaseHelper helper)
+    public void releaseHelper(DatabaseHelperExample helper)
     {
-        if (databaseHelper != null) {
+        if (databaseHelperExample != null) {
             OpenHelperManager.releaseHelper();
-            databaseHelper = null;
+            databaseHelperExample = null;
         }
     }
 
