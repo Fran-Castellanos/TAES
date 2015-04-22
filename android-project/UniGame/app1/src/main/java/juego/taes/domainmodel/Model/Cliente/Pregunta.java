@@ -63,12 +63,9 @@ public class Pregunta {
         // ORMLite needs a no-arg constructor
     }
 
-    public Pregunta(String contenido, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public Pregunta(String contenido, boolean enServidor) {
         this.contenido = contenido;
         this.enServidor = enServidor;
-        this.idSincronizacion = idSincronizacion;
-        this.fechaSincronizacion = fechaSincronizacion;
-        this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 
     public boolean isModificadoDesdeUltimaSincronizacion() {

@@ -12,10 +12,11 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import juego.taes.domainmodel.Data.Dao.*;
 import juego.taes.domainmodel.Model.Example.Comment;
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix 22/04/2015.
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -24,9 +25,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // any time you make changes to your database objects, you may have to increase the database version
     private static final int DATABASE_VERSION = 1;
 
-    // the DAO object we use to access the SimpleData table
-    private Dao<Comment, Integer> commentsDao = null;
-    private RuntimeExceptionDao<Comment, Integer> commentsRuntimeDao = null;
+    //Daos utilizados
+    private IAsignaturaDao asignaturaDao = null;
+    private IBDPreguntasDao bdPreguntasDao = null;
+    private ICarreraDao carreraDao = null;
+    private IPreguntaDao preguntaDao = null;
+    private IRespuestaDao respuestaDao = null;
+    private IUniversidadDao universidadDao = null;
+    private IUsuarioDao usuarioDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
