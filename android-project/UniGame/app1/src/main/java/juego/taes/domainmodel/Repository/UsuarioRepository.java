@@ -33,4 +33,6 @@ public class UsuarioRepository {
     {
         throw new RuntimeException("Not implemented yet");
     }
+
+    public Usuario getByNick(String nick){ throw new RuntimeException("Not implemented yet");}
 }
