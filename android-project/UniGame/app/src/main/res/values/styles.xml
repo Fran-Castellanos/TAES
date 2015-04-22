@@ -95,6 +95,18 @@
         <item name="android:background">@drawable/etxt_edit_answer</item>
     </style>
 
+    <!-- Estilo de los TextView que tengan la función título -->
+    <style name="txt_title">
+        <item name="android:layout_margin">2dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <!-- Fin estilos UniGame -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

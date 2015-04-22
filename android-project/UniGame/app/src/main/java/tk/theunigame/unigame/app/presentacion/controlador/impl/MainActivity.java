@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         btn_individual_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, ModoIndividual.class);
+                Intent intent= new Intent(MainActivity.this, ListaBasesDatos.class);
                 startActivity(intent);
             }
         });

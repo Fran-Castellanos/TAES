@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_main_horizontal"
-    tools:context=".app.presentacion.controlador.impl.ModoIndividual">
+    tools:context=".app.presentacion.controlador.impl.ListarUniversidades">
 
     <RelativeLayout
         style="@style/rl_main_left">
@@ -14,23 +14,19 @@
             <RelativeLayout
                 style="@style/rl_main_top">
             </RelativeLayout>
-            <ImageView
+            <TextView
                 android:id="@+id/imageView"
-                style="@style/img_main_logo"/>
+                style="@style/txt_title"
+                android:text="@string/txt_universities"/>
             <LinearLayout
                 android:orientation="vertical"
                 style="@style/ll_main_container">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_individual_mode"
-                    android:textSize="16sp"
-                    android:textColor="@color/Black"/>
+
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/lv_usar_db_preguntas"
-                    android:background="@color/Black">
+                    android:id="@+id/lv_universidades"
+                    android:background="@android:color/transparent">
                 </ListView>
 
             </LinearLayout>

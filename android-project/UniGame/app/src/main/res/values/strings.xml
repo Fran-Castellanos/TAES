@@ -9,6 +9,10 @@
     <string name="title_activity_modo_individual">Modo Individual</string>
     <string name="title_activity_lista_preguntas">Lista Preguntas</string>
     <string name="title_activity_editar_pregunta">Editar Pregunta</string>
+    <string name="title_activity_universidades">Universidades</string>
+    <string name="title_activity_carreras">Carreras</string>
+    <string name="title_activity_asignaturas">Asignaturas</string>
+    <string name="title_activity_dbs">Bases de Datos</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="individual_mode">Modo Individual</string>
@@ -24,4 +28,8 @@
     <string name="btn_browse">Buscar</string>
     <string name="txt_individual_mode">Elige las preguntas de la partida</string>
     <string name="btn_individual_mode">Añadir pregunta</string>
+    <string name="txt_universities">Universidades</string>
+    <string name="txt_carrer">Carrera</string>
+    <string name="txt_subject">Asignatura</string>
+    <string name="txt_dbs">Bases de Datos</string>
 </resources>
