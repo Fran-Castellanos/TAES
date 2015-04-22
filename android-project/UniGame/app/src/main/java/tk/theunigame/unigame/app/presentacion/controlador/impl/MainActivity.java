@@ -1,5 +1,6 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.util.SystemUiHider;
 
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
         btn_individual_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, ListaBasesDatos.class);
+                Intent intent= new Intent(MainActivity.this, ListaUniversidades.class);
                 startActivity(intent);
             }
         });

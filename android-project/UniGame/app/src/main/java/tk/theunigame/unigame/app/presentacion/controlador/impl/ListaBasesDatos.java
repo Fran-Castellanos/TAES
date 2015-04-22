@@ -36,9 +36,9 @@ public class ListaBasesDatos extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Comunicador.setObject(parent.getAdapter().getItem(position));
-                Intent intent = new Intent(ListaBasesDatos.this, ListaUniversidades.class);
-                startActivity(intent);
+                //Comunicador.setObject(parent.getAdapter().getItem(position));
+                //Intent intent = new Intent(ListaBasesDatos.this, ListaUniversidades.class);
+                //startActivity(intent);
             }
         });
     }
