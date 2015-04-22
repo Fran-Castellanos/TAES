@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.presentacion.Fachadas;
+package tk.theunigame.unigame.app.fachadas;
 
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
 import juego.taes.domainmodel.Repository.AsignaturaRepository;
 import juego.taes.domainmodel.Repository.CarreraRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
-import tk.theunigame.unigame.app.negocio.modojuego.Millonario;
+import tk.theunigame.unigame.app.logica_juego.modojuego.Millonario;
 
 
 /**
@@ -72,6 +72,7 @@ public class FachadaPartida {
         }
         return  nombres;
     }
+
 
 
     public void jugarPartida(Millonario p)

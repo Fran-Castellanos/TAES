@@ -1,11 +1,11 @@
-package tk.theunigame.unigame.app.negocio.modojuego;
+package tk.theunigame.unigame.app.logica_juego.modojuego;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import tk.theunigame.unigame.app.negocio.interfaces.IModoJuego;
-import tk.theunigame.unigame.app.negocio.interfaces.IPregunta;
+import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
+import tk.theunigame.unigame.app.logica_juego.interfaces.IPregunta;
 
 /**
  * Created by Paco on 22/04/2015.
