@@ -70,10 +70,10 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
     public void Crear_Click(View v){
 
       //  bolsaPreguntas.RecuperarBDPreguntas(id);
-        FachadaRespuesta respuestaA= new FachadaRespuesta(etxt_a.getText().toString());
-        FachadaRespuesta respuestaB= new FachadaRespuesta(etxt_b.getText().toString());
-        FachadaRespuesta respuestaC= new FachadaRespuesta(etxt_c.getText().toString());
-        FachadaRespuesta respuestaD= new FachadaRespuesta(etxt_d.getText().toString());
+        //FachadaRespuesta respuestaA= new FachadaRespuesta(etxt_a.getText().toString());
+        //FachadaRespuesta respuestaB= new FachadaRespuesta(etxt_b.getText().toString());
+        //FachadaRespuesta respuestaC= new FachadaRespuesta(etxt_c.getText().toString());
+        //FachadaRespuesta respuestaD= new FachadaRespuesta(etxt_d.getText().toString());
 
         id_answer_selected.getId();
 
