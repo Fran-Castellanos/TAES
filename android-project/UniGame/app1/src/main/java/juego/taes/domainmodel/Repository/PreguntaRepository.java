@@ -33,4 +33,6 @@ public class PreguntaRepository {
     {
         throw new RuntimeException("Not implemented yet");
     }
+
+    public List<Pregunta> getByBDPregunta() {throw new RuntimeException("Not implemented yet");}
 }
