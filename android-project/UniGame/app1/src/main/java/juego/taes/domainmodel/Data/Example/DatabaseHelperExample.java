@@ -17,7 +17,7 @@ import juego.taes.domainmodel.Model.Example.Comment;
 /**
  * Created by alienware18 on 9-8-13.
  */
-public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
+public class DatabaseHelperExample extends OrmLiteSqliteOpenHelper {
 
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";
@@ -28,7 +28,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
     private Dao<Comment, Integer> commentsDao = null;
     private RuntimeExceptionDao<Comment, Integer> commentsRuntimeDao = null;
 
-    public DatabaseHelper(Context context) {
+    public DatabaseHelperExample(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -39,10 +39,10 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
-            Log.i(DatabaseHelper.class.getName(), "onCreate");
+            Log.i(DatabaseHelperExample.class.getName(), "onCreate");
             TableUtils.createTable(connectionSource, Comment.class);
         } catch (SQLException e) {
-            Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
+            Log.e(DatabaseHelperExample.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
         }
 
@@ -51,7 +51,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
         // create some entries in the onCreate
         Comment comment = new Comment("First Test Comment");
         dao.create(comment);
-        Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
+        Log.i(DatabaseHelperExample.class.getName(), "created new entries in onCreate");
     }
 
     /**
@@ -61,12 +61,12 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
-            Log.i(DatabaseHelper.class.getName(), "onUpgrade");
+            Log.i(DatabaseHelperExample.class.getName(), "onUpgrade");
             TableUtils.dropTable(connectionSource, Comment.class, true);
             // after we drop the old databases, we create the new ones
             onCreate(db, connectionSource);
         } catch (SQLException e) {
-            Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
+            Log.e(DatabaseHelperExample.class.getName(), "Can't drop databases", e);
             throw new RuntimeException(e);
         }
     }

@@ -11,13 +11,14 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import juego.taes.domainmodel.Data.Dao.UniversidadDao;
 import juego.taes.domainmodel.Utilities.AeSimpleSHA1;
 
 /**
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "universidad")
+@DatabaseTable(tableName = "universidad", daoClass =UniversidadDao.class)
 public class Universidad {
 
     //Nombres de las columnas

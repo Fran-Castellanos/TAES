@@ -7,11 +7,14 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
+import juego.taes.domainmodel.Data.Dao.PreguntaDao;
+
 /**
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "pregunta")
+@DatabaseTable(tableName = "pregunta", daoClass = PreguntaDao.class)
 public class Pregunta {
 
     //Nombres de las columnas
