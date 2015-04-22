@@ -22,13 +22,15 @@ public class MainActivity extends Activity {
     private Button btn;
     private ArrayList<Comment> comments;
 
+    private ListView listview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //get UI elements
-        ListView listview = (ListView)this.findViewById(R.id.listView);
+        listview = (ListView)this.findViewById(R.id.listView);
         btn = (Button)this.findViewById(R.id.button);
         txt = (EditText)this.findViewById(R.id.editText);
 

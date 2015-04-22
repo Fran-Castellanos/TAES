@@ -6,7 +6,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.EditarPregunta"/>
+        className = "tk.theunigame.unigame.app.presentacion.controlador.impl.CrearPregunta"/>
       <point      
         x = "550"      
         y = "150"/>

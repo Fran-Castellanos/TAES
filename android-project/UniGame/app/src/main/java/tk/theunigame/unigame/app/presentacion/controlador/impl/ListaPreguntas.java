@@ -34,7 +34,7 @@ public class ListaPreguntas extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(ListaPreguntas.this, EditarPregunta.class);
+                Intent intent= new Intent(ListaPreguntas.this, CrearPregunta.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class ListaPreguntas extends Activity {
                 //Enviar en un Bundle la información necesaria para tener acceso a la edición de la pregunta
                 Bundle b= new Bundle();
                 b.putString(Constantes.KDB_PREGUNTA, opcion);
-                Intent intent= new Intent(ListaPreguntas.this, EditarPregunta.class);
+                Intent intent= new Intent(ListaPreguntas.this, CrearPregunta.class);
                 intent.putExtras(b);
                 startActivity(intent);
             }

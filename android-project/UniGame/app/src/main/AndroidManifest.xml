@@ -37,7 +37,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_lista_preguntas">
         </activity>
-        <activity android:name=".app.presentacion.controlador.impl.EditarPregunta"
+        <activity android:name=".app.presentacion.controlador.impl.CrearPregunta"
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:label="@string/title_activity_editar_pregunta">
     </activity>
