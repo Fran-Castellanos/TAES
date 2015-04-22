@@ -10,6 +10,7 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
 import juego.taes.domainmodel.Repository.AsignaturaRepository;
 import juego.taes.domainmodel.Repository.CarreraRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
+import tk.theunigame.unigame.app.presentacion.negocio.Partida;
 
 
 /**
@@ -73,6 +74,10 @@ public class FachadaPartida {
     }
 
 
+    public void jugarPartida(Partida p)
+    {
+
+    }
 
 
 
