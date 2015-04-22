@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
@@ -21,10 +24,10 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     EditText etxt_a, etxt_b, etxt_c, etxt_d;
     Button btn_a, btn_b, btn_c, btn_d;
-
-
+    private int id;
     //Fachadas a emplear
     FachadaBDPreguntas bolsaPreguntas;
+    ArrayList<Pregunta> preguntas;
 
 
     private EIDANSWER id_answer_selected;
@@ -66,11 +69,13 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-      //  bolsaPreguntas.RecuperarBolsa(id);
+      //  bolsaPreguntas.RecuperarBDPreguntas(id);
         FachadaRespuesta respuestaA= new FachadaRespuesta(etxt_a.getText().toString());
         FachadaRespuesta respuestaB= new FachadaRespuesta(etxt_b.getText().toString());
         FachadaRespuesta respuestaC= new FachadaRespuesta(etxt_c.getText().toString());
         FachadaRespuesta respuestaD= new FachadaRespuesta(etxt_d.getText().toString());
+
+        id_answer_selected.getId();
 
     }
 
