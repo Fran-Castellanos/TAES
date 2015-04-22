@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import tk.theunigame.unigame.R;
 
@@ -16,7 +17,7 @@ import tk.theunigame.unigame.R;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class EditarPregunta extends Activity implements View.OnClickListener{
+public class CrearPregunta extends Activity implements View.OnClickListener{
 
     EditText etxt_a, etxt_b, etxt_c, etxt_d;
     Button btn_a, btn_b, btn_c, btn_d;
@@ -56,6 +57,13 @@ public class EditarPregunta extends Activity implements View.OnClickListener{
 
         id_answer_selected = EIDANSWER.getByButtonId(v.getId());
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
+    }
+
+    public void Crear_Click(View v){
+
+        TextView text;
+        text =  (TextView)findViewById(R.id.etxt_question);
+        text.setText("HOLA");
     }
 
     private static enum EIDANSWER {
