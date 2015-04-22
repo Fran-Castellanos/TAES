@@ -16,7 +16,7 @@ public class FachadaRespuesta {
 
     public ArrayList<Respuesta> obtenerRespuestas(ArrayList<String> contenido){
 
-        ForeignCollection<Respuesta> respuestas= new BaseForeignCollection<>() {};
+        ForeignCollection<Respuesta> respuestas= new BaseForeignCollection<>();
         for(int i=0; i<contenido.size(); ++i){
             respuestas.add(new Respuesta(contenido.get(i),false));
         }
@@ -27,7 +27,4 @@ public class FachadaRespuesta {
 
     }
 
-
 }
-
-

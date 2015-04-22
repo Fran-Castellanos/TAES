@@ -4,20 +4,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
-import tk.theunigame.unigame.app.logica_juego.interfaces.IPregunta;
+
 
 /**
  * Created by Paco on 22/04/2015.
  */
 public abstract class Millonario implements IModoJuego {
-    private HashMap<IPregunta, Integer> preguntas;
+    private HashMap<Pregunta, Integer> preguntas;
     private int numPreguntas;
 
     public Millonario()
     {
         numPreguntas = 20;
-        preguntas = new HashMap<IPregunta, Integer>();
+        preguntas = new HashMap<Pregunta, Integer>();
 
     }
 
@@ -51,11 +52,11 @@ public abstract class Millonario implements IModoJuego {
         while(it.hasNext())
         {
             Map.Entry e = (Map.Entry)it.next();
-            comprobarRespuesta((IPregunta)e.getKey(), (Integer)e.getValue());
+            comprobarRespuesta((Pregunta)e.getKey(), (Integer)e.getValue());
         }
     }
 
-    public boolean comprobarRespuesta(IPregunta preg, Integer res)
+    public boolean comprobarRespuesta(Pregunta preg, Integer res)
     {
         throw new RuntimeException("Not implemented yet");
 

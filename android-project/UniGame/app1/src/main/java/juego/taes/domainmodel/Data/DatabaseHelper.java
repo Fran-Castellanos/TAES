@@ -13,6 +13,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import juego.taes.domainmodel.Data.Dao.*;
+import juego.taes.domainmodel.Model.Cliente.*;
 import juego.taes.domainmodel.Model.Example.Comment;
 
 /**
@@ -45,19 +46,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
+
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTable(connectionSource, Comment.class);
+            //Crear las tablas
+            crearTablas();
+
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
         }
 
-        // here we try inserting data in the on-create as a test
-        RuntimeExceptionDao<Comment, Integer> dao = getCommentsDataDao();
-        // create some entries in the onCreate
-        Comment comment = new Comment("First Test Comment");
-        dao.create(comment);
-        Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
+        inicializarDatos();
+
     }
 
     /**
@@ -68,8 +68,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             Log.i(DatabaseHelper.class.getName(), "onUpgrade");
-            TableUtils.dropTable(connectionSource, Comment.class, true);
             // after we drop the old databases, we create the new ones
+            borrarTablas();
             onCreate(db, connectionSource);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
@@ -77,26 +77,90 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    //Crear las tablas en la bd
+    private void crearTablas() throws SQLException {
+        TableUtils.createTable(connectionSource, Comment.class);
+    }
+
+    //Borrar tablas de la bd
+    private void borrarTablas() throws SQLException {
+        TableUtils.dropTable(connectionSource, Comment.class, true);
+    }
+
+    //Insertar datos en la bd
+    private void inicializarDatos()
+    {
+
+        // here we try inserting data in the on-create as a test
+
+        Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
+    }
+
     /**
      * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
      * value.
      */
-    public Dao<Comment, Integer> getCommentsDao() throws SQLException {
-        if (commentsDao == null) {
-            commentsDao = getDao(Comment.class);
+    public IAsignaturaDao getIAsignaturaDao() throws SQLException
+    {
+        if(asignaturaDao == null)
+        {
+            asignaturaDao = getDao(Asignatura.class);
         }
-        return commentsDao;
+        return asignaturaDao;
     }
 
-    /**
-     * Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our SimpleData class. It will
-     * create it or just give the cached value. RuntimeExceptionDao only through RuntimeExceptions.
-     */
-    public RuntimeExceptionDao<Comment, Integer> getCommentsDataDao() {
-        if (commentsRuntimeDao == null) {
-            commentsRuntimeDao = getRuntimeExceptionDao(Comment.class);
+    public IBDPreguntasDao getIBDPreguntasDao() throws SQLException
+    {
+        if(bdPreguntasDao == null)
+        {
+            bdPreguntasDao = getDao(BDPreguntas.class);
         }
-        return commentsRuntimeDao;
+        return bdPreguntasDao;
+    }
+
+    public ICarreraDao getCarreraDao() throws SQLException
+    {
+        if(carreraDao == null)
+        {
+            carreraDao = getDao(Carrera.class);
+        }
+        return carreraDao;
+    }
+
+    public IPreguntaDao getPreguntaDao() throws SQLException
+    {
+        if(preguntaDao == null)
+        {
+            preguntaDao = getDao(Pregunta.class);
+        }
+        return preguntaDao;
+    }
+
+    public IRespuestaDao getRespuestaDao() throws SQLException
+    {
+        if(respuestaDao == null)
+        {
+            respuestaDao = getDao(Respuesta.class);
+        }
+        return respuestaDao;
+    }
+
+    public IUniversidadDao getUniversidadDao() throws SQLException
+    {
+        if(universidadDao == null)
+        {
+            universidadDao = getDao(Universidad.class);
+        }
+        return universidadDao;
+    }
+
+    public IUsuarioDao getUsuarioDao() throws SQLException
+    {
+        if(usuarioDao == null)
+        {
+            usuarioDao = getDao(Usuario.class);
+        }
+        return usuarioDao;
     }
 
     /**
@@ -105,7 +169,19 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void close() {
         super.close();
-        commentsDao = null;
+        limpiarDaos();
+    }
+
+    //Poner a null los daos
+    public void limpiarDaos()
+    {
+        asignaturaDao = null;
+        bdPreguntasDao = null;
+        carreraDao = null;
+        preguntaDao = null;
+        respuestaDao = null;
+        universidadDao = null;
+        usuarioDao = null;
     }
 
 }
