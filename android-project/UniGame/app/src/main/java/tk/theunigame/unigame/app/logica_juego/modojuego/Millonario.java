@@ -1,13 +1,10 @@
 package tk.theunigame.unigame.app.logica_juego.modojuego;
 
-import com.j256.ormlite.dao.BaseForeignCollection;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -44,11 +41,8 @@ public abstract class Millonario implements IModoJuego {
 
 
 
-    public void jugar()
-    {
+    public abstract void jugar(List<Pregunta> preguntas);
 
-        throw new RuntimeException("Not implemented yet");
-    }
 
 
 
@@ -125,14 +119,16 @@ public abstract class Millonario implements IModoJuego {
 
     public boolean comprobarRespuesta(Pregunta preg, Integer res)
     {
-        throw new RuntimeException("Not implemented yet");
-
+        Respuesta r = preg.getRespuestaCorrecta();
+        return r.getId()==res;
     }
 
     public boolean responderPregunta()
     {
         throw new RuntimeException("Not implemented yet");
     }
+
+
 
     abstract public void guardarResultado();
 
