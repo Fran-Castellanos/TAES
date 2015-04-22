@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.ListaBasesDatos"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_modo_individual">
+            android:label="@string/title_activity_dbs">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.ListaPreguntas"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -40,15 +40,15 @@
         <activity android:name=".app.presentacion.controlador.impl.CrearPregunta"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_editar_pregunta">
-        <activity android:name=".app.presentacion.controlador.impl.ListaUniversidades"
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaUniversidades"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_universidades">
         </activity>
-        <activity android:name=".app.presentacion.controlador.impl.ListaCarreras"
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaCarreras"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_carreras">
         </activity>
-        <activity android:name=".app.presentacion.controlador.impl.ListaAsignaturas"
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturas"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_asignaturas">
         </activity>

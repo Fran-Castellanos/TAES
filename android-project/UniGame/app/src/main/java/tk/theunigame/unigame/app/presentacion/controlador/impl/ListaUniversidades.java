@@ -27,12 +27,12 @@ public class ListaUniversidades extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usar_bd);
+        setContentView(R.layout.activity_lista_universidades);
 
         //Creamos el adaptador para el ListView
         AdaptadorListaMultiItems adapter= new AdaptadorListaMultiItems(this, datos);
         //ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,R.layout.list_item_db, datos);
-        lv=(ListView) findViewById(R.id.lv_usar_db_preguntas);
+        lv=(ListView) findViewById(R.id.lv_universidades);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -28,7 +28,7 @@ public class ListaCarreras extends Activity {
         setContentView(R.layout.activity_lista_carreras);
 
         //Creamos el adaptador para el ListView
-        BaseAdapter adapter= new ArrayAdapter<String>(this,R.layout.list_item_db, datos);
+        BaseAdapter adapter= new AdaptadorListaMultiItems(this, datos);
         lv=(ListView) findViewById(R.id.lv_carreras);
         lv.setAdapter(adapter);
 
