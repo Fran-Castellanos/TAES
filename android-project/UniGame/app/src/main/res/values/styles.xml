@@ -5,7 +5,7 @@
     <style name="ll_main_horizontal">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:background">@color/ApplicationBackground</item>
+        <item name="android:background">@drawable/background_application</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -61,6 +61,40 @@
         <item name="android:layout_height">0dip</item>
         <item name="android:layout_weight">0.05</item>
     </style>
+
+    <!-- Estilos de de Representación de los EditText respuestas -->
+    <style name="etxt_show_answer">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.8</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingLeft">15sp</item>
+        <item name="android:paddingRight">15sp</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <!-- Configuración de los botones para seleccionar la respuesta correcta  -->
+    <style name="btn_show_correct_answer">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/btn_selected_answer_default</item>
+    </style>
+
+    <!-- Fondo del layout en en el que se encontrarán los elementos para editar las respuestas -->
+    <style name="ll_show_answer">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:background">@drawable/etxt_edit_answer</item>
+    </style>
+
     <!-- Fin estilos UniGame -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
