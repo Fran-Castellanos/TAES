@@ -77,13 +77,6 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-
-      //  bolsaPreguntas.RecuperarBDPreguntas(id);
-        //FachadaRespuesta respuestaA= new FachadaRespuesta(etxt_a.getText().toString());
-        //FachadaRespuesta respuestaB= new FachadaRespuesta(etxt_b.getText().toString());
-        //FachadaRespuesta respuestaC= new FachadaRespuesta(etxt_c.getText().toString());
-        //FachadaRespuesta respuestaD= new FachadaRespuesta(etxt_d.getText().toString());
-
         //obtenemos el contenido de los texbox
         contenido.add(etxt_a.getText().toString());
         contenido.add(etxt_b.getText().toString());
@@ -94,9 +87,8 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         //creamos la pregunta
         preguntas.add(preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString()));
         preguntaFachada.indicarRespuestas(preguntas.get(preguntas.size()-1),respuestas);
-
-
-        id_answer_selected.getId();
+        //indicamos la respuestacorrecta
+        preguntaFachada.RespuestaCorrecta(preguntas.get(preguntas.size()-1),id_answer_selected.getId(),respuestaFachada);
 
     }
 

@@ -9,9 +9,6 @@ import juego.taes.domainmodel.Model.Cliente.Respuesta;
  * Created by Pedro on 21/04/2015.
  */
 public class FachadaPregunta {
-    private int id;
-    private String contenido;
-    private ArrayList<FachadaRespuesta> respuestas;
 
     public Pregunta crearPregunta(String contenido){
 
@@ -20,6 +17,12 @@ public class FachadaPregunta {
 
     public void indicarRespuestas(Pregunta pregunta, ArrayList<Respuesta> respuestas) {
 
-        pregunta.setRespuestas();
+        //setRespuestas recibe un foregincollection
+        //pregunta.setRespuestas(respuestas);
+    }
+
+    public void RespuestaCorrecta(Pregunta pregunta, int IDrespuestaCorrecta,FachadaRespuesta respuestaFachada){
+
+        pregunta.setRespuestaCorrecta(respuestaFachada.recuperarRespuesta(IDrespuestaCorrecta));
     }
 }
