@@ -132,19 +132,34 @@ public class FachadaPartida {
     public void jugarPartida(Millonario p) throws Exception {
         BDPreguntasRepository bdpreg = new BDPreguntasRepository();
 
+
+
         throw new Exception("Not implemented yet");
 
 
     }
 
 
-    public boolean responderPregunta(int pregunta, int respuesta)
+    public boolean comprobarPregunta(int pregunta, int respuesta)
     {
         PreguntaRepository preg = new PreguntaRepository();
         Pregunta p = preg.getById(pregunta);
         return juego.comprobarRespuesta(p, respuesta);
 
     }
+
+
+    public List<Pregunta> getPreguntas(List<BDPreguntas> bolsas)
+    {
+        BDPreguntasRepository bdrep = new BDPreguntasRepository();
+
+
+        return juego.obtenerPreguntas(bolsas);
+
+    }
+
+
+
 
 
 }

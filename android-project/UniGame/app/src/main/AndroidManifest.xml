@@ -29,18 +29,30 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_bajar_db">
         </activity>
-        <activity android:name=".app.presentacion.controlador.impl.ModoIndividual"
+        <activity android:name=".app.presentacion.controlador.impl.ListaBasesDatos"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_modo_individual">
+            android:label="@string/title_activity_dbs">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.ListaPreguntas"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_lista_preguntas">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.CrearPregunta"
-        android:configChanges="orientation|keyboardHidden|screenSize"
-        android:label="@string/title_activity_editar_pregunta">
-    </activity>
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_editar_pregunta">
+        </activity>
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaUniversidades"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_universidades">
+        </activity>
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaCarreras"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_carreras">
+        </activity>
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturas"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_asignaturas">
+        </activity>
 
     </application>
 
