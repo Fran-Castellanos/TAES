@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.negocio.interfaces;
+package tk.theunigame.unigame.app.negocio.comodines;
 
 /**
  * Created by Paco on 22/04/2015.

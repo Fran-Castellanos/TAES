@@ -1,7 +1,5 @@
 package tk.theunigame.unigame.app.negocio.comodines;
 
-import tk.theunigame.unigame.app.negocio.interfaces.Comodin;
-
 /**
  * Created by Paco on 22/04/2015.
  */
