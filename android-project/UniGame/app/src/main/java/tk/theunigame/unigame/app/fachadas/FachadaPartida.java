@@ -59,7 +59,7 @@ public class FachadaPartida {
         juego = new JuegoTorneo();
     }
 
-    public List<String> verUniversidades() throws Exception {
+
 
     public List<Universidad> verUniversidades() throws Exception {
 
@@ -127,14 +127,12 @@ public class FachadaPartida {
 
     }
 
+
+
     public void jugarPartida(Millonario p) throws Exception {
-
-
-    public void jugarPartida(Millonario p)
-    {
         BDPreguntasRepository bdpreg = new BDPreguntasRepository();
 
-     throw new Exception("Not implemented yet");
+        throw new Exception("Not implemented yet");
 
 
     }
