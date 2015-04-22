@@ -73,7 +73,7 @@ public abstract class Millonario implements IModoJuego {
             int indice=0;
             for (Double d : ranks) {
                 indice = ranks.indexOf(d);
-                if(d>=random)
+                if(random<=d)
                     break;
             }
 

@@ -34,7 +34,7 @@ public class PreguntaRepository {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public Pregunta getRanmdomByBolsa(int bolsaId){throw new RuntimeException("Not implemented yet");}
+    public Pregunta getRandomByBolsa(int bolsaId){throw new RuntimeException("Not implemented yet");}
 
 
     public List<Pregunta> getAllByBDPregunta(int bolsaId) {throw new RuntimeException("Not implemented yet");}
