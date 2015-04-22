@@ -5,6 +5,7 @@ package tk.theunigame.unigame.app.fachadas;
  */
 public class FachadaRespuesta {
 
+    private int id;
     private String contenido;
     private boolean correcto;
 
@@ -14,7 +15,9 @@ public class FachadaRespuesta {
         correcto=false;
     }
 
-    public void setCorrecto(boolean nuevo){correcto=nuevo;}
+    public void setCorrecto(String id){
+
+    }
 }
 
 
