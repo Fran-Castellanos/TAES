@@ -1,6 +1,4 @@
-package tk.theunigame.unigame.app.presentacion.negocio.interfaces;
-
-import java.util.List;
+package tk.theunigame.unigame.app.negocio.interfaces;
 
 /**
  * Created by Paco on 22/04/2015.

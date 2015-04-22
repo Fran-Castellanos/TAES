@@ -1,13 +1,12 @@
-package tk.theunigame.unigame.app.presentacion.negocio.comodines;
+package tk.theunigame.unigame.app.negocio.comodines;
 
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IComodin;
+import tk.theunigame.unigame.app.negocio.interfaces.Comodin;
 
 /**
  * Created by Paco on 22/04/2015.
  */
-public class ComodinPasar implements IComodin {
-
-    private final static String nombre = "Comodín de pasar pregunta";
+public class ComodinPublico extends Comodin {
+    private final static String nombre = "Comodín del público";
 
     private int cantidad;
 
@@ -20,6 +19,6 @@ public class ComodinPasar implements IComodin {
     @Override
     public boolean quedanComodines() {
         throw new RuntimeException("Not implemented yet");
-        
+
     }
 }

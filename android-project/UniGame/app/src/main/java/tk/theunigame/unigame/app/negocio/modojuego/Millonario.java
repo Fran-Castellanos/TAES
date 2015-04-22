@@ -1,13 +1,11 @@
-package tk.theunigame.unigame.app.presentacion.negocio.modojuego;
+package tk.theunigame.unigame.app.negocio.modojuego;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import juego.taes.domainmodel.Model.Cliente.Pregunta;
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IComodin;
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IModoJuego;
-import tk.theunigame.unigame.app.presentacion.negocio.interfaces.IPregunta;
+import tk.theunigame.unigame.app.negocio.interfaces.IModoJuego;
+import tk.theunigame.unigame.app.negocio.interfaces.IPregunta;
 
 /**
  * Created by Paco on 22/04/2015.
