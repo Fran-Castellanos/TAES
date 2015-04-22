@@ -15,7 +15,7 @@ import juego.taes.domainmodel.Model.Example.Comment;
  */
 public class CommentsRepository {
 
-    private DatabaseHelper db;
+    private DatabaseHelperExample db;
     Dao<Comment, Integer> commentsDao;
 
     public CommentsRepository(Context ctx)

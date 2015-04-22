@@ -7,11 +7,14 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
+import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
+import juego.taes.domainmodel.Data.Dao.PreguntaDao;
+
 /**
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "pregunta")
+@DatabaseTable(tableName = "pregunta", daoClass = PreguntaDao.class)
 public class Pregunta {
 
     //Nombres de las columnas
@@ -25,6 +28,7 @@ public class Pregunta {
     //Relaciones
     public static final String RESPUESTA_CORRECTA="fk_respuesta_correcta";
     public static final String RESPUESTAS="fk_respuestas";
+    public static final String BD="fk_bd_preguntas";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
@@ -46,6 +50,9 @@ public class Pregunta {
     private boolean modificadoDesdeUltimaSincronizacion;
 
     //Relaciones
+    @DatabaseField(columnName = BD,useGetSet = true, foreign = true, canBeNull = false)
+    private BDPreguntas bdPreguntas;
+
     @DatabaseField(columnName = RESPUESTA_CORRECTA, foreign = true, canBeNull = false, useGetSet = true)
     private Respuesta respuestaCorrecta;
 
@@ -56,12 +63,9 @@ public class Pregunta {
         // ORMLite needs a no-arg constructor
     }
 
-    public Pregunta(String contenido, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public Pregunta(String contenido, boolean enServidor) {
         this.contenido = contenido;
         this.enServidor = enServidor;
-        this.idSincronizacion = idSincronizacion;
-        this.fechaSincronizacion = fechaSincronizacion;
-        this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 
     public boolean isModificadoDesdeUltimaSincronizacion() {
@@ -126,6 +130,14 @@ public class Pregunta {
 
     public void setRespuestas(ForeignCollection<Respuesta> respuestas) {
         this.respuestas = respuestas;
+    }
+
+    public BDPreguntas getBdPreguntas() {
+        return bdPreguntas;
+    }
+
+    public void setBdPreguntas(BDPreguntas bdPreguntas) {
+        this.bdPreguntas = bdPreguntas;
     }
 
     @Override

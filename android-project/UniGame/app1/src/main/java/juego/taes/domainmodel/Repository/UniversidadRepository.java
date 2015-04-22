@@ -1,11 +1,8 @@
 package juego.taes.domainmodel.Repository;
 
-import com.j256.ormlite.dao.Dao;
-
-import java.sql.SQLException;
 import java.util.List;
 
-import juego.taes.domainmodel.Data.Example.DatabaseHelper;
+import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 
 /**
@@ -13,7 +10,7 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
  */
 public class UniversidadRepository {
 
-    private DatabaseHelper db;
+    private DatabaseHelperExample db;
 
     public int create()
     {

@@ -2,14 +2,14 @@ package juego.taes.domainmodel.Repository;
 
 import java.util.List;
 
-import juego.taes.domainmodel.Data.Example.DatabaseHelper;
+import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 
 /**
  * Created by Pedro on 21/04/2015.
  */
 public class UsuarioRepository {
-    private DatabaseHelper db;
+    private DatabaseHelperExample db;
 
     public int create(Usuario usuario)
     {
