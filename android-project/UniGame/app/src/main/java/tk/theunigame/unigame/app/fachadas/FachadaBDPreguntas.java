@@ -1,4 +1,6 @@
 package tk.theunigame.unigame.app.fachadas;
+import android.content.Context;
+
 import com.j256.ormlite.dao.ForeignCollection;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -10,9 +12,9 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 public class FachadaBDPreguntas {
 
 
-    public BDPreguntas recuperarBDPreguntas(int id)
+    public BDPreguntas recuperarBDPreguntas(Context c, int id)
     {
-        BDPreguntasRepository bd = new BDPreguntasRepository();
+        BDPreguntasRepository bd = new BDPreguntasRepository(c);
         return bd.getById(id);
     }
 
