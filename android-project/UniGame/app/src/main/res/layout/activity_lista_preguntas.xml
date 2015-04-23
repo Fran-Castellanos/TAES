@@ -20,6 +20,14 @@
             <LinearLayout
                 android:orientation="vertical"
                 style="@style/ll_main_container">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirmar"
+                    android:onClick="Confirmar_Cambios"
+                    android:id="@+id/confirmarbutton" />
+
                 <TextView
                     android:id="@+id/txt_title1"
                     android:textColor="@color/Black"

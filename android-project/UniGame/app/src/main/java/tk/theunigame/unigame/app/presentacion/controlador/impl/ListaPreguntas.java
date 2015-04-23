@@ -67,4 +67,9 @@ public class ListaPreguntas extends Activity {
             }
         });
     }
+
+    public void Confirmar_Cambios(View v){
+
+        BolsaPregunta.getInstance().RegistrarCambios();
+    }
 }
