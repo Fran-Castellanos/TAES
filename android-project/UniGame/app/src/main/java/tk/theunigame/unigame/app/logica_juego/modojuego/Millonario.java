@@ -19,11 +19,13 @@ import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
 public abstract class Millonario implements IModoJuego {
     private HashMap<Pregunta, Integer> preguntas;
     private int numPreguntas;
+    private int numComodines;
 
     public Millonario()
     {
         numPreguntas = 20;
         preguntas = new HashMap<Pregunta, Integer>();
+        numComodines=3;
 
     }
 
@@ -126,7 +128,7 @@ public abstract class Millonario implements IModoJuego {
         }
     }
 
-    public boolean comprobarRespuesta(Pregunta preg, Integer res)
+    public boolean comprobarRespuesta(Pregunta preg, int res)
     {
         Respuesta r = preg.getRespuestaCorrecta();
         return r.getId()==res;
