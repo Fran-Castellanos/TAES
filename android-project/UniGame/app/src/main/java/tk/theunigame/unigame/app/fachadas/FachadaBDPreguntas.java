@@ -11,10 +11,10 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
  */
 public class FachadaBDPreguntas {
 
-
+    BDPreguntasRepository bd;
     public BDPreguntas recuperarBDPreguntas(Context c, int id)
     {
-        BDPreguntasRepository bd = new BDPreguntasRepository(c);
+        bd = new BDPreguntasRepository(c);
         return bd.getById(id);
     }
 
@@ -23,4 +23,8 @@ public class FachadaBDPreguntas {
         throw new RuntimeException("Not implemented yet");
     }
 
+    public void crearBaseDatos(String nombre,Context c){
+        bd = new BDPreguntasRepository(c);
+        bd.create((new BDPreguntas(nombre,false)));
+    }
 }
