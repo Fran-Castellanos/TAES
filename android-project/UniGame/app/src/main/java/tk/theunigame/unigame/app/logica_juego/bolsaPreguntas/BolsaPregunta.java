@@ -1,11 +1,12 @@
 package tk.theunigame.unigame.app.logica_juego.bolsaPreguntas;
+import android.content.Context;
+
 import com.j256.ormlite.dao.ForeignCollection;
 import java.util.ArrayList;
 import java.util.List;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Repository.BDPreguntasRepository;
-import juego.taes.domainmodel.Repository.PreguntaRepository;
 
 public class BolsaPregunta {
 
@@ -14,9 +15,6 @@ public class BolsaPregunta {
     private List<Pregunta> preguntas_creadas;
     private BDPreguntas pBDPreguntas;
     private ForeignCollection<Pregunta> pPreguntas;
-
-    //Repositorys
-    //private BDPreguntasRepository bDRepository = new BDPreguntasRepository();
 
     /**********************************************************************************************/
     private static BolsaPregunta sInstance = null;//Objeto session
@@ -32,7 +30,10 @@ public class BolsaPregunta {
         sInstance = new BolsaPregunta();
     }
 
-    public static BolsaPregunta getInstance() {
+    public static BolsaPregunta getInstance()
+    {
+        if(sInstance == null)//La primera vez que llamo a la clase inicializo la clase si es null
+            init();
         return sInstance;
     }
     /**********************************************************************************************/
@@ -40,9 +41,9 @@ public class BolsaPregunta {
     {
         pBDPreguntas = bd;
         pPreguntas = bd.getPreguntas();
-        preguntas_creadas = new ArrayList<Pregunta>();
-        preguntas_eliminadas = new ArrayList<Pregunta>();
-        preguntas_modificadas = new ArrayList<Pregunta>();
+        preguntas_creadas.clear();
+        preguntas_eliminadas.clear();
+        preguntas_modificadas.clear();
     }
     public BDPreguntas getBDPreguntas()
     {
@@ -85,6 +86,15 @@ public class BolsaPregunta {
         }
     }
 
-    public void RegistrarCambios()
-    {}
+    public void RegistrarCambios(Context cont)
+    {
+        //Repositorys
+        BDPreguntasRepository bDRepository = new BDPreguntasRepository(cont);
+        bDRepository.GuardarCambios(pBDPreguntas,preguntas_creadas,preguntas_modificadas,preguntas_eliminadas);
+
+        //Vaciar el contenido de las listas una vez registrado en la BD
+        preguntas_creadas.clear();
+        preguntas_eliminadas.clear();
+        preguntas_modificadas.clear();
+    }
 }

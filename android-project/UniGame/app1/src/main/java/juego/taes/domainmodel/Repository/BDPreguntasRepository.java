@@ -10,8 +10,8 @@ import java.util.Map;
 import juego.taes.domainmodel.Data.Dao.IBDPreguntasDao;
 import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
-import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 
 /**
  * Created by Pedro on 21/04/2015.
@@ -113,5 +113,10 @@ public class BDPreguntasRepository {
             e.printStackTrace();
         }
         return null;}
+
+    public void GuardarCambios(BDPreguntas bd, List<Pregunta> creadas, List<Pregunta> modificadas, List<Pregunta> eliminadas)
+    {
+        throw new RuntimeException("Not yet implemented");
+    }
 
 }
