@@ -3,15 +3,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/etxt_background">
+    android:background="@drawable/lv_default_dessign"
+    >
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/txt_listitem_db"
+    <TextView
+        android:id="@+id/txt_listitem_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="nombre_db"
-        android:textSize="25dp"
+        android:textSize="22sp"
+        android:padding="5dip"
         android:textStyle="bold"
+        android:textColor="@color/Black"
         android:gravity="center_horizontal"/>
 
 </LinearLayout>

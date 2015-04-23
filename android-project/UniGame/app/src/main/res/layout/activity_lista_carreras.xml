@@ -14,19 +14,24 @@
             <RelativeLayout
                 style="@style/rl_main_top">
             </RelativeLayout>
-            <TextView
-                android:id="@+id/imageView"
-                style="@style/txt_title"
-                android:text="@string/txt_carrer"/>
+            <LinearLayout
+                style="@style/ll_title">
+                <TextView
+                    android:id="@+id/txt_title1"
+                    style="@style/txt_title"
+                    android:text="@string/txt_carrer"/>
+
+                <TextView
+                    android:id="@+id/txt_title2"
+                    style="@style/txt_title2"/>
+            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 style="@style/ll_main_container">
 
                 <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/lv_carreras"
-                    android:background="@android:color/transparent">
+                    style="@style/lv_default"
+                    android:id="@+id/lv_carreras">
                 </ListView>
 
             </LinearLayout>

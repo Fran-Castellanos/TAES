@@ -22,10 +22,8 @@
                 style="@style/ll_main_container">
 
                 <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:id="@+id/lv_usar_db_preguntas"
-                    android:background="@color/Black">
+                    style="@style/lv_default">
                 </ListView>
 
             </LinearLayout>

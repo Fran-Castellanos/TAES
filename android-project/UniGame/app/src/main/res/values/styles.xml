@@ -107,6 +107,34 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <!-- Estilo TextView secundario del título -->
+    <style name="txt_title2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/Black</item>
+    </style>
+
+    <!-- Layout para composición de títulos -->
+    <style name="ll_title">
+        <item name="android:layout_margin">2dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Estilo de las listas por defecto -->
+    <style name="lv_default">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
     <!-- Fin estilos UniGame -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

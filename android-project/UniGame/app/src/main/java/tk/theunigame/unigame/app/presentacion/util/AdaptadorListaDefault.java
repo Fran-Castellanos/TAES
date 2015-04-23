@@ -1,5 +1,6 @@
 package tk.theunigame.unigame.app.presentacion.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
 
 /**
  * Created by John on 08/04/2015.
@@ -19,18 +18,19 @@ import tk.theunigame.unigame.R;
  * Este clase será modoficada en función de los valores que se quieran mostrar
  * a través de la consulta a la base de datos remota
  */
-public class AdaptadorListaUniversidades extends BaseAdapter {
+public class AdaptadorListaDefault extends BaseAdapter {
+
+    private String[] datos;
     private Context context;
-    private ArrayList<Universidad> universidades;
 
     @Override
     public int getCount() {
-        return universidades.size();
+        return datos.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return universidades.get(position);
+        return datos[position];
     }
 
     @Override
@@ -43,9 +43,9 @@ public class AdaptadorListaUniversidades extends BaseAdapter {
         TextView txtView;
     }
 
-    public AdaptadorListaUniversidades(Context context, ArrayList<Universidad> datos){
+    public AdaptadorListaDefault(Context context, String[] datos){
         this.context=context;
-        universidades=datos;
+        this.datos=datos;
     }
 
     //Inflamos el elemento de la lista con los datos que queremos
@@ -68,7 +68,7 @@ public class AdaptadorListaUniversidades extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txtView.setText(universidades.get(position).getNombre());
+        holder.txtView.setText(datos[position]);
 
         return item;
     }

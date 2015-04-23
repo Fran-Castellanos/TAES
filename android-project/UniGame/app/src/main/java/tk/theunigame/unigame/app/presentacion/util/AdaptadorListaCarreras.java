@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 
@@ -19,18 +19,18 @@ import tk.theunigame.unigame.R;
  * Este clase será modoficada en función de los valores que se quieran mostrar
  * a través de la consulta a la base de datos remota
  */
-public class AdaptadorListaUniversidades extends BaseAdapter {
+public class AdaptadorListaCarreras extends BaseAdapter {
     private Context context;
-    private ArrayList<Universidad> universidades;
+    private ArrayList<Carrera> carreras;
 
     @Override
     public int getCount() {
-        return universidades.size();
+        return carreras.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return universidades.get(position);
+        return carreras.get(position);
     }
 
     @Override
@@ -43,9 +43,9 @@ public class AdaptadorListaUniversidades extends BaseAdapter {
         TextView txtView;
     }
 
-    public AdaptadorListaUniversidades(Context context, ArrayList<Universidad> datos){
+    public AdaptadorListaCarreras(Context context, ArrayList<Carrera> datos){
         this.context=context;
-        universidades=datos;
+        carreras=datos;
     }
 
     //Inflamos el elemento de la lista con los datos que queremos
@@ -56,10 +56,10 @@ public class AdaptadorListaUniversidades extends BaseAdapter {
         ViewHolder holder;
         if(item==null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            item = inflater.inflate(R.layout.list_item_default, null);
+            item = inflater.inflate(R.layout.list_item_db, null);
 
             holder= new ViewHolder();
-            holder.txtView= (TextView)item.findViewById(R.id.txt_listitem_default);
+            holder.txtView= (TextView)item.findViewById(R.id.txt_listitem_db);
 
             //Almacenamos el elemento en como un tag de la View
             item.setTag(holder);
@@ -68,7 +68,7 @@ public class AdaptadorListaUniversidades extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txtView.setText(universidades.get(position).getNombre());
+        holder.txtView.setText(carreras.get(position).getNombre());
 
         return item;
     }

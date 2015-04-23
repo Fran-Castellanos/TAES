@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaMultiItems;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Constantes;
 
 /**
@@ -26,7 +26,7 @@ public class UsarDB extends Activity {
         setContentView(R.layout.activity_usar_bd);
 
         //Creamos el adaptador para el ListView
-        AdaptadorListaMultiItems adapter= new AdaptadorListaMultiItems(this, datos);
+        AdaptadorListaDefault adapter= new AdaptadorListaDefault(this, datos);
         //ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,R.layout.list_item_db, datos);
         lv=(ListView) findViewById(R.id.lv_usar_db_preguntas);
         lv.setAdapter(adapter);

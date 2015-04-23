@@ -38,10 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:id="@+id/lv_preguntas"
-                    android:background="@android:color/transparent"
-                    android:cacheColorHint="@android:color/transparent"
-                    android:listSelector="@android:color/transparent"
-                    android:scrollbars="none">
+                    style="@style/lv_default">
                 </ListView>
 
             </LinearLayout>
