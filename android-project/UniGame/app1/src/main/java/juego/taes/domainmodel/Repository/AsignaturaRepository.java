@@ -1,7 +1,12 @@
 package juego.taes.domainmodel.Repository;
 
+import android.content.Context;
+
+import java.sql.SQLException;
 import java.util.List;
 
+import juego.taes.domainmodel.Data.Dao.IAsignaturaDao;
+import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 
@@ -11,6 +16,20 @@ import juego.taes.domainmodel.Model.Cliente.Asignatura;
 public class AsignaturaRepository {
 
     private DatabaseHelperExample db;
+    private IAsignaturaDao dao;
+
+    public AsignaturaRepository(Context ctx)
+    {
+        try {
+            DatabaseManager dbManager = new DatabaseManager();
+            db = dbManager.getHelper(ctx);
+            dao = db.getDao();
+        } catch (SQLException e) {
+            // TODO: Exception Handling
+            e.printStackTrace();
+        }
+
+    }
 
     public int create(Asignatura asig)
     {

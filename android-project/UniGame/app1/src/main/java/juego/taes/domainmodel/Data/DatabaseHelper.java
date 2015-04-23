@@ -138,6 +138,28 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carrera.setNombre("Derecho");
         carrera.setId(1);
         carrera.setUniversidad(universidad);
+        int carrera1 = carreraDao.create(carrera);
+
+        carrera.setNombre("Informatica");
+        carrera.setId(2);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera2 = carreraDao.create(carrera);
+
+        //Crear asignaturas
+        Asignatura asignatura = new Asignatura();
+        asignatura.setNombre("PED");
+        asignatura.setId(1);
+        asignatura.setCarrera(carrera);
+        int asignatura1 = asignaturaDao.create(asignatura);
+
+        asignatura.setNombre("Programación 3");
+        asignatura.setId(2);
+        carrera.setId(carrera2);
+        asignatura.setCarrera(carrera);
+        int asignatura2 = asignaturaDao.create(asignatura);
+
+        //Crear bases de preguntas
 
 
         Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
