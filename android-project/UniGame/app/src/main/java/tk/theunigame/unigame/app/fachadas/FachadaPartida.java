@@ -1,11 +1,13 @@
 package tk.theunigame.unigame.app.fachadas;
 
 
+import android.content.Context;
 import android.content.pm.PermissionGroupInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -65,11 +67,11 @@ public class FachadaPartida {
      * @return Lista de todas las universidades.
      * @throws Exception
      */
-    public List<Universidad> verUniversidades() throws Exception {
+    public List<Universidad> verUniversidades(Context c) throws Exception {
 
         List<Universidad> universidades;
         try {
-            UniversidadRepository uni= new UniversidadRepository();
+            UniversidadRepository uni= new UniversidadRepository(c);
             universidades = uni.getAll();
 
         }catch(Exception e){
@@ -85,12 +87,12 @@ public class FachadaPartida {
      * @return Lista de carreras de la Universidad.
      * @throws Exception
      */
-    public List<Carrera> verCarreras(int idUniversidad) throws Exception {
+    public List<Carrera> verCarreras(Context c, int idUniversidad) throws Exception {
         List<Carrera> carreras;
 
         try{
 
-            CarreraRepository car= new CarreraRepository();
+            CarreraRepository car= new CarreraRepository(c);
             carreras = car.getByUniversidad(idUniversidad);
 
         }catch(Exception e){
@@ -106,12 +108,12 @@ public class FachadaPartida {
      * @return Lista de asignaturas de una carrera.
      * @throws Exception
      */
-    public List<Asignatura> verAsignaturas(int idCarrera) throws Exception {
+    public List<Asignatura> verAsignaturas(Context c, int idCarrera) throws Exception {
         List<Asignatura> asignaturas;
 
         try {
 
-            AsignaturaRepository asig = new AsignaturaRepository();
+            AsignaturaRepository asig = new AsignaturaRepository(c);
             asignaturas = asig.getByCarrera(idCarrera);
 
         }catch(Exception e){
@@ -128,12 +130,12 @@ public class FachadaPartida {
      * @return Lista de bolsas de preguntas.
      * @throws Exception
      */
-    public List<BDPreguntas> verBDPreguntasTodasUnis(int idAsig) throws Exception {
+    public List<BDPreguntas> verBDPreguntasTodasUnis(Context c, int idAsig) throws Exception {
         List<BDPreguntas> bases;
 
         try {
 
-            BDPreguntasRepository base= new BDPreguntasRepository();
+            BDPreguntasRepository base= new BDPreguntasRepository(c);
             bases = base.getByAsignatura(idAsig);
 
         }catch(Exception e){
@@ -151,12 +153,12 @@ public class FachadaPartida {
      * @return Lista de bolsas de preguntas.
      * @throws Exception
      */
-    public  List<BDPreguntas> verBDPreguntasUnaUni(int idAsig ,int idUni) throws Exception {
+    public  List<BDPreguntas> verBDPreguntasUnaUni(Context c, int idAsig ,int idUni) throws Exception {
         List<BDPreguntas> bases;
 
         try {
 
-            BDPreguntasRepository base= new BDPreguntasRepository();
+            BDPreguntasRepository base= new BDPreguntasRepository(c);
             bases = base.getByUniversidad(idAsig, idUni);
 
         }catch(Exception e){
@@ -175,9 +177,9 @@ public class FachadaPartida {
      * @param respuestaId Respuesta del usuario.
      * @return True si la respuesta es correcta, false, si es incorrecta.
      */
-    public boolean comprobarPregunta(int preguntaId, int respuestaId)
+    public boolean comprobarPregunta(Context c, int preguntaId, int respuestaId)
     {
-        PreguntaRepository preg = new PreguntaRepository();
+        PreguntaRepository preg = new PreguntaRepository(c);
         Pregunta p = preg.getById(preguntaId);
         return juego.comprobarRespuesta(p, respuestaId);
 
@@ -189,9 +191,9 @@ public class FachadaPartida {
      * @param bolsas Lista de bolsas de preguntas de donde se obtienen las preguntas.
      * @return
      */
-    public List<Pregunta> getPreguntasPartida(List<BDPreguntas> bolsas)
+    public List<Pregunta> getPreguntasPartida(Context c, List<BDPreguntas> bolsas)
     {
-        BDPreguntasRepository bdrep = new BDPreguntasRepository();
+        BDPreguntasRepository bdrep = new BDPreguntasRepository(c);
 
 
         return juego.obtenerPreguntas(bolsas);
@@ -205,7 +207,7 @@ public class FachadaPartida {
      * @param  comodin Comodin que vamos a usar
      * @return
      */
-    public Pregunta usarComodin(List<Pregunta> preguntas,int preguntaId, Comodin comodin) throws Exception {
+    public Pregunta usarComodin(Context c, List<Pregunta> preguntas,int preguntaId, Comodin comodin) throws Exception {
         Pregunta p=null;
         try{
             PreguntaRepository preg= new PreguntaRepository();

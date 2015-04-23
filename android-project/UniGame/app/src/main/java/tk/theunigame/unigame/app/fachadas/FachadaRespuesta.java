@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.fachadas;
 
+import android.content.Context;
+
 import com.j256.ormlite.dao.BaseForeignCollection;
 import com.j256.ormlite.dao.ForeignCollection;
 
@@ -24,7 +26,7 @@ public class FachadaRespuesta {
         return respuestas;
     }
 
-    public Respuesta recuperarRespuesta(int id)
+    public Respuesta recuperarRespuesta(Context c, int id)
     {
         RespuestaRepository respuesta = new RespuestaRepository();
         return respuesta.getById(id);
