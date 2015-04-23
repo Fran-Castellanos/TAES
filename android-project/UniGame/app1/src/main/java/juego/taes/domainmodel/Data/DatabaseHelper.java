@@ -121,6 +121,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         user.setSexo(Sexo.HOMBRE);
         user.setLoginOffline(true);
         user.setId(1);
+
         int usuario1 = usuarioDao.create(user);
 
         user.setNick("Torretas");
@@ -305,21 +306,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         ////////////////////////////////////////////////////////////////////////
 
-        //Crear carreras
-
+        //Facultad
 
         Carrera carrera = new Carrera();
         carrera.setNombre("Derecho");
@@ -327,14 +316,80 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carrera.setUniversidad(universidad);
         int carrera1 = carreraDao.create(carrera);
 
-        carrera.setNombre("Informatica");
+        carrera.setNombre("Ingenieria Informatica");
         carrera.setId(2);
         universidad.setId(universidad1);
         carrera.setUniversidad(universidad);
         int carrera2 = carreraDao.create(carrera);
 
-        //Crear asignaturas
+        carrera.setNombre("Medicina");
+        carrera.setId(3);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera3 = carreraDao.create(carrera);
+
+        carrera.setNombre("Ingenieria Industrial");
+        carrera.setId(4);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera4 = carreraDao.create(carrera);
+
+        carrera.setNombre("Ingenieria Quimica");
+        carrera.setId(5);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera5 = carreraDao.create(carrera);  //Ingenieria
+
+
+        carrera.setNombre("ADE");
+        carrera.setId(6);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera6 = carreraDao.create(carrera);
+
+
+        carrera.setNombre("Turismo");
+        carrera.setId(7);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera7 = carreraDao.create(carrera);
+
+        carrera.setNombre("Traduccion e Interpretacion");
+        carrera.setId(8);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera8 = carreraDao.create(carrera);
+
+        carrera.setNombre("Arquitectura");
+        carrera.setId(9);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera9 = carreraDao.create(carrera);
+
+        carrera.setNombre("Magisterio Infantil");
+        carrera.setId(10);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera10 = carreraDao.create(carrera);
+
+        carrera.setNombre("Periodismo");
+        carrera.setId(11);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera11 = carreraDao.create(carrera);
+
+        carrera.setNombre("Ingeneria Aeronautica");
+        carrera.setId(12);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera12 = carreraDao.create(carrera);
+
+        /////////////////////////////////////////////////////////////////////
+
+        //Asignaturas
+
         Asignatura asignatura = new Asignatura();
+
         asignatura.setNombre("PED");
         asignatura.setId(1);
         asignatura.setCarrera(carrera);
@@ -345,6 +400,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carrera.setId(carrera2);
         asignatura.setCarrera(carrera);
         int asignatura2 = asignaturaDao.create(asignatura);
+
+        asignatura.setNombre("LPP");
+        asignatura.setId(3);
+        carrera.setId(carrera2);
+        asignatura.setCarrera(carrera);
+        int asignatura3 = asignaturaDao.create(asignatura);
+
+
+        asignatura.setNombre("MacroEconomia");
+        asignatura.setId(4);
+        carrera.setId(carrera2);
+        asignatura.setCarrera(carrera);
+        int asignatura4 = asignaturaDao.create(asignatura);
+
 
         //Crear bases de preguntas
 
