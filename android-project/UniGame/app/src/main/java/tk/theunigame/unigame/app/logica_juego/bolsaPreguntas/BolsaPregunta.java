@@ -32,6 +32,8 @@ public class BolsaPregunta {
 
     public static BolsaPregunta getInstance()
     {
+        if(sInstance == null)//La primera vez que llamo a la clase inicializo la clase si es null
+            init();
         return sInstance;
     }
     /**********************************************************************************************/
@@ -39,9 +41,9 @@ public class BolsaPregunta {
     {
         pBDPreguntas = bd;
         pPreguntas = bd.getPreguntas();
-        preguntas_creadas = new ArrayList<Pregunta>();
-        preguntas_eliminadas = new ArrayList<Pregunta>();
-        preguntas_modificadas = new ArrayList<Pregunta>();
+        preguntas_creadas.clear();
+        preguntas_eliminadas.clear();
+        preguntas_modificadas.clear();
     }
     public BDPreguntas getBDPreguntas()
     {
@@ -89,5 +91,10 @@ public class BolsaPregunta {
         //Repositorys
         BDPreguntasRepository bDRepository = new BDPreguntasRepository(cont);
         bDRepository.GuardarCambios(pBDPreguntas,preguntas_creadas,preguntas_modificadas,preguntas_eliminadas);
+
+        //Vaciar el contenido de las listas una vez registrado en la BD
+        preguntas_creadas.clear();
+        preguntas_eliminadas.clear();
+        preguntas_modificadas.clear();
     }
 }
