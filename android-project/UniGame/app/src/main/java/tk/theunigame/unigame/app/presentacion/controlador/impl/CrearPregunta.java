@@ -24,17 +24,17 @@ import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
  */
 public class CrearPregunta extends Activity implements View.OnClickListener{
 
-    EditText etxt_a, etxt_b, etxt_c, etxt_d;
-    Button btn_a, btn_b, btn_c, btn_d;
+    private EditText etxt_a, etxt_b, etxt_c, etxt_d;
+    private Button btn_a, btn_b, btn_c, btn_d;
     private int idBD;
     //Fachadas a emplear
-    FachadaBDPreguntas bolsaPreguntas;
-    FachadaRespuesta respuestaFachada;
-    FachadaPregunta preguntaFachada;
+    private FachadaBDPreguntas bolsaPreguntas;
+    private FachadaRespuesta respuestaFachada;
+    private FachadaPregunta preguntaFachada;
     //arrays a usar
-    Pregunta pregunta;
-    ArrayList<Respuesta> respuestas;
-    ArrayList<String> contenido;
+    private Pregunta pregunta;
+    private ArrayList<Respuesta> respuestas;
+    private ArrayList<String> contenido;
 
 
     private EIDANSWER id_answer_selected;
