@@ -17,6 +17,7 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 import juego.taes.domainmodel.Repository.CarreraRepository;
 import juego.taes.domainmodel.Repository.PreguntaRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
+import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
 import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
 import tk.theunigame.unigame.app.logica_juego.modojuego.JuegoSimple;
 import tk.theunigame.unigame.app.logica_juego.modojuego.JuegoTorneo;
@@ -28,14 +29,7 @@ import tk.theunigame.unigame.app.logica_juego.modojuego.Millonario;
  */
 public class FachadaPartida {
 
-    private int uniId;
-    private UniversidadRepository uni;
-    private CarreraRepository car;
-    private AsignaturaRepository asig;
-    private BDPreguntasRepository base;
 
-
-    private HashMap<Pregunta,Integer> listaPreguntas;
     private IModoJuego juego;
 
 
@@ -45,10 +39,6 @@ public class FachadaPartida {
      */
     public FachadaPartida(IModoJuego modo)
     {
-        uni = new UniversidadRepository();
-        car = new CarreraRepository();
-        asig = new AsignaturaRepository();
-        listaPreguntas = new HashMap<Pregunta, Integer>();
         juego = modo;
     }
 
@@ -79,7 +69,7 @@ public class FachadaPartida {
 
         List<Universidad> universidades;
         try {
-
+            UniversidadRepository uni= new UniversidadRepository();
             universidades = uni.getAll();
 
         }catch(Exception e){
@@ -100,6 +90,7 @@ public class FachadaPartida {
 
         try{
 
+            CarreraRepository car= new CarreraRepository();
             carreras = car.getByUniversidad(idUniversidad);
 
         }catch(Exception e){
@@ -120,6 +111,7 @@ public class FachadaPartida {
 
         try {
 
+            AsignaturaRepository asig = new AsignaturaRepository();
             asignaturas = asig.getByCarrera(idCarrera);
 
         }catch(Exception e){
@@ -141,6 +133,7 @@ public class FachadaPartida {
 
         try {
 
+            BDPreguntasRepository base= new BDPreguntasRepository();
             bases = base.getByAsignatura(idAsig);
 
         }catch(Exception e){
@@ -163,6 +156,7 @@ public class FachadaPartida {
 
         try {
 
+            BDPreguntasRepository base= new BDPreguntasRepository();
             bases = base.getByUniversidad(idAsig, idUni);
 
         }catch(Exception e){
@@ -173,33 +167,19 @@ public class FachadaPartida {
     }
 
 
-    /**
-     *
-     * @param p
-     * @throws Exception
-     */
-    public void jugarPartida(Millonario p) throws Exception {
-        BDPreguntasRepository bdpreg = new BDPreguntasRepository();
-
-
-
-        throw new Exception("Not implemented yet");
-
-
-    }
 
 
     /**
      * Comprueba si la respuesta del usuario respecto de una pregunta es correcta o no.
-     * @param pregunta Pregunta que contesta el usuario.
-     * @param respuesta Respuesta del usuario.
+     * @param preguntaId Pregunta que contesta el usuario.
+     * @param respuestaId Respuesta del usuario.
      * @return True si la respuesta es correcta, false, si es incorrecta.
      */
-    public boolean comprobarPregunta(int pregunta, int respuesta)
+    public boolean comprobarPregunta(int preguntaId, int respuestaId)
     {
         PreguntaRepository preg = new PreguntaRepository();
-        Pregunta p = preg.getById(pregunta);
-        return juego.comprobarRespuesta(p, respuesta);
+        Pregunta p = preg.getById(preguntaId);
+        return juego.comprobarRespuesta(p, respuestaId);
 
     }
 
@@ -216,6 +196,24 @@ public class FachadaPartida {
 
         return juego.obtenerPreguntas(bolsas);
 
+    }
+
+    /**
+     * Devulve una nueva pregunta resultado de aplicar el comodin
+     * @param preguntas Lista de preguntas de la partida
+     * @param preguntaId Id de la pregunta en la que usaremos el comodin.
+     * @param  comodin Comodin que vamos a usar
+     * @return
+     */
+    public Pregunta usarComodin(List<Pregunta> preguntas,int preguntaId, Comodin comodin) throws Exception {
+        Pregunta p=null;
+        try{
+            PreguntaRepository preg= new PreguntaRepository();
+            p=preg.getById(preguntaId);
+        }catch(Exception ex){
+            throw ex;
+        }
+        return comodin.usarComodin(preguntas,p);
     }
 
 

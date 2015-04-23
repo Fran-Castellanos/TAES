@@ -16,6 +16,11 @@ public class JuegoSimple extends Millonario {
     }
 
     @Override
+    public boolean comprobarRespuesta(Pregunta pregunta, Integer respuesta) {
+        return false;
+    }
+
+    @Override
     public void guardarResultado() {
         throw new RuntimeException("Not implemented yet");
     }
