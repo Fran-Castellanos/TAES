@@ -16,21 +16,29 @@ import juego.taes.domainmodel.Model.Cliente.Respuesta;
  */
 public class Comodin50 extends Comodin {
 
+
     private final static String nombre = "Comodín del 50%";
 
-    private boolean disponible;
 
-
-    public Comodin50()
+    public Comodin50(Pregunta pregunta)
     {
-        disponible=true;
-        cantidad++;
+        super(pregunta);
+    }
+
+    private static Comodin50 ourInstance = new Comodin50();
+
+    public static Comodin50 getInstance() {
+        return ourInstance;
+    }
+
+    private Comodin50() {
+        super();
     }
 
 
 
     @Override
-    public Pregunta usarComodin(List<Pregunta>preguntas,Pregunta p) throws Exception {
+    public Pregunta usarComodin() throws Exception {
 
         Pregunta result=new Pregunta(p.getContenido(),false);
         try{
@@ -62,8 +70,10 @@ public class Comodin50 extends Comodin {
         }
         result.setRespuestas(respuestas);
         result.setRespuestaCorrecta(p.getRespuestaCorrecta());
-        cantidad--;
-        disponible=false;
+
+
+        consumirComodin();
+
 
         }catch (Exception ex){
             throw new Exception("No se pudo usar comodin 50%"+ex.getMessage());
@@ -91,11 +101,6 @@ public class Comodin50 extends Comodin {
         return false;
     }
 
-    @Override
-    public boolean comodinDisponible() {
 
-        return disponible;
-
-    }
 
 }

@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.logica_juego.modojuego;
+package tk.theunigame.unigame.app.logica_juego.juego;
 
 import android.content.Context;
 
@@ -12,30 +12,52 @@ import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
 import juego.taes.domainmodel.Repository.PreguntaRepository;
-import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
-
+import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
+import tk.theunigame.unigame.app.logica_juego.comodines.IModoComodin;
+import tk.theunigame.unigame.app.logica_juego.comodines.ModoJuego;
+import tk.theunigame.unigame.app.logica_juego.temporizador.ITemporizador;
 
 /**
- * Created by Paco on 22/04/2015.
+ * Created by Paco on 23/04/2015.
  */
-public abstract class Millonario implements IModoJuego {
-    private HashMap<Pregunta, Integer> preguntas;
-    private int numPreguntas;
-    private int numComodines;
+public class Juego {
+    private static Juego ourInstance;
 
-    public Millonario()
+    protected IModoComodin modoComodin;
+    protected ITemporizador cronometro;
+    protected List<Comodin> comodines;
+
+    protected List<Pregunta> preguntas;
+    protected int turno;
+    protected double tiempo_pregunta;
+    protected int numPreguntas;
+    protected IModoJuego juego;
+
+
+    public Pregunta usarComodin(Comodin comodin) throws Exception {
+        return modoComodin.usarComodin(comodin, preguntas.get(turno));
+    }
+
+
+
+
+    public void init()
     {
+        preguntas = new ArrayList<Pregunta>();
+        comodines = new ArrayList<Comodin>();
+        tiempo_pregunta = 30;
         numPreguntas = 20;
-        preguntas = new HashMap<Pregunta, Integer>();
-        numComodines=3;
-
+        turno = 0;
     }
 
 
-    public Millonario(int n)
+
+    public void setJuego(ModoJuego modo)
     {
-        numPreguntas = n;
+        juego = JuegoFactory.getJuego(modo);
     }
+
+
 
 
     public void setNumPreguntas(int n)
@@ -45,21 +67,21 @@ public abstract class Millonario implements IModoJuego {
     }
 
 
-
-    public abstract void jugar(List<Pregunta> preguntas);
-
+    public void addComodin(Comodin c)
+    {
+        comodines.add(c);
+    }
 
 
     public List<Pregunta> obtenerPreguntas(Context c , List<BDPreguntas> bolsas,int numPreguntas)
     {
         setNumPreguntas(numPreguntas);
-        return obtenerPreguntas(c, bolsas);
+        return obtenerPreguntas(c,bolsas);
     }
 
 
-
-    @Override
-    public List<Pregunta> obtenerPreguntas(Context c, List<BDPreguntas> bolsas) {
+    public List<Pregunta> obtenerPreguntas(Context c, List<BDPreguntas> bolsas)
+    {
         List<Integer> numPreguntasBolsa = new ArrayList<Integer>();
         List<Double> ranks;
         PreguntaRepository pregunta = new PreguntaRepository(c);
@@ -119,32 +141,25 @@ public abstract class Millonario implements IModoJuego {
     }
 
 
-    public void comprobarRespuestas()
-    {
 
-        Iterator it = preguntas.entrySet().iterator();
-        while(it.hasNext())
-        {
-            Map.Entry e = (Map.Entry)it.next();
-            comprobarRespuesta((Pregunta)e.getKey(), (Integer)e.getValue());
-        }
-    }
 
-    public boolean comprobarRespuesta(Pregunta preg, int res)
+    public boolean comprobarRespuesta(int res)
     {
-        Respuesta r = preg.getRespuestaCorrecta();
+        Pregunta p = preguntas.get(turno);
+        Respuesta r = p.getRespuestaCorrecta();
         return r.getId()==res;
     }
 
-    public boolean responderPregunta()
-    {
-        throw new RuntimeException("Not implemented yet");
+
+    public Pregunta siguientePregunta() {
+        ++turno;
+        return preguntas.get(turno);
     }
-
-
-
-    abstract public void guardarResultado();
-
-
-
 }
+
+
+
+
+
+
+

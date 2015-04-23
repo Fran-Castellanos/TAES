@@ -2,13 +2,8 @@ package tk.theunigame.unigame.app.fachadas;
 
 
 import android.content.Context;
-import android.content.pm.PermissionGroupInfo;
 
-import java.util.ArrayList;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -20,11 +15,8 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 import juego.taes.domainmodel.Repository.CarreraRepository;
 import juego.taes.domainmodel.Repository.PreguntaRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
+import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
-import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
-import tk.theunigame.unigame.app.logica_juego.modojuego.JuegoSimple;
-import tk.theunigame.unigame.app.logica_juego.modojuego.JuegoTorneo;
-import tk.theunigame.unigame.app.logica_juego.modojuego.Millonario;
 
 
 /**
@@ -33,34 +25,15 @@ import tk.theunigame.unigame.app.logica_juego.modojuego.Millonario;
 public class FachadaPartida {
 
 
-    private IModoJuego juego;
 
 
     /**
      * Constructor de la fachada a partir de un modo de juego.
-     * @param modo Modo de juego.
      */
-    public FachadaPartida(IModoJuego modo)
+    public FachadaPartida()
     {
-        juego = modo;
     }
 
-    /**
-     * Asigna modo de juego simple
-     */
-    public void setJuegoSimple()
-    {
-        juego = new JuegoSimple();
-    }
-
-
-    /**
-     * Asigna modo de juego torneo
-     */
-    public void setJuegoTorneo()
-    {
-        juego = new JuegoTorneo();
-    }
 
 
     /**
@@ -174,15 +147,13 @@ public class FachadaPartida {
 
     /**
      * Comprueba si la respuesta del usuario respecto de una pregunta es correcta o no.
-     * @param preguntaId Pregunta que contesta el usuario.
      * @param respuestaId Respuesta del usuario.
      * @return True si la respuesta es correcta, false, si es incorrecta.
      */
-    public boolean comprobarPregunta(Context c, int preguntaId, int respuestaId)
+    public boolean comprobarPregunta(Context c, Juego juego, int respuestaId)
     {
         PreguntaRepository preg = new PreguntaRepository(c);
-        Pregunta p = preg.getById(preguntaId);
-        return juego.comprobarRespuesta(p, respuestaId);
+        return juego.comprobarRespuesta(respuestaId);
 
     }
 
@@ -192,35 +163,29 @@ public class FachadaPartida {
      * @param bolsas Lista de bolsas de preguntas de donde se obtienen las preguntas.
      * @return
      */
-    public List<Pregunta> getPreguntasPartida(Context c, List<BDPreguntas> bolsas)
+    public List<Pregunta> getPreguntasPartida(Context c, Juego juego, List<BDPreguntas> bolsas)
     {
         BDPreguntasRepository bdrep = new BDPreguntasRepository(c);
-
-
         return juego.obtenerPreguntas(c, bolsas);
 
     }
 
     /**
      * Devulve una nueva pregunta resultado de aplicar el comodin
-     * @param preguntas Lista de preguntas de la partida
-     * @param preguntaId Id de la pregunta en la que usaremos el comodin.
      * @param  comodin Comodin que vamos a usar
      * @return
      */
-    public Pregunta usarComodin(Context c, List<Pregunta> preguntas,int preguntaId, Comodin comodin) throws Exception {
-        Pregunta p=null;
-        try{
-            PreguntaRepository preg= new PreguntaRepository(c);
-            p=preg.getById(preguntaId);
-        }catch(Exception ex){
-            throw ex;
-        }
-        return comodin.usarComodin(preguntas,p);
+    public Pregunta usarComodin(Context c, Juego juego, Comodin comodin) throws Exception
+    {
+        return juego.usarComodin(comodin);
     }
 
 
 
+    public Pregunta siguientePregunta(Context c, Juego juego)
+    {
+        return juego.siguientePregunta();
+    }
 
 
 }

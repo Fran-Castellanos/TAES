@@ -11,36 +11,27 @@ public class ComodinCambiarPregunta extends Comodin {
 
     private final static String nombre = "Comodín del público";
 
-    private boolean disponible;
 
-    public ComodinCambiarPregunta(){
+    private static ComodinCambiarPregunta ourInstance = new ComodinCambiarPregunta();
 
-        disponible=true;
-        cantidad++;
+    public static ComodinCambiarPregunta getInstance() {
+        return ourInstance;
     }
+
+    private ComodinCambiarPregunta() {
+        super();
+    }
+
+
+
 
     @Override
-    public Pregunta usarComodin(List<Pregunta>preguntas,Pregunta p)throws Exception{
-        Pregunta resp;
-        try {
-            resp=preguntas.get(preguntas.size()-1);
-            cantidad--;
-            disponible=false;
-        }catch (Exception ex){
-            throw new Exception("No se pudo usar cambiar pregunta"+ex.getMessage());
-        }
-        return resp;
+    public Pregunta usarComodin()throws Exception{
+        consumirComodin();
+
+        return p;
     }
 
-    @Override
-    public boolean quedanComodines() {
 
-        return cantidad>0;
 
-    }
-
-    @Override
-    public boolean comodinDisponible() {
-        return disponible;
-    }
 }

@@ -16,32 +16,25 @@ public class ComodinPasar extends Comodin {
 
     private final static String nombre = "Comodín de pasar pregunta";
 
-    private boolean disponible;
+
+    private static ComodinPasar ourInstance = new ComodinPasar();
+
+    public static ComodinPasar getInstance() {
+        return ourInstance;
+    }
+
+    private ComodinPasar() {
+        super();
+    }
 
 
-    public ComodinPasar()
+
+    public Pregunta usarComodin()throws Exception
     {
-        disponible=true;
-        cantidad++;
+        consumirComodin();
 
-    }
-    public Pregunta usarComodin(List<Pregunta>preguntas,Pregunta p)throws Exception
-    {
-        Pregunta resp;
-        try {
-            resp=preguntas.get(preguntas.indexOf(p)+1);
-            cantidad--;
-            disponible=false;
-        }catch (Exception ex){
-            throw new Exception("No se ha podido usar comodin pasar"+ex.getMessage());
-        }
-        return resp;
+        return p;
     }
 
 
-
-    @Override
-    public boolean comodinDisponible() {
-        return disponible;
-    }
 }
