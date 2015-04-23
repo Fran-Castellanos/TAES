@@ -3,6 +3,7 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -68,8 +69,10 @@ public class ListaPreguntas extends Activity {
         });
     }
 
+    //Confirmar los cambios de la BDPreguntas
     public void Confirmar_Cambios(View v){
 
-        BolsaPregunta.getInstance().RegistrarCambios();
+        BolsaPregunta.getInstance().RegistrarCambios(this);
+        //Log.d("CambiosConfirmados", "Funcion");
     }
 }
