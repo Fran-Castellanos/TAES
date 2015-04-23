@@ -21,7 +21,6 @@ public class Carrera {
 
     //Relaciones
     public static final String ASIGNATURAS="fk_asignaturas";
-    public static final String UNIVERSIDAD="fk_carrera_universidad";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, id = true, useGetSet = true )

@@ -34,6 +34,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private IRespuestaDao respuestaDao = null;
     private IUniversidadDao universidadDao = null;
     private IUsuarioDao usuarioDao = null;
+    private IAsignaturaCarreraDao asignaturaCarreraDao = null;
+    private ICarreraUniversidadDao carreraUniversidadDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -89,6 +91,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         TableUtils.createTable(connectionSource, Respuesta.class);
         TableUtils.createTable(connectionSource, Universidad.class);
         TableUtils.createTable(connectionSource, Usuario.class);
+        TableUtils.createTable(connectionSource, AsignaturaCarrera.class);
+        TableUtils.createTable(connectionSource, CarreraUniversidad.class);
 
     }
 
@@ -103,6 +107,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         TableUtils.dropTable(connectionSource, Respuesta.class, true);
         TableUtils.dropTable(connectionSource, Universidad.class, true);
         TableUtils.dropTable(connectionSource, Usuario.class, true);
+        TableUtils.dropTable(connectionSource, AsignaturaCarrera.class,true);
+        TableUtils.dropTable(connectionSource, CarreraUniversidad.class,true);
     }
 
     //Insertar datos en la bd
@@ -486,6 +492,24 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return usuarioDao;
     }
 
+    public IAsignaturaCarreraDao getIAsignaturaCarreraDao() throws SQLException
+    {
+        if(asignaturaCarreraDao == null)
+        {
+            asignaturaCarreraDao = getDao(AsignaturaCarrera.class);
+        }
+        return asignaturaCarreraDao;
+    }
+
+    public ICarreraUniversidadDao getICarreraUniversidadDao() throws SQLException
+    {
+        if(carreraUniversidadDao == null)
+        {
+            carreraUniversidadDao = getDao(CarreraUniversidad.class);
+        }
+        return carreraUniversidadDao;
+    }
+
     /**
      * Close the database connections and clear any cached DAOs.
      */
@@ -505,6 +529,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         respuestaDao = null;
         universidadDao = null;
         usuarioDao = null;
+        asignaturaCarreraDao = null;
+        carreraUniversidadDao = null;
     }
 
 }

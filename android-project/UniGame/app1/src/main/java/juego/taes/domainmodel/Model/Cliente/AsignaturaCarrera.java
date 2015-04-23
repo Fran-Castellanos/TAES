@@ -3,20 +3,20 @@ package juego.taes.domainmodel.Model.Cliente;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import juego.taes.domainmodel.Data.Dao.AsignaturaCarreraDao;
 import juego.taes.domainmodel.Data.Dao.CarreraUniversidadDao;
-import juego.taes.domainmodel.Data.Dao.UniversidadDao;
 
 /**
  * Created by felix on 23/04/15.
  */
 
-@DatabaseTable(tableName = "carrera_universidad", daoClass = CarreraUniversidadDao.class)
-public class CarreraUniversidad
+@DatabaseTable(tableName = "asignatura_carrera", daoClass = AsignaturaCarreraDao.class)
+public class AsignaturaCarrera
 {
     //Relaciones
     public static final String ID = "_id";
+    public static final String ASIGNATURA = "fk_asignatura";
     public static final String CARRERA = "fk_carrera";
-    public static final String UNIVERSIDAD = "fk_universidad";
 
     @DatabaseField(columnName = ID, id = true, useGetSet = true)
     private int id;
@@ -24,17 +24,17 @@ public class CarreraUniversidad
     @DatabaseField(columnName = CARRERA, foreign=true, useGetSet = true)
     private Carrera carrera;
 
-    @DatabaseField(columnName = UNIVERSIDAD, foreign=true, useGetSet = true)
-    private Universidad universidad;
+    @DatabaseField(columnName = ASIGNATURA, foreign=true, useGetSet = true)
+    private Asignatura asignatura;
 
-    public CarreraUniversidad()
+    public AsignaturaCarrera()
     {
         //Constructor para ormlite
     }
 
-    public CarreraUniversidad(Carrera carrera, Universidad universidad) {
+    public AsignaturaCarrera(Asignatura asignatura, Carrera carrera) {
+        this.asignatura = asignatura;
         this.carrera = carrera;
-        this.universidad = universidad;
     }
 
     public int getId() {
@@ -53,11 +53,11 @@ public class CarreraUniversidad
         this.carrera = carrera;
     }
 
-    public Universidad getUniversidad() {
-        return universidad;
+    public Asignatura getAsignatura() {
+        return asignatura;
     }
 
-    public void setUniversidad(Universidad universidad) {
-        this.universidad = universidad;
+    public void setAsignatura(Asignatura asignatura) {
+        this.asignatura = asignatura;
     }
 }
