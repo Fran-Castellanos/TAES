@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.logica_juego.modojuego;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -48,19 +50,19 @@ public abstract class Millonario implements IModoJuego {
 
 
 
-    public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas,int numPreguntas)
+    public List<Pregunta> obtenerPreguntas(Context c , List<BDPreguntas> bolsas,int numPreguntas)
     {
         setNumPreguntas(numPreguntas);
-        return obtenerPreguntas(bolsas);
+        return obtenerPreguntas(c, bolsas);
     }
 
 
 
     @Override
-    public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas) {
+    public List<Pregunta> obtenerPreguntas(Context c, List<BDPreguntas> bolsas) {
         List<Integer> numPreguntasBolsa = new ArrayList<Integer>();
         List<Double> ranks;
-        PreguntaRepository pregunta = new PreguntaRepository();
+        PreguntaRepository pregunta = new PreguntaRepository(c);
         List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
         for (BDPreguntas bolsa : bolsas) {

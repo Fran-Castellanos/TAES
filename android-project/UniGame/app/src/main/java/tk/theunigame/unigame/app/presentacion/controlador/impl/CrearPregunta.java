@@ -90,6 +90,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         //indicamos la respuestacorrecta
         preguntaFachada.RespuestaCorrecta(pregunta,id_answer_selected.getId(),respuestaFachada);
 
+
         //Añadir pregunta
         BolsaPregunta.getInstance().InsertarPregunta(pregunta);
     }

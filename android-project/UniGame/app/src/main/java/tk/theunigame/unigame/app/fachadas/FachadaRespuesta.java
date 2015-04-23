@@ -28,7 +28,7 @@ public class FachadaRespuesta {
 
     public Respuesta recuperarRespuesta(Context c, int id)
     {
-        RespuestaRepository respuesta = new RespuestaRepository();
+        RespuestaRepository respuesta = new RespuestaRepository(c);
         return respuesta.getById(id);
     }
 

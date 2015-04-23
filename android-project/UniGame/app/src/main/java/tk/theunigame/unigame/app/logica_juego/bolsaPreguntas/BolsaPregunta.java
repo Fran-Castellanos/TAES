@@ -16,7 +16,7 @@ public class BolsaPregunta {
     private ForeignCollection<Pregunta> pPreguntas;
 
     //Repositorys
-    private BDPreguntasRepository bDRepository = new BDPreguntasRepository();
+    //private BDPreguntasRepository bDRepository = new BDPreguntasRepository();
 
     /**********************************************************************************************/
     private static BolsaPregunta sInstance = null;//Objeto session

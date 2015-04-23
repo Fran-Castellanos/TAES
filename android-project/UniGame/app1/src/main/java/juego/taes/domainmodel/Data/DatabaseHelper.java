@@ -50,13 +50,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
             //Crear las tablas
             crearTablas();
+            //Inicializar los datos
+            inicializarDatos();
 
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
         }
 
-        inicializarDatos();
 
     }
 
@@ -79,19 +80,87 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     //Crear las tablas en la bd
     private void crearTablas() throws SQLException {
-        TableUtils.createTable(connectionSource, Comment.class);
+
+        //Crear las tablas en la bd
+        TableUtils.createTable(connectionSource, Asignatura.class);
+        TableUtils.createTable(connectionSource, BDPreguntas.class);
+        TableUtils.createTable(connectionSource, Carrera.class);
+        TableUtils.createTable(connectionSource, Pregunta.class);
+        TableUtils.createTable(connectionSource, Respuesta.class);
+        TableUtils.createTable(connectionSource, Universidad.class);
+        TableUtils.createTable(connectionSource, Usuario.class);
+
     }
 
     //Borrar tablas de la bd
     private void borrarTablas() throws SQLException {
-        TableUtils.dropTable(connectionSource, Comment.class, true);
+
+        //Borrar las tablas de la bd
+        TableUtils.dropTable(connectionSource, Asignatura.class, true);
+        TableUtils.dropTable(connectionSource, BDPreguntas.class, true);
+        TableUtils.dropTable(connectionSource, Carrera.class, true);
+        TableUtils.dropTable(connectionSource, Pregunta.class, true);
+        TableUtils.dropTable(connectionSource, Respuesta.class, true);
+        TableUtils.dropTable(connectionSource, Universidad.class, true);
+        TableUtils.dropTable(connectionSource, Usuario.class, true);
     }
 
     //Insertar datos en la bd
-    private void inicializarDatos()
-    {
+    private void inicializarDatos() throws SQLException {
 
         // here we try inserting data in the on-create as a test
+
+        //Crear usuario
+        Usuario user = new Usuario();
+        user.setNick("paco");
+        user.setNombre("Paco");
+        user.setApellidos("Apellidos");
+        user.setSexo(Sexo.HOMBRE);
+        user.setLoginOffline(true);
+        user.setId(1);
+
+        int usuario1 = usuarioDao.create(user);
+
+        //Crear universidades
+        Universidad universidad = new Universidad();
+        universidad.setNombre("Universidad de Alicante");
+        universidad.setSiglas("UA");
+        universidad.setId(1);
+        int universidad1 = universidadDao.create(universidad);
+
+        universidad.setNombre("Universidad de la Vida");
+        universidad.setSiglas("UDLV");
+        universidad.setId(2);
+        int universidad2 = universidadDao.create(universidad);
+
+        //Crear carreras
+        Carrera carrera = new Carrera();
+        carrera.setNombre("Derecho");
+        carrera.setId(1);
+        carrera.setUniversidad(universidad);
+        int carrera1 = carreraDao.create(carrera);
+
+        carrera.setNombre("Informatica");
+        carrera.setId(2);
+        universidad.setId(universidad1);
+        carrera.setUniversidad(universidad);
+        int carrera2 = carreraDao.create(carrera);
+
+        //Crear asignaturas
+        Asignatura asignatura = new Asignatura();
+        asignatura.setNombre("PED");
+        asignatura.setId(1);
+        asignatura.setCarrera(carrera);
+        int asignatura1 = asignaturaDao.create(asignatura);
+
+        asignatura.setNombre("Programación 3");
+        asignatura.setId(2);
+        carrera.setId(carrera2);
+        asignatura.setCarrera(carrera);
+        int asignatura2 = asignaturaDao.create(asignatura);
+
+        //Crear bases de preguntas
+
 
         Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
     }
@@ -118,7 +187,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return bdPreguntasDao;
     }
 
-    public ICarreraDao getCarreraDao() throws SQLException
+    public ICarreraDao getICarreraDao() throws SQLException
     {
         if(carreraDao == null)
         {
@@ -127,7 +196,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return carreraDao;
     }
 
-    public IPreguntaDao getPreguntaDao() throws SQLException
+    public IPreguntaDao getIPreguntaDao() throws SQLException
     {
         if(preguntaDao == null)
         {
@@ -136,7 +205,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return preguntaDao;
     }
 
-    public IRespuestaDao getRespuestaDao() throws SQLException
+    public IRespuestaDao getIRespuestaDao() throws SQLException
     {
         if(respuestaDao == null)
         {
@@ -145,7 +214,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return respuestaDao;
     }
 
-    public IUniversidadDao getUniversidadDao() throws SQLException
+    public IUniversidadDao getIUniversidadDao() throws SQLException
     {
         if(universidadDao == null)
         {
@@ -154,7 +223,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return universidadDao;
     }
 
-    public IUsuarioDao getUsuarioDao() throws SQLException
+    public IUsuarioDao getIUsuarioDao() throws SQLException
     {
         if(usuarioDao == null)
         {

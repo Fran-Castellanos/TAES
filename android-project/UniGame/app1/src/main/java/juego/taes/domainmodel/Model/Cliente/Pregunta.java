@@ -53,7 +53,7 @@ public class Pregunta {
     @DatabaseField(columnName = BD,useGetSet = true, foreign = true, canBeNull = false)
     private BDPreguntas bdPreguntas;
 
-    @DatabaseField(columnName = RESPUESTA_CORRECTA, foreign = true, canBeNull = false, useGetSet = true)
+    @DatabaseField(columnName = RESPUESTA_CORRECTA, foreign = true, useGetSet = true)
     private Respuesta respuestaCorrecta;
 
     @ForeignCollectionField(eager=false, foreignFieldName = "respuestas", columnName = RESPUESTAS)

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PermissionGroupInfo;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -159,7 +160,7 @@ public class FachadaPartida {
         try {
 
             BDPreguntasRepository base= new BDPreguntasRepository(c);
-            bases = base.getByUniversidad(idAsig, idUni);
+            bases = base.getByAsignaturaYUniversidad(idAsig, idUni);
 
         }catch(Exception e){
             throw  new Exception("No se han obtenido asignaturas para la carrera"+e.getMessage());
@@ -196,7 +197,7 @@ public class FachadaPartida {
         BDPreguntasRepository bdrep = new BDPreguntasRepository(c);
 
 
-        return juego.obtenerPreguntas(bolsas);
+        return juego.obtenerPreguntas(c, bolsas);
 
     }
 
@@ -210,7 +211,7 @@ public class FachadaPartida {
     public Pregunta usarComodin(Context c, List<Pregunta> preguntas,int preguntaId, Comodin comodin) throws Exception {
         Pregunta p=null;
         try{
-            PreguntaRepository preg= new PreguntaRepository();
+            PreguntaRepository preg= new PreguntaRepository(c);
             p=preg.getById(preguntaId);
         }catch(Exception ex){
             throw ex;
