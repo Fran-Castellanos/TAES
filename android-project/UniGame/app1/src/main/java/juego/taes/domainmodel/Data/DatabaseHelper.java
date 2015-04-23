@@ -187,7 +187,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return bdPreguntasDao;
     }
 
-    public ICarreraDao getCarreraDao() throws SQLException
+    public ICarreraDao getICarreraDao() throws SQLException
     {
         if(carreraDao == null)
         {
@@ -196,7 +196,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return carreraDao;
     }
 
-    public IPreguntaDao getPreguntaDao() throws SQLException
+    public IPreguntaDao getIPreguntaDao() throws SQLException
     {
         if(preguntaDao == null)
         {
@@ -205,7 +205,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return preguntaDao;
     }
 
-    public IRespuestaDao getRespuestaDao() throws SQLException
+    public IRespuestaDao getIRespuestaDao() throws SQLException
     {
         if(respuestaDao == null)
         {
@@ -214,7 +214,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return respuestaDao;
     }
 
-    public IUniversidadDao getUniversidadDao() throws SQLException
+    public IUniversidadDao getIUniversidadDao() throws SQLException
     {
         if(universidadDao == null)
         {
@@ -223,7 +223,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return universidadDao;
     }
 
-    public IUsuarioDao getUsuarioDao() throws SQLException
+    public IUsuarioDao getIUsuarioDao() throws SQLException
     {
         if(usuarioDao == null)
         {

@@ -22,7 +22,7 @@ public class CommentsRepository {
     {
         try {
             DatabaseManager dbManager = new DatabaseManager();
-            db = dbManager.getHelper(ctx);
+            //db = dbManager.getHelper(ctx);
             commentsDao = db.getCommentsDao();
         } catch (SQLException e) {
             // TODO: Exception Handling

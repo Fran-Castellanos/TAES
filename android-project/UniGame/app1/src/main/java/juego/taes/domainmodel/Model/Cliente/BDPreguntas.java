@@ -26,6 +26,7 @@ public class BDPreguntas {
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Columnas foreign key
+    public static final String ASIGNATURA="fk_asignatura";
     public static final String USUARIO="fk_usuario";
     public static final String PREGUNTAS="fk_preguntas";
     public static final String UNIVERSIDAD="fk_universidad";
@@ -50,10 +51,13 @@ public class BDPreguntas {
     private boolean modificadoDesdeUltimaSincronizacion;
 
     //Relaciones
-    @DatabaseField(columnName=USUARIO, foreign = true, canBeNull = false)
+    @DatabaseField(columnName = ASIGNATURA, foreign = true, canBeNull = false, useGetSet = true)
+    private Asignatura asignatura;
+
+    @DatabaseField(columnName=USUARIO, foreign = true, canBeNull = false, useGetSet = true)
     private Usuario usuario;
 
-    @DatabaseField(columnName = UNIVERSIDAD, foreign = true, canBeNull = false)
+    @DatabaseField(columnName = UNIVERSIDAD, foreign = true, canBeNull = false, useGetSet = true)
     private Universidad universidad;
 
     @ForeignCollectionField(eager=false,columnName = PREGUNTAS, foreignFieldName = "preguntas")
