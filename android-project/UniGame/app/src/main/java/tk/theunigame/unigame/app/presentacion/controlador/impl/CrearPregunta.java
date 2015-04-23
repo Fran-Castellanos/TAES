@@ -88,7 +88,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         pregunta = preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString());
         preguntaFachada.indicarRespuestas(pregunta,respuestas);
         //indicamos la respuestacorrecta
-        preguntaFachada.RespuestaCorrecta(pregunta,id_answer_selected.getId(),respuestaFachada);
+        preguntaFachada.RespuestaCorrecta(this,pregunta,id_answer_selected.getId(),respuestaFachada);
 
 
         //Añadir pregunta

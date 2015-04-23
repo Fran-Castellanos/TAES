@@ -21,17 +21,15 @@ public class BolsaPregunta {
     /**********************************************************************************************/
     private static BolsaPregunta sInstance = null;//Objeto session
 
-    private BolsaPregunta(BDPreguntas bd)//Privado para el objeto session
+    private BolsaPregunta()//Privado para el objeto session
     {
-        pBDPreguntas = bd;
-        pPreguntas = bd.getPreguntas();
         preguntas_creadas = new ArrayList<Pregunta>();
         preguntas_eliminadas = new ArrayList<Pregunta>();
         preguntas_modificadas = new ArrayList<Pregunta>();
     }
 
-    public static void init(BDPreguntas pBolsaPreguntas) {
-        sInstance = new BolsaPregunta(pBolsaPreguntas);
+    public static void init() {
+        sInstance = new BolsaPregunta();
     }
 
     public static BolsaPregunta getInstance() {
