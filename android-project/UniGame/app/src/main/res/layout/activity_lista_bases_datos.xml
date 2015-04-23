@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_main_horizontal"
-    tools:context=".app.presentacion.controlador.impl.ModoIndividual">
+    tools:context=".app.presentacion.controlador.impl.ListaBasesDatos">
 
     <RelativeLayout
         style="@style/rl_main_left">
