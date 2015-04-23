@@ -44,7 +44,7 @@ public class Comodin50 extends Comodin {
         int a;
         while(eliminadas < numEliminadas)
         {
-            a = r.nextInt(numEliminadas);  // Entre 0 y numEliminadas
+            a = r.nextInt(resp50.size());  // Entre 0 y num de respuestas
             if(!aleatorios.contains(a) && !esCorrecta(respuestas,a,p.getRespuestaCorrecta())) {
                 aleatorios.add(a);
                 ++eliminadas;
@@ -54,7 +54,7 @@ public class Comodin50 extends Comodin {
 
         int i=0;
         for(Respuesta res : respuestas){
-            if(!aleatorios.contains(i))
+            if(aleatorios.contains(i))
             {
                     res.setContenido("");
             }
