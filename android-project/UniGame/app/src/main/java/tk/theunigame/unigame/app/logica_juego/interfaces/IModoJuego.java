@@ -14,4 +14,5 @@ public interface IModoJuego {
     public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas);
     public boolean comprobarRespuesta(Pregunta pregunta, Integer respuesta);
 
+
 }

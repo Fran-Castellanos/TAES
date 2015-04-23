@@ -36,7 +36,8 @@ public abstract class Millonario implements IModoJuego {
 
     public void setNumPreguntas(int n)
     {
-        numPreguntas = n;
+        if(n>0)
+            numPreguntas = n;
     }
 
 
@@ -45,6 +46,11 @@ public abstract class Millonario implements IModoJuego {
 
 
 
+    public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas,int numPreguntas)
+    {
+        setNumPreguntas(numPreguntas);
+        return obtenerPreguntas(bolsas);
+    }
 
 
 
@@ -61,7 +67,7 @@ public abstract class Millonario implements IModoJuego {
 
         ranks = calcularRangos(numPreguntasBolsa);
         int n = 0;
-        while (n<numPreguntas)
+        while (n<numPreguntas+1)
         {
             double random = Math.random();
             int indice=0;
@@ -93,6 +99,9 @@ public abstract class Millonario implements IModoJuego {
         List<Double> result = new ArrayList<Double>();
         for(Integer i: numPreguntasBolsa)
             total += i;
+
+        if(total < numPreguntas)
+            setNumPreguntas(total);
 
         double aux=0;
         for(Integer i: numPreguntasBolsa) {

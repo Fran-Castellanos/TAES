@@ -143,7 +143,7 @@ public class Usuario {
     }
 
     //Enumerador para el sexo del usuario
-    private enum Sexo
+    public enum Sexo
     {
         HOMBRE,
         MUJER,
