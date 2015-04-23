@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.fachadas;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -21,8 +23,8 @@ public class FachadaPregunta {
         //pregunta.setRespuestas(respuestas);
     }
 
-    public void RespuestaCorrecta(Pregunta pregunta, int IDrespuestaCorrecta,FachadaRespuesta respuestaFachada){
+    public void RespuestaCorrecta(Context c, Pregunta pregunta, int IDrespuestaCorrecta,FachadaRespuesta respuestaFachada){
 
-        pregunta.setRespuestaCorrecta(respuestaFachada.recuperarRespuesta(IDrespuestaCorrecta));
+        pregunta.setRespuestaCorrecta(respuestaFachada.recuperarRespuesta(c, IDrespuestaCorrecta));
     }
 }
