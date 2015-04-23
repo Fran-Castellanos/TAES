@@ -27,7 +27,7 @@
     <string name="btn_create">Crear</string>
     <string name="btn_browse">Buscar</string>
     <string name="txt_individual_mode">Selcciona Preguntas</string>
-    <string name="btn_individual_mode">Añadir pregunta</string>
+    <string name="btn_add_question">Añadir pregunta</string>
     <string name="txt_universities">Universidades</string>
     <string name="txt_carrer">Carrera</string>
     <string name="txt_subject">Asignatura</string>
