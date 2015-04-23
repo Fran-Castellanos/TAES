@@ -82,16 +82,15 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         contenido.add(etxt_b.getText().toString());
         contenido.add(etxt_c.getText().toString());
         contenido.add(etxt_d.getText().toString());
-        //creamos las respuestas
-        respuestas=respuestaFachada.obtenerRespuestas(contenido);
         //creamos la pregunta
         pregunta = preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString());
+        //creamos las respuestas
+        respuestas=respuestaFachada.obtenerRespuestas(pregunta,contenido);
+        //le indicamos a las preguntas sus respuestas
         preguntaFachada.indicarRespuestas(pregunta,respuestas);
-        //indicamos la respuestacorrecta
+        //indicamos la respuesta correcta
         preguntaFachada.RespuestaCorrecta(this,pregunta,id_answer_selected.getId(),respuestaFachada);
-
-
-        //Añadir pregunta
+        //Añadimos las preguntas a la BD
         BolsaPregunta.getInstance().InsertarPregunta(pregunta);
     }
 
