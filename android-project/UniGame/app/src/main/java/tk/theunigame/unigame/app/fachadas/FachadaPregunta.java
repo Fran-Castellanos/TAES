@@ -2,6 +2,8 @@ package tk.theunigame.unigame.app.fachadas;
 
 import android.content.Context;
 
+import com.j256.ormlite.dao.ForeignCollection;
+
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -19,8 +21,7 @@ public class FachadaPregunta {
 
     public void indicarRespuestas(Pregunta pregunta, ArrayList<Respuesta> respuestas) {
 
-        //setRespuestas recibe un foregincollection
-        //pregunta.setRespuestas(respuestas);
+        pregunta.setRespuestas((ForeignCollection<Respuesta>)respuestas);
     }
 
     public void RespuestaCorrecta(Context c, Pregunta pregunta, int IDrespuestaCorrecta,FachadaRespuesta respuestaFachada){
