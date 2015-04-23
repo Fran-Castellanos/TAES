@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import juego.taes.domainmodel.Model.Cliente.*;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.*;
+import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 
 
 /**
@@ -31,7 +32,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
     FachadaRespuesta respuestaFachada;
     FachadaPregunta preguntaFachada;
     //arrays a usar
-    ArrayList<Pregunta> preguntas;
+    Pregunta pregunta;
     ArrayList<Respuesta> respuestas;
     ArrayList<String> contenido;
 
@@ -43,7 +44,6 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_pregunta);
 
-        // bolsaPreguntas.RecuperarBDPreguntas(idDB);
         id_answer_selected = EIDANSWER.A;
 
         etxt_a = (EditText)findViewById(R.id.etxt_edit_answer_a);
@@ -85,11 +85,13 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         //creamos las respuestas
         respuestas=respuestaFachada.obtenerRespuestas(contenido);
         //creamos la pregunta
-        preguntas.add(preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString()));
-        preguntaFachada.indicarRespuestas(preguntas.get(preguntas.size()-1),respuestas);
+        pregunta = preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString());
+        preguntaFachada.indicarRespuestas(pregunta,respuestas);
         //indicamos la respuestacorrecta
-        preguntaFachada.RespuestaCorrecta(preguntas.get(preguntas.size()-1),id_answer_selected.getId(),respuestaFachada);
+        preguntaFachada.RespuestaCorrecta(pregunta,id_answer_selected.getId(),respuestaFachada);
 
+        //Añadir pregunta
+        BolsaPregunta.getInstance().InsertarPregunta(pregunta);
     }
 
     private static enum EIDANSWER {

@@ -42,7 +42,7 @@ public class UsarDB extends Activity {
                 if(opcion_db.equals("CrearDB")){
                     intent= new Intent(UsarDB.this, CrearDB.class);
                 }else{
-                    Comunicador.setObject(opcion_db);
+                    Comunicador.setObject(opcion_db);//Se envia un DBpreguntas
                     intent= new Intent(UsarDB.this, ListaPreguntas.class);
                 }
 
