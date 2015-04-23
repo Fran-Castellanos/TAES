@@ -88,12 +88,7 @@ public class CarreraRepository {
 
     public List<Carrera> getByUniversidad(int id)
     {
-        try {
-            return dao.queryForEq(Carrera.UNIVERSIDAD,id);
-        } catch (SQLException e) {
-            //TODO GESTION DE ERRORES
-            e.printStackTrace();
-        }
-        return null;
+//TODO
+        throw new RuntimeException("Not implemented yet");
     }
 }

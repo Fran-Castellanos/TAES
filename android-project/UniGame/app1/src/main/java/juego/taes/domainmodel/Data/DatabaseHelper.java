@@ -329,63 +329,53 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carrera.setNombre("Medicina");
         carrera.setId(3);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera3 = carreraDao.create(carrera);
 
         carrera.setNombre("Ingenieria Industrial");
         carrera.setId(4);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera4 = carreraDao.create(carrera);
 
         carrera.setNombre("Ingenieria Quimica");
         carrera.setId(5);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera5 = carreraDao.create(carrera);  //Ingenieria
 
 
         carrera.setNombre("ADE");
         carrera.setId(6);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera6 = carreraDao.create(carrera);
 
 
         carrera.setNombre("Turismo");
         carrera.setId(7);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera7 = carreraDao.create(carrera);
 
         carrera.setNombre("Traduccion e Interpretacion");
         carrera.setId(8);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera8 = carreraDao.create(carrera);
 
         carrera.setNombre("Arquitectura");
         carrera.setId(9);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera9 = carreraDao.create(carrera);
 
         carrera.setNombre("Magisterio Infantil");
         carrera.setId(10);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera10 = carreraDao.create(carrera);
 
         carrera.setNombre("Periodismo");
         carrera.setId(11);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera11 = carreraDao.create(carrera);
 
         carrera.setNombre("Ingeneria Aeronautica");
         carrera.setId(12);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera12 = carreraDao.create(carrera);
 
         /////////////////////////////////////////////////////////////////////
