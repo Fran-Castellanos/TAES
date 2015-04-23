@@ -1,16 +1,17 @@
 package tk.theunigame.unigame.app.presentacion.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import juego.taes.domainmodel.Model.Cliente.Carrera;
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
 
 /**
  * Created by John on 08/04/2015.
@@ -18,19 +19,18 @@ import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
  * Este clase será modoficada en función de los valores que se quieran mostrar
  * a través de la consulta a la base de datos remota
  */
-public class AdaptadorListaMultiItems extends BaseAdapter {
-
-    private String[] datos;
+public class AdaptadorListaCarreras extends BaseAdapter {
     private Context context;
+    private ArrayList<Carrera> carreras;
 
     @Override
     public int getCount() {
-        return datos.length;
+        return carreras.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return datos[position];
+        return carreras.get(position);
     }
 
     @Override
@@ -43,9 +43,9 @@ public class AdaptadorListaMultiItems extends BaseAdapter {
         TextView txtView;
     }
 
-    public AdaptadorListaMultiItems(Context context, String[] datos){
+    public AdaptadorListaCarreras(Context context, ArrayList<Carrera> datos){
         this.context=context;
-        this.datos=datos;
+        carreras=datos;
     }
 
     //Inflamos el elemento de la lista con los datos que queremos
@@ -68,7 +68,7 @@ public class AdaptadorListaMultiItems extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txtView.setText(datos[position]);
+        holder.txtView.setText(carreras.get(position).getNombre());
 
         return item;
     }

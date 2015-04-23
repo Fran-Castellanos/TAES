@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_main_horizontal"
-    tools:context=".app.presentacion.controlador.impl.CrearDB">
+    tools:context=".app.presentacion.controlador.impl.ListaPreguntas">
 
     <RelativeLayout
         style="@style/rl_main_left">
@@ -21,27 +21,19 @@
                 android:orientation="vertical"
                 style="@style/ll_main_container">
                 <TextView
-                    android:id="@+id/txt_name_db"
+                    android:id="@+id/txt_title1"
                     android:textColor="@color/Black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
                     android:textSize="20sp"/>
-                <Button
-                    android:id="@+id/btn_individual_mode"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:text="@string/btn_individual_mode"
-                    android:background="@drawable/button_design"
-                    android:layout_weight="0.2"/>
                 <ListView
                     android:layout_weight="0.8"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:id="@+id/lv_preguntas"
-                    android:background="@android:color/transparent"
-                    android:cacheColorHint="@android:color/transparent"
-                    android:listSelector="@android:color/transparent"
-                    android:scrollbars="none">
+                    style="@style/lv_default">
                 </ListView>
 
             </LinearLayout>

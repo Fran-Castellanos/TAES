@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.logica_juego.interfaces;
 
+import android.content.Context;
+
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -11,7 +13,7 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
 public interface IModoJuego {
 
     public void jugar(List<Pregunta> preguntas);
-    public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas);
+    public List<Pregunta> obtenerPreguntas(Context c, List<BDPreguntas> bolsas);
     public boolean comprobarRespuesta(Pregunta pregunta, Integer respuesta);
 
 

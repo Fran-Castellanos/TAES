@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_main_horizontal"
-    tools:context=".app.presentacion.controlador.impl.CrearDB">
+    tools:context=".app.presentacion.controlador.impl.UsarDB">
 
     <RelativeLayout
         style="@style/rl_main_left">
@@ -22,10 +22,8 @@
                 style="@style/ll_main_container">
 
                 <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:id="@+id/lv_usar_db_preguntas"
-                    android:background="@color/Black">
+                    style="@style/lv_default">
                 </ListView>
 
             </LinearLayout>

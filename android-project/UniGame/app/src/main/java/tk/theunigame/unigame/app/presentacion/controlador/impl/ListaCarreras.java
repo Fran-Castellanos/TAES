@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaMultiItems;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
 /**
@@ -19,6 +20,8 @@ import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 public class ListaCarreras extends Activity {
 
     private ListView lv;
+    private TextView txt;
+    private Universidad universidad;
 
     final private String[] datos = new String[]{"Carreras1", "Carreras2", "Carreras3"};
 
@@ -27,8 +30,12 @@ public class ListaCarreras extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_carreras);
 
+        txt= (TextView) findViewById(R.id.txt_title2);
+        String s= (String)Comunicador.getObject();//Cuande esté implementado debe ser Universidad
+        txt.setText(s);
+
         //Creamos el adaptador para el ListView
-        BaseAdapter adapter= new AdaptadorListaMultiItems(this, datos);
+        BaseAdapter adapter= new AdaptadorListaDefault(this, datos);
         lv=(ListView) findViewById(R.id.lv_carreras);
         lv.setAdapter(adapter);
 

@@ -8,7 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaMultiItems;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
+import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.Constantes;
 
 /**
@@ -26,11 +27,12 @@ public class UsarDB extends Activity {
         setContentView(R.layout.activity_usar_bd);
 
         //Creamos el adaptador para el ListView
-        AdaptadorListaMultiItems adapter= new AdaptadorListaMultiItems(this, datos);
-        //ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,R.layout.list_item_db, datos);
+        AdaptadorListaDefault adapter= new AdaptadorListaDefault(this, datos);
+
         lv=(ListView) findViewById(R.id.lv_usar_db_preguntas);
         lv.setAdapter(adapter);
 
+        //Instaciamos el evento para las pulsaciones en los botones de la lista
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -40,13 +42,8 @@ public class UsarDB extends Activity {
                 if(opcion_db.equals("CrearDB")){
                     intent= new Intent(UsarDB.this, CrearDB.class);
                 }else{
-                    /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-                    //Debe pasar alguna referencia a la base de datos o la base de datos
-                    //Para generamos un Bundle y lo enviamos como un putExtras, o enviamos unicamente
-                    //el identificador a la siguiente Activity
+                    Comunicador.setObject(opcion_db);
                     intent= new Intent(UsarDB.this, ListaPreguntas.class);
-                    //Introducimos en el Intent lo que queremos enviar a la siguiente activity
-                    intent.putExtra(Constantes.KDB_NOMBRE, opcion_db);
                 }
 
                 startActivity(intent);

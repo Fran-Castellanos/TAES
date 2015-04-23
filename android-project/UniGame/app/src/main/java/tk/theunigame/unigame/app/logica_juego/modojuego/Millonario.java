@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.logica_juego.modojuego;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,11 +21,13 @@ import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
 public abstract class Millonario implements IModoJuego {
     private HashMap<Pregunta, Integer> preguntas;
     private int numPreguntas;
+    private int numComodines;
 
     public Millonario()
     {
         numPreguntas = 20;
         preguntas = new HashMap<Pregunta, Integer>();
+        numComodines=3;
 
     }
 
@@ -46,19 +50,19 @@ public abstract class Millonario implements IModoJuego {
 
 
 
-    public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas,int numPreguntas)
+    public List<Pregunta> obtenerPreguntas(Context c , List<BDPreguntas> bolsas,int numPreguntas)
     {
         setNumPreguntas(numPreguntas);
-        return obtenerPreguntas(bolsas);
+        return obtenerPreguntas(c, bolsas);
     }
 
 
 
     @Override
-    public List<Pregunta> obtenerPreguntas(List<BDPreguntas> bolsas) {
+    public List<Pregunta> obtenerPreguntas(Context c, List<BDPreguntas> bolsas) {
         List<Integer> numPreguntasBolsa = new ArrayList<Integer>();
         List<Double> ranks;
-        PreguntaRepository pregunta = new PreguntaRepository();
+        PreguntaRepository pregunta = new PreguntaRepository(c);
         List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
         for (BDPreguntas bolsa : bolsas) {
@@ -126,7 +130,7 @@ public abstract class Millonario implements IModoJuego {
         }
     }
 
-    public boolean comprobarRespuesta(Pregunta preg, Integer res)
+    public boolean comprobarRespuesta(Pregunta preg, int res)
     {
         Respuesta r = preg.getRespuestaCorrecta();
         return r.getId()==res;

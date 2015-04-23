@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import juego.taes.domainmodel.Model.Cliente.Asignatura;
+import juego.taes.domainmodel.Model.Cliente.Carrera;
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaMultiItems;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
 /**
@@ -19,6 +21,8 @@ import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 public class ListaAsignaturas extends Activity {
 
     private ListView lv;
+    private TextView txt;
+    private Carrera carrera;
 
     final private String[] datos = new String[]{"Asignaturas1", "Asignaturas2", "Asignaturas3"};
 
@@ -27,8 +31,12 @@ public class ListaAsignaturas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_asignaturas);
 
+        txt= (TextView) findViewById(R.id.txt_title2);
+        String s= (String)Comunicador.getObject();//Cuande esté implementado debe ser Asignatura
+        txt.setText(s);
+
         //Creamos el adaptador para el ListView
-        BaseAdapter adapter= new AdaptadorListaMultiItems(this, datos);
+        BaseAdapter adapter= new AdaptadorListaDefault(this, datos);
         lv=(ListView) findViewById(R.id.lv_asignaturas);
         lv.setAdapter(adapter);
 
