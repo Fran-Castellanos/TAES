@@ -2,6 +2,8 @@ package juego.taes.domainmodel.Repository;
 
 import android.content.Context;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -85,9 +87,22 @@ public class PreguntaRepository {
         return null;
     }
 
-    public Pregunta getRandomByBolsa(int bolsaId){throw new RuntimeException("Not implemented yet");}
+    public Pregunta getRandomByBolsa(int bolsaId)
+    {
+        //select * from foo where rowid = (abs(random()) % (select max(rowid)+1 from foo));
+        throw new RuntimeException("Not implemented yet");
+    }
 
 
-    public List<Pregunta> getAllByBDPregunta(int bolsaId) {throw new RuntimeException("Not implemented yet");}
+    public List<Pregunta> getAllByBDPregunta(int bolsaId)
+    {
+        try {
+            return dao.queryForEq(Pregunta.BD, bolsaId);
+        } catch (SQLException e) {
+            //TODO GESTION DE ERRORES
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

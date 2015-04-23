@@ -137,13 +137,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Carrera carrera = new Carrera();
         carrera.setNombre("Derecho");
         carrera.setId(1);
-        carrera.setUniversidad(universidad);
         int carrera1 = carreraDao.create(carrera);
 
         carrera.setNombre("Informatica");
         carrera.setId(2);
         universidad.setId(universidad1);
-        carrera.setUniversidad(universidad);
         int carrera2 = carreraDao.create(carrera);
 
         //Crear asignaturas

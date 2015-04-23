@@ -67,12 +67,9 @@ public class BDPreguntas {
         // ORMLite needs a no-arg constructor
     }
 
-    public BDPreguntas(String nombre, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public BDPreguntas(String nombre, boolean enServidor) {
         Nombre = nombre;
         this.enServidor = enServidor;
-        this.idSincronizacion = idSincronizacion;
-        this.fechaSincronizacion = fechaSincronizacion;
-        this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 
     public int getId() {

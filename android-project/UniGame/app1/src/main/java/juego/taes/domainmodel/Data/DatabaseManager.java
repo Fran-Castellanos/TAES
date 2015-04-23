@@ -26,7 +26,7 @@ public class DatabaseManager {
     }
 
     //releases the helper once usages has ended
-    public void releaseHelper(DatabaseHelperExample helper)
+    public void releaseHelper(DatabaseHelper helper)
     {
         if (databaseHelper != null) {
             OpenHelperManager.releaseHelper();
