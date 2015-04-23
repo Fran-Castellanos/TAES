@@ -84,4 +84,7 @@ public class BolsaPregunta {
                 preguntas_modificadas.add(pregunta);
         }
     }
+
+    public void RegistrarCambios()
+    {}
 }
