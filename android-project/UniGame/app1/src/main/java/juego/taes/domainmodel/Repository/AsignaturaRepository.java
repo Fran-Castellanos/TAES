@@ -90,12 +90,7 @@ public class AsignaturaRepository {
 
     public List<Asignatura> getByCarrera( int carreraId)
     {
-        try {
-            return dao.queryForEq(Asignatura.CARRERA,carreraId);
-        } catch (SQLException e) {
-            //TODO GESTION DE ERRORES
-            e.printStackTrace();
-        }
-        return null;
+        //TODO
+        throw new RuntimeException("Not implemented yet");
     }
 }

@@ -18,7 +18,7 @@ public class CarreraUniversidad
     public static final String CARRERA = "fk_carrera";
     public static final String UNIVERSIDAD = "fk_universidad";
 
-    @DatabaseField(columnName = ID, id = true, useGetSet = true)
+    @DatabaseField(columnName = ID, generatedId = true, useGetSet = true)
     private int id;
 
     @DatabaseField(columnName = CARRERA, foreign=true, useGetSet = true)
