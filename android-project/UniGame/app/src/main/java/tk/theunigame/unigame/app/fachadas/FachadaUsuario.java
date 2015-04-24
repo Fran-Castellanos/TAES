@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.fachadas;
 
+import juego.taes.domainmodel.Model.Cliente.Sexo;
+import android.content.Context;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 import juego.taes.domainmodel.Repository.UsuarioRepository;
 
@@ -14,9 +16,9 @@ public class FachadaUsuario {
     {}
 
 
-    public Usuario loguear(String nick, String pass)
+    public Usuario loguear(Context c, String nick, String pass)
     {
-        UsuarioRepository usu_rep = new UsuarioRepository();
+        UsuarioRepository usu_rep = new UsuarioRepository(c);
         Usuario usu = usu_rep.getByNick(nick);
 
 
@@ -25,9 +27,8 @@ public class FachadaUsuario {
     }
 
 
-
-    public int registrarse(String nick, String nombre, String apellidos, Usuario.Sexo sexo) throws Exception {
-        UsuarioRepository usu_rep = new UsuarioRepository();
+    public int registrarse(Context c, String nick, String nombre, String apellidos, Sexo sexo) throws Exception {
+        UsuarioRepository usu_rep = new UsuarioRepository(c);
         Usuario usu = new Usuario();
         usu.setNick(nick);
         usu.setNombre(nombre);

@@ -26,7 +26,6 @@ public class Pregunta {
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Relaciones
-    public static final String RESPUESTA_CORRECTA="fk_respuesta_correcta";
     public static final String RESPUESTAS="fk_respuestas";
     public static final String BD="fk_bd_preguntas";
 
@@ -52,9 +51,6 @@ public class Pregunta {
     //Relaciones
     @DatabaseField(columnName = BD,useGetSet = true, foreign = true, canBeNull = false)
     private BDPreguntas bdPreguntas;
-
-    @DatabaseField(columnName = RESPUESTA_CORRECTA, foreign = true, canBeNull = false, useGetSet = true)
-    private Respuesta respuestaCorrecta;
 
     @ForeignCollectionField(eager=false, foreignFieldName = "respuestas", columnName = RESPUESTAS)
     private ForeignCollection<Respuesta> respuestas;
@@ -114,14 +110,6 @@ public class Pregunta {
 
     public void setFechaSincronizacion(Date fechaSincronizacion) {
         this.fechaSincronizacion = fechaSincronizacion;
-    }
-
-    public Respuesta getRespuestaCorrecta() {
-        return respuestaCorrecta;
-    }
-
-    public void setRespuestaCorrecta(Respuesta respuestaCorrecta) {
-        this.respuestaCorrecta = respuestaCorrecta;
     }
 
     public ForeignCollection<Respuesta> getRespuestas() {

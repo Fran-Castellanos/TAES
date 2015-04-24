@@ -8,29 +8,29 @@ import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 
 
 /**
- * Created by alienware18 on 9-8-13.
+ * Created by felix on 23-4-15;
  */
 public class DatabaseManager {
 
 
-    private DatabaseHelperExample databaseHelperExample = null;
+    private DatabaseHelper databaseHelper = null;
 
     //gets a helper once one is created ensures it doesnt create a new one
-    public DatabaseHelperExample getHelper(Context context)
+    public DatabaseHelper getHelper(Context context)
     {
-        if (databaseHelperExample == null) {
-            databaseHelperExample =
-                    OpenHelperManager.getHelper(context, DatabaseHelperExample.class);
+        if (databaseHelper == null) {
+            databaseHelper =
+                    OpenHelperManager.getHelper(context, DatabaseHelper.class);
         }
-        return databaseHelperExample;
+        return databaseHelper;
     }
 
     //releases the helper once usages has ended
-    public void releaseHelper(DatabaseHelperExample helper)
+    public void releaseHelper(DatabaseHelper helper)
     {
-        if (databaseHelperExample != null) {
+        if (databaseHelper != null) {
             OpenHelperManager.releaseHelper();
-            databaseHelperExample = null;
+            databaseHelper = null;
         }
     }
 

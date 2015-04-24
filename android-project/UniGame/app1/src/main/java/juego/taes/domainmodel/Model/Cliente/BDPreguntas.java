@@ -26,6 +26,7 @@ public class BDPreguntas {
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Columnas foreign key
+    public static final String ASIGNATURA="fk_asignatura";
     public static final String USUARIO="fk_usuario";
     public static final String PREGUNTAS="fk_preguntas";
     public static final String UNIVERSIDAD="fk_universidad";
@@ -50,10 +51,13 @@ public class BDPreguntas {
     private boolean modificadoDesdeUltimaSincronizacion;
 
     //Relaciones
-    @DatabaseField(columnName=USUARIO, foreign = true, canBeNull = false)
+    @DatabaseField(columnName = ASIGNATURA, foreign = true, canBeNull = false, useGetSet = true)
+    private Asignatura asignatura;
+
+    @DatabaseField(columnName=USUARIO, foreign = true, canBeNull = false, useGetSet = true)
     private Usuario usuario;
 
-    @DatabaseField(columnName = UNIVERSIDAD, foreign = true, canBeNull = false)
+    @DatabaseField(columnName = UNIVERSIDAD, foreign = true, canBeNull = false, useGetSet = true)
     private Universidad universidad;
 
     @ForeignCollectionField(eager=false,columnName = PREGUNTAS, foreignFieldName = "preguntas")
@@ -63,12 +67,9 @@ public class BDPreguntas {
         // ORMLite needs a no-arg constructor
     }
 
-    public BDPreguntas(String nombre, boolean enServidor, int idSincronizacion, Date fechaSincronizacion, boolean modificadoDesdeUltimaSincronizacion) {
+    public BDPreguntas(String nombre, boolean enServidor) {
         Nombre = nombre;
         this.enServidor = enServidor;
-        this.idSincronizacion = idSincronizacion;
-        this.fechaSincronizacion = fechaSincronizacion;
-        this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 
     public int getId() {

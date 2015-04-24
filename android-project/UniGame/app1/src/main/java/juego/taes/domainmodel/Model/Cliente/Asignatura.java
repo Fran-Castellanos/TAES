@@ -19,7 +19,6 @@ public class Asignatura {
     public static final String NOMBRE="nombre";
 
     //Relaciones
-    public static final String CARRERA="fk_carrera";
     public static final String BDS="fk_bds";
 
     //Atributos de la base de datos
@@ -30,8 +29,6 @@ public class Asignatura {
     private String nombre;
 
     //Relaciones
-    @DatabaseField(columnName=CARRERA,foreign = true, canBeNull = false, useGetSet = true)
-    private Carrera carrera;
 
     @ForeignCollectionField(columnName = BDS, eager = false, foreignFieldName = "bds")
     private ForeignCollection<BDPreguntas> bds;
@@ -60,14 +57,6 @@ public class Asignatura {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
     }
 
     public ForeignCollection<BDPreguntas> getBds() {

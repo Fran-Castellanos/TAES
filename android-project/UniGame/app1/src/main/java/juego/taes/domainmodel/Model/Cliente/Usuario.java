@@ -141,12 +141,4 @@ public class Usuario {
     public int hashCode() {
         return id;
     }
-
-    //Enumerador para el sexo del usuario
-    public enum Sexo
-    {
-        HOMBRE,
-        MUJER,
-        OTRO;
-    }
 }

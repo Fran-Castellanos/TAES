@@ -1,10 +1,8 @@
 package tk.theunigame.unigame.app.fachadas;
 
 
-import android.content.pm.PermissionGroupInfo;
+import android.content.Context;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
@@ -17,11 +15,8 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 import juego.taes.domainmodel.Repository.CarreraRepository;
 import juego.taes.domainmodel.Repository.PreguntaRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
+import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
-import tk.theunigame.unigame.app.logica_juego.interfaces.IModoJuego;
-import tk.theunigame.unigame.app.logica_juego.modojuego.JuegoSimple;
-import tk.theunigame.unigame.app.logica_juego.modojuego.JuegoTorneo;
-import tk.theunigame.unigame.app.logica_juego.modojuego.Millonario;
 
 
 /**
@@ -30,46 +25,28 @@ import tk.theunigame.unigame.app.logica_juego.modojuego.Millonario;
 public class FachadaPartida {
 
 
-    private IModoJuego juego;
 
 
     /**
-     * Constructor de la fachada a partir de un modo de juego.
-     * @param modo Modo de juego.
+     * Constructor por defecto de la fachadaPartida
      */
-    public FachadaPartida(IModoJuego modo)
+    public FachadaPartida()
     {
-        juego = modo;
     }
 
-    /**
-     * Asigna modo de juego simple
-     */
-    public void setJuegoSimple()
-    {
-        juego = new JuegoSimple();
-    }
-
-
-    /**
-     * Asigna modo de juego torneo
-     */
-    public void setJuegoTorneo()
-    {
-        juego = new JuegoTorneo();
-    }
 
 
     /**
      * Devuelve lista de todas las universidades.
+     * @param c Objeto Context
      * @return Lista de todas las universidades.
      * @throws Exception
      */
-    public List<Universidad> verUniversidades() throws Exception {
+    public List<Universidad> verUniversidades(Context c) throws Exception {
 
         List<Universidad> universidades;
         try {
-            UniversidadRepository uni= new UniversidadRepository();
+            UniversidadRepository uni= new UniversidadRepository(c);
             universidades = uni.getAll();
 
         }catch(Exception e){
@@ -81,16 +58,17 @@ public class FachadaPartida {
 
     /**
      * Devuelve una lista de todas las carreras dentro de una universidad.
+     * @param c Objeto Context
      * @param idUniversidad ID de la Universidad.
      * @return Lista de carreras de la Universidad.
      * @throws Exception
      */
-    public List<Carrera> verCarreras(int idUniversidad) throws Exception {
+    public List<Carrera> verCarreras(Context c, int idUniversidad) throws Exception {
         List<Carrera> carreras;
 
         try{
 
-            CarreraRepository car= new CarreraRepository();
+            CarreraRepository car= new CarreraRepository(c);
             carreras = car.getByUniversidad(idUniversidad);
 
         }catch(Exception e){
@@ -102,16 +80,17 @@ public class FachadaPartida {
 
     /**
      * Devuelve una lista de asignaturas de una carrera concreta.
+     * @param c Objeto Context
      * @param idCarrera ID de la carrera.
      * @return Lista de asignaturas de una carrera.
      * @throws Exception
      */
-    public List<Asignatura> verAsignaturas(int idCarrera) throws Exception {
+    public List<Asignatura> verAsignaturas(Context c, int idCarrera) throws Exception {
         List<Asignatura> asignaturas;
 
         try {
 
-            AsignaturaRepository asig = new AsignaturaRepository();
+            AsignaturaRepository asig = new AsignaturaRepository(c);
             asignaturas = asig.getByCarrera(idCarrera);
 
         }catch(Exception e){
@@ -124,16 +103,17 @@ public class FachadaPartida {
     /**
      * Devuelve la lista de bolsas de preguntas relacionadas con una asignatura y con
      * cualquier Universidad.
+     * @param c Objeto Context
      * @param idAsig ID de la asignatura.
      * @return Lista de bolsas de preguntas.
      * @throws Exception
      */
-    public List<BDPreguntas> verBDPreguntasTodasUnis(int idAsig) throws Exception {
+    public List<BDPreguntas> verBDPreguntasTodasUnis(Context c, int idAsig) throws Exception {
         List<BDPreguntas> bases;
 
         try {
 
-            BDPreguntasRepository base= new BDPreguntasRepository();
+            BDPreguntasRepository base= new BDPreguntasRepository(c);
             bases = base.getByAsignatura(idAsig);
 
         }catch(Exception e){
@@ -146,18 +126,19 @@ public class FachadaPartida {
     /**
      * Devuelve la lista de bolsas de preguntas de una asignatura concreta impartida
      * en una Universidad concreta.
+     * @param c Objeto Context
      * @param idAsig ID de la asignatura.
      * @param idUni ID de la Universidad.
      * @return Lista de bolsas de preguntas.
      * @throws Exception
      */
-    public  List<BDPreguntas> verBDPreguntasUnaUni(int idAsig ,int idUni) throws Exception {
+    public  List<BDPreguntas> verBDPreguntasUnaUni(Context c, int idAsig ,int idUni) throws Exception {
         List<BDPreguntas> bases;
 
         try {
 
-            BDPreguntasRepository base= new BDPreguntasRepository();
-            bases = base.getByUniversidad(idAsig, idUni);
+            BDPreguntasRepository base= new BDPreguntasRepository(c);
+            bases = base.getByAsignaturaYUniversidad(idAsig, idUni);
 
         }catch(Exception e){
             throw  new Exception("No se han obtenido asignaturas para la carrera"+e.getMessage());
@@ -171,51 +152,56 @@ public class FachadaPartida {
 
     /**
      * Comprueba si la respuesta del usuario respecto de una pregunta es correcta o no.
-     * @param preguntaId Pregunta que contesta el usuario.
+     * @param c Objeto Context
+     * @param juego Contiene la información de la partida.
      * @param respuestaId Respuesta del usuario.
      * @return True si la respuesta es correcta, false, si es incorrecta.
      */
-    public boolean comprobarPregunta(int preguntaId, int respuestaId)
+    public boolean comprobarPregunta(Context c, Juego juego, int respuestaId)
     {
-        PreguntaRepository preg = new PreguntaRepository();
-        Pregunta p = preg.getById(preguntaId);
-        return juego.comprobarRespuesta(p, respuestaId);
+        PreguntaRepository preg = new PreguntaRepository(c);
+        return juego.comprobarRespuesta(respuestaId);
 
     }
 
 
     /**
      * Devuelve la lista de preguntas que se usarán en la partida.
+     * @param c Objeto Context
+     * @param juego Contiene la información de la partida.
      * @param bolsas Lista de bolsas de preguntas de donde se obtienen las preguntas.
      * @return
      */
-    public List<Pregunta> getPreguntasPartida(List<BDPreguntas> bolsas)
+    public List<Pregunta> getPreguntasPartida(Context c, Juego juego, List<BDPreguntas> bolsas)
     {
-        BDPreguntasRepository bdrep = new BDPreguntasRepository();
-
-
-        return juego.obtenerPreguntas(bolsas);
+        BDPreguntasRepository bdrep = new BDPreguntasRepository(c);
+        return juego.obtenerPreguntas(c, bolsas);
 
     }
 
     /**
      * Devulve una nueva pregunta resultado de aplicar el comodin
-     * @param preguntas Lista de preguntas de la partida
-     * @param preguntaId Id de la pregunta en la que usaremos el comodin.
+     * @param c Objeto Context
      * @param  comodin Comodin que vamos a usar
      * @return
      */
-    public Pregunta usarComodin(List<Pregunta> preguntas,int preguntaId, Comodin comodin) throws Exception {
-        Pregunta p=null;
-        try{
-            PreguntaRepository preg= new PreguntaRepository();
-            p=preg.getById(preguntaId);
-        }catch(Exception ex){
-            throw ex;
-        }
-        return comodin.usarComodin(preguntas,p);
+    public Pregunta usarComodin(Context c, Juego juego, Comodin comodin) throws Exception
+    {
+        return juego.usarComodin(comodin);
     }
 
+
+    /**
+     * Devuelve la siguiente pregunta de la partida.
+     * @param c Objeto Context
+     * @param juego Contiene la información de la partida.
+     * @return
+     */
+    public Pregunta siguientePregunta(Context c, Juego juego)
+    {
+
+        return juego.siguientePregunta();
+    }
 
 
 

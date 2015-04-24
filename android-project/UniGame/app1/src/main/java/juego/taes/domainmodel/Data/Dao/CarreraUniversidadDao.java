@@ -6,18 +6,18 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.sql.SQLException;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
-import juego.taes.domainmodel.Model.Cliente.Carrera;
+import juego.taes.domainmodel.Model.Cliente.CarreraUniversidad;
 
 /**
  * Created by felix on 22/04/15.
  */
 
 //Dao de asignatura
-public class CarreraDao extends BaseDaoImpl<Carrera,Integer> implements ICarreraDao
+public class CarreraUniversidadDao extends BaseDaoImpl<CarreraUniversidad,Integer> implements ICarreraUniversidadDao
 {
     // Constructor
-    public CarreraDao(ConnectionSource connectionSource)
+    public CarreraUniversidadDao(ConnectionSource connectionSource)
             throws SQLException {
-        super(connectionSource, Carrera.class);
+        super(connectionSource, CarreraUniversidad.class);
     }
 }

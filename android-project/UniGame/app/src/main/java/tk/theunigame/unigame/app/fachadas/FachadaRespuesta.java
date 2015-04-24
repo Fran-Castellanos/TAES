@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.fachadas;
 
+import android.content.Context;
+
 import com.j256.ormlite.dao.BaseForeignCollection;
 import com.j256.ormlite.dao.ForeignCollection;
 
@@ -15,18 +17,19 @@ import juego.taes.domainmodel.Repository.RespuestaRepository;
 public class FachadaRespuesta {
 
 
-    public ArrayList<Respuesta> obtenerRespuestas(ArrayList<String> contenido){
+    public ArrayList<Respuesta> obtenerRespuestas(Pregunta pregunta,ArrayList<String> contenido){
 
         ArrayList<Respuesta> respuestas= new ArrayList<>();
         for(int i=0; i<contenido.size(); ++i){
             respuestas.add(new Respuesta(contenido.get(i),false));
+            respuestas.get(respuestas.size()-1).setPregunta(pregunta);
         }
         return respuestas;
     }
 
-    public Respuesta recuperarRespuesta(int id)
+    public Respuesta recuperarRespuesta(Context c, int id)
     {
-        RespuestaRepository respuesta = new RespuestaRepository();
+        RespuestaRepository respuesta = new RespuestaRepository(c);
         return respuesta.getById(id);
     }
 
