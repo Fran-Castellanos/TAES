@@ -17,6 +17,7 @@ public class Respuesta {
     //Nombres de las columnas
     public static final String ID="_id";
     public static final String CONTENIDO="contenido";
+    public static final String ESCORRECTA="es_correcta";
     public static final String ENSERVIDOR="en_servidor";
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
@@ -31,6 +32,9 @@ public class Respuesta {
 
     @DatabaseField(columnName=CONTENIDO, canBeNull=false, useGetSet = true)
     private String contenido;
+
+    @DatabaseField(columnName=ESCORRECTA, canBeNull=false, useGetSet = true)
+    private String esCorrecta;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false, defaultValue="false", useGetSet = true)
     private boolean enServidor;
@@ -52,12 +56,12 @@ public class Respuesta {
         // ORMLite needs a no-arg constructor
     }
 
-    public Respuesta(String contenido, boolean enServidor) {
+    public Respuesta(String contenido, String esCorrecta) {
         this.contenido = contenido;
-        this.enServidor = enServidor;
+        this.esCorrecta = esCorrecta;
     }
 
-    //Setters y getters
+//Setters y getters
 
 
     public int getId() {
@@ -66,6 +70,14 @@ public class Respuesta {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getEsCorrecta() {
+        return esCorrecta;
+    }
+
+    public void setEsCorrecta(String esCorrecta) {
+        this.esCorrecta = esCorrecta;
     }
 
     public String getContenido() {

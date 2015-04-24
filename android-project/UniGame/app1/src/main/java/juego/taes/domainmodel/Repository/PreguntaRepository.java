@@ -89,8 +89,19 @@ public class PreguntaRepository {
 
     public Pregunta getRandomByBolsa(int bolsaId)
     {
-        //select * from foo where rowid = (abs(random()) % (select max(rowid)+1 from foo));
-        throw new RuntimeException("Not implemented yet");
+        try {
+
+            QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
+            builder.where().eq(Pregunta.BD, bolsaId);
+            builder.selectRaw("select * from pregunta where " + Pregunta.ID + " = (abs(random()) % (select max("+ Pregunta.ID +")+1 from pregunta");
+
+            return builder.queryForFirst();
+
+        } catch (SQLException e) {
+            //TODO GESTION DE ERRORES
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
