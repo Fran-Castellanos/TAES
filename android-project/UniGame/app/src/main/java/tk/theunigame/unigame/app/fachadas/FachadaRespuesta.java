@@ -21,8 +21,9 @@ public class FachadaRespuesta {
 
         ArrayList<Respuesta> respuestas= new ArrayList<>();
         for(int i=0; i<contenido.size(); ++i){
-            respuestas.add(new Respuesta(contenido.get(i),false));
+            respuestas.add(new Respuesta(contenido.get(i),false,false));
             respuestas.get(respuestas.size()-1).setPregunta(pregunta);
+
         }
         return respuestas;
     }

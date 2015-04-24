@@ -5,6 +5,7 @@ import android.content.Context;
 import com.j256.ormlite.dao.ForeignCollection;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
@@ -24,8 +25,20 @@ public class FachadaPregunta {
         pregunta.setRespuestas((ForeignCollection<Respuesta>)respuestas);
     }
 
+
+
     public void RespuestaCorrecta(Context c, Pregunta pregunta, int IDrespuestaCorrecta,FachadaRespuesta respuestaFachada){
 
-        pregunta.setRespuestaCorrecta(respuestaFachada.recuperarRespuesta(c, IDrespuestaCorrecta));
+        Collection<Respuesta> respuestas = pregunta.getRespuestas();
+
+        for(Respuesta r : respuestas)
+        {
+            if(r.getId() == IDrespuestaCorrecta)
+                r.setEsCorrecta(true);
+            else
+                r.setEsCorrecta(false);
+        }
+
+
     }
 }

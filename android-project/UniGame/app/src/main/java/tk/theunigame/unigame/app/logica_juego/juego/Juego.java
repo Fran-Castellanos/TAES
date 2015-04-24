@@ -3,6 +3,7 @@ package tk.theunigame.unigame.app.logica_juego.juego;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -146,8 +147,22 @@ public class Juego {
     public boolean comprobarRespuesta(int res)
     {
         Pregunta p = preguntas.get(turno);
-        Respuesta r = p.getRespuestaCorrecta();
-        return r.getId()==res;
+        boolean result = false;
+        List<Respuesta> respuestasList = new ArrayList<Respuesta>();
+
+        Collection<Respuesta> respuestasCol = p.getRespuestas();
+        int i=0;
+        for(Respuesta r : respuestasCol)
+        {
+            if(i==turno) {
+                result = r.getId() == res;
+                break;
+            }
+            ++i;
+        }
+
+       return false;
+
     }
 
 
