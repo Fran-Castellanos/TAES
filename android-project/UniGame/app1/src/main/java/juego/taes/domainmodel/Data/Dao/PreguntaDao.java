@@ -27,6 +27,35 @@ public class PreguntaDao extends BaseDaoImpl<Pregunta,Integer> implements IPregu
     }
 
     @Override
+    public int create(Pregunta preg) throws SQLException
+    {
+        int resultado = super.create(preg);
+
+        for(Respuesta resp : respuestaDao) {
+            resp.setPregunta(preg);
+            respuestaDao.create(resp);
+        }
+
+        return resultado;
+
+    }
+
+    @Override
+    public int update(Pregunta preg) throws SQLException
+    {
+        int resultado = super.update(preg);
+
+        for(Respuesta resp : respuestaDao)
+        {
+            resp.setPregunta(preg);
+            respuestaDao.update(resp);
+        }
+
+        return resultado;
+
+    }
+
+    @Override
     public int delete(Pregunta preg) throws SQLException
     {
         for(Respuesta resp : respuestaDao)

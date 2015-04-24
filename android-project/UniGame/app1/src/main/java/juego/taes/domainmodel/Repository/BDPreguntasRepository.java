@@ -23,6 +23,7 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
 public class BDPreguntasRepository {
     private DatabaseHelper db;
     private IBDPreguntasDao dao;
+    private IPreguntaDao preguntaDao;
 
     public BDPreguntasRepository(Context ctx)
     {
@@ -30,6 +31,7 @@ public class BDPreguntasRepository {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
             dao = db.getIBDPreguntasDao();
+            preguntaDao = db.getIPreguntaDao();
 
         } catch (SQLException e) {
             // TODO: Exception Handling
@@ -69,6 +71,17 @@ public class BDPreguntasRepository {
             //TODO GESTION DE ERRORES
             e.printStackTrace();
         }
+        return 0;
+    }
+
+    public int refresh(BDPreguntas bd)
+    {
+        try {
+            return dao.refresh(bd);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return 0;
     }
 
@@ -129,9 +142,31 @@ public class BDPreguntasRepository {
         }
         return null;}
 
+    //Modificar una bd
     public void GuardarCambios(BDPreguntas bd, List<Pregunta> creadas, List<Pregunta> modificadas, List<Pregunta> eliminadas)
     {
-        throw new RuntimeException("Not yet implemented");
+        try {
+
+            dao.update(bd);
+
+            //Crear preguntas
+            for(Pregunta preg : creadas)
+                preguntaDao.create(preg);
+
+            //Modificar preguntas
+            for(Pregunta preg : modificadas)
+                preguntaDao.update(preg);
+
+            //Borrar preguntas
+            for(Pregunta preg : eliminadas)
+                preguntaDao.delete(preg);
+
+
+        } catch (SQLException e) {
+            //TODO GESTION DE ERRORES
+            e.printStackTrace();
+        }
+
     }
 
 }

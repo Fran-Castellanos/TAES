@@ -66,6 +66,17 @@ public class UniversidadRepository {
         return 0;
     }
 
+    public int refresh(Universidad univ)
+    {
+        try {
+            return dao.refresh(univ);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
     public List<Universidad> getAll()
     {
         try {

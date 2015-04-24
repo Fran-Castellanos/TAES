@@ -65,6 +65,17 @@ public class UsuarioRepository {
         return 0;
     }
 
+    public int refresh(Usuario us)
+    {
+        try {
+            return dao.refresh(us);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
     public List<Usuario> getAll()
     {
         try {

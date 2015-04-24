@@ -26,9 +26,26 @@ public class BDPreguntasDao extends BaseDaoImpl<BDPreguntas,Integer> implements 
         preguntaDao = new PreguntaDao(connectionSource);
     }
 
+    //Método de creación
+    @Override
+    public int create(BDPreguntas bd) throws SQLException {
+
+        //Crear la bolsa
+        int res = super.create(bd);
+        //Crear las preguntas
+        for(Pregunta preg : bd.getPreguntas()) {
+            preg.setBdPreguntas(bd);
+            preguntaDao.create(preg);
+        }
+
+        return res;
+    }
+
     //Método de borrado
+    @Override
     public int delete(BDPreguntas bd) throws SQLException {
 
+        //Borrar las preguntas
         for(Pregunta preg : bd.getPreguntas())
             preguntaDao.delete(preg);
 

@@ -87,6 +87,17 @@ public class PreguntaRepository {
         return null;
     }
 
+    public int refresh(Pregunta preg)
+    {
+        try {
+            return dao.refresh(preg);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
     public Pregunta getRandomByBolsa(int bolsaId)
     {
         try {

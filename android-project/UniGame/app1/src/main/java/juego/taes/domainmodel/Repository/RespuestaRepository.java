@@ -64,6 +64,17 @@ public class RespuestaRepository {
         return 0;
     }
 
+    public int refresh(Respuesta resp)
+    {
+        try {
+            return dao.refresh(resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
     public List<Respuesta> getAll()
     {
         try {

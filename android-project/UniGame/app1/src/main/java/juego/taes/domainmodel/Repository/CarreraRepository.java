@@ -74,6 +74,16 @@ public class CarreraRepository {
         return 0;
     }
 
+    public int refresh(Carrera carrera)
+    {
+        try {
+            return dao.refresh(carrera);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 
     public List<Carrera> getAll()
     {

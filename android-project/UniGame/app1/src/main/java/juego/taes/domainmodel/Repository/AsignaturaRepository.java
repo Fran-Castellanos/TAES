@@ -73,6 +73,17 @@ public class AsignaturaRepository {
         return 0;
     }
 
+    public int refresh(Asignatura asig)
+    {
+        try {
+            return dao.refresh(asig);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
     public List<Asignatura> getAll()
     {
         try {
