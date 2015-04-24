@@ -80,4 +80,25 @@ public class Tiempo extends TextView implements OnTiempoListener{
     public void onReiniciar() {
         setText("0");
     }
+
+
+
+
+
+    @Override
+    public void onReset(int tiempo) {
+
+    }
+
+    @Override
+    public void onContinue(int tiempo) {
+
+    }
+
+    @Override
+    public void onStop(int tiempo) {
+
+    }
+
+
 }
