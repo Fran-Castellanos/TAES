@@ -10,20 +10,42 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
 public abstract class Comodin {
 
     protected int cantidad;
+    protected Pregunta p;
 
 
-    public Comodin()
-    {
-        cantidad=0;
+    public Comodin() {
+
     }
-    public abstract Pregunta usarComodin(List<Pregunta> preguntas,Pregunta p) throws Exception;
+
+    Comodin(Pregunta pregunta)
+    {
+        cantidad=1; p=pregunta;
+    }
+
+
+
+    public abstract Pregunta usarComodin() throws Exception;
+
+
+
+    public void setPregunta(Pregunta pregunta)
+    {
+        p = pregunta;
+    }
 
     public boolean quedanComodines()
     {
         return cantidad>0;
 
     }
-    public abstract boolean comodinDisponible();
+
+
+    protected void consumirComodin()
+    {
+        --cantidad;
+    }
+
+
 
     public void setCantidad(int cantidad)
     {
