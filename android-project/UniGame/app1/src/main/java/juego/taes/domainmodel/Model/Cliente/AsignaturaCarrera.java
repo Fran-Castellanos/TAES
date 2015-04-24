@@ -21,10 +21,10 @@ public class AsignaturaCarrera
     @DatabaseField(columnName = ID, generatedId = true, useGetSet = true)
     private int id;
 
-    @DatabaseField(columnName = CARRERA, foreign=true, useGetSet = true)
+    @DatabaseField(columnName = CARRERA, foreign=true, canBeNull = false, useGetSet = true, uniqueCombo = true)
     private Carrera carrera;
 
-    @DatabaseField(columnName = ASIGNATURA, foreign=true, useGetSet = true)
+    @DatabaseField(columnName = ASIGNATURA, foreign=true, canBeNull = false, useGetSet = true, uniqueCombo = true)
     private Asignatura asignatura;
 
     public AsignaturaCarrera()

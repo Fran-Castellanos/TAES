@@ -114,6 +114,15 @@ public class BDPreguntasRepository {
         }
         return null;}
 
+    public List<BDPreguntas> getByUsuario(int idUsuario){
+        try {
+            return dao.queryForEq(BDPreguntas.USUARIO,idUsuario);
+        } catch (SQLException e) {
+            //TODO GESTION DE ERRORES
+            e.printStackTrace();
+        }
+        return null;}
+
     public void GuardarCambios(BDPreguntas bd, List<Pregunta> creadas, List<Pregunta> modificadas, List<Pregunta> eliminadas)
     {
         throw new RuntimeException("Not yet implemented");
