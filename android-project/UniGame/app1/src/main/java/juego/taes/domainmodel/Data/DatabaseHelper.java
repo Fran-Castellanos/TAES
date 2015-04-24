@@ -118,196 +118,183 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         //Crear usuario
 
-        Usuario user = new Usuario();
+        Usuario user1 = new Usuario();
 
+        user1.setNick("Paco");
+        user1.setNombre("Paco");
+        user1.setApellidos("Apellidos");
+        user1.setSexo(Sexo.HOMBRE);
+        user1.setLoginOffline(true);
+        user1.setId(1);
 
-        user.setNick("Paco");
-        user.setNombre("Paco");
-        user.setApellidos("Apellidos");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(1);
+        usuarioDao.create(user1);
 
-        int usuario1 = usuarioDao.create(user);
+        Usuario user2 = new Usuario();
 
-        user.setNick("Torretas");
-        user.setNombre("Ivan");
-        user.setApellidos("Fantasma Casper");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(2);
-        int usuario2 = usuarioDao.create(user);
+        user2.setNick("Torretas");
+        user2.setNombre("Ivan");
+        user2.setApellidos("Fantasma Casper");
+        user2.setSexo(Sexo.HOMBRE);
+        user2.setLoginOffline(true);
+        user2.setId(2);
+        usuarioDao.create(user2);
 
-        user.setNick("Javier");
-        user.setNombre("Javier");
-        user.setApellidos("Ortega");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(3);
-        int usuario3 = usuarioDao.create(user);
+        Usuario user3 = new Usuario();
 
-        user.setNick("Felix");
-        user.setNombre("Felix");
-        user.setApellidos("Escalona");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(4);
-        int usuario4 = usuarioDao.create(user);
+        user3.setNick("Javier");
+        user3.setNombre("Javier");
+        user3.setApellidos("Ortega");
+        user3.setSexo(Sexo.HOMBRE);
+        user3.setLoginOffline(true);
+        user3.setId(3);
+        int usuario3 = usuarioDao.create(user3);
 
+        Usuario user4 = new Usuario();
+        user4.setNick("Felix");
+        user4.setNombre("Felix");
+        user4.setApellidos("Escalona");
+        user4.setSexo(Sexo.HOMBRE);
+        user4.setLoginOffline(true);
+        user4.setId(4);
+        usuarioDao.create(user4);
 
-        user.setNick("Pedro");
-        user.setNombre("Pedro");
-        user.setApellidos("Martinez");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(5);
-        int usuario5 = usuarioDao.create(user);
+        Usuario user5 = new Usuario();
+        user5.setNick("Pedro");
+        user5.setNombre("Pedro");
+        user5.setApellidos("Martinez");
+        user5.setSexo(Sexo.HOMBRE);
+        user5.setLoginOffline(true);
+        user5.setId(5);
+        usuarioDao.create(user5);
 
-        user.setNick("Gio");
-        user.setNombre("Giovani");
-        user.setApellidos("Gallego");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(6);
-        int usuario6 = usuarioDao.create(user);
+        Usuario user6 = new Usuario();
+        user6.setNick("Gio");
+        user6.setNombre("Giovani");
+        user6.setApellidos("Gallego");
+        user6.setSexo(Sexo.HOMBRE);
+        user6.setLoginOffline(true);
+        user6.setId(6);
+        usuarioDao.create(user6);
 
+        Usuario user7 = new Usuario();
+        user7.setNick("Fran");
+        user7.setNombre("Fran");
+        user7.setApellidos("Garcia");
+        user7.setSexo(Sexo.HOMBRE);
+        user7.setLoginOffline(true);
+        user7.setId(7);
+        usuarioDao.create(user7);
 
-        user.setNick("Fran");
-        user.setNombre("Fran");
-        user.setApellidos("Garcia");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(7);
-        int usuario7 = usuarioDao.create(user);
-
-
-        user.setNick("Martica");
-        user.setNombre("Marta");
-        user.setApellidos("Castillo");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(8);
-        int usuario8 = usuarioDao.create(user);
-
-        user.setNick("BobEsponja");
-        user.setNombre("Bob");
-        user.setApellidos("Mateu");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(9);
-        int usuario9 = usuarioDao.create(user);
-
-
-        user.setNick("SR.Burns");
-        user.setNombre("Burnsito");
-        user.setApellidos("Tejados Porta");
-        user.setSexo(Sexo.HOMBRE);
-        user.setLoginOffline(true);
-        user.setId(10);
-        int usuario10 = usuarioDao.create(user);
-
-
-
+        Usuario user8 = new Usuario();
+        user8.setNick("Martica");
+        user8.setNombre("Marta");
+        user8.setApellidos("Castillo");
+        user8.setSexo(Sexo.HOMBRE);
+        user8.setLoginOffline(true);
+        user8.setId(8);
+        usuarioDao.create(user8);
 
         /////////////////////////////////////////////////////////////////////////
         //Crear universidades
 
-        Universidad universidad = new Universidad();
-        universidad.setNombre("Universidad de Alicante");
-        universidad.setSiglas("UA");
-        universidad.setId(1);
-        int universidad1 = universidadDao.create(universidad);
+        Universidad universidad1 = new Universidad();
+        universidad1.setNombre("Universidad de Alicante");
+        universidad1.setSiglas("UA");
+        universidad1.setId(1);
+        universidadDao.create(universidad1);
 
-        universidad.setNombre("Universidad de la Vida");
-        universidad.setSiglas("UDLV");
-        universidad.setId(2);
-        int universidad2 = universidadDao.create(universidad);
+        Universidad universidad2 = new Universidad();
+        universidad2.setNombre("Universidad de la Vida");
+        universidad2.setSiglas("UDLV");
+        universidad2.setId(2);
+        universidadDao.create(universidad2);
 
+        Universidad universidad3 = new Universidad();
+        universidad3.setNombre("Universidad Miguel Hernandez");
+        universidad3.setSiglas("UMH");
+        universidad3.setId(3);
+        universidadDao.create(universidad3);
 
-        universidad.setNombre("Universidad Miguel Hernandez");
-        universidad.setSiglas("UMH");
-        universidad.setId(3);
-        int universidad3 = universidadDao.create(universidad);
+        Universidad universidad4 = new Universidad();
+        universidad4.setNombre("Universidad Publica de Valencia");
+        universidad4.setSiglas("UPV");
+        universidad4.setId(4);
+        universidadDao.create(universidad4);
 
+        Universidad universidad5 = new Universidad();
+        universidad5.setNombre("Universidad San jorge");
+        universidad5.setSiglas("USJ");
+        universidad5.setId(5);
+        universidadDao.create(universidad5);
 
-        universidad.setNombre("Universidad Publica de Valencia");
-        universidad.setSiglas("UPV");
-        universidad.setId(4);
-        int universidad4 = universidadDao.create(universidad);
+        Universidad universidad6 = new Universidad();
+        universidad6.setNombre("Universidad de Granada");
+        universidad6.setSiglas("UG");
+        universidad6.setId(6);
+        universidadDao.create(universidad6);
 
+        Universidad universidad7 = new Universidad();
+        universidad7.setNombre("Universidad Sevilla");
+        universidad7.setSiglas("US");
+        universidad7.setId(7);
 
-        universidad.setNombre("Universidad San jorge");
-        universidad.setSiglas("USJ");
-        universidad.setId(5);
-        int universidad5 = universidadDao.create(universidad);
+        universidadDao.create(universidad7);
 
+        Universidad universidad8 = new Universidad();
+        universidad8.setNombre("Universidad de Zaragoza");
+        universidad8.setSiglas("UZIZAR");
+        universidad8.setId(8);
 
-        universidad.setNombre("Universidad de Granada");
-        universidad.setSiglas("UG");
-        universidad.setId(6);
+        universidadDao.create(universidad8);
 
-        int universidad6 = universidadDao.create(universidad);
+        Universidad universidad9 = new Universidad();
+        universidad9.setNombre("Universidad de Almeria");
+        universidad9.setSiglas("UMH");
+        universidad9.setId(9);
 
+        universidadDao.create(universidad9);
 
-        universidad.setNombre("Universidad Sevilla");
-        universidad.setSiglas("US");
-        universidad.setId(7);
+        Universidad universidad10 = new Universidad();
+        universidad10.setNombre("Universidad Murcia");
+        universidad10.setSiglas("UM");
+        universidad10.setId(10);
 
-        int universidad7 = universidadDao.create(universidad);
+        universidadDao.create(universidad10);
 
+        Universidad universidad11 = new Universidad();
+        universidad11.setNombre("Universidad Extremadura");
+        universidad11.setSiglas("UNEX");
+        universidad11.setId(11);
 
-        universidad.setNombre("Universidad de Zaragoza");
-        universidad.setSiglas("UZIZAR");
-        universidad.setId(8);
+        universidadDao.create(universidad11);
 
-        int universidad8 = universidadDao.create(universidad);
+        Universidad universidad12 = new Universidad();
+        universidad12.setNombre("Universidad de Burgos");
+        universidad12.setSiglas("UBU");
+        universidad12.setId(12);
 
+        universidadDao.create(universidad12);
 
-        universidad.setNombre("Universidad de Almeria");
-        universidad.setSiglas("UMH");
-        universidad.setId(9);
+        Universidad universidad13 = new Universidad();
+        universidad13.setNombre("Universidad de madrid");
+        universidad13.setSiglas("UAM");
+        universidad13.setId(13);
 
-        int universidad9 = universidadDao.create(universidad);
+        universidadDao.create(universidad13);
 
+        Universidad universidad14 = new Universidad();
+        universidad14.setNombre("Universidad Complutense de Madrid");
+        universidad14.setSiglas("UCM");
+        universidad14.setId(14);
 
-        universidad.setNombre("Universidad Murcia");
-        universidad.setSiglas("UM");
-        universidad.setId(10);
+        universidadDao.create(universidad14);
 
-        int universidad10 = universidadDao.create(universidad);
+        Universidad universidad15 = new Universidad();
+        universidad15.setNombre("Universidad de Leon");
+        universidad15.setSiglas("UNILEON");
+        universidad15.setId(15);
 
-
-        universidad.setNombre("Universidad Extremadura");
-        universidad.setSiglas("UNEX");
-        universidad.setId(11);
-
-        int universidad11 = universidadDao.create(universidad);
-
-
-        universidad.setNombre("Universidad de Burgos");
-        universidad.setSiglas("UBU");
-        universidad.setId(12);
-
-        int universidad12 = universidadDao.create(universidad);
-
-
-        universidad.setNombre("Universidad de madrid");
-        universidad.setSiglas("UAM");
-        universidad.setId(13);
-
-        int universidad13 = universidadDao.create(universidad);
-
-        universidad.setNombre("Universidad Complutense de Madrid");
-        universidad.setSiglas("UCM");
-        universidad.setId(14);
-
-        int universidad14 = universidadDao.create(universidad);
-
-        universidad.setNombre("Universidad de Leon");
-        universidad.setSiglas("UNILEON");
-        universidad.setId(15);
-
-        int universidad15 = universidadDao.create(universidad);
+        universidadDao.create(universidad15);
 
 
 
@@ -316,67 +303,77 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         //Facultad
 
-        Carrera carrera = new Carrera();
-        carrera.setNombre("Derecho");
-        carrera.setId(1);
-        int carrera1 = carreraDao.create(carrera);
+        Carrera carrera1 = new Carrera();
+        carrera1.setNombre("Derecho");
+        carrera1.setId(1);
 
+        carreraDao.create(carrera);
+
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Ingenieria Informatica");
         carrera.setId(2);
         universidad.setId(universidad1);
-        int carrera2 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Medicina");
         carrera.setId(3);
         universidad.setId(universidad1);
-        int carrera3 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Ingenieria Industrial");
         carrera.setId(4);
         universidad.setId(universidad1);
-        int carrera4 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Ingenieria Quimica");
         carrera.setId(5);
         universidad.setId(universidad1);
-        int carrera5 = carreraDao.create(carrera);  //Ingenieria
+        carreraDao.create(carrera);  //Ingenieria
 
-
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("ADE");
         carrera.setId(6);
         universidad.setId(universidad1);
-        int carrera6 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
-
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Turismo");
         carrera.setId(7);
         universidad.setId(universidad1);
-        int carrera7 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Traduccion e Interpretacion");
         carrera.setId(8);
         universidad.setId(universidad1);
-        int carrera8 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Arquitectura");
         carrera.setId(9);
         universidad.setId(universidad1);
-        int carrera9 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Magisterio Infantil");
         carrera.setId(10);
         universidad.setId(universidad1);
-        int carrera10 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Periodismo");
         carrera.setId(11);
         universidad.setId(universidad1);
-        int carrera11 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
+        Carrera carrera1 = new Carrera();
         carrera.setNombre("Ingeneria Aeronautica");
         carrera.setId(12);
         universidad.setId(universidad1);
-        int carrera12 = carreraDao.create(carrera);
+        carreraDao.create(carrera);
 
         /////////////////////////////////////////////////////////////////////
 

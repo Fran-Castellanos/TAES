@@ -34,7 +34,7 @@ public class Respuesta {
     private String contenido;
 
     @DatabaseField(columnName=ESCORRECTA, canBeNull=false, useGetSet = true)
-    private String esCorrecta;
+    private boolean esCorrecta;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false, defaultValue="false", useGetSet = true)
     private boolean enServidor;
@@ -56,9 +56,10 @@ public class Respuesta {
         // ORMLite needs a no-arg constructor
     }
 
-    public Respuesta(String contenido, String esCorrecta) {
+    public Respuesta(String contenido, boolean esCorrecta, boolean enServidor) {
         this.contenido = contenido;
         this.esCorrecta = esCorrecta;
+        this.enServidor = enServidor;
     }
 
 //Setters y getters
@@ -72,11 +73,11 @@ public class Respuesta {
         this.id = id;
     }
 
-    public String getEsCorrecta() {
+    public boolean isEsCorrecta() {
         return esCorrecta;
     }
 
-    public void setEsCorrecta(String esCorrecta) {
+    public void setEsCorrecta(boolean esCorrecta) {
         this.esCorrecta = esCorrecta;
     }
 
