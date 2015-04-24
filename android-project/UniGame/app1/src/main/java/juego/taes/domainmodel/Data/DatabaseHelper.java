@@ -303,103 +303,171 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         //Facultad
 
+        CarreraUniversidad carreraUniversidad = new CarreraUniversidad();
         Carrera carrera1 = new Carrera();
         carrera1.setNombre("Derecho");
         carrera1.setId(1);
+        carreraDao.create(carrera1);
 
-        carreraDao.create(carrera);
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera1);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Ingenieria Informatica");
-        carrera.setId(2);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        Carrera carrera2 = new Carrera();
+        carrera2.setNombre("Ingenieria Informatica");
+        carrera2.setId(2);
+        carreraDao.create(carrera2);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Medicina");
-        carrera.setId(3);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera2);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Ingenieria Industrial");
-        carrera.setId(4);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        Carrera carrera3 = new Carrera();
+        carrera3.setNombre("Medicina");
+        carrera3.setId(3);
+        carreraDao.create(carrera3);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Ingenieria Quimica");
-        carrera.setId(5);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);  //Ingenieria
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera3);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("ADE");
-        carrera.setId(6);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        Carrera carrera4 = new Carrera();
+        carrera4.setNombre("Ingenieria Industrial");
+        carrera4.setId(4);
+        carreraDao.create(carrera4);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Turismo");
-        carrera.setId(7);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera4);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Traduccion e Interpretacion");
-        carrera.setId(8);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        Carrera carrera5 = new Carrera();
+        carrera5.setNombre("Ingenieria Quimica");
+        carrera5.setId(5);
+        carreraDao.create(carrera5);  //Ingenieria
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Arquitectura");
-        carrera.setId(9);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera5);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Magisterio Infantil");
-        carrera.setId(10);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        Carrera carrera6 = new Carrera();
+        carrera6.setNombre("ADE");
+        carrera6.setId(6);
+        carreraDao.create(carrera6);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Periodismo");
-        carrera.setId(11);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera6);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
-        Carrera carrera1 = new Carrera();
-        carrera.setNombre("Ingeneria Aeronautica");
-        carrera.setId(12);
-        universidad.setId(universidad1);
-        carreraDao.create(carrera);
+        Carrera carrera7 = new Carrera();
+        carrera7.setNombre("Turismo");
+        carrera7.setId(7);
+        carreraDao.create(carrera7);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera7);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera8 = new Carrera();
+        carrera8.setNombre("Traduccion e Interpretacion");
+        carrera8.setId(8);
+        carreraDao.create(carrera8);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera8);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera9 = new Carrera();
+        carrera9.setNombre("Arquitectura");
+        carrera9.setId(9);
+        carreraDao.create(carrera9);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera9);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera10 = new Carrera();
+        carrera10.setNombre("Magisterio Infantil");
+        carrera10.setId(10);
+        carreraDao.create(carrera10);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera10);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera11 = new Carrera();
+        carrera11.setNombre("Periodismo");
+        carrera11.setId(11);
+        carreraDao.create(carrera11);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera11);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera12 = new Carrera();
+        carrera12.setNombre("Ingeneria Aeronautica");
+        carrera12.setId(12);
+        carreraDao.create(carrera12);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera12);
+        carreraUniversidad.setUniversidad(universidad1);
+        carreraUniversidadDao.create(carreraUniversidad);
 
         /////////////////////////////////////////////////////////////////////
 
         //Asignaturas
 
-        Asignatura asignatura = new Asignatura();
+        Asignatura asignatura1 = new Asignatura();
+        asignatura1.setNombre("PED");
+        asignatura1.setId(1);
+        asignaturaDao.create(asignatura1);
 
-        asignatura.setNombre("PED");
-        asignatura.setId(1);
-        int asignatura1 = asignaturaDao.create(asignatura);
+        AsignaturaCarrera asignaturaCarrera = new AsignaturaCarrera();
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera2);
+        asignaturaCarrera.setAsignatura(asignatura1);
+        asignaturaCarreraDao.create(asignaturaCarrera);
 
-        asignatura.setNombre("Programación 3");
-        asignatura.setId(2);
-        carrera.setId(carrera2);
-        int asignatura2 = asignaturaDao.create(asignatura);
+        Asignatura asignatura2 = new Asignatura();
+        asignatura2.setNombre("Programación 3");
+        asignatura2.setId(2);
+        asignaturaDao.create(asignatura2);
 
-        asignatura.setNombre("LPP");
-        asignatura.setId(3);
-        carrera.setId(carrera2);
-        int asignatura3 = asignaturaDao.create(asignatura);
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera2);
+        asignaturaCarrera.setAsignatura(asignatura2);
+        asignaturaCarreraDao.create(asignaturaCarrera);
 
+        Asignatura asignatura3 = new Asignatura();
+        asignatura3.setNombre("LPP");
+        asignatura3.setId(3);
+        asignaturaDao.create(asignatura3);
 
-        asignatura.setNombre("MacroEconomia");
-        asignatura.setId(4);
-        carrera.setId(carrera2);
-        int asignatura4 = asignaturaDao.create(asignatura);
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera2);
+        asignaturaCarrera.setAsignatura(asignatura3);
+        asignaturaCarreraDao.create(asignaturaCarrera);
+
+        Asignatura asignatura4 = new Asignatura();
+        asignatura4.setNombre("MacroEconomia");
+        asignatura4.setId(4);
+        asignaturaDao.create(asignatura4);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera2);
+        asignaturaCarrera.setAsignatura(asignatura4);
+        asignaturaCarreraDao.create(asignaturaCarrera);
 
 
         //Crear bases de preguntas
