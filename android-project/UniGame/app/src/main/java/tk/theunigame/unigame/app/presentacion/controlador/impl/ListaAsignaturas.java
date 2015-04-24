@@ -12,6 +12,7 @@ import android.widget.TextView;
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
@@ -36,7 +37,7 @@ public class ListaAsignaturas extends Activity {
         txt.setText(s);
 
         //Creamos el adaptador para el ListView
-        BaseAdapter adapter= new AdaptadorListaDefault(this, datos);
+        BaseAdapter adapter= new AdaptadorListaAsignaturas(this, datos);
         lv=(ListView) findViewById(R.id.lv_asignaturas);
         lv.setAdapter(adapter);
 

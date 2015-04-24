@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import tk.theunigame.unigame.R;
@@ -15,7 +16,7 @@ import tk.theunigame.unigame.R;
  * Este clase será modoficada en función de los valores que se quieran mostrar
  * a través de la consulta a la base de datos remota
  */
-public class AdaptadorListaPreguntas extends BaseAdapter {
+public class AdaptadorListaAsignaturas extends BaseAdapter {
 
     private String[] datos;
     private Context context;
@@ -37,10 +38,11 @@ public class AdaptadorListaPreguntas extends BaseAdapter {
 
     //Elemento utilizado para reutilización de instancias
     static class ViewHolder {
-        TextView txtView;
+        CheckBox chkBox;
+        TextView txt;
     }
 
-    public AdaptadorListaPreguntas(Context context, String[] datos){
+    public AdaptadorListaAsignaturas(Context context, String[] datos){
         this.context=context;
         this.datos=datos;
     }
@@ -53,10 +55,11 @@ public class AdaptadorListaPreguntas extends BaseAdapter {
         ViewHolder holder;
         if(item==null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            item = inflater.inflate(R.layout.list_item_pregunta, null);
+            item = inflater.inflate(R.layout.list_item_asignaturas, null);
 
             holder= new ViewHolder();
-            holder.txtView= (TextView)item.findViewById(R.id.txt_listitem_pregunta);
+            holder.chkBox= (CheckBox)item.findViewById(R.id.chk_listitem_default);
+            holder.txt= (TextView)item.findViewById(R.id.txt_listitem_default);
 
             //Almacenamos el elemento en como un tag de la View
             item.setTag(holder);
@@ -65,7 +68,7 @@ public class AdaptadorListaPreguntas extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txtView.setText(datos[position]);
+        holder.txt.setText(datos[position]);
 
         return item;
     }
