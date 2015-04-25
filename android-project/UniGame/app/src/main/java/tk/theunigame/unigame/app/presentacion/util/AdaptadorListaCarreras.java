@@ -56,10 +56,10 @@ public class AdaptadorListaCarreras extends BaseAdapter {
         ViewHolder holder;
         if(item==null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            item = inflater.inflate(R.layout.list_item_db, null);
+            item = inflater.inflate(R.layout.list_item_default, null);
 
             holder= new ViewHolder();
-            holder.txtView= (TextView)item.findViewById(R.id.txt_listitem_db);
+            holder.txtView= (TextView)item.findViewById(R.id.txt_listitem_default);
 
             //Almacenamos el elemento en como un tag de la View
             item.setTag(holder);

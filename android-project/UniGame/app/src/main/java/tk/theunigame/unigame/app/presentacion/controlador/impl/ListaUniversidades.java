@@ -8,8 +8,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
+import tk.theunigame.unigame.app.fachadas.FachadaUniversidad;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaUniversidades;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
 /**
@@ -18,25 +24,26 @@ import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 public class ListaUniversidades extends Activity {
 
     private ListView lv;
-
-    final private String[] datos = new String[]{"Universidad1", "Universidad2", "Universidad3"};
+    FachadaUniversidad fachadaUniversidad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_universidades);
 
+        fachadaUniversidad= new FachadaUniversidad();
         //Creamos el adaptador para el ListView
-        AdaptadorListaDefault adapter= new AdaptadorListaDefault(this, datos);
+        ArrayList<Universidad> universidades = fachadaUniversidad.obtenerUniversidades();
+        AdaptadorListaUniversidades adapter= new AdaptadorListaUniversidades(this, universidades);
         lv=(ListView) findViewById(R.id.lv_universidades);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //getItem(position) devuelve un item que es un Object del objeto que contiene el adapter
-                //en esa posición
-                Comunicador.setObject(parent.getAdapter().getItem(position));
+
+                FachadaComunicador fachadaComunicador = new FachadaComunicador();
+                fachadaComunicador.ComunicarUniversidad((Universidad)parent.getAdapter().getItem(position));
                 Intent intent= new Intent(ListaUniversidades.this, ListaCarreras.class);
                 startActivity(intent);
             }

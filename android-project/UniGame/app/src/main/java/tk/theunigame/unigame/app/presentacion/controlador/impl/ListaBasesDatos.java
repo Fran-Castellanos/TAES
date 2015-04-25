@@ -8,8 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
+import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Model.Cliente.Carrera;
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
@@ -20,28 +28,44 @@ public class ListaBasesDatos extends Activity {
 
     private ListView lv;
     private TextView txt;
-    private Asignatura asignatura;
 
-    final private String[] datos = new String[]{"BaseDato1", "BaseDato2"};
+    private FachadaComunicador fachadaComunicador;
+    private FachadaBDPreguntas fachadaBasesDatos;
+
+    private Universidad universidad;
+    private Carrera carrera;
+    private ArrayList<Asignatura> asignaturas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_bases_datos);
 
+        //Instanciamos elementos de la interfaz
         txt= (TextView) findViewById(R.id.txt_title2);
-        String s= (String) Comunicador.getObject();//Cuande esté implementado debe ser Asignatura
-        txt.setText(s);
+
+        //Instanciamos las fachadas
+        fachadaComunicador = new FachadaComunicador();
+        fachadaBasesDatos = new FachadaBDPreguntas();
+
+        //Cargamos la información
+        universidad = fachadaComunicador.RecibirUniversidadPosicion0();
+        carrera = fachadaComunicador.RecibirCarreraPosicion1();
+        asignaturas = fachadaComunicador.RecibirAsignaturasPosicion2();
+        txt.setText(asignaturas.size() + " Asignaturas seleccionadas");
 
         //Creamos el adaptador para el ListView
         //Deberá realizarse un adaptador propio en caso de recibir objetos y no lista de nombres
-        BaseAdapter adapter= new AdaptadorListaDefault(this, datos);
+        ArrayList<BDPreguntas> bdPreguntas= fachadaBasesDatos.obtenerBasesDatos(universidad, carrera, asignaturas);//Recibimos la lista de preguntas
+        BaseAdapter adapter= new AdaptadorListaBasesDatos(this, bdPreguntas);
         lv=(ListView) findViewById(R.id.lv_bases_datos);
         lv.setAdapter(adapter);
 
+        //Este listenter será cambiado por el evento a un botón
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 //Comunicador.setObject(parent.getAdapter().getItem(position));
                 //Intent intent = new Intent(ListaBasesDatos.this, ListaUniversidades.class);
                 //startActivity(intent);

@@ -1,17 +1,27 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaAsignatura;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
@@ -21,36 +31,89 @@ import tk.theunigame.unigame.app.presentacion.util.Comunicador;
  */
 public class ListaAsignaturas extends Activity {
 
+    private Context c;
     private ListView lv;
     private TextView txt;
+    private Universidad universidad;
     private Carrera carrera;
+    private Boolean[] posicionAsig;
+    private ArrayList<Asignatura> asignaturas;
 
-    final private String[] datos = new String[]{"Asignaturas1", "Asignaturas2", "Asignaturas3"};
+    private FachadaComunicador fachadaComunicador;
+    private FachadaAsignatura fachadaAsignatura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_asignaturas);
 
+        //Instanciamos elementos de la vista
         txt= (TextView) findViewById(R.id.txt_title2);
-        String s= (String)Comunicador.getObject();//Cuande esté implementado debe ser Asignatura
-        txt.setText(s);
+        c=this;
 
+        //Instanciamos las fachadas
+        fachadaComunicador = new FachadaComunicador();
+        fachadaAsignatura = new FachadaAsignatura();
+
+        //Cargamos la información
+        universidad = fachadaComunicador.RecibirUniversidadPosicion0();
+        carrera = fachadaComunicador.RecibirCarreraPosicion1();
+        txt.setText(carrera.getNombre());
+
+        asignaturas = new ArrayList<>();
         //Creamos el adaptador para el ListView
-        BaseAdapter adapter= new AdaptadorListaAsignaturas(this, datos);
+        AdaptadorListaAsignaturas adapter= new AdaptadorListaAsignaturas(this, fachadaAsignatura.obtenerAsignaturas(universidad, carrera));
+        posicionAsig = new Boolean[adapter.getAsignaturasCantidad()];
+        for(int i = 0 ; i<posicionAsig.length; i++){
+            posicionAsig[i]=false;
+        }
+
         lv=(ListView) findViewById(R.id.lv_asignaturas);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //getItem(position) devuelve un item que es un Object del objeto que contiene el adapter
-                //en esa posición
-                Comunicador.setObject(parent.getAdapter().getItem(position));
-                Intent intent= new Intent(ListaAsignaturas.this, ListaBasesDatos.class);
-                startActivity(intent);
+                if(position == 0){
+                    //Cargamos las asignaturas a enviar
+                    for(int i = 0 ; i<posicionAsig.length; i++){
+                        if(posicionAsig[i])
+                            asignaturas.add(((AdaptadorListaAsignaturas)parent.getAdapter()).getAsignatura(i));
+                    }
+
+                    if(asignaturas.size() > 0) {
+                        //Enviamos las asignaturas a traves de la fachada
+                        fachadaComunicador.ComunicarUniversidadCarreraAsignaturas(universidad,
+                                carrera, asignaturas);
+
+                        //Lanzamos la actividad
+                        Intent intent = new Intent(ListaAsignaturas.this, ListaBasesDatos.class);
+                        startActivity(intent);
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                        builder.setMessage("Seleccione una o mas asignaturas").
+                                setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.create().show();
+                    }
+
+                }
             }
         });
+    }
+
+    public void onCheckBoxClicked(View view){
+        CheckBox chkBox = (CheckBox) view;
+
+        //Recupera el objeto vinculado al checkbox para introducirlo en el arraylist
+        if(chkBox.isChecked())
+            posicionAsig[(Integer)chkBox.getTag()]=true;
+        else
+            posicionAsig[(Integer)chkBox.getTag()]=false;
     }
 
 }
