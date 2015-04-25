@@ -86,7 +86,11 @@ public class CarreraRepository {
     public List<Carrera> getAll()
     {
         try {
-            return dao.queryForAll();
+
+            QueryBuilder<Carrera,Integer> builder = dao.queryBuilder();
+            builder.orderBy(Carrera.NOMBRE,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();
@@ -110,6 +114,7 @@ public class CarreraRepository {
 
             QueryBuilder<CarreraUniversidad,Integer> builder = carreraUniversidadDao.queryBuilder();
             builder.where().eq(CarreraUniversidad.UNIVERSIDAD,id);
+            builder.orderBy(Carrera.NOMBRE,true);
 
             return dao.queryBuilder().join(builder).query();
 

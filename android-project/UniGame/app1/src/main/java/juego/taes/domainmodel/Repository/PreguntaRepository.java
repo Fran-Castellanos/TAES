@@ -68,7 +68,11 @@ public class PreguntaRepository {
     public List<Pregunta> getAll()
     {
         try {
-            return dao.queryForAll();
+
+            QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
+            builder.orderBy(Pregunta.CONTENIDO,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();
@@ -103,9 +107,7 @@ public class PreguntaRepository {
         try {
 
             QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
-            builder.where().eq(Pregunta.BD, bolsaId);
-            builder.selectRaw("select * from pregunta where " + Pregunta.ID + " = (abs(random()) % (select max("+ Pregunta.ID +")+1 from pregunta");
-
+            builder.selectRaw("select * from pregunta where " + Pregunta.BD + " = " + bolsaId + "ORDER BY RANDOM() LIMIT 1");
             return builder.queryForFirst();
 
         } catch (SQLException e) {
@@ -119,7 +121,12 @@ public class PreguntaRepository {
     public List<Pregunta> getAllByBDPregunta(int bolsaId)
     {
         try {
-            return dao.queryForEq(Pregunta.BD, bolsaId);
+
+            QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
+            builder.where().eq(Pregunta.BD, bolsaId);
+            builder.orderBy(Pregunta.CONTENIDO,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();

@@ -2,6 +2,8 @@ package juego.taes.domainmodel.Repository;
 
 import android.content.Context;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -79,7 +81,11 @@ public class UniversidadRepository {
     public List<Universidad> getAll()
     {
         try {
-            return dao.queryForAll();
+
+            QueryBuilder<Universidad,Integer> builder = dao.queryBuilder();
+            builder.orderBy(Universidad.NOMBRE,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();

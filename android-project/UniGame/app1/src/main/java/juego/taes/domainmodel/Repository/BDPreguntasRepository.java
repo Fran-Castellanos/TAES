@@ -2,6 +2,8 @@ package juego.taes.domainmodel.Repository;
 
 import android.content.Context;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +89,11 @@ public class BDPreguntasRepository {
     public List<BDPreguntas> getAll()
     {
         try {
-            return dao.queryForAll();
+
+            QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
+            builder.orderBy(BDPreguntas.NOMBRE,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();
@@ -110,11 +116,12 @@ public class BDPreguntasRepository {
     {
         try {
 
-            Map<String,Object> atributos = new HashMap<String,Object>();
-            atributos.put(BDPreguntas.ASIGNATURA,idAsig);
-            atributos.put(BDPreguntas.UNIVERSIDAD,idUni);
-
-            return dao.queryForFieldValues(atributos);
+            QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
+            builder.where().eq(BDPreguntas.ASIGNATURA,idAsig);
+            builder.where().and();
+            builder.where().eq(BDPreguntas.UNIVERSIDAD,idUni);
+            builder.orderBy(BDPreguntas.NOMBRE,true);
+            return builder.query();
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
@@ -125,7 +132,12 @@ public class BDPreguntasRepository {
 
     public List<BDPreguntas> getByAsignatura(int idAsig){
         try {
-            return dao.queryForEq(BDPreguntas.ASIGNATURA,idAsig);
+
+            QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
+            builder.where().eq(BDPreguntas.ASIGNATURA,idAsig);
+            builder.orderBy(BDPreguntas.NOMBRE,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();
@@ -134,7 +146,12 @@ public class BDPreguntasRepository {
 
     public List<BDPreguntas> getByUsuario(int idUsuario){
         try {
-            return dao.queryForEq(BDPreguntas.USUARIO,idUsuario);
+
+            QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
+            builder.where().eq(BDPreguntas.USUARIO,idUsuario);
+            builder.orderBy(BDPreguntas.NOMBRE,true);
+            return builder.query();
+
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
             e.printStackTrace();
