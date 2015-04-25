@@ -5,11 +5,10 @@ import android.content.Context;
 import java.sql.SQLException;
 import java.util.List;
 
-import juego.taes.domainmodel.Data.Dao.IUniversidadDao;
 import juego.taes.domainmodel.Data.Dao.IUsuarioDao;
+import juego.taes.domainmodel.Data.Dao.UsuarioDao;
 import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
-import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 
 /**
@@ -18,14 +17,14 @@ import juego.taes.domainmodel.Model.Cliente.Usuario;
 public class UsuarioRepository {
 
     private DatabaseHelper db;
-    private IUsuarioDao dao;
+    private UsuarioDao dao;
 
     public UsuarioRepository(Context ctx)
     {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
-            dao = db.getIUsuarioDao();
+            dao = db.getUsuarioDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
             e.printStackTrace();

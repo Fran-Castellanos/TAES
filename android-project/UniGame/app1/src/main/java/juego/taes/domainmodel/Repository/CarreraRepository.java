@@ -7,16 +7,14 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
+import juego.taes.domainmodel.Data.Dao.CarreraDao;
 import juego.taes.domainmodel.Data.Dao.CarreraUniversidadDao;
 import juego.taes.domainmodel.Data.Dao.ICarreraDao;
 import juego.taes.domainmodel.Data.Dao.ICarreraUniversidadDao;
-import juego.taes.domainmodel.Data.Dao.IUniversidadDao;
 import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
-import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.CarreraUniversidad;
-import juego.taes.domainmodel.Model.Cliente.Universidad;
 
 /**
  * Created by Pedro on 21/04/2015.
@@ -24,16 +22,16 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
 public class CarreraRepository {
 
     private DatabaseHelper db;
-    private ICarreraDao dao;
-    private ICarreraUniversidadDao carreraUniversidadDao;
+    private CarreraDao dao;
+    private CarreraUniversidadDao carreraUniversidadDao;
 
     public CarreraRepository(Context ctx)
     {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
-            dao = db.getICarreraDao();
-            carreraUniversidadDao = db.getICarreraUniversidadDao();
+            dao = db.getCarreraDao();
+            carreraUniversidadDao = db.getCarreraUniversidadDao();
 
         } catch (SQLException e) {
             // TODO: Exception Handling

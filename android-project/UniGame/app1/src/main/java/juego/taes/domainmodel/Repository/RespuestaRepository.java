@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import juego.taes.domainmodel.Data.Dao.IRespuestaDao;
+import juego.taes.domainmodel.Data.Dao.RespuestaDao;
 import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
-import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
 
 /**
@@ -16,14 +16,14 @@ import juego.taes.domainmodel.Model.Cliente.Respuesta;
  */
 public class RespuestaRepository {
     private DatabaseHelper db;
-    private IRespuestaDao dao;
+    private RespuestaDao dao;
 
     public RespuestaRepository(Context ctx)
     {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
-            dao = db.getIRespuestaDao();
+            dao = db.getRespuestaDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
             e.printStackTrace();

@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -14,7 +12,6 @@ import java.sql.SQLException;
 
 import juego.taes.domainmodel.Data.Dao.*;
 import juego.taes.domainmodel.Model.Cliente.*;
-import juego.taes.domainmodel.Model.Example.Comment;
 
 /**
  * Created by felix 22/04/2015.
@@ -24,18 +21,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     //Daos utilizados
-    private IAsignaturaDao asignaturaDao = null;
-    private IBDPreguntasDao bdPreguntasDao = null;
-    private ICarreraDao carreraDao = null;
-    private IPreguntaDao preguntaDao = null;
-    private IRespuestaDao respuestaDao = null;
-    private IUniversidadDao universidadDao = null;
-    private IUsuarioDao usuarioDao = null;
-    private IAsignaturaCarreraDao asignaturaCarreraDao = null;
-    private ICarreraUniversidadDao carreraUniversidadDao = null;
+    private AsignaturaDao asignaturaDao = null;
+    private BDPreguntasDao bdPreguntasDao = null;
+    private CarreraDao carreraDao = null;
+    private PreguntaDao preguntaDao = null;
+    private RespuestaDao respuestaDao = null;
+    private UniversidadDao universidadDao = null;
+    private UsuarioDao usuarioDao = null;
+    private AsignaturaCarreraDao asignaturaCarreraDao = null;
+    private CarreraUniversidadDao carreraUniversidadDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -127,7 +124,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         user1.setLoginOffline(true);
         user1.setId(1);
 
-        usuarioDao.create(user1);
+        getUsuarioDao().create(user1);
 
         Usuario user2 = new Usuario();
 
@@ -201,7 +198,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         universidad1.setNombre("Universidad de Alicante");
         universidad1.setSiglas("UA");
         universidad1.setId(1);
-        universidadDao.create(universidad1);
+        getUniversidadDao().create(universidad1);
 
         Universidad universidad2 = new Universidad();
         universidad2.setNombre("Universidad de la Vida");
@@ -307,12 +304,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Carrera carrera1 = new Carrera();
         carrera1.setNombre("Derecho");
         carrera1.setId(1);
-        carreraDao.create(carrera1);
+        getCarreraDao().create(carrera1);
 
         carreraUniversidad.setId(0);
         carreraUniversidad.setCarrera(carrera1);
         carreraUniversidad.setUniversidad(universidad1);
-        carreraUniversidadDao.create(carreraUniversidad);
+        getCarreraUniversidadDao().create(carreraUniversidad);
 
         Carrera carrera2 = new Carrera();
         carrera2.setNombre("Ingenieria Informatica");
@@ -431,13 +428,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Asignatura asignatura1 = new Asignatura();
         asignatura1.setNombre("PED");
         asignatura1.setId(1);
-        asignaturaDao.create(asignatura1);
+        getAsignaturaDao().create(asignatura1);
 
         AsignaturaCarrera asignaturaCarrera = new AsignaturaCarrera();
         asignaturaCarrera.setId(0);
         asignaturaCarrera.setCarrera(carrera2);
         asignaturaCarrera.setAsignatura(asignatura1);
-        asignaturaCarreraDao.create(asignaturaCarrera);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
 
         Asignatura asignatura2 = new Asignatura();
         asignatura2.setNombre("Programación 3");
@@ -480,7 +477,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
      * value.
      */
-    public IAsignaturaDao getIAsignaturaDao() throws SQLException
+    public AsignaturaDao getAsignaturaDao() throws SQLException
     {
         if(asignaturaDao == null)
         {
@@ -489,7 +486,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return asignaturaDao;
     }
 
-    public IBDPreguntasDao getIBDPreguntasDao() throws SQLException
+    public BDPreguntasDao getBDPreguntasDao() throws SQLException
     {
         if(bdPreguntasDao == null)
         {
@@ -498,7 +495,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return bdPreguntasDao;
     }
 
-    public ICarreraDao getICarreraDao() throws SQLException
+    public CarreraDao getCarreraDao() throws SQLException
     {
         if(carreraDao == null)
         {
@@ -507,7 +504,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return carreraDao;
     }
 
-    public IPreguntaDao getIPreguntaDao() throws SQLException
+    public PreguntaDao getPreguntaDao() throws SQLException
     {
         if(preguntaDao == null)
         {
@@ -516,7 +513,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return preguntaDao;
     }
 
-    public IRespuestaDao getIRespuestaDao() throws SQLException
+    public RespuestaDao getRespuestaDao() throws SQLException
     {
         if(respuestaDao == null)
         {
@@ -525,7 +522,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return respuestaDao;
     }
 
-    public IUniversidadDao getIUniversidadDao() throws SQLException
+    public UniversidadDao getUniversidadDao() throws SQLException
     {
         if(universidadDao == null)
         {
@@ -534,7 +531,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return universidadDao;
     }
 
-    public IUsuarioDao getIUsuarioDao() throws SQLException
+    public UsuarioDao getUsuarioDao() throws SQLException
     {
         if(usuarioDao == null)
         {
@@ -543,7 +540,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return usuarioDao;
     }
 
-    public IAsignaturaCarreraDao getIAsignaturaCarreraDao() throws SQLException
+    public AsignaturaCarreraDao getAsignaturaCarreraDao() throws SQLException
     {
         if(asignaturaCarreraDao == null)
         {
@@ -552,7 +549,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return asignaturaCarreraDao;
     }
 
-    public ICarreraUniversidadDao getICarreraUniversidadDao() throws SQLException
+    public CarreraUniversidadDao getCarreraUniversidadDao() throws SQLException
     {
         if(carreraUniversidadDao == null)
         {
