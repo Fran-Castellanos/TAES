@@ -94,7 +94,7 @@ public class Comodin50 extends Comodin {
             Respuesta r = it.next();
             if(i==pos)
             {
-                if(r.isEsCorrecta())
+                if(r.getEsCorrecta())
                     return true;
                 else
                     return false;
