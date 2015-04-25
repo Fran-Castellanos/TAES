@@ -50,7 +50,7 @@ public class Usuario {
 
     //Relaciones
     @ForeignCollectionField(eager=false, foreignFieldName = BDPreguntas.USUARIO_CAMPO)
-    private ForeignCollection<Usuario> bds;
+    private ForeignCollection<BDPreguntas> bds;
 
     public Usuario() {
         // ORMLite needs a no-arg constructor
@@ -114,11 +114,11 @@ public class Usuario {
         this.loginOffline = loginOffline;
     }
 
-    public ForeignCollection<Usuario> getBds() {
+    public ForeignCollection<BDPreguntas> getBds() {
         return bds;
     }
 
-    public void setBds(ForeignCollection<Usuario> bds) {
+    public void setBds(ForeignCollection<BDPreguntas> bds) {
         this.bds = bds;
     }
 
