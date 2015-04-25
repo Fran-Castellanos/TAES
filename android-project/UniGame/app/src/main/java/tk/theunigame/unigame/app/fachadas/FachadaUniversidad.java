@@ -32,4 +32,24 @@ public class FachadaUniversidad {
         return  repository.getAll();
     }
 
+
+    /**
+     * Devuelve lista de todas las universidades.
+     * @param c Objeto Context
+     * @return Lista de todas las universidades.
+     * @throws Exception
+     */
+    public List<Universidad> getUniversidades(Context c) throws Exception {
+
+        List<Universidad> universidades;
+        try {
+            UniversidadRepository uni= new UniversidadRepository(c);
+            universidades = uni.getAll();
+
+        }catch(Exception e){
+            throw  new Exception("No se han obtenido universidades"+e.getMessage());
+        }
+        return  universidades;
+    }
+
 }
