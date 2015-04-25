@@ -1,8 +1,12 @@
 package tk.theunigame.unigame.app.fachadas;
 
+import android.content.Context;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Universidad;
+import juego.taes.domainmodel.Repository.UniversidadRepository;
 
 
 /**
@@ -11,9 +15,9 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
 public class FachadaUniversidad {
 
 
-    public ArrayList<Universidad> obtenerUniversidades(){
+    public List<Universidad> obtenerUniversidades(Context context){
 
-        ArrayList<Universidad> respuestas= new ArrayList<>();
+        /*ArrayList<Universidad> respuestas= new ArrayList<>();
         //
         Universidad u1 = new Universidad("Universidad alicante", "UA");
         u1.setId(1);
@@ -23,7 +27,9 @@ public class FachadaUniversidad {
         u1.setId(2);
         u1.setNombre("Miguel Hernández");
         respuestas.add(u1);
-        return respuestas;
+        return respuestas;*/
+        UniversidadRepository repository = new UniversidadRepository(context);
+        return  repository.getAll();
     }
 
 }

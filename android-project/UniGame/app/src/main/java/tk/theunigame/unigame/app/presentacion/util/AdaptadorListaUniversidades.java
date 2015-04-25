@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
@@ -21,7 +22,7 @@ import tk.theunigame.unigame.R;
  */
 public class AdaptadorListaUniversidades extends BaseAdapter {
     private Context context;
-    private ArrayList<Universidad> universidades;
+    private List<Universidad> universidades;
 
     @Override
     public int getCount() {
@@ -43,7 +44,7 @@ public class AdaptadorListaUniversidades extends BaseAdapter {
         TextView txtView;
     }
 
-    public AdaptadorListaUniversidades(Context context, ArrayList<Universidad> datos){
+    public AdaptadorListaUniversidades(Context context, List<Universidad> datos){
         this.context=context;
         universidades=datos;
     }

@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.presentacion.util.Views;
+package tk.theunigame.unigame.app.presentacion.util.Listener;
 
 import java.util.EventListener;
 
@@ -11,8 +11,4 @@ public interface OnTiempoListener extends EventListener {
     public void onParar(TemporizadorTimerTask object);
     public void onContinuar(TemporizadorTimerTask object);
     public void onReiniciar(TemporizadorTimerTask object);
-
-    public void onReset(int tiempo);
-    public void onContinue(int tiempo);
-    public void onStop(int tiempo);
 }

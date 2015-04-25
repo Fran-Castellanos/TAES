@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
@@ -33,7 +34,7 @@ public class ListaUniversidades extends Activity {
 
         fachadaUniversidad= new FachadaUniversidad();
         //Creamos el adaptador para el ListView
-        ArrayList<Universidad> universidades = fachadaUniversidad.obtenerUniversidades();
+        List<Universidad> universidades = fachadaUniversidad.obtenerUniversidades(this);
         AdaptadorListaUniversidades adapter= new AdaptadorListaUniversidades(this, universidades);
         lv=(ListView) findViewById(R.id.lv_universidades);
         lv.setAdapter(adapter);
