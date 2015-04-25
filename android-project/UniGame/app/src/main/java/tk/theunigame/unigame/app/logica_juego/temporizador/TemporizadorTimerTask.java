@@ -1,14 +1,12 @@
 package tk.theunigame.unigame.app.logica_juego.temporizador;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.util.AttributeSet;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import tk.theunigame.unigame.app.presentacion.util.Views.OnTiempoListener;
+import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
 
 /**
  * Created by John on 25/04/2015.
