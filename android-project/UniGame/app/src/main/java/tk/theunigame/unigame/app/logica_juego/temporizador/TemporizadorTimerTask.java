@@ -3,6 +3,8 @@ package tk.theunigame.unigame.app.logica_juego.temporizador;
 import android.os.Handler;
 import android.os.Message;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,18 +14,18 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
  * Created by John on 25/04/2015.
  */
 public class TemporizadorTimerTask {
+    private  TemporizadorTimerTask meTimer= this;
     private Handler handler;
     private Timer timer;
     private TimerTask timerTask;
     private int tiempo;
-    private OnTiempoListener listener;
+    private List<OnTiempoListener> listeners;
 
     public TemporizadorTimerTask(){
         tiempo = 60;
-        listener = null;
+        listeners = new ArrayList<>();
         initHandler();
     }
-
 
     public void setTiempo(int t)
     {
@@ -37,6 +39,11 @@ public class TemporizadorTimerTask {
             @Override
             public void handleMessage(Message msg) {
                 tiempo--;
+                if(tiempo == 0){
+                    Parar();
+                    for(OnTiempoListener l: listeners)
+                        l.onTiempoFinalizado(meTimer);
+                }
             }
         };
 
@@ -48,8 +55,8 @@ public class TemporizadorTimerTask {
             timer.cancel();
             timer=null;
         }
-        if(listener != null)
-            listener.onParar(this);
+        for(OnTiempoListener l: listeners)
+            l.onParar(this);
     }
 
     //Continua la cuenta
@@ -69,20 +76,20 @@ public class TemporizadorTimerTask {
             //el valor de la vista
             timer.schedule(timerTask, 0, 1000);
         }
-        if(listener != null)
-            listener.onContinuar(this);
+        for(OnTiempoListener l: listeners)
+            l.onContinuar(this);
     }
 
     //Reinicia la cuenta
     public void Reiniciar() {
         tiempo = 60;
-        if(listener != null)
-            listener.onReiniciar(this);
+        for(OnTiempoListener l: listeners)
+            l.onReiniciar(this);
     }
 
     //Introduce un listner en el objeto
     public void setOnTiempoListener(OnTiempoListener listener){
-        this.listener = listener;
+        this.listeners.add(listener);
     }
 
     //Devuelve el valor del tiempo

@@ -11,4 +11,5 @@ public interface OnTiempoListener extends EventListener {
     public void onParar(TemporizadorTimerTask object);
     public void onContinuar(TemporizadorTimerTask object);
     public void onReiniciar(TemporizadorTimerTask object);
+    public void onTiempoFinalizado(TemporizadorTimerTask object);
 }
