@@ -24,6 +24,12 @@ public class TemporizadorTimerTask {
         initHandler();
     }
 
+
+    public void setTiempo(int t)
+    {
+        tiempo = t;
+    }
+
     //Handler para comunicarnos desde el hilo al Textiew
     private void initHandler(){
 

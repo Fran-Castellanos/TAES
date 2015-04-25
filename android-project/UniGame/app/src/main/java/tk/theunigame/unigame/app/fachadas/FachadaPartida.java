@@ -17,6 +17,7 @@ import juego.taes.domainmodel.Repository.PreguntaRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
 import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
+import tk.theunigame.unigame.app.logica_juego.temporizador.TemporizadorTimerTask;
 
 
 /**
@@ -201,6 +202,23 @@ public class FachadaPartida {
     {
 
         return juego.siguientePregunta();
+    }
+
+
+
+    public void Parar(TemporizadorTimerTask cronometro) {
+        cronometro.Parar();
+    }
+
+    //Continua la cuenta
+    public void Continuar(TemporizadorTimerTask cronometro) {
+       cronometro.Continuar();
+    }
+
+    //Reinicia la cuenta
+    public void Reiniciar(TemporizadorTimerTask cronometro, int tiempoMax) {
+        cronometro.setTiempo(tiempoMax);
+        cronometro.Reiniciar();
     }
 
 
