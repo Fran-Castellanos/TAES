@@ -28,15 +28,19 @@ public class BDPreguntas {
     //Columnas foreign key
     public static final String ASIGNATURA="fk_asignatura";
     public static final String USUARIO="fk_usuario";
-    public static final String PREGUNTAS="fk_preguntas";
     public static final String UNIVERSIDAD="fk_universidad";
+
+    //Nombre de campos
+    public static final String ASIGNATURA_CAMPO="asignatura";
+    public static final String USUARIO_CAMPO="usuario";
+    public static final String UNIVERSIDAD_CAMPO="universidad";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
 
     @DatabaseField(columnName=NOMBRE, useGetSet = true, canBeNull = false)
-    private String Nombre;
+    private String nombre;
 
     @DatabaseField(columnName= ENSERVIDOR, canBeNull = false, defaultValue="false", useGetSet = true)
     private boolean enServidor;
@@ -60,7 +64,7 @@ public class BDPreguntas {
     @DatabaseField(columnName = UNIVERSIDAD, foreign = true, canBeNull = false, useGetSet = true)
     private Universidad universidad;
 
-    @ForeignCollectionField(eager=false,columnName = PREGUNTAS, foreignFieldName = "preguntas")
+    @ForeignCollectionField(eager=false, foreignFieldName = Pregunta.BD_CAMPO)
     private ForeignCollection<Pregunta> preguntas;
 
     public BDPreguntas() {
@@ -68,7 +72,7 @@ public class BDPreguntas {
     }
 
     public BDPreguntas(String nombre, boolean enServidor) {
-        Nombre = nombre;
+        this.nombre = nombre;
         this.enServidor = enServidor;
     }
 
@@ -80,7 +84,15 @@ public class BDPreguntas {
         this.id = id;
     }
 
-    public boolean isEnServidor() {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        nombre = nombre;
+    }
+
+    public boolean getEnServidor() {
         return enServidor;
     }
 
@@ -104,7 +116,7 @@ public class BDPreguntas {
         this.fechaSincronizacion = fechaSincronizacion;
     }
 
-    public boolean isModificadoDesdeUltimaSincronizacion() {
+    public boolean getModificadoDesdeUltimaSincronizacion() {
         return modificadoDesdeUltimaSincronizacion;
     }
 
@@ -112,12 +124,12 @@ public class BDPreguntas {
         this.modificadoDesdeUltimaSincronizacion = modificadoDesdeUltimaSincronizacion;
     }
 
-    public ForeignCollection<Pregunta> getPreguntas() {
-        return preguntas;
+    public Asignatura getAsignatura() {
+        return asignatura;
     }
 
-    public void setPreguntas(ForeignCollection<Pregunta> preguntas) {
-        this.preguntas = preguntas;
+    public void setAsignatura(Asignatura asignatura) {
+        this.asignatura = asignatura;
     }
 
     public Usuario getUsuario() {
@@ -136,12 +148,12 @@ public class BDPreguntas {
         this.universidad = universidad;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public ForeignCollection<Pregunta> getPreguntas() {
+        return preguntas;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setPreguntas(ForeignCollection<Pregunta> preguntas) {
+        this.preguntas = preguntas;
     }
 
     @Override

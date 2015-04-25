@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
-import juego.taes.domainmodel.Data.Example.DatabaseHelperExample;
-
 
 /**
  * Created by felix on 23-4-15;

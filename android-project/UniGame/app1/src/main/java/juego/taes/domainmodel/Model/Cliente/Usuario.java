@@ -29,9 +29,6 @@ public class Usuario {
     public static final String SEXO ="sexo";
     public static final String LOGINOFFLINE="login_offline";
 
-    //Relaciones
-    public static final String BDS="fk_bds";
-
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, id=true, useGetSet = true)
     private int id;
@@ -52,7 +49,7 @@ public class Usuario {
     private boolean loginOffline;
 
     //Relaciones
-    @ForeignCollectionField(eager=false, foreignFieldName = "bds", columnName = BDS)
+    @ForeignCollectionField(eager=false, foreignFieldName = BDPreguntas.USUARIO_CAMPO)
     private ForeignCollection<Usuario> bds;
 
     public Usuario() {
@@ -109,7 +106,7 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public boolean isLoginOffline() {
+    public boolean getLoginOffline() {
         return loginOffline;
     }
 

@@ -18,9 +18,6 @@ public class Asignatura {
     public static final String ID="_id";
     public static final String NOMBRE="nombre";
 
-    //Relaciones
-    public static final String BDS="fk_bds";
-
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, id = true, useGetSet = true )
     private int id;
@@ -30,7 +27,7 @@ public class Asignatura {
 
     //Relaciones
 
-    @ForeignCollectionField(columnName = BDS, eager = false, foreignFieldName = "bds")
+    @ForeignCollectionField(eager = false, foreignFieldName = BDPreguntas.ASIGNATURA_CAMPO)
     private ForeignCollection<BDPreguntas> bds;
 
     public Asignatura() {

@@ -18,17 +18,13 @@ import juego.taes.domainmodel.Utilities.AeSimpleSHA1;
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "universidad", daoClass =UniversidadDao.class)
+@DatabaseTable(tableName = "universidad", daoClass = UniversidadDao.class)
 public class Universidad {
 
     //Nombres de las columnas
     public static final String ID="_id";
     public static final String NOMBRE="nombre";
     public static final String SIGLAS="siglas";
-
-    //Relaciones
-    public static final String CARRERAS="fk_carreras";
-    public static final String BDS="fk_bds";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, id = true, useGetSet = true )
@@ -39,12 +35,8 @@ public class Universidad {
 
     @DatabaseField(columnName= SIGLAS, canBeNull = false, useGetSet = true)
     private String siglas;
-
-    //Relaciones
-    @ForeignCollectionField(eager=false, foreignFieldName = "carreras", columnName = CARRERAS)
-    private ForeignCollection<Carrera> carreras;
     
-    @ForeignCollectionField(eager=false, foreignFieldName = "bds", columnName = BDS)
+    @ForeignCollectionField(eager=false, foreignFieldName = BDPreguntas.UNIVERSIDAD_CAMPO)
     private ForeignCollection<BDPreguntas> bds;
 
     public Universidad() {
@@ -80,14 +72,6 @@ public class Universidad {
 
     public void setSiglas(String siglas) {
         this.siglas = siglas;
-    }
-
-    public ForeignCollection<Carrera> getCarreras() {
-        return carreras;
-    }
-
-    public void setCarreras(ForeignCollection<Carrera> carreras) {
-        this.carreras = carreras;
     }
 
     public ForeignCollection<BDPreguntas> getBds() {

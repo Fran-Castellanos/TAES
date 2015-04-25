@@ -26,6 +26,9 @@ public class Respuesta {
     //Relaciones
     public static final String PREGUNTA="fk_pregunta";
 
+    //Campos relacionados
+    public static final String PREGUNTA_CAMPO="pregunta";
+
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;
@@ -73,7 +76,7 @@ public class Respuesta {
         this.id = id;
     }
 
-    public boolean isEsCorrecta() {
+    public boolean getEsCorrecta() {
         return esCorrecta;
     }
 
@@ -89,7 +92,7 @@ public class Respuesta {
         this.contenido = contenido;
     }
 
-    public boolean isEnServidor() {
+    public boolean getEnServidor() {
         return enServidor;
     }
 
@@ -113,7 +116,7 @@ public class Respuesta {
         this.fechaSincronizacion = fechaSincronizacion;
     }
 
-    public boolean isModificadoDesdeUltimaSincronizacion() {
+    public boolean getModificadoDesdeUltimaSincronizacion() {
         return modificadoDesdeUltimaSincronizacion;
     }
 

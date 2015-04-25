@@ -26,8 +26,10 @@ public class Pregunta {
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Relaciones
-    public static final String RESPUESTAS="fk_respuestas";
     public static final String BD="fk_bd_preguntas";
+
+    //Campos relacionados
+    public static final String BD_CAMPO="bdPreguntas";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
@@ -52,7 +54,7 @@ public class Pregunta {
     @DatabaseField(columnName = BD,useGetSet = true, foreign = true, canBeNull = false)
     private BDPreguntas bdPreguntas;
 
-    @ForeignCollectionField(eager=false, foreignFieldName = "respuestas", columnName = RESPUESTAS)
+    @ForeignCollectionField(eager=false, foreignFieldName = Respuesta.PREGUNTA_CAMPO)
     private ForeignCollection<Respuesta> respuestas;
 
     public Pregunta() {
@@ -64,7 +66,7 @@ public class Pregunta {
         this.enServidor = enServidor;
     }
 
-    public boolean isModificadoDesdeUltimaSincronizacion() {
+    public boolean getModificadoDesdeUltimaSincronizacion() {
         return modificadoDesdeUltimaSincronizacion;
     }
 
@@ -88,7 +90,7 @@ public class Pregunta {
         this.contenido = contenido;
     }
 
-    public boolean isEnServidor() {
+    public boolean getEnServidor() {
         return enServidor;
     }
 

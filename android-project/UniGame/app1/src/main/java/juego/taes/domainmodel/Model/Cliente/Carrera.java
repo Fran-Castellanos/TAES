@@ -29,11 +29,6 @@ public class Carrera {
     @DatabaseField(columnName= NOMBRE, canBeNull = false, useGetSet = true)
     private String nombre;
 
-    //Relaciones
-
-    @ForeignCollectionField(eager=false, columnName = ASIGNATURAS, foreignFieldName = "asignaturas")
-    private ForeignCollection<Asignatura> asignaturas;
-
     public Carrera() {
         // ORMLite needs a no-arg constructor
     }
@@ -58,14 +53,6 @@ public class Carrera {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public ForeignCollection<Asignatura> getAsignaturas() {
-        return asignaturas;
-    }
-
-    public void setAsignaturas(ForeignCollection<Asignatura> asignaturas) {
-        this.asignaturas = asignaturas;
     }
 
     @Override
