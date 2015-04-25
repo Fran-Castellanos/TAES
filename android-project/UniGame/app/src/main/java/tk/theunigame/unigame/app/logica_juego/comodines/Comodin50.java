@@ -42,7 +42,9 @@ public class Comodin50 extends Comodin {
 
         Pregunta result=new Pregunta(p.getContenido(),false);
         try{
-        ForeignCollection<Respuesta> respuestas = p.getRespuestas();
+        ForeignCollection<Respuesta> respuestasCollection = p.getRespuestas();
+
+
         int eliminadas=0;
         ForeignCollection<Respuesta> resp50= (ForeignCollection<Respuesta>) new ArrayList<Respuesta>();
         int numEliminadas = (int)Math.floor(resp50.size()/2);
@@ -52,8 +54,8 @@ public class Comodin50 extends Comodin {
         int a;
         while(eliminadas < numEliminadas)
         {
-            a = r.nextInt(resp50.size());  // Entre 0 y num de respuestas
-            if(!aleatorios.contains(a) && !esCorrecta(respuestas,a,p.getRespuestaCorrecta())) {
+            a = r.nextInt(resp50.size());  // Entre 0 y num de respuestasCollection
+            if(!aleatorios.contains(a) && !esCorrecta(respuestasCollection,a)) {
                 aleatorios.add(a);
                 ++eliminadas;
             }
@@ -61,15 +63,15 @@ public class Comodin50 extends Comodin {
         }
 
         int i=0;
-        for(Respuesta res : respuestas){
+        for(Respuesta res : respuestasCollection){
             if(aleatorios.contains(i))
             {
                     res.setContenido("");
             }
             ++i;
         }
-        result.setRespuestas(respuestas);
-        result.setRespuestaCorrecta(p.getRespuestaCorrecta());
+        result.setRespuestas(respuestasCollection);
+
 
 
         consumirComodin();
@@ -83,16 +85,19 @@ public class Comodin50 extends Comodin {
 
 
 
-    private boolean esCorrecta(Collection<Respuesta> respuestas, int pos, Respuesta correcta) {
+    private boolean esCorrecta(Collection<Respuesta> respuestas, int pos) {
 
         Iterator<Respuesta> it = respuestas.iterator();
         int i=0;
         while(it.hasNext())
         {
             Respuesta r = it.next();
-            if(i==pos && r.equals(correcta))
+            if(i==pos)
             {
-                return true;
+                if(r.isEsCorrecta())
+                    return true;
+                else
+                    return false;
             }
 
             ++i;
