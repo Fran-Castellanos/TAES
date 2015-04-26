@@ -104,7 +104,7 @@ public class UsuarioRepository {
 
     public Usuario getByNick(String nick){
         try {
-            List<Usuario> usuarios = dao.queryForEq("nick",nick);
+            List<Usuario> usuarios = dao.queryForEq(Usuario.NICK,nick);
             if(usuarios != null && usuarios.size() == 1)
                 return usuarios.get(0);
 

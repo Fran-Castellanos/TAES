@@ -18,8 +18,11 @@ import juego.taes.domainmodel.Utilities.AeSimpleSHA1;
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "usuario", daoClass = UsuarioDao.class)
+@DatabaseTable(tableName = Usuario.TABLA, daoClass = UsuarioDao.class)
 public class Usuario {
+
+    //Nombre de la tabla
+    public static final String TABLA = "usuario";
 
     //Nombres de las columnas
     public static final String ID="_id";

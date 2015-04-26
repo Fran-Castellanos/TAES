@@ -10,9 +10,12 @@ import juego.taes.domainmodel.Data.Dao.UniversidadDao;
  * Created by felix on 23/04/15.
  */
 
-@DatabaseTable(tableName = "carrera_universidad", daoClass = CarreraUniversidadDao.class)
+@DatabaseTable(tableName = CarreraUniversidad.TABLA, daoClass = CarreraUniversidadDao.class)
 public class CarreraUniversidad
 {
+    //Nombre de la tabla
+    public static final String TABLA = "carrera_universidad";
+
     //Relaciones
     public static final String ID = "_id";
     public static final String CARRERA = "fk_carrera";

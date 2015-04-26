@@ -11,8 +11,11 @@ import juego.taes.domainmodel.Data.Dao.RespuestaDao;
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "respuesta", daoClass = RespuestaDao.class)
+@DatabaseTable(tableName = Respuesta.TABLA, daoClass = RespuestaDao.class)
 public class Respuesta {
+
+    //Nombre de la tabla
+    public static final String TABLA = "respuesta";
 
     //Nombres de las columnas
     public static final String ID="_id";
