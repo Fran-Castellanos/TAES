@@ -113,10 +113,12 @@ public class CarreraRepository {
         try {
 
             QueryBuilder<CarreraUniversidad,Integer> builder = carreraUniversidadDao.queryBuilder();
+            QueryBuilder<Carrera, Integer> builderC = dao.queryBuilder();
             builder.where().eq(CarreraUniversidad.UNIVERSIDAD,id);
-            builder.orderBy(Carrera.NOMBRE,true);
+            builderC.join(builder);
+            builderC.orderBy(Carrera.NOMBRE,true);
 
-            return dao.queryBuilder().join(builder).query();
+            return builderC.query();
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES

@@ -50,7 +50,7 @@ public class ListaCarreras extends Activity {
         txt.setText(universidad.getNombre());
 
         //Creamos el adaptador para el ListView
-        ArrayList<Carrera> carreras = fachadaCarrera.obtenerCarreras(universidad);
+        ArrayList<Carrera> carreras = fachadaCarrera.obtenerCarreras(this, universidad);
         BaseAdapter adapter= new AdaptadorListaCarreras(this, carreras);
         lv=(ListView) findViewById(R.id.lv_carreras);
         lv.setAdapter(adapter);

@@ -62,7 +62,7 @@ public class ListaAsignaturas extends Activity {
 
         asignaturas = new ArrayList<>();
         //Creamos el adaptador para el ListView
-        AdaptadorListaAsignaturas adapter= new AdaptadorListaAsignaturas(this, fachadaAsignatura.obtenerAsignaturas(universidad, carrera));
+        AdaptadorListaAsignaturas adapter= new AdaptadorListaAsignaturas(this, fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera));
         posicionAsig = new Boolean[adapter.getAsignaturasCantidad()];
         for(int i = 0 ; i<posicionAsig.length; i++){
             posicionAsig[i]=false;
@@ -104,6 +104,12 @@ public class ListaAsignaturas extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        asignaturas.clear();
     }
 
     public void onCheckBoxClicked(View view){

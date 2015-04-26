@@ -15,21 +15,10 @@ import juego.taes.domainmodel.Repository.CarreraRepository;
  */
 public class FachadaCarrera {
 
-
     //Devolverá las carreras que oferte la universidad pasada por parámetro
-    public ArrayList<Carrera> obtenerCarreras(Universidad universidad){
-
-        ArrayList<Carrera> respuestas= new ArrayList<>();
-        //
-        Carrera u1 = new Carrera("Ingeniería informática");
-        u1.setId(1);
-        u1.setNombre("Ingeniería informática");
-        respuestas.add(u1);
-        u1= new Carrera("Magisterio");
-        u1.setId(2);
-        u1.setNombre("Magisterio");
-        respuestas.add(u1);
-        return respuestas;
+    public ArrayList<Carrera> obtenerCarreras(Context context, Universidad universidad){
+        CarreraRepository repository = new CarreraRepository(context);
+        return (ArrayList<Carrera>)repository.getByUniversidad(universidad.getId());
     }
 
 
