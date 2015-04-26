@@ -66,7 +66,7 @@ public class ListaBasesDatos extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //Comunicador.setObject(parent.getAdapter().getItem(position));
+                //Comunicador.setObject(parent.getAdapt         er().getItem(position));
                 //Intent intent = new Intent(ListaBasesDatos.this, ListaUniversidades.class);
                 //startActivity(intent);
             }

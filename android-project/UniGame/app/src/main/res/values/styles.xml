@@ -137,6 +137,14 @@
         <item name="android:scrollbars">none</item>
     </style>
 
+    <!-- Configuración de los botones para seleccionar la respuesta correcta cuando se está jugando -->
+    <style name="btn_show_correct_answer_playing">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/etxt_edit_answer</item>
+    </style>
     <!-- Fin estilos UniGame -->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

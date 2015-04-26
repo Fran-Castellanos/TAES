@@ -8,6 +8,7 @@ import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,17 +139,11 @@ public class BDPreguntasRepository {
     public List<BDPreguntas> getByAsignaturasYUniversidad(List<Asignatura> asignaturas, int idUni)
     {
         try {
-            QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
-            for(int i=0; i<asignaturas.size()-1; i++){
-                builder.where().eq(BDPreguntas.ASIGNATURA, asignaturas.get(i).getId());
-                builder.where().or();
-            }
-            builder.where().eq(BDPreguntas.ASIGNATURA,asignaturas.get(asignaturas.size()-1).getId());
-
+            List<Integer> listaAsignaturas = new ArrayList<>();
+            for(Asignatura a : asignaturas)
+                listaAsignaturas.add(a.getId());
             QueryBuilder<BDPreguntas,Integer> builder2 = dao.queryBuilder();
-            builder2.where().in(BDPreguntas.ASIGNATURA, builder);
-            builder2.where().and();
-            builder2.where().eq(BDPreguntas.UNIVERSIDAD,idUni);
+            builder2.where().in(BDPreguntas.ASIGNATURA, listaAsignaturas);
             builder2.orderBy(BDPreguntas.NOMBRE,true);
             return builder2.query();
 
