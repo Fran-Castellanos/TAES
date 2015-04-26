@@ -56,7 +56,7 @@ public class ListaBasesDatos extends Activity {
 
         //Creamos el adaptador para el ListView
         //Deberá realizarse un adaptador propio en caso de recibir objetos y no lista de nombres
-        ArrayList<BDPreguntas> bdPreguntas= fachadaBasesDatos.obtenerBasesDatos(universidad, carrera, asignaturas);//Recibimos la lista de preguntas
+        ArrayList<BDPreguntas> bdPreguntas= fachadaBasesDatos.obtenerBasesDatos(this, universidad, carrera, asignaturas);//Recibimos la lista de preguntas
         BaseAdapter adapter= new AdaptadorListaBasesDatos(this, bdPreguntas);
         lv=(ListView) findViewById(R.id.lv_bases_datos);
         lv.setAdapter(adapter);

@@ -2,6 +2,9 @@ package juego.taes.domainmodel.Repository;
 
 import android.content.Context;
 
+import com.j256.ormlite.dao.CloseableIterable;
+import com.j256.ormlite.dao.CloseableIterator;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
@@ -15,6 +18,7 @@ import juego.taes.domainmodel.Data.Dao.IPreguntaDao;
 import juego.taes.domainmodel.Data.Dao.PreguntaDao;
 import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
+import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 
@@ -122,6 +126,31 @@ public class BDPreguntasRepository {
             builder.where().eq(BDPreguntas.UNIVERSIDAD,idUni);
             builder.orderBy(BDPreguntas.NOMBRE,true);
             return builder.query();
+
+        } catch (SQLException e) {
+            //TODO GESTION DE ERRORES
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //Devuelve una lista de BDPreguntas en fución de una universidad y una lista de asignaturas
+    public List<BDPreguntas> getByAsignaturasYUniversidad(List<Asignatura> asignaturas, int idUni)
+    {
+        try {
+            QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
+            for(int i=0; i<asignaturas.size()-1; i++){
+                builder.where().eq(BDPreguntas.ASIGNATURA, asignaturas.get(i).getId());
+                builder.where().or();
+            }
+            builder.where().eq(BDPreguntas.ASIGNATURA,asignaturas.get(asignaturas.size()-1).getId());
+
+            QueryBuilder<BDPreguntas,Integer> builder2 = dao.queryBuilder();
+            builder2.where().in(BDPreguntas.ASIGNATURA, builder);
+            builder2.where().and();
+            builder2.where().eq(BDPreguntas.UNIVERSIDAD,idUni);
+            builder2.orderBy(BDPreguntas.NOMBRE,true);
+            return builder2.query();
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES

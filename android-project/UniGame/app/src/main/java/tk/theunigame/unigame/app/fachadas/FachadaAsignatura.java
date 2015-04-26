@@ -20,7 +20,7 @@ public class FachadaAsignatura {
     //Devuelve las asignaturas de una carrera en una universidad
     public ArrayList<Asignatura> obtenerAsignaturas(Context context, Universidad universidad, Carrera carrera){
         AsignaturaRepository repository = new AsignaturaRepository(context);
-        return (ArrayList<Asignatura>)repository.getAll();
+        return (ArrayList<Asignatura>)repository.getByCarrera(carrera.getId());
     }
 
 

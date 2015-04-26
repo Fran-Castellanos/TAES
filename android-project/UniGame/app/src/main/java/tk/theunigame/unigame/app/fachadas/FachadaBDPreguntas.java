@@ -36,23 +36,9 @@ public class FachadaBDPreguntas {
     }
 
     //Devuelve las asignaturas de una carrera en una universidad
-    public ArrayList<BDPreguntas> obtenerBasesDatos(Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas){
-
-        ArrayList<BDPreguntas> respuestas= new ArrayList<>();
-        //
-        BDPreguntas u1 = new BDPreguntas("BD de Jaimito",false);
-        u1.setId(1);
-        u1.setNombre("BD de Jaimito");
-        respuestas.add(u1);
-        u1= new BDPreguntas("BD de Juan",false);
-        u1.setId(2);
-        u1.setNombre("BD de Juan");
-        respuestas.add(u1);
-        u1 = new BDPreguntas("BD de RITO",false);
-        u1.setId(3);
-        u1.setNombre("BD de RITO");
-        respuestas.add(u1);
-        return respuestas;
+    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas){
+        BDPreguntasRepository repository = new BDPreguntasRepository(context);
+        return (ArrayList<BDPreguntas>)repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
     }
 
 
