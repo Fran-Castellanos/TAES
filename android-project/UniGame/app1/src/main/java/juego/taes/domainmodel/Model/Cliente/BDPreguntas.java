@@ -14,8 +14,11 @@ import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "bd_preguntas", daoClass = BDPreguntasDao.class)
+@DatabaseTable(tableName = BDPreguntas.TABLA, daoClass = BDPreguntasDao.class)
 public class BDPreguntas {
+
+    //Nombre de la tabla
+    public static final String TABLA = "bd_preguntas";
 
     //Nombres de las columnas
     public static final String ID="_id";

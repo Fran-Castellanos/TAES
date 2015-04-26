@@ -12,8 +12,11 @@ import juego.taes.domainmodel.Data.Dao.CarreraDao;
  * Created by felix on 22-4-2015.
  */
 
-@DatabaseTable(tableName = "carrera", daoClass = CarreraDao.class)
+@DatabaseTable(tableName = Carrera.TABLA, daoClass = CarreraDao.class)
 public class Carrera {
+
+    //Nombre de la tabla
+    public static final String TABLA = "carrera";
 
     //Nombres de las columnas
     public static final String ID="_id";
