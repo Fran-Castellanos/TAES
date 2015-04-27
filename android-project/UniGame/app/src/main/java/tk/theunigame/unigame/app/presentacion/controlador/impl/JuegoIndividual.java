@@ -1,26 +1,19 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
-import juego.taes.domainmodel.Model.Cliente.Pregunta;
-import juego.taes.domainmodel.Model.Cliente.Respuesta;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
-import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
-import tk.theunigame.unigame.app.logica_juego.temporizador.TemporizadorTimerTask;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
-import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
+import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
 
 /**
@@ -29,7 +22,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class JuegoIndividual extends Activity implements View.OnClickListener, OnTiempoListener{
+public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener{
 
     //OnTiempoListener
     private TextView txt_a, txt_b, txt_c, txt_d;
@@ -66,9 +59,9 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         btn_b.setOnClickListener(this);
         btn_c.setOnClickListener(this);
         btn_d.setOnClickListener(this);
-
     }
 
+    //Evento a realizar cuando se seleccione una respuesta de los cuatros botones
     @Override
     public void onClick(View v) {
         if(id_answer_selected != null && (v.getId() != id_answer_selected.getButtonId())){
@@ -80,6 +73,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
     }
 
+    //Evento a realizar para confirmar los cambios
     public void Confirmar_Click(View v){
         boolean correcto= false;
         //Comprobar si es correco
@@ -94,24 +88,23 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         }
     }
 
+    //Acción a realizar cuando se acabe el tiempo
     @Override
-    public void onParar(TemporizadorTimerTask object) {
+    public void onTiempoFinalizado(String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(mensaje).
+                setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
+        //Cambiar colores de botones en las que sean correctas
     }
 
     @Override
-    public void onContinuar(TemporizadorTimerTask object) {
-    }
-
-    @Override
-    public void onReiniciar(TemporizadorTimerTask object) {
-    }
-
-    @Override
-    public void onTiempoFinalizado(TemporizadorTimerTask object) {
-    }
-
-    @Override
-    public void onTiempoHaCambiado(TemporizadorTimerTask object) {
-        txt_tiempo.setText(object.getTiempo());
+    public void onTiempoHaCambiado(int tiempo) {
+        txt_tiempo.setText(tiempo);
     }
 }
