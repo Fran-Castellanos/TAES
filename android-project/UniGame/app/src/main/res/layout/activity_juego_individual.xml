@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ll_main_horizontal"
-    tools:context=".app.presentacion.controlador.impl.ListaUniversidades">
+    tools:context=".app.presentacion.controlador.impl.JuegoIndividual">
 
     <RelativeLayout
         style="@style/rl_main_left">
@@ -14,16 +14,41 @@
             <RelativeLayout
                 style="@style/rl_main_top">
             </RelativeLayout>
-            <TextView
-                android:id="@+id/imageView"
-                style="@style/txt_title"
-                android:text="@string/txt_juego_individual"/>
+            <LinearLayout
+                style="@style/ll_title">
+                <TextView
+                    android:id="@+id/txt_title1"
+                    style="@style/txt_title"
+                    android:text="@string/txt_juego_individual"
+                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    style="@style/ll_secundary_title"
+                    >
+                    <TextView
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:textStyle="bold"
+                        android:text="@string/txt_tiempo_nombre"
+                    />
+                    <TextView
+                        android:id="@+id/txt_tiempo"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:text="0"
+                    />
+                </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 style="@style/ll_main_container">
 
-                <EditText
-                    android:id="@+id/etxt_question"
+                <TextView
+                    android:id="@+id/txt_question"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:layout_weight="0.35"
@@ -34,8 +59,8 @@
 
                 <LinearLayout
                     style="@style/ll_show_answer">
-                    <EditText
-                        android:id="@+id/etxt_edit_answer_a"
+                    <TextView
+                        android:id="@+id/txt_answer_a"
                         style="@style/etxt_show_answer"/>
                     <Button
                         android:id="@+id/btn_edit_answer_a"
@@ -43,8 +68,8 @@
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">
-                    <EditText
-                        android:id="@+id/etxt_edit_answer_b"
+                    <TextView
+                        android:id="@+id/txt_answer_b"
                         style="@style/etxt_show_answer"/>
                     <Button
                         android:id="@+id/btn_edit_answer_b"
@@ -52,8 +77,8 @@
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">
-                    <EditText
-                        android:id="@+id/etxt_edit_answer_c"
+                    <TextView
+                        android:id="@+id/txt_answer_c"
                         style="@style/etxt_show_answer"/>
                     <Button
                         android:id="@+id/btn_edit_answer_c"
@@ -61,8 +86,8 @@
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">
-                    <EditText
-                        android:id="@+id/etxt_edit_answer_d"
+                    <TextView
+                        android:id="@+id/txt_answer_d"
                         style="@style/etxt_show_answer"/>
                     <Button
                         android:id="@+id/btn_edit_answer_d"

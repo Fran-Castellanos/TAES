@@ -39,6 +39,8 @@ public class TemporizadorTimerTask {
             @Override
             public void handleMessage(Message msg) {
                 tiempo--;
+                for(OnTiempoListener l: listeners)
+                    l.onTiempoHaCambiado(meTimer);
                 if(tiempo == 0){
                     Parar();
                     for(OnTiempoListener l: listeners)

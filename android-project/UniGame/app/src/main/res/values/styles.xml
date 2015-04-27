@@ -118,6 +118,15 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
+    <!-- Estilo LinearLayout secundario del título -->
+    <style name="ll_secundary_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">0.20</item>
+    </style>
+
     <!-- Layout para composición de títulos -->
     <style name="ll_title">
         <item name="android:layout_margin">2dip</item>

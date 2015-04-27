@@ -35,4 +35,5 @@
     <string name="txt_carrer">Carrera</string>
     <string name="txt_subject">Asignatura</string>
     <string name="txt_dbs">Bases de Datos</string>
+    <string name="txt_tiempo_nombre">Tiempo:</string>
 </resources>

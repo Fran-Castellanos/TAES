@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -15,7 +18,9 @@ import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
+import tk.theunigame.unigame.app.logica_juego.temporizador.TemporizadorTimerTask;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
+import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
 
 
 /**
@@ -24,9 +29,11 @@ import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class JuegoIndividual extends Activity implements View.OnClickListener{
+public class JuegoIndividual extends Activity implements View.OnClickListener, OnTiempoListener{
 
-    private EditText etxt_a, etxt_b, etxt_c, etxt_d;
+    //OnTiempoListener
+    private TextView txt_a, txt_b, txt_c, txt_d;
+    private TextView txt_tiempo;
     private Button btn_a, btn_b, btn_c, btn_d;
     private int idBD;
     //Fachadas a emplear
@@ -39,13 +46,14 @@ public class JuegoIndividual extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_pregunta);
+        setContentView(R.layout.activity_juego_individual);
 
         //Instanciamos los TextView
-        etxt_a = (EditText)findViewById(R.id.etxt_edit_answer_a);
-        etxt_b = (EditText)findViewById(R.id.etxt_edit_answer_b);
-        etxt_c = (EditText)findViewById(R.id.etxt_edit_answer_c);
-        etxt_d = (EditText)findViewById(R.id.etxt_edit_answer_d);
+        txt_a = (TextView)findViewById(R.id.txt_answer_a);
+        txt_b = (TextView)findViewById(R.id.txt_answer_b);
+        txt_c = (TextView)findViewById(R.id.txt_answer_c);
+        txt_d = (TextView)findViewById(R.id.txt_answer_d);
+        txt_tiempo = (TextView)findViewById(R.id.txt_tiempo);
 
         //Instanciamos los Botones
         btn_a = (Button)findViewById(R.id.btn_edit_answer_a);
@@ -60,7 +68,6 @@ public class JuegoIndividual extends Activity implements View.OnClickListener{
         btn_d.setOnClickListener(this);
 
     }
-
 
     @Override
     public void onClick(View v) {
@@ -85,5 +92,26 @@ public class JuegoIndividual extends Activity implements View.OnClickListener{
         }else{
             //Acción a realizar si es correcta la respuesta
         }
+    }
+
+    @Override
+    public void onParar(TemporizadorTimerTask object) {
+    }
+
+    @Override
+    public void onContinuar(TemporizadorTimerTask object) {
+    }
+
+    @Override
+    public void onReiniciar(TemporizadorTimerTask object) {
+    }
+
+    @Override
+    public void onTiempoFinalizado(TemporizadorTimerTask object) {
+    }
+
+    @Override
+    public void onTiempoHaCambiado(TemporizadorTimerTask object) {
+        txt_tiempo.setText(object.getTiempo());
     }
 }
