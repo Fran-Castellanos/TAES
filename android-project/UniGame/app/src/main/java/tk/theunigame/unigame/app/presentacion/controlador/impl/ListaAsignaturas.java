@@ -2,14 +2,12 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,6 +61,7 @@ public class ListaAsignaturas extends Activity {
         asignaturas = new ArrayList<>();
         //Creamos el adaptador para el ListView
         AdaptadorListaAsignaturas adapter= new AdaptadorListaAsignaturas(this, fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera));
+
         posicionAsig = new Boolean[adapter.getAsignaturasCantidad()];
         for(int i = 0 ; i<posicionAsig.length; i++){
             posicionAsig[i]=false;

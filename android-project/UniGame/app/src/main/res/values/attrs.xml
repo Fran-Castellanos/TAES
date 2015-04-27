@@ -10,4 +10,20 @@
 
     </declare-styleable>
 
+    <!-- Borde de EditText crear base de datos Background general-->
+    <dimen name="radius1">10dip</dimen>
+
+    <!-- Borde de EditText question de crear base de datos  -->
+    <dimen name="radius2">10dip</dimen>
+
+    <!-- Borde de EditText y TextView de repuestas -->
+    <dimen name="radius3">10dip</dimen>
+
+    <!-- Radio de borde de los items de la lista -->
+    <dimen name="radius_lista">10dip</dimen>
+
+    <!-- Tamaño Letra items lista -->
+    <dimen name="text_size_lista">20sp</dimen>
+
+    <dimen name="margin_topbot_list_item">4dp</dimen>
 </resources>

@@ -31,8 +31,6 @@ public class ListaCarreras extends Activity {
     private FachadaCarrera fachadaCarrera;
     private FachadaComunicador fachadaComunicador;
 
-    final private String[] datos = new String[]{"Carreras1", "Carreras2", "Carreras3"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
