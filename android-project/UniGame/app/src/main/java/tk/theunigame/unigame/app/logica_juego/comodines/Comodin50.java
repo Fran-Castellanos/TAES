@@ -20,12 +20,6 @@ public class Comodin50 extends Comodin {
 
     private final static String nombre = "Comodín del 50%";
 
-
-    public Comodin50(Pregunta pregunta)
-    {
-        super(pregunta);
-    }
-
     private static Comodin50 ourInstance = new Comodin50();
 
     public static Comodin50 getInstance() {
