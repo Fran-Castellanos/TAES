@@ -70,8 +70,8 @@ public class ListaPreguntas extends Activity {
     }
 
     //Confirmar los cambios de la BDPreguntas
-    public void Confirmar_Cambios(View v){
-
+    public void Confirmar_Cambios(View v)
+    {
         BolsaPregunta.getInstance().RegistrarCambios(this);
         //Log.d("CambiosConfirmados", "Funcion");
     }

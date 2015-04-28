@@ -17,11 +17,11 @@ import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 
 public class CrearDB extends Activity{
 
-    private FachadaBDPreguntas fachadaBD;
     private FachadaComunicador comunicador;
     private Universidad universidad;
     private Carrera carrera;
     private Asignatura asignatura;
+    FachadaBDPreguntas fachadaBD = new FachadaBDPreguntas();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

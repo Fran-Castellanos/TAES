@@ -30,11 +30,13 @@ public class FachadaBDPreguntas {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public void crearBaseDatos(String nombre,Context c){
+    public void crearBaseDatos(String nombre,Context c)
+    {
         bd = new BDPreguntasRepository(c);
         bd.create((new BDPreguntas(nombre,false)));
     }
 
+<<<<<<< HEAD
     public void setDatos(Carrera carrera, Universidad universidad, Asignatura asignatura){
 
 
@@ -42,12 +44,21 @@ public class FachadaBDPreguntas {
 
     //Devuelve las asignaturas de una carrera en una universidad
     public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas){
+=======
+    /**
+     * Devuelve las asignaturas de una carrera en una universidad
+     * @param context
+     * @param universidad
+     * @param carrera
+     * @param asignaturas
+     * @return
+     */
+    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas)
+    {
+>>>>>>> origin/android-project
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
         return (ArrayList<BDPreguntas>)repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
     }
-
-
-
 
     /**
      * Devuelve la lista de bolsas de preguntas relacionadas con una asignatura y con
@@ -70,7 +81,6 @@ public class FachadaBDPreguntas {
         }
         return  bases;
     }
-
 
     /**
      * Devuelve la lista de bolsas de preguntas de una asignatura concreta impartida
@@ -95,9 +105,4 @@ public class FachadaBDPreguntas {
         return bases;
 
     }
-
-
-
-
-
 }

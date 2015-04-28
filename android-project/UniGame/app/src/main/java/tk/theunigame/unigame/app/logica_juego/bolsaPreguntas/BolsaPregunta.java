@@ -14,7 +14,7 @@ public class BolsaPregunta {
     private List<Pregunta> preguntas_modificadas;
     private List<Pregunta> preguntas_creadas;
     private BDPreguntas pBDPreguntas;
-    private ForeignCollection<Pregunta> pPreguntas;
+    private List<Pregunta> pPreguntas;
 
     /**********************************************************************************************/
     private static BolsaPregunta sInstance = null;//Objeto session
@@ -40,7 +40,7 @@ public class BolsaPregunta {
     public void SetBDPreguntas(BDPreguntas bd)
     {
         pBDPreguntas = bd;
-        pPreguntas = bd.getPreguntas();
+        pPreguntas = (ArrayList<Pregunta>) bd.getPreguntas();
         preguntas_creadas.clear();
         preguntas_eliminadas.clear();
         preguntas_modificadas.clear();
