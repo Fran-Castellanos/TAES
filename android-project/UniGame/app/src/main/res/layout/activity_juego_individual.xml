@@ -39,7 +39,7 @@
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:textStyle="bold"
-                        android:text="0"
+                        android:text="60"
                     />
                 </LinearLayout>
             </LinearLayout>

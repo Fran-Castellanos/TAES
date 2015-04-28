@@ -21,8 +21,6 @@ import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaAsignatura;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturas;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
-import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
 /**
  * Created by John on 09/04/2015.
