@@ -21,7 +21,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     //Daos utilizados
     private AsignaturaDao asignaturaDao = null;
@@ -468,7 +468,21 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
         //Crear bases de preguntas
+        BDPreguntas bd1 = new BDPreguntas();
+        bd1.setNombre("PedroPrueba");
+        bd1.setUniversidad(universidad1);
+        bd1.setAsignatura(asignatura3);
+        bd1.setEnServidor(false);
+        bd1.setUsuario(user1);
+        getBDPreguntasDao().create(bd1);
 
+        Pregunta pregunta1 = new Pregunta("PreguntaPedro",false);
+        pregunta1.setBdPreguntas(bd1);
+        getPreguntaDao().create(pregunta1);
+
+        Respuesta respuesta1 = new Respuesta("RespuestaPedro",true,false);
+        respuesta1.setPregunta(pregunta1);
+        getRespuestaDao().create(respuesta1);
 
         Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
     }
