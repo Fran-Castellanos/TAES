@@ -17,13 +17,15 @@ import juego.taes.domainmodel.Repository.RespuestaRepository;
 public class FachadaRespuesta {
 
 
-    public ArrayList<Respuesta> obtenerRespuestas(Pregunta pregunta,ArrayList<String> contenido){
+    public ArrayList<Respuesta> crearRespuestas(Pregunta pregunta,ArrayList<String> contenido){
 
-        ArrayList<Respuesta> respuestas= new ArrayList<>();
-        for(int i=0; i<contenido.size(); ++i){
-            respuestas.add(new Respuesta(contenido.get(i),false,false));
-            respuestas.get(respuestas.size()-1).setPregunta(pregunta);
+        ArrayList<Respuesta> respuestas = new ArrayList<>();
 
+        for(int i=0; i<contenido.size(); ++i)
+        {
+            Respuesta respuesta = new Respuesta(contenido.get(i),false,false);
+            respuesta.setPregunta(pregunta);
+            respuestas.add(respuesta);
         }
         return respuestas;
     }

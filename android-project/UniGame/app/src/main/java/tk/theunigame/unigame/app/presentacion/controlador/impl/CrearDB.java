@@ -15,7 +15,7 @@ import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 
 public class CrearDB extends Activity{
 
-    FachadaBDPreguntas fachadaBD;
+    FachadaBDPreguntas fachadaBD = new FachadaBDPreguntas();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
