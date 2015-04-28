@@ -26,6 +26,7 @@ public class Juego implements OnTiempoListener {
     private int numPreguntas;
     private OnJuegoListener listener;
     private OnTiempoListener listenerTiempo;
+    private Estadisticas estadisticas;
 
     private IModoJuego modojuego;
 
@@ -46,7 +47,7 @@ public class Juego implements OnTiempoListener {
         numPreguntas=20;
         cronometro = new TemporizadorTimerTask();
         cronometro.setOnTiempoListener(this);
-
+        estadisticas=new Estadisticas();
         listenerTiempo = null;
         listener = null;
 
@@ -151,8 +152,11 @@ public class Juego implements OnTiempoListener {
             }
             ++i;
         }
-
-       return false;
+        if(result)
+            estadisticas.sumarAcertadas();
+        else
+            estadisticas.sumarFalladas();
+       return result;
 
     }
 
@@ -161,7 +165,7 @@ public class Juego implements OnTiempoListener {
 
         if(++turno>=numPreguntas) {
             if(listener != null)
-                listener.onJuegoHaAcabado();
+                listener.onJuegoHaAcabado(estadisticas.getAcertadas(),estadisticas.getFalladas(),estadisticas.getComodinesUsados());
         }
 
         return preguntas.get(turno);
@@ -200,6 +204,10 @@ public class Juego implements OnTiempoListener {
     public void onReiniciar(TemporizadorTimerTask object) {
         reiniciarCronometro();
         listenerTiempo.onReiniciar(cronometro);
+    }
+    public void sumarComodinUsado()
+    {
+        estadisticas.sumarComodinesUsados();
     }
 }
 
