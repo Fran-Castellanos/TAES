@@ -22,14 +22,14 @@ public class BDPreguntas {
 
     //Nombres de las columnas
     public static final String ID="_id";
-    public static final String NOMBRE ="nombre";
+    public static final String NOMBRE ="nombre"; // ejemplo : Examen1: primer parcial
     public static final String ENSERVIDOR="en_servidor";
     public static final String IDSINCRONIZACION="id_sincronizacion";
     public static final String FECHASINCRONIZACION="fecha_sincronizacion";
     public static final String MODIFICADODESDEULTIMASINCRONIZACION="modificado";
 
     //Columnas foreign key
-    public static final String ASIGNATURA="fk_asignatura";
+    public static final String ASIGNATURA="fk_asignatura"; // ejemplo  PED
     public static final String USUARIO="fk_usuario";
     public static final String UNIVERSIDAD="fk_universidad";
 
