@@ -104,6 +104,7 @@
                         android:layout_gravity="center"
                         android:clickable="true"
                         android:layout_margin="5dip"
+                        android:onClick="Buscar_BD"
                         />
                     <RelativeLayout
                         android:layout_width="0dip"

@@ -11,7 +11,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
@@ -34,6 +36,7 @@ public class UsarDB extends Activity {
         setContentView(R.layout.activity_usar_bd);
 
         fachadaBDPreguntas= new FachadaBDPreguntas();
+<<<<<<< HEAD
 
         btn_crear_db = (Button) findViewById(R.id.btn_crear_db);
         btn_crear_db.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +49,13 @@ public class UsarDB extends Activity {
 
         //Creamos el adaptador para el ListView
         ArrayList<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
+=======
+        Universidad universidad = new Universidad("Universidad de Alicante","UA");
+        Asignatura asignatura = new Asignatura("PED");
+        //Creamos el adaptador para el ListView
+        ArrayList<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
+        bdpreguntasguardadas.add(new BDPreguntas("Examenes Finales",false,universidad,asignatura));
+>>>>>>> 56dde78e5a0103a87cd39030f452c3d6754183ba
 
         //Creamos el adaptador para el ListView
         AdaptadorListaBasesDatos adapter= new AdaptadorListaBasesDatos(this, bdpreguntasguardadas);

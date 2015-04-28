@@ -33,9 +33,10 @@ public class CrearDB extends Activity{
 
     public void Crear_BD(View v){
         String nombreBD= ((EditText)findViewById(R.id.etxt_name_db)).getText().toString();
-        carrera = comunicador.RecibirCarreraPosicion1();
         universidad = comunicador.RecibirUniversidadPosicion0();
+        carrera = comunicador.RecibirCarreraPosicion1();
         asignatura = comunicador.RecibirAsignaturaPosicion2();
+        comunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura);
         fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad);
     }
 }
