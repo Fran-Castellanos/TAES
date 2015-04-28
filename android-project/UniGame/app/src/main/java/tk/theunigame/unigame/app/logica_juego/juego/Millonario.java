@@ -46,6 +46,7 @@ public class Millonario extends JuegoSimple {
     @Override
     public Pregunta usarComodin(Comodin comodin) throws Exception {
         Juego j = Juego.getInstance();
+        j.sumarComodinUsado();
         return comodin.usarComodin();
     }
 

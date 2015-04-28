@@ -112,7 +112,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
 
     @Override
-    public void onJuegoHaAcabado() {
+    public void onJuegoHaAcabado(int acertadas, int falladas, int comodinesUsados) {
         //TODO
 
 
