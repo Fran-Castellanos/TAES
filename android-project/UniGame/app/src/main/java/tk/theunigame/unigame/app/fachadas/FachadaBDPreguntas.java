@@ -47,7 +47,18 @@ public class FachadaBDPreguntas {
     public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas)
     {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
-        return (ArrayList<BDPreguntas>)repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
+        return (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
+    }
+
+    /**
+     * Para recoger todas las BD registradas
+     * @param context
+     * @return Devuelve la lista de BD registradas
+     */
+    public ArrayList<BDPreguntas> obtenerBasesTodasDatos(Context context)
+    {
+        BDPreguntasRepository repository = new BDPreguntasRepository(context);
+        return (ArrayList<BDPreguntas>) repository.getAll();
     }
 
     /**

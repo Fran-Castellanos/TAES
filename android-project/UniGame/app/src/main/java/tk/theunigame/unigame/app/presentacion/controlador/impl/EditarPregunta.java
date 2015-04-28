@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 
 /**
@@ -54,7 +55,11 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
     }
 
-    public void Crear_Click(View v){
-
+    public void Modificar_Click(View v)
+    {
+        //Recibire la pregunta tanto para obtener la respuesta correcta indicada por el usuario
+        //Como para obtener el resto de datos
+        //Luego haré la modificación en la bolsa de preguntas
+        //BolsaPregunta.getInstance().ModificarPreguntaInsertada(pregunta);
     }
 }

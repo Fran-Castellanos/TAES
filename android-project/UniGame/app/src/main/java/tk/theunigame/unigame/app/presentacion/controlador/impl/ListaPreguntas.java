@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
@@ -74,5 +75,11 @@ public class ListaPreguntas extends Activity {
     {
         BolsaPregunta.getInstance().RegistrarCambios(this);
         //Log.d("CambiosConfirmados", "Funcion");
+    }
+
+    //Eliminar pregunta de una BD
+    public void eliminarPregunta(Pregunta p)
+    {
+        BolsaPregunta.getInstance().EliminarPregunta(p);
     }
 }

@@ -24,10 +24,10 @@ public class CrearDB extends Activity{
     private FachadaBDPreguntas fachadaBD = new FachadaBDPreguntas();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_db);
-
     }
 
 
