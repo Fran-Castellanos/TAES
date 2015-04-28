@@ -11,10 +11,11 @@ public abstract class JuegoSimple implements IModoJuego {
 
 
 
-    @Override
-    public void guardarResultado() {
+    public void guardarResultado()
+    {
         throw new RuntimeException("Not implemented yet");
     }
+
 
 
 }

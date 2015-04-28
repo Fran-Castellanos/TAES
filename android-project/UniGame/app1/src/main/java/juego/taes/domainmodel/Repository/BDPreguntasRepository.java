@@ -21,7 +21,9 @@ import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 
 /**
  * Created by Pedro on 21/04/2015.

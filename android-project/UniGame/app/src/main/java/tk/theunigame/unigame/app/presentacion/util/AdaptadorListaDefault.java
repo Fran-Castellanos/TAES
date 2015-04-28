@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
+import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
 

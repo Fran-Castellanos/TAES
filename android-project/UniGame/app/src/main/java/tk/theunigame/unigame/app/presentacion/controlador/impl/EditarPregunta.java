@@ -5,42 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import java.util.ArrayList;
-import juego.taes.domainmodel.Model.Cliente.*;
+
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.fachadas.*;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 
-
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see tk.theunigame.unigame.util.SystemUiHider
+ * Created by Pedro on 28/04/2015.
  */
-public class CrearPregunta extends Activity implements View.OnClickListener{
-
+public class EditarPregunta extends Activity implements View.OnClickListener
+{
     private EditText etxt_a, etxt_b, etxt_c, etxt_d;
     private Button btn_a, btn_b, btn_c, btn_d;
-
-    private int idBD;
-    //Fachadas a emplear
-    private FachadaBDPreguntas bolsaPreguntas;
-    private FachadaRespuesta respuestaFachada;
-    private FachadaPregunta preguntaFachada;
-    //arrays a usar
-    private Pregunta pregunta;
-    private ArrayList<Respuesta> respuestas;
-    private ArrayList<String> contenido;
-
 
     private EIDANSWER id_answer_selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_pregunta);
+        setContentView(R.layout.activity_editar_pregunta);
 
         id_answer_selected = EIDANSWER.A;
 
@@ -61,7 +44,6 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     }
 
-
     @Override
     public void onClick(View v) {
         if(v.getId() != id_answer_selected.getButtonId()){
@@ -73,27 +55,11 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
     }
 
-    public void Crear_Click(View v){
-
-        //Obtenemos el contenido de los texbox
-        contenido.add(etxt_a.getText().toString());
-        contenido.add(etxt_b.getText().toString());
-        contenido.add(etxt_c.getText().toString());
-        contenido.add(etxt_d.getText().toString());
-
-        //Creamos la pregunta
-        pregunta = preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString());
-
-        //Creamos las respuestas
-        respuestas = respuestaFachada.crearRespuestas(pregunta,contenido);
-
-        //Indicamos a la pregunta sus respuestas
-        preguntaFachada.indicarRespuestas(pregunta,respuestas);
-
-        //indicamos la respuesta correcta
-        preguntaFachada.respuestaCorrecta(pregunta,id_answer_selected.getId());
-
-        //Añadimos las preguntas a la BD
-        BolsaPregunta.getInstance().InsertarPregunta(pregunta);
+    public void Modificar_Click(View v)
+    {
+        //Recibire la pregunta tanto para obtener la respuesta correcta indicada por el usuario
+        //Como para obtener el resto de datos
+        //Luego haré la modificación en la bolsa de preguntas
+        //BolsaPregunta.getInstance().ModificarPreguntaInsertada(pregunta);
     }
 }

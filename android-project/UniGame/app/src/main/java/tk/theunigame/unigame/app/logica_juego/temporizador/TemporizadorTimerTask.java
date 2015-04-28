@@ -19,6 +19,7 @@ public class TemporizadorTimerTask {
     private Timer timer;
     private TimerTask timerTask;
     private int tiempo;
+    private int tiempoSet;
     private List<OnTiempoListener> listeners;
 
     public TemporizadorTimerTask(){
@@ -29,7 +30,7 @@ public class TemporizadorTimerTask {
 
     public void setTiempo(int t)
     {
-        tiempo = t;
+        tiempoSet = t;
     }
 
     //Handler para comunicarnos desde el hilo al Textiew
@@ -84,12 +85,12 @@ public class TemporizadorTimerTask {
 
     //Reinicia la cuenta
     public void Reiniciar() {
-        tiempo = 60;
+        tiempo = tiempoSet;
         for(OnTiempoListener l: listeners)
             l.onReiniciar(this);
     }
 
-    //Introduce un listner en el objeto
+    //Introduce un listener en el objeto
     public void setOnTiempoListener(OnTiempoListener listener){
         this.listeners.add(listener);
     }
