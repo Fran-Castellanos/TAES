@@ -21,7 +21,7 @@ public class CrearDB extends Activity{
     private Universidad universidad;
     private Carrera carrera;
     private Asignatura asignatura;
-    FachadaBDPreguntas fachadaBD = new FachadaBDPreguntas();
+    private FachadaBDPreguntas fachadaBD = new FachadaBDPreguntas();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,6 @@ public class CrearDB extends Activity{
         carrera = comunicador.RecibirCarreraPosicion1();
         universidad = comunicador.RecibirUniversidadPosicion0();
         asignatura = comunicador.RecibirAsignaturaPosicion2();
-        fachadaBD.crearBaseDatos(nombreBD,this);
-        fachadaBD.setDatos(carrera,universidad,asignatura);
-
+        fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad);
     }
 }

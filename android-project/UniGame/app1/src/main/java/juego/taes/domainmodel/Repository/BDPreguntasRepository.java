@@ -211,8 +211,4 @@ public class BDPreguntasRepository {
 
     }
 
-    public void ModificarDatos(Universidad u, Carrera c, Asignatura a){
-
-    }
-
 }

@@ -74,9 +74,11 @@ public class BDPreguntas {
         // ORMLite needs a no-arg constructor
     }
 
-    public BDPreguntas(String nombre, boolean enServidor) {
+    public BDPreguntas(String nombre, boolean enServidor, Universidad universidad, Asignatura asignatura) {
         this.nombre = nombre;
         this.enServidor = enServidor;
+        this.universidad = universidad;
+        this.asignatura = asignatura;
     }
 
     public int getId() {

@@ -18,7 +18,7 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
  */
 public class FachadaBDPreguntas {
 
-    BDPreguntasRepository bd;
+   private BDPreguntasRepository bd;
     public BDPreguntas recuperarBDPreguntas(Context c, int id)
     {
         bd = new BDPreguntasRepository(c);
@@ -30,21 +30,12 @@ public class FachadaBDPreguntas {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public void crearBaseDatos(String nombre,Context c)
+    public void crearBaseDatos(String nombre,Context c, Asignatura a, Universidad u)
     {
         bd = new BDPreguntasRepository(c);
-        bd.create((new BDPreguntas(nombre,false)));
+        bd.create((new BDPreguntas(nombre,false,u,a)));
     }
 
-<<<<<<< HEAD
-    public void setDatos(Carrera carrera, Universidad universidad, Asignatura asignatura){
-
-
-    }
-
-    //Devuelve las asignaturas de una carrera en una universidad
-    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas){
-=======
     /**
      * Devuelve las asignaturas de una carrera en una universidad
      * @param context
@@ -55,7 +46,6 @@ public class FachadaBDPreguntas {
      */
     public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas)
     {
->>>>>>> origin/android-project
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
         return (ArrayList<BDPreguntas>)repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
     }
