@@ -10,9 +10,10 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
 public abstract class JuegoTorneo implements IModoJuego {
 
 
-
-    @Override
-    public void guardarResultado() {
+    public void guardarResultado()
+    {
         throw new RuntimeException("Not implemented yet");
     }
+
+
 }

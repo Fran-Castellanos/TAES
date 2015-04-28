@@ -10,6 +10,7 @@ import java.util.Random;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
+import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 
 /**
  * Created by Paco on 22/04/2015.
@@ -40,6 +41,8 @@ public class Comodin50 extends Comodin {
     @Override
     public Pregunta usarComodin() throws Exception {
 
+        Juego j= Juego.getInstance();
+        p = j.getPreguntaActual();
         Pregunta result=new Pregunta(p.getContenido(),false);
         try{
         ForeignCollection<Respuesta> respuestasCollection = p.getRespuestas();
@@ -71,8 +74,6 @@ public class Comodin50 extends Comodin {
             ++i;
         }
         result.setRespuestas(respuestasCollection);
-
-
 
         consumirComodin();
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
+import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 
 /**
  * Created by Paco on 22/04/2015.
@@ -31,6 +32,9 @@ public class ComodinPasar extends Comodin {
 
     public Pregunta usarComodin()throws Exception
     {
+        Juego j = Juego.getInstance();
+        p = j.siguientePregunta();
+
         consumirComodin();
 
         return p;

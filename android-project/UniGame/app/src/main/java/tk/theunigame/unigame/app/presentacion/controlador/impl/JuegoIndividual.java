@@ -107,4 +107,14 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     public void onTiempoHaCambiado(int tiempo) {
         txt_tiempo.setText(tiempo);
     }
+
+
+
+
+    @Override
+    public void onJuegoHaAcabado() {
+        //TODO
+
+
+    }
 }

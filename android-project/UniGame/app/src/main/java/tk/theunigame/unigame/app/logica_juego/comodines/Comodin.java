@@ -14,10 +14,10 @@ public abstract class Comodin {
 
 
     public Comodin() {
-
+        cantidad = 1;
     }
 
-    Comodin(Pregunta pregunta)
+    public Comodin(Pregunta pregunta)
     {
         cantidad=1; p=pregunta;
     }
