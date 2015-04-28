@@ -15,21 +15,19 @@ import juego.taes.domainmodel.Model.Cliente.Respuesta;
  */
 public class FachadaPregunta {
 
-    public Pregunta crearPregunta(String contenido){
-
+    public Pregunta crearPregunta(String contenido)
+    {
         return new Pregunta(contenido,false);
     }
 
-    public void indicarRespuestas(Pregunta pregunta, ArrayList<Respuesta> respuestas) {
-
+    public void indicarRespuestas(Pregunta pregunta, ArrayList<Respuesta> respuestas)
+    {
         pregunta.setRespuestas((ForeignCollection<Respuesta>)respuestas);
     }
 
-
-
-    public void RespuestaCorrecta(Context c, Pregunta pregunta, int IDrespuestaCorrecta,FachadaRespuesta respuestaFachada){
-
-        Collection<Respuesta> respuestas = pregunta.getRespuestas();
+    public void respuestaCorrecta(Pregunta pregunta, int IDrespuestaCorrecta)
+    {
+        ArrayList<Respuesta> respuestas = (ArrayList<Respuesta>) pregunta.getRespuestas();
 
         for(Respuesta r : respuestas)
         {
@@ -38,7 +36,5 @@ public class FachadaPregunta {
             else
                 r.setEsCorrecta(false);
         }
-
-
     }
 }
