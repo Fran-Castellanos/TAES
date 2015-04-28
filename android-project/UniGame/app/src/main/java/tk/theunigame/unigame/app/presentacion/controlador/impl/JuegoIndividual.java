@@ -3,15 +3,19 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
+import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
+import tk.theunigame.unigame.app.logica_juego.comodines.Comodin50;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
@@ -28,11 +32,13 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     private TextView txt_a, txt_b, txt_c, txt_d;
     private TextView txt_tiempo;
     private Button btn_a, btn_b, btn_c, btn_d;
+    private ImageButton cmd_1, cmd_2, cmd_3;
     private int idBD;
     //Fachadas a emplear
     private FachadaBDPreguntas bolsaPreguntas;
     private FachadaRespuesta respuestaFachada;
     private FachadaPregunta preguntaFachada;
+    private FachadaPartida fachadaPartida;
 
     private EIDANSWER id_answer_selected;
 
@@ -40,6 +46,9 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_individual);
+
+        //Instanaciamos fachadas
+        fachadaPartida = new FachadaPartida();
 
         //Instanciamos los TextView
         txt_a = (TextView)findViewById(R.id.txt_answer_a);
@@ -54,11 +63,22 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         btn_c = (Button)findViewById(R.id.btn_edit_answer_c);
         btn_d = (Button)findViewById(R.id.btn_edit_answer_d);
 
+        //Instanaciamos los ImageButton
+        cmd_1 = (ImageButton) findViewById(R.id.comodin1);
+        cmd_2 = (ImageButton) findViewById(R.id.comodin2);
+        cmd_3 = (ImageButton) findViewById(R.id.comodin3);
+
         //Añadimos los listener
         btn_a.setOnClickListener(this);
         btn_b.setOnClickListener(this);
         btn_c.setOnClickListener(this);
         btn_d.setOnClickListener(this);
+        fachadaPartida.setOnJuegoListenerToJuego(this);
+        cmd_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
     //Evento a realizar cuando se seleccione una respuesta de los cuatros botones
@@ -108,13 +128,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         txt_tiempo.setText(tiempo);
     }
 
-
-
-
     @Override
     public void onJuegoHaAcabado(int acertadas, int falladas, int comodinesUsados) {
         //TODO
-
-
     }
 }

@@ -20,6 +20,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
  */
 public class Juego implements OnTiempoListener {
     private static Juego ourInstance = null;
+    TemporizadorTimerTask cronometro;
     private List<Pregunta> preguntas;
     private int turno;
     private double tiempo_pregunta;
@@ -27,57 +28,46 @@ public class Juego implements OnTiempoListener {
     private OnJuegoListener listener;
     private OnTiempoListener listenerTiempo;
     private Estadisticas estadisticas;
-
     private IModoJuego modojuego;
 
-    TemporizadorTimerTask cronometro;
 
-
-
-
-    public static Juego getInstance()
-    {
-        return ourInstance;
-    }
-
-    private Juego()
-    {
+    private Juego() {
         turno = 0;
-        tiempo_pregunta=30;
-        numPreguntas=20;
+        tiempo_pregunta = 30;
+        numPreguntas = 20;
         cronometro = new TemporizadorTimerTask();
         cronometro.setOnTiempoListener(this);
-        estadisticas=new Estadisticas();
+        estadisticas = new Estadisticas();
         listenerTiempo = null;
         listener = null;
 
 
+    }
 
+    public static Juego getInstance() {
+        return ourInstance;
     }
 
     public void setTiempoMax(int tiempo) throws Exception {
 
-        if(tiempo>0) {
+        if (tiempo > 0) {
             cronometro.setTiempo(tiempo);
             tiempo_pregunta = tiempo;
-        }else
+        } else
             throw new Exception("El tiempo del cronómetro es negativo");
     }
 
 
-    public void pararCronometro()
-    {
+    public void pararCronometro() {
         cronometro.Parar();
     }
 
-    public void reiniciarCronometro()
-    {
+    public void reiniciarCronometro() {
         cronometro.Reiniciar();
     }
 
 
-    public IModoJuego getModoJuego()
-    {
+    public IModoJuego getModoJuego() {
         return modojuego;
     }
 
@@ -86,86 +76,61 @@ public class Juego implements OnTiempoListener {
     }
 
 
-
-    public int getNumPreguntas()
-    {
+    public int getNumPreguntas() {
         return numPreguntas;
     }
 
+    public void setNumPreguntas(int n) {
+        if (n > 0)
+            numPreguntas = n;
+    }
 
-    public List<Pregunta> getPreguntas ()
-    {
+    public List<Pregunta> getPreguntas() {
         return preguntas;
     }
 
-
-    public void setPreguntas (List<Pregunta> pr)
-    {
+    public void setPreguntas(List<Pregunta> pr) {
         preguntas = pr;
     }
 
-
-
-    public void init()
-    {
+    public void init() {
         preguntas = new ArrayList<Pregunta>();
         tiempo_pregunta = 30;
         numPreguntas = 20;
         turno = 0;
     }
 
-
-
-    public void setModojuego(ModoJuego modo)
-    {
+    public void setModojuego(ModoJuego modo) {
         modojuego = JuegoFactory.getJuego(modo);
     }
 
-
-
-
-    public void setNumPreguntas(int n)
-    {
-        if(n>0)
-            numPreguntas = n;
-    }
-
-
-
-
-
-
-
-    public boolean comprobarRespuesta(int res)
-    {
+    public boolean comprobarRespuesta(int res) {
         Pregunta p = preguntas.get(turno);
         boolean result = false;
         List<Respuesta> respuestasList = new ArrayList<Respuesta>();
 
         Collection<Respuesta> respuestasCol = p.getRespuestas();
-        int i=0;
-        for(Respuesta r : respuestasCol)
-        {
-            if(i==turno) {
+        int i = 0;
+        for (Respuesta r : respuestasCol) {
+            if (i == turno) {
                 result = r.getId() == res;
                 break;
             }
             ++i;
         }
-        if(result)
+        if (result)
             estadisticas.sumarAcertadas();
         else
             estadisticas.sumarFalladas();
-       return result;
+        return result;
 
     }
 
-
     public Pregunta siguientePregunta() {
 
-        if(++turno>=numPreguntas) {
-            if(listener != null)
-                listener.onJuegoHaAcabado(estadisticas.getAcertadas(),estadisticas.getFalladas(),estadisticas.getComodinesUsados());
+        if (++turno >= numPreguntas) {
+            if (listener != null)
+                listener.onJuegoHaAcabado(estadisticas.getAcertadas(), estadisticas.getFalladas(), estadisticas.getComodinesUsados());
         }
 
         return preguntas.get(turno);
@@ -175,7 +140,7 @@ public class Juego implements OnTiempoListener {
         return preguntas.get(turno);
     }
 
-    public void setOnJuegoListener(OnJuegoListener listener){
+    public void setOnJuegoListener(OnJuegoListener listener) {
         this.listener = listener;
     }
 
@@ -205,8 +170,8 @@ public class Juego implements OnTiempoListener {
         reiniciarCronometro();
         listenerTiempo.onReiniciar(cronometro);
     }
-    public void sumarComodinUsado()
-    {
+
+    public void sumarComodinUsado() {
         estadisticas.sumarComodinesUsados();
     }
 }

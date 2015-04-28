@@ -47,11 +47,29 @@
                 android:orientation="vertical"
                 style="@style/ll_main_container">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="0.15"
+                    android:gravity="center">
+                    <ImageButton
+                        android:id="@+id/comodin1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageButton
+                        android:id="@+id/comodin2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageButton
+                        android:id="@+id/comodin3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
                 <TextView
                     android:id="@+id/txt_question"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
-                    android:layout_weight="0.35"
+                    android:layout_weight="0.3"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/etxt_edit_question"
                     android:ellipsize="end"
@@ -93,19 +111,6 @@
                         android:id="@+id/btn_edit_answer_d"
                         style="@style/btn_show_correct_answer_playing"/>
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/use_questions"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.1"
-                    android:background="@drawable/button_design"
-                    android:clickable="true"
-                    android:text="@string/btn_create"
-                    android:onClick="Confirmar_Click"
-                    android:textColor="@color/black_overlay" />
 
             </LinearLayout>
             <RelativeLayout
