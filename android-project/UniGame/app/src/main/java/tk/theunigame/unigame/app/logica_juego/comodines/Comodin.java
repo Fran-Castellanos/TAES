@@ -17,12 +17,6 @@ public abstract class Comodin {
         cantidad = 1;
     }
 
-    public Comodin(Pregunta pregunta)
-    {
-        cantidad=1; p=pregunta;
-    }
-
-
 
     public abstract Pregunta usarComodin() throws Exception;
 

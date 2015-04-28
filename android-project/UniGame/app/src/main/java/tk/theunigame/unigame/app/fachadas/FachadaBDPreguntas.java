@@ -18,7 +18,8 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
  */
 public class FachadaBDPreguntas {
 
-   private BDPreguntasRepository bd;
+    private BDPreguntasRepository bd;
+
     public BDPreguntas recuperarBDPreguntas(Context c, int id)
     {
         bd = new BDPreguntasRepository(c);
