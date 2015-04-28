@@ -35,6 +35,11 @@ public class FachadaBDPreguntas {
         bd.create((new BDPreguntas(nombre,false)));
     }
 
+    public void setDatos(Carrera carrera, Universidad universidad, Asignatura asignatura){
+
+
+    }
+
     //Devuelve las asignaturas de una carrera en una universidad
     public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas){
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
