@@ -10,9 +10,6 @@ import tk.theunigame.unigame.app.logica_juego.juego.Juego;
  */
 public class ComodinCambiarPregunta extends Comodin {
 
-    private final static String nombre = "Comodín del público";
-
-
     private static ComodinCambiarPregunta ourInstance = new ComodinCambiarPregunta();
 
     public static ComodinCambiarPregunta getInstance() {
@@ -21,6 +18,7 @@ public class ComodinCambiarPregunta extends Comodin {
 
     private ComodinCambiarPregunta() {
         super();
+        nombre = "Ha usado el comodín del público";
     }
 
 

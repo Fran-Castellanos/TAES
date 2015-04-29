@@ -163,4 +163,14 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     public void onJuegoHaAcabado(int acertadas, int falladas, int comodinesUsados) {
         //TODO
     }
+
+    @Override
+    public void onPreguntaHaCambiado(Pregunta pregunta) {
+        //TODO
+    }
+
+    @Override
+    public void onComodinUsado(Pregunta p, String mensaje) {
+        //TODO
+    }
 }

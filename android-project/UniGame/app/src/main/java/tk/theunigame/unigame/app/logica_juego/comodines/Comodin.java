@@ -11,6 +11,7 @@ public abstract class Comodin {
 
     protected int cantidad;
     protected Pregunta p;
+    protected String nombre;
 
 
     public Comodin() {
@@ -20,6 +21,11 @@ public abstract class Comodin {
 
     public abstract Pregunta usarComodin() throws Exception;
 
+
+    public String getNombre()
+    {
+        return nombre;
+    }
 
 
     public void setPregunta(Pregunta pregunta)
@@ -32,6 +38,8 @@ public abstract class Comodin {
         return cantidad>0;
 
     }
+
+
 
 
     protected void consumirComodin()

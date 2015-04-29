@@ -17,17 +17,16 @@ import tk.theunigame.unigame.app.logica_juego.juego.Juego;
  */
 public class Comodin50 extends Comodin {
 
-
-    private final static String nombre = "Comodín del 50%";
-
     private static Comodin50 ourInstance = new Comodin50();
 
     public static Comodin50 getInstance() {
         return ourInstance;
     }
 
+
     private Comodin50() {
         super();
+        nombre = "Ha usado el comodín del 50%";
     }
 
 
@@ -78,6 +77,10 @@ public class Comodin50 extends Comodin {
         return result;
     }
 
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
 
 
     private boolean esCorrecta(Collection<Respuesta> respuestas, int pos) {

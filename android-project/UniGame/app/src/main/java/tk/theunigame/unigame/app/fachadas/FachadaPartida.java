@@ -17,7 +17,7 @@ public class FachadaPartida {
      * Constructor por defecto de la fachadaPartida
      */
     public FachadaPartida() {
-
+        inicializarPartida();
     }
 
     /**
@@ -50,24 +50,22 @@ public class FachadaPartida {
      * @param comodin Comodin que vamos a usar
      * @return
      */
-    public Pregunta usarComodin(Comodin comodin) throws Exception {
+    public void usarComodin(Comodin comodin) throws Exception {
         Juego juego = Juego.getInstance();
         juego.reiniciarCronometro();
         IModoJuego modo = juego.getModoJuego();
-        return modo.usarComodin(comodin);
+        modo.usarComodin(comodin);
     }
 
 
     /**
      * Devuelve la siguiente pregunta de la partida.
-     *
-     * @return Siguiente pregunta
      */
-    public Pregunta siguientePregunta() {
+    public void siguientePregunta() {
 
         Juego juego = Juego.getInstance();
         juego.reiniciarCronometro();
-        return juego.siguientePregunta();
+        juego.siguientePregunta();
     }
 
 
