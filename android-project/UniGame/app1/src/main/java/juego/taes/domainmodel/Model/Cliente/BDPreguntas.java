@@ -81,6 +81,14 @@ public class BDPreguntas {
         this.asignatura = asignatura;
     }
 
+    public BDPreguntas(String nombre, boolean enServidor, Universidad universidad, Asignatura asignatura,ForeignCollection<Pregunta> preguntas) {
+        this.nombre = nombre;
+        this.enServidor = enServidor;
+        this.universidad = universidad;
+        this.asignatura = asignatura;
+        this.preguntas = preguntas;
+    }
+
     public int getId() {
         return id;
     }
