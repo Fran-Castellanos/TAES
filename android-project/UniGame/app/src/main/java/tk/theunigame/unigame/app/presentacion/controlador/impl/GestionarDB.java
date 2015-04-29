@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -16,8 +17,7 @@ import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
-import tk.theunigame.unigame.app.presentacion.util.Comunicador;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaGestionarPreguntas;
 
 /**
  * Created by John on 09/04/2015.
@@ -34,12 +34,12 @@ public class GestionarDB extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestionar_bd);
 
+        //Instanciamos las fachadas
         fachadaBDPreguntas= new FachadaBDPreguntas();
         comunicador = new FachadaComunicador();
 
+        //Instanciamos elementos db
         btn_crear_db = (Button) findViewById(R.id.btn_crear_db);
-
-
         btn_crear_db.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,12 +55,11 @@ public class GestionarDB extends Activity {
             }
         });
 
-
-
         //Creamos el adaptador para el ListView
         List<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
         //Creamos el adaptador para el ListView
-        AdaptadorListaBasesDatos adapter= new AdaptadorListaBasesDatos(this, bdpreguntasguardadas);
+        BaseAdapter adapter= new AdaptadorListaGestionarPreguntas(this, bdpreguntasguardadas);
+
         lv=(ListView) findViewById(R.id.lv_usar_db_preguntas);
         lv.setAdapter(adapter);
 

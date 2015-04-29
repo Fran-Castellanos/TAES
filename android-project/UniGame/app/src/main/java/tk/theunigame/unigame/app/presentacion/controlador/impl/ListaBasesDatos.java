@@ -1,10 +1,13 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +31,7 @@ public class ListaBasesDatos extends Activity {
 
     private ListView lv;
     private TextView txt;
+    private Button btn;
 
     private FachadaComunicador fachadaComunicador;
     private FachadaBDPreguntas fachadaBasesDatos;
@@ -36,6 +40,8 @@ public class ListaBasesDatos extends Activity {
     private Carrera carrera;
     private ArrayList<Asignatura> asignaturas;
 
+    private Boolean[] posicionAsig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,8 @@ public class ListaBasesDatos extends Activity {
 
         //Instanciamos elementos de la interfaz
         txt= (TextView) findViewById(R.id.txt_title2);
+        lv=(ListView) findViewById(R.id.lv_bases_datos);
+        btn = (Button) findViewById(R.id.btn_confirmar);
 
         //Instanciamos las fachadas
         fachadaComunicador = new FachadaComunicador();
@@ -55,13 +63,18 @@ public class ListaBasesDatos extends Activity {
         txt.setText(asignaturas.size() + " Asignaturas seleccionadas");
 
         //Creamos el adaptador para el ListView
-        //Deberá realizarse un adaptador propio en caso de recibir objetos y no lista de nombres
         ArrayList<BDPreguntas> bdPreguntas= fachadaBasesDatos.obtenerBasesDatos(this, universidad, carrera, asignaturas);//Recibimos la lista de preguntas
         BaseAdapter adapter= new AdaptadorListaBasesDatos(this, bdPreguntas);
-        lv=(ListView) findViewById(R.id.lv_bases_datos);
         lv.setAdapter(adapter);
 
-        //Este listenter será cambiado por el evento a un botón
+        //Instanciamos Listeners
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaBasesDatos.this, JuegoIndividual.class);
+                startActivity(intent);
+            }
+        });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,6 +84,22 @@ public class ListaBasesDatos extends Activity {
                 //startActivity(intent);
             }
         });
+
+        //Iniciamos los elementos del Array de los checkbox
+        posicionAsig = new Boolean[adapter.getCount()];
+        for(int i = 0 ; i<posicionAsig.length; i++){
+            posicionAsig[i]=false;
+        }
+    }
+
+    public void onCheckBoxClicked(View view){
+        CheckBox chkBox = (CheckBox) view;
+
+        //Recupera el objeto vinculado al checkbox para introducirlo en el arraylist
+        if(chkBox.isChecked())
+            posicionAsig[(Integer)chkBox.getTag()]=true;
+        else
+            posicionAsig[(Integer)chkBox.getTag()]=false;
     }
 
 }
