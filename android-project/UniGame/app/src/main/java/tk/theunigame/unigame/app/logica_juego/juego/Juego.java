@@ -47,7 +47,7 @@ public class Juego implements OnTiempoListener {
 
 
     private Juego() {
-       init();
+        init();
 
     }
 
@@ -130,14 +130,21 @@ public class Juego implements OnTiempoListener {
 
     }
 
+
+    public Pregunta preguntaComodinPasar()
+    {
+        return preguntas.get(++turno);
+
+    }
+
     public void siguientePregunta() {
 
         if (++turno >= numPreguntas) {
             if (listener != null)
                 listener.onJuegoHaAcabado(estadisticas.getAcertadas(), estadisticas.getFalladas(), estadisticas.getComodinesUsados());
         }
-            if(listener!=null)
-                listener.onPreguntaHaCambiado(preguntas.get(turno));
+        if(listener!=null)
+            listener.onPreguntaHaCambiado(preguntas.get(turno));
 
     }
 
