@@ -1,16 +1,14 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
-import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
-import tk.theunigame.unigame.app.presentacion.util.DialogLogin;
-import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
-import tk.theunigame.unigame.util.SystemUiHider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+
+import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
+import tk.theunigame.unigame.util.SystemUiHider;
 
 
 /**
@@ -33,6 +31,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        comunicador = new FachadaComunicador();
 
         //Instanciamos los listener
         btn_individual_mode=(Button)findViewById(R.id.individual_mode);

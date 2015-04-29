@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.List;
+
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
+import juego.taes.domainmodel.Model.Cliente.Respuesta;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
@@ -28,7 +31,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener, IActivityListaDatos {
+public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener {
 
     //OnTiempoListener
     private TextView txt_a, txt_b, txt_c, txt_d;
@@ -166,6 +169,15 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     @Override
     public void onPreguntaHaCambiado(Pregunta pregunta) {
+        List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestas();
+        txt_a.setText(l.get(0).getContenido());
+        txt_b.setText(l.get(1).getContenido());
+        txt_c.setText(l.get(2).getContenido());
+        txt_d.setText(l.get(3).getContenido());
+    }
+
+    @Override
+    public void onPreguntaRespondida(boolean acertado) {
         //TODO
     }
 

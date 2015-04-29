@@ -1,4 +1,4 @@
-﻿package tk.theunigame.unigame.app.logica_juego.juego;
+package tk.theunigame.unigame.app.logica_juego.juego;
 
 import android.content.Context;
 
@@ -177,10 +177,3 @@ public class Juego implements OnTiempoListener {
         estadisticas.sumarComodinesUsados();
     }
 }
-
-
-
-
-
-
-
