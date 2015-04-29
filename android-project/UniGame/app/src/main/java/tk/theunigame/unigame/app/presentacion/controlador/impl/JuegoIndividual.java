@@ -3,7 +3,6 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +15,9 @@ import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
-import tk.theunigame.unigame.app.logica_juego.comodines.Comodin50;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
+import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
@@ -29,7 +28,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener{
+public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener, IActivityListaDatos {
 
     //OnTiempoListener
     private TextView txt_a, txt_b, txt_c, txt_d;

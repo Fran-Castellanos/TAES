@@ -4,18 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import java.util.ArrayList;
+
 import juego.taes.domainmodel.Model.Cliente.*;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
+import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 
 /**
  * Created by John on 08/04/2015.
  */
 
 
-public class CrearDB extends Activity{
+public class CrearDB extends Activity implements IActivityListaDatos {
 
     private FachadaComunicador comunicador;
     private Universidad universidad;

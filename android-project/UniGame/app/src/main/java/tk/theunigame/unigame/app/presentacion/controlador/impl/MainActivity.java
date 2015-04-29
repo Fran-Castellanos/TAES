@@ -1,12 +1,9 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
-import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.presentacion.util.DialogLogin;
 import tk.theunigame.unigame.util.SystemUiHider;
 
-import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -61,7 +58,7 @@ public class MainActivity extends FragmentActivity {
         btn_use_questions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, UsarDB.class);
+                Intent intent= new Intent(MainActivity.this, GestionarDB.class);
                 startActivity(intent);
             }
         });

@@ -9,20 +9,17 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
-import tk.theunigame.unigame.app.presentacion.util.Constantes;
 
 /**
  * Created by John on 09/04/2015.
  */
-public class UsarDB extends Activity {
+public class GestionarDB extends Activity {
 
     private ListView lv;
     private Button btn_crear_db;
@@ -39,7 +36,7 @@ public class UsarDB extends Activity {
         btn_crear_db.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UsarDB.this, CrearDB.class);
+                Intent intent = new Intent(GestionarDB.this, CrearDB.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +56,7 @@ public class UsarDB extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
                 Comunicador.setObject(parent.getAdapter().getItem(position));//Se envia un DBpreguntas
-                intent= new Intent(UsarDB.this, ListaPreguntas.class);
+                intent= new Intent(GestionarDB.this, ListaPreguntas.class);
 
                 startActivity(intent);
             }
