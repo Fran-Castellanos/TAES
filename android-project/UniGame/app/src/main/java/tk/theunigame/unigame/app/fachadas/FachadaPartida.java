@@ -76,6 +76,11 @@ public class FachadaPartida {
     }
 
 
+    public Pregunta getPreguntaActual()
+    {
+        Juego j = Juego.getInstance();
+        return j.getPreguntaActual();
+    }
     /**
      * Devuelve la siguiente pregunta de la partida.
      * @return Siguiente pregunta
