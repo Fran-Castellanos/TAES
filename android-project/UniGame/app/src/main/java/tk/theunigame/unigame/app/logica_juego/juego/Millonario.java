@@ -45,7 +45,7 @@ public class Millonario extends JuegoSimple {
 
 
     @Override
-    public Pregunta usarComodin(Comodin comodin) throws Exception {
+    public void usarComodin(Comodin comodin) throws Exception {
         Juego j = Juego.getInstance();
         j.sumarComodinUsado();
         if(listener != null)
@@ -53,7 +53,7 @@ public class Millonario extends JuegoSimple {
         else
             throw new Exception("No se ha podido enviar evento en usarComodin");
 
-        return comodin.usarComodin();
+        comodin.usarComodin();
     }
 
 

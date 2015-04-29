@@ -17,7 +17,7 @@ public interface IModoJuego {
 
     public void guardarResultado();
 
-    public Pregunta usarComodin(Comodin comodin) throws Exception;
+    public void usarComodin(Comodin comodin) throws Exception;
 
     public void initComodines() throws Exception;
 
