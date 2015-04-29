@@ -40,10 +40,6 @@ public class BolsaPregunta {
     public void SetBDPreguntas(BDPreguntas bd)
     {
         pBDPreguntas = bd;
-        pPreguntas = (ArrayList<Pregunta>) bd.getPreguntas();
-        preguntas_creadas.clear();
-        preguntas_eliminadas.clear();
-        preguntas_modificadas.clear();
     }
     public BDPreguntas getBDPreguntas()
     {

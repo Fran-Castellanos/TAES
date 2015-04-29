@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
+import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
@@ -42,16 +44,9 @@ public class GestionarDB extends Activity {
         });
 
         //Creamos el adaptador para el ListView
-        ArrayList<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
-        /*BDPreguntasRepository pregBDRE = new BDPreguntasRepository()
-
-        for(BDPreguntas x: bdpreguntasguardadas)
-        {
-
-        }*/
+        List<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
         //Creamos el adaptador para el ListView
         AdaptadorListaBasesDatos adapter= new AdaptadorListaBasesDatos(this, bdpreguntasguardadas);
-
         lv=(ListView) findViewById(R.id.lv_usar_db_preguntas);
         lv.setAdapter(adapter);
 
@@ -60,7 +55,8 @@ public class GestionarDB extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
-                Comunicador.setObject(parent.getAdapter().getItem(position));//Se envia un DBpreguntas
+                //Comunicador.setObject(parent.getAdapter().getItem(position));//Se envia un DBpreguntas
+                BolsaPregunta.getInstance().SetBDPreguntas((BDPreguntas)parent.getAdapter().getItem(position));
                 intent= new Intent(GestionarDB.this, ListaPreguntas.class);
 
                 startActivity(intent);

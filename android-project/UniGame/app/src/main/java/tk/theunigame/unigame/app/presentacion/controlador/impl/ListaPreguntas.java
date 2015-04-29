@@ -11,11 +11,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaPreguntas;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.Constantes;
 
@@ -26,19 +29,12 @@ public class ListaPreguntas extends Activity {
 
     private ListView lv;
     private TextView txt;
-    private BDPreguntas bd_preguntas;
 
-    final private String[] datos = new String[]{"Añadir Pregunta","Pregunta1", "Pregunta2", "Pregunta3", "Pregunta4", "Pregunta5", "Pregunta6", "Pregunta7", "Pregunta8", "Pregunta9", "Pregunta10", "Pregunta11", "Pregunta12", "Pregunta13", "Pregunta14", "Pregunta15", "Pregunta16", "Pregunta17", "Pregunta18", "Pregunta19", "Pregunta20", "Pregunta21", "Pregunta22", "Pregunta23", "Pregunta24", "Pregunta25"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_preguntas);
-
-        bd_preguntas = (BDPreguntas)Comunicador.getObject();
-
-        //Cambiar la BDPreguntas en la Bolsa de Preguntas
-        BolsaPregunta.getInstance().SetBDPreguntas(bd_preguntas);
 
         txt= (TextView)findViewById(R.id.txt_title1);
         txt.setText((String)Comunicador.getObject());
@@ -46,7 +42,7 @@ public class ListaPreguntas extends Activity {
 
         //Creamos el adaptador para el ListView donde pasaremos las preguntas que serán listadas
         //si es una base de datos local SQlite se recomienda AdaptadorCursorDB y que sea instanciada en OnCreate() ¿Recomendable usar true en newView?
-        BaseAdapter adapter= new AdaptadorListaDefault(this, datos);
+        AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, (List<Pregunta>) BolsaPregunta.getInstance().getBDPreguntas().getPreguntas());
         lv.setAdapter(adapter);
 
         //Evento para las pulsaciones en los items de la lista

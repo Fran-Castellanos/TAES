@@ -61,10 +61,10 @@ public class FachadaBDPreguntas {
      * @param context
      * @return Devuelve la lista de BD registradas
      */
-    public ArrayList<BDPreguntas> obtenerBasesTodasDatos(Context context)
+    public List<BDPreguntas> obtenerBasesTodasDatos(Context context)
     {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
-        return (ArrayList<BDPreguntas>) repository.getAll();
+        return repository.getAll();
     }
 
     /**
