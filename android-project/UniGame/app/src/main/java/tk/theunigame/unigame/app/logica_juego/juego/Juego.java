@@ -124,7 +124,7 @@ public class Juego implements OnTiempoListener {
         else
             estadisticas.sumarFalladas();
         if (listener!=null)
-            listener.onPreguntaRespondida(result);
+            listener.onPreguntaRespondida(i);
 
     }
 
