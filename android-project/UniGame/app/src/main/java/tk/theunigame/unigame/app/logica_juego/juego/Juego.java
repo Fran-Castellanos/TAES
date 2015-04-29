@@ -57,7 +57,6 @@ public class Juego implements OnTiempoListener {
             throw new Exception("El tiempo del cronómetro es negativo");
     }
 
-
     public void pararCronometro() {
         cronometro.Parar();
     }
@@ -74,7 +73,6 @@ public class Juego implements OnTiempoListener {
     public void initComodines() throws Exception {
         modojuego.initComodines();
     }
-
 
     public int getNumPreguntas() {
         return numPreguntas;
@@ -153,7 +151,6 @@ public class Juego implements OnTiempoListener {
     public void onTiempoHaCambiado(TemporizadorTimerTask object) {
         listener.onTiempoHaCambiado(cronometro.getTiempo());
     }
-
 
     @Override
     public void onParar(TemporizadorTimerTask object) {

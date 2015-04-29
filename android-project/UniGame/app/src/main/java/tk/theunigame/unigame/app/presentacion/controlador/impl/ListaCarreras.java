@@ -56,7 +56,8 @@ public class ListaCarreras extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                fachadaComunicador.ComunicarUniversidadCarrera(universidad, (Carrera)parent.getAdapter().getItem(position));
+                Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
+                fachadaComunicador.ComunicarUniversidadCarrera(universidad, (Carrera)parent.getAdapter().getItem(position), destino);
                 Intent intent= new Intent(ListaCarreras.this, ListaAsignaturas.class);
                 startActivity(intent);
             }

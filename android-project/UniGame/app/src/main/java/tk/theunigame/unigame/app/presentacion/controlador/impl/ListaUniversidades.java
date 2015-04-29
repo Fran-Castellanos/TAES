@@ -44,7 +44,8 @@ public class ListaUniversidades extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 FachadaComunicador fachadaComunicador = new FachadaComunicador();
-                fachadaComunicador.ComunicarUniversidad((Universidad)parent.getAdapter().getItem(position));
+                Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
+                fachadaComunicador.ComunicarUniversidad((Universidad)parent.getAdapter().getItem(position), destino);
                 Intent intent= new Intent(ListaUniversidades.this, ListaCarreras.class);
                 startActivity(intent);
             }

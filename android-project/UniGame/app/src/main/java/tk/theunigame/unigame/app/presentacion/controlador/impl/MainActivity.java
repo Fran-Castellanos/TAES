@@ -1,7 +1,9 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.presentacion.util.DialogLogin;
+import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 import tk.theunigame.unigame.util.SystemUiHider;
 
 import android.content.Intent;
@@ -23,26 +25,28 @@ public class MainActivity extends FragmentActivity {
     private Button btn_tournament_mode;
     private Button btn_download_questions;
     private Button btn_use_questions;
-    private Button btn_loggin;
+
+    private FachadaComunicador comunicador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_loggin = (Button) findViewById(R.id.btn_login);
-        btn_loggin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                android.support.v4.app.DialogFragment login = new DialogLogin();
-                login.show(getSupportFragmentManager(), "LoginDialog");
-            }
-        });
+
+        //Instanciamos los listener
         btn_individual_mode=(Button)findViewById(R.id.individual_mode);
         btn_individual_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Class<?> destino = null;
+                try {
+                    destino = Class.forName("JuegoIndividual");
+                } catch (ClassNotFoundException e) {
+                    new RuntimeException();
+                }
                 Intent intent= new Intent(MainActivity.this, ListaUniversidades.class);
+                comunicador.ComunicarDestino(destino);
                 startActivity(intent);
             }
         });

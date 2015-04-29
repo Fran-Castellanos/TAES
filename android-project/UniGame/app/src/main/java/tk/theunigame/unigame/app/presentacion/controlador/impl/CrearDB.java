@@ -16,7 +16,7 @@ import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
  */
 
 
-public class CrearDB extends Activity implements IActivityListaDatos {
+public class CrearDB extends Activity{
 
     private FachadaComunicador comunicador;
     private Universidad universidad;
@@ -37,7 +37,7 @@ public class CrearDB extends Activity implements IActivityListaDatos {
         universidad = comunicador.RecibirUniversidadPosicion0();
         carrera = comunicador.RecibirCarreraPosicion1();
         asignatura = comunicador.RecibirAsignaturaPosicion2();
-        comunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura);
+        //comunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura,comunicador.RecibirDestinoPosicionFinal());
         fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad);
     }
 }

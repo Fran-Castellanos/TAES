@@ -79,9 +79,10 @@ public class ListaAsignaturas extends Activity {
                     }
 
                     if(asignaturas.size() > 0) {
+                        Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
                         //Enviamos las asignaturas a traves de la fachada
                         fachadaComunicador.ComunicarUniversidadCarreraAsignaturas(universidad,
-                                carrera, asignaturas);
+                                carrera, asignaturas, destino);
 
                         //Lanzamos la actividad
                         Intent intent = new Intent(ListaAsignaturas.this, ListaBasesDatos.class);

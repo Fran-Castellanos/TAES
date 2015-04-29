@@ -68,7 +68,7 @@ public class AdaptadorListaAsignaturas extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(context);
             holder= new ViewHolder();
             if(position != 0) {
-                item = inflater.inflate(R.layout.list_item_asignaturas, null);
+                item = inflater.inflate(R.layout.list_item_checkbox, null);
 
             }else {
                 item = inflater.inflate(R.layout.list_item_default, null);
