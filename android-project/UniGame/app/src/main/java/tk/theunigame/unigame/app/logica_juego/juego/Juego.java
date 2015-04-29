@@ -32,7 +32,7 @@ public class Juego implements OnTiempoListener {
 
 
     private Juego() {
-        turno = 0;
+        turno = -1;
         tiempo_pregunta = 30;
         numPreguntas = 20;
         cronometro = new TemporizadorTimerTask();
@@ -104,7 +104,7 @@ public class Juego implements OnTiempoListener {
         modojuego = JuegoFactory.getJuego(modo);
     }
 
-    public boolean comprobarRespuesta(int res) {
+    public void comprobarRespuesta(int resId) {
         Pregunta p = preguntas.get(turno);
         boolean result = false;
         List<Respuesta> respuestasList = new ArrayList<Respuesta>();
@@ -112,8 +112,8 @@ public class Juego implements OnTiempoListener {
         Collection<Respuesta> respuestasCol = p.getRespuestas();
         int i = 0;
         for (Respuesta r : respuestasCol) {
-            if (i == turno) {
-                result = r.getId() == res;
+            if (r.getEsCorrecta()) {
+                result = r.getId() == resId;
                 break;
             }
             ++i;
@@ -122,18 +122,20 @@ public class Juego implements OnTiempoListener {
             estadisticas.sumarAcertadas();
         else
             estadisticas.sumarFalladas();
-        return result;
+        if (listener!=null)
+            listener.onPreguntaRespondida(result);
 
     }
 
-    public Pregunta siguientePregunta() {
+    public void siguientePregunta() {
 
         if (++turno >= numPreguntas) {
             if (listener != null)
                 listener.onJuegoHaAcabado(estadisticas.getAcertadas(), estadisticas.getFalladas(), estadisticas.getComodinesUsados());
         }
+            if(listener!=null)
+                listener.onPreguntaHaCambiado(preguntas.get(turno));
 
-        return preguntas.get(turno);
     }
 
     public Pregunta getPreguntaActual() {
