@@ -3,7 +3,7 @@
 
     <string name="app_name">UniGame</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_usar_db">Usar DB Preguntas</string>
+    <string name="title_activity_usar_db">Gestionar Preguntas</string>
     <string name="title_activity_crear_db">Crear DB</string>
     <string name="title_activity_bajar_db">Bajar DB</string>
     <string name="title_activity_modo_individual">Modo Individual</string>
@@ -21,7 +21,7 @@
     <string name="individual_mode">Modo Individual</string>
     <string name="tournament_mode">Modo Torneo</string>
     <string name="download_questions">Bajar Preguntas</string>
-    <string name="use_questions">Usar Preguntas</string>
+    <string name="use_questions">Gestionar Preguntas</string>
     <string name="etxt_university">Universidad</string>
     <string name="etxt_carrer">Carrera</string>
     <string name="etxt_subject">Asignatura</string>

@@ -9,12 +9,20 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import juego.taes.domainmodel.Model.Cliente.Asignatura;
+import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
+import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
@@ -34,16 +42,23 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener {
 
     //OnTiempoListener
-    private TextView txt_a, txt_b, txt_c, txt_d;
+    private TextView txt_a, txt_b, txt_c, txt_d, txt_question;
     private TextView txt_tiempo;
     private Button btn_a, btn_b, btn_c, btn_d;
     private ImageButton cmd_1, cmd_2, cmd_3;
     private int idBD;
     //Fachadas a emplear
-    private FachadaBDPreguntas bolsaPreguntas;
-    private FachadaRespuesta respuestaFachada;
-    private FachadaPregunta preguntaFachada;
     private FachadaPartida fachadaPartida;
+    private FachadaPregunta fachadaPregunta;
+    private FachadaComunicador comunicador;
+
+    private Timer timer;
+    private TimerTask timerTask;
+
+    private Universidad universidad;
+    private ArrayList<Asignatura> asignaturas;
+    private ArrayList<BDPreguntas> bdPreguntases;
+    private Carrera carrera;
 
     private Pregunta pregunta;
 
@@ -56,12 +71,15 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
         //Instanaciamos fachadas
         fachadaPartida = new FachadaPartida();
+        fachadaPregunta = new FachadaPregunta();
+        comunicador = new FachadaComunicador();
 
         //Instanciamos los TextView
         txt_a = (TextView)findViewById(R.id.txt_answer_a);
         txt_b = (TextView)findViewById(R.id.txt_answer_b);
         txt_c = (TextView)findViewById(R.id.txt_answer_c);
         txt_d = (TextView)findViewById(R.id.txt_answer_d);
+        txt_question = (TextView) findViewById(R.id.txt_question);
         txt_tiempo = (TextView)findViewById(R.id.txt_tiempo);
 
         //Instanciamos los Botones
@@ -112,12 +130,17 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
             }
         });
 
+        //Cargamos los datos
+
+        //bdPreguntases = comunicador.Re
+        fachadaPregunta.cargarPreguntas(this, bdPreguntases);
         fachadaPartida.inicializarPartida();
     }
 
     //Evento a realizar cuando se seleccione una respuesta de los cuatros botones
     @Override
     public void onClick(View v) {
+        //TODO COntrolar bien los colores
         if(id_answer_selected != null && (v.getId() != id_answer_selected.getButtonId())){
             View view = findViewById(id_answer_selected.getButtonId());
             view.setBackgroundResource(R.drawable.etxt_edit_answer);
@@ -125,6 +148,10 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
         id_answer_selected = EIDANSWER.getByButtonId(v.getId());
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
+
+        fachadaPartida.comprobarPregunta(id_answer_selected.getId());
+        //2 segundos espera
+        fachadaPartida.siguientePregunta();
     }
 
     //Evento a realizar para confirmar los cambios
@@ -145,16 +172,18 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     //Acción a realizar cuando se acabe el tiempo
     @Override
     public void onTiempoFinalizado(String mensaje) {
+        //TODO Comprobar si la ejecución de AlertDialog comparte hilo
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(mensaje).
-                setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                setTitle("Tiempo Agotado").setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
         builder.create().show();
-        //Cambiar colores de botones en las que sean correctas
+
+        fachadaPartida.siguientePregunta();
     }
 
     @Override
@@ -169,6 +198,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     @Override
     public void onPreguntaHaCambiado(Pregunta pregunta) {
+        //this.pregunta = pregunta;
+        txt_question.setText(pregunta.getContenido());
         List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestas();
         txt_a.setText(l.get(0).getContenido());
         txt_b.setText(l.get(1).getContenido());

@@ -11,7 +11,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
-import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
@@ -29,7 +28,7 @@ public class GestionarDB extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usar_bd);
+        setContentView(R.layout.activity_gestionar_bd);
 
         fachadaBDPreguntas= new FachadaBDPreguntas();
 
