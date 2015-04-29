@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.logica_juego.juego;
+﻿package tk.theunigame.unigame.app.logica_juego.juego;
 
 import android.content.Context;
 
@@ -19,7 +19,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
  * Created by Paco on 23/04/2015.
  */
 public class Juego implements OnTiempoListener {
-    private static Juego ourInstance = null;
+    private static Juego ourInstance = new Juego();
     TemporizadorTimerTask cronometro;
     private List<Pregunta> preguntas;
     private int turno;
@@ -31,7 +31,9 @@ public class Juego implements OnTiempoListener {
     private IModoJuego modojuego;
 
 
-    private Juego() {
+
+    public void init()
+    {
         turno = -1;
         tiempo_pregunta = 30;
         numPreguntas = 20;
@@ -40,13 +42,20 @@ public class Juego implements OnTiempoListener {
         estadisticas = new Estadisticas();
         listenerTiempo = null;
         listener = null;
+        preguntas = new ArrayList<Pregunta>();
+    }
 
+
+    private Juego() {
+       init();
 
     }
 
     public static Juego getInstance() {
         return ourInstance;
     }
+
+
 
     public void setTiempoMax(int tiempo) throws Exception {
 
@@ -93,12 +102,6 @@ public class Juego implements OnTiempoListener {
         preguntas = pr;
     }
 
-    public void init() {
-        preguntas = new ArrayList<Pregunta>();
-        tiempo_pregunta = 30;
-        numPreguntas = 20;
-        turno = 0;
-    }
 
     public void setModojuego(ModoJuego modo) {
         modojuego = JuegoFactory.getJuego(modo);

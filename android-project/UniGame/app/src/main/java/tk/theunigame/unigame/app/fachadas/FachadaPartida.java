@@ -17,7 +17,7 @@ public class FachadaPartida {
      * Constructor por defecto de la fachadaPartida
      */
     public FachadaPartida() {
-
+        inicializarPartida();
     }
 
     /**
@@ -58,11 +58,6 @@ public class FachadaPartida {
     }
 
 
-    public Pregunta getPreguntaActual()
-    {
-        Juego j = Juego.getInstance();
-        return j.getPreguntaActual();
-    }
     /**
      * Devuelve la siguiente pregunta de la partida.
      *
