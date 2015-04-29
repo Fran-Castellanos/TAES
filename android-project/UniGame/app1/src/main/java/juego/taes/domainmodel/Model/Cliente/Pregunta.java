@@ -33,6 +33,7 @@ public class Pregunta {
 
     //Campos relacionados
     public static final String BD_CAMPO="bdPreguntas";
+    public static final String RESPUESTAS_CAMPO="respuestas";
 
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)

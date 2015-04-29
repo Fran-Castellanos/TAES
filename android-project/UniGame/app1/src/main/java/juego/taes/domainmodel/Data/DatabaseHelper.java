@@ -471,38 +471,48 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         BDPreguntas preguntas1 = new BDPreguntas("Primer parcial",false,universidad1,asignatura1);
         preguntas1.setUsuario(user4);
-        getBDPreguntasDao().assignEmptyForeignCollection(preguntas1, "preguntas");
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas1, BDPreguntas.PREGUNTAS_CAMPO);
         getBDPreguntasDao().create(preguntas1);
 
-        BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial",false,universidad1,asignatura3);
+        /*BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial",false,universidad1,asignatura3);
         preguntas2.setUsuario(user4);
-        getBDPreguntasDao().assignEmptyForeignCollection(preguntas2, "preguntas");
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas2, BDPreguntas.PREGUNTAS_CAMPO);
         getBDPreguntasDao().create(preguntas2);
 
         BDPreguntas preguntas3 = new BDPreguntas("Examen final",false,universidad1,asignatura2);
         preguntas3.setUsuario(user4);
-        getBDPreguntasDao().assignEmptyForeignCollection(preguntas3, "preguntas");
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas3, BDPreguntas.PREGUNTAS_CAMPO);
         getBDPreguntasDao().create(preguntas3);
 
         BDPreguntas preguntas4 = new BDPreguntas("Primer parcial",false,universidad7,asignatura2);
         preguntas4.setUsuario(user1);
-        getBDPreguntasDao().assignEmptyForeignCollection(preguntas4, "preguntas");
-        getBDPreguntasDao().create(preguntas4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas4, BDPreguntas.PREGUNTAS_CAMPO);
+        getBDPreguntasDao().create(preguntas4);*/
 
         Pregunta pregunta1 = new Pregunta("¿Que es un arbol binario?",false);
         pregunta1.setBdPreguntas(preguntas1);
+        getPreguntaDao().assignEmptyForeignCollection(pregunta1, Pregunta.RESPUESTAS_CAMPO);
+        getPreguntaDao().create(pregunta1);
+
+
         Respuesta respuesta1 = new Respuesta("a) un arbol compuesto por 0s y 1s",false,false);
         respuesta1.setPregunta(pregunta1);
+        getRespuestaDao().create(respuesta1);
         Respuesta respuesta2 = new Respuesta("b) una estructura jerarquica compuesta por una raiz y como mucho dos hijos",true,false);
         respuesta2.setPregunta(pregunta1);
+        getRespuestaDao().create(respuesta2);
         Respuesta respuesta3 = new Respuesta("c) un arbol representado en formato digital",false,false);
         respuesta3.setPregunta(pregunta1);
+        getRespuestaDao().create(respuesta3);
         Respuesta respuesta4 = new Respuesta("d) una estructura de datos simple",false,false);
         respuesta4.setPregunta(pregunta1);
+        getRespuestaDao().create(respuesta4);
 
 
 
-        Pregunta pregunta2 = new Pregunta("¿que es un ABB?",false);
+
+
+        /*Pregunta pregunta2 = new Pregunta("¿que es un ABB?",false);
         pregunta2.setBdPreguntas(preguntas1);
         Respuesta respuesta5 = new Respuesta("a) es una estructura de datos abstracta ordenada de izquierda a derecha",true,false);
         respuesta5.setPregunta(pregunta2);
@@ -572,7 +582,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Respuesta respuesta27 = new Respuesta("c) es copir valores por referencia",false,false);
         respuesta27.setPregunta(pregunta7);
         Respuesta respuesta28 = new Respuesta("d) sirve para destruir objetos en lenguajes de alto nivel",false,false);
-        respuesta28.setPregunta(pregunta7);
+        respuesta28.setPregunta(pregunta7);*/
 
 
 

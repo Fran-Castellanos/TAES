@@ -69,9 +69,8 @@ public class AdaptadorListaBasesDatos extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        if(position != 0) {
-            holder.txt.setText(basesDatos.get(position).getNombre());
-        }
+        holder.txt.setText(basesDatos.get(position).getNombre());
+
 
         return item;
     }

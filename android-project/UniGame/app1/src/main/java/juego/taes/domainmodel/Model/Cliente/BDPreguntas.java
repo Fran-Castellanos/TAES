@@ -38,6 +38,9 @@ public class BDPreguntas {
     public static final String USUARIO_CAMPO="usuario";
     public static final String UNIVERSIDAD_CAMPO="universidad";
 
+    //Campos relacionados
+    public static final String PREGUNTAS_CAMPO="preguntas";
+
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, generatedId = true, useGetSet = true)
     private int id;

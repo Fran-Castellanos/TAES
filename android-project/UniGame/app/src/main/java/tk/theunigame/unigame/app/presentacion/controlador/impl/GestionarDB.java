@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
+import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
@@ -43,7 +44,12 @@ public class GestionarDB extends Activity {
 
         //Creamos el adaptador para el ListView
         ArrayList<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
+        /*BDPreguntasRepository pregBDRE = new BDPreguntasRepository()
 
+        for(BDPreguntas x: bdpreguntasguardadas)
+        {
+
+        }*/
         //Creamos el adaptador para el ListView
         AdaptadorListaBasesDatos adapter= new AdaptadorListaBasesDatos(this, bdpreguntasguardadas);
 
