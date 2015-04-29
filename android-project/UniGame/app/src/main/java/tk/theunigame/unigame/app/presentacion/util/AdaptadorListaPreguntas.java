@@ -7,31 +7,27 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
-import juego.taes.domainmodel.Model.Cliente.Universidad;
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
 
 /**
- * Created by John on 08/04/2015.
- *
- * Este clase será modoficada en función de los valores que se quieran mostrar
- * a través de la consulta a la base de datos remota
+ * Created by Pedro on 29/04/2015.
  */
-public class AdaptadorListaBasesDatos extends BaseAdapter {
+public class AdaptadorListaPreguntas extends BaseAdapter {
     private Context context;
-    private List<BDPreguntas> basesDatos;
+    private List<Pregunta> preguntas;
 
     @Override
     public int getCount() {
-        return basesDatos.size();
+        return preguntas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return basesDatos.get(position);
+        return preguntas.get(position);
     }
 
     @Override
@@ -44,9 +40,9 @@ public class AdaptadorListaBasesDatos extends BaseAdapter {
         TextView txt;
     }
 
-    public AdaptadorListaBasesDatos(Context context, List<BDPreguntas> datos){
+    public AdaptadorListaPreguntas(Context context, List<Pregunta> datos){
         this.context=context;
-        basesDatos=datos;
+        preguntas=datos;
 
     }
 
@@ -70,7 +66,7 @@ public class AdaptadorListaBasesDatos extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txt.setText(basesDatos.get(position).getNombre());
+        holder.txt.setText(preguntas.get(position).getId());
 
 
         return item;

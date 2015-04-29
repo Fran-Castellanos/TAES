@@ -105,7 +105,7 @@ public class BDPreguntas {
     }
 
     public void setNombre(String nombre) {
-        nombre = nombre;
+        this.nombre = nombre;
     }
 
     public boolean getEnServidor() {
