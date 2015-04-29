@@ -14,6 +14,7 @@ import java.util.List;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
@@ -26,6 +27,7 @@ public class GestionarDB extends Activity {
     private ListView lv;
     private Button btn_crear_db;
     private FachadaBDPreguntas fachadaBDPreguntas;
+    private FachadaComunicador comunicador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +35,27 @@ public class GestionarDB extends Activity {
         setContentView(R.layout.activity_gestionar_bd);
 
         fachadaBDPreguntas= new FachadaBDPreguntas();
+        comunicador = new FachadaComunicador();
 
         btn_crear_db = (Button) findViewById(R.id.btn_crear_db);
+
+
         btn_crear_db.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GestionarDB.this, CrearDB.class);
+                Intent intent = new Intent(GestionarDB.this, ListaUniversidades.class);
+                Class<?> destino= null;
+                try {
+                    destino = Class.forName("GestionarDB");
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                comunicador.ComunicarDestino(destino);
                 startActivity(intent);
             }
         });
+
+
 
         //Creamos el adaptador para el ListView
         List<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
