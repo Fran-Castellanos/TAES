@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
-import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
@@ -26,9 +25,8 @@ import tk.theunigame.unigame.app.presentacion.util.Constantes;
 public class UsarDB extends Activity {
 
     private ListView lv;
+    private Button btn_crear_db;
     private FachadaBDPreguntas fachadaBDPreguntas;
-
-    //final private String[] datos = new String[]{"CrearDB", "Probando2", "Probando3", "Probando4", "Probando5", "Probando6", "Probando7", "Probando8", "Probando9"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +34,18 @@ public class UsarDB extends Activity {
         setContentView(R.layout.activity_usar_bd);
 
         fachadaBDPreguntas= new FachadaBDPreguntas();
-        Universidad universidad = new Universidad("Universidad de Alicante","UA");
-        Asignatura asignatura = new Asignatura("PED");
+
+        btn_crear_db = (Button) findViewById(R.id.btn_crear_db);
+        btn_crear_db.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UsarDB.this, CrearDB.class);
+                startActivity(intent);
+            }
+        });
+
         //Creamos el adaptador para el ListView
         ArrayList<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
-        bdpreguntasguardadas.add(new BDPreguntas("Examenes Finales",false,universidad,asignatura));
 
         //Creamos el adaptador para el ListView
         AdaptadorListaBasesDatos adapter= new AdaptadorListaBasesDatos(this, bdpreguntasguardadas);
@@ -52,15 +57,9 @@ public class UsarDB extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String opcion_db= ((String)parent.getAdapter().getItem(position));
-
                 Intent intent;
-                if(opcion_db.equals("CrearDB")){
-                    intent= new Intent(UsarDB.this, CrearDB.class);
-                }else{
-                    Comunicador.setObject(opcion_db);//Se envia un DBpreguntas
-                    intent= new Intent(UsarDB.this, ListaPreguntas.class);
-                }
+                Comunicador.setObject(parent.getAdapter().getItem(position));//Se envia un DBpreguntas
+                intent= new Intent(UsarDB.this, ListaPreguntas.class);
 
                 startActivity(intent);
             }

@@ -40,12 +40,13 @@ public class AdaptadorListaBasesDatos extends BaseAdapter {
 
     //Elemento utilizado para reutilización de instancias
     static class ViewHolder {
-        TextView txtView;
+        TextView txt;
     }
 
     public AdaptadorListaBasesDatos(Context context, ArrayList<BDPreguntas> datos){
         this.context=context;
         basesDatos=datos;
+
     }
 
     //Inflamos el elemento de la lista con los datos que queremos
@@ -59,7 +60,7 @@ public class AdaptadorListaBasesDatos extends BaseAdapter {
             item = inflater.inflate(R.layout.list_item_default, null);
 
             holder= new ViewHolder();
-            holder.txtView= (TextView)item.findViewById(R.id.txt_listitem_default);
+            holder.txt= (TextView)item.findViewById(R.id.txt_listitem_default);
 
             //Almacenamos el elemento en como un tag de la View
             item.setTag(holder);
@@ -68,7 +69,9 @@ public class AdaptadorListaBasesDatos extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txtView.setText(basesDatos.get(position).getNombre());
+        if(position != 0) {
+            holder.txt.setText(basesDatos.get(position).getNombre());
+        }
 
         return item;
     }

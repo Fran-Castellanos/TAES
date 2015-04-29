@@ -21,7 +21,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     //Daos utilizados
     private AsignaturaDao asignaturaDao = null;
@@ -466,11 +466,116 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         asignaturaCarrera.setAsignatura(asignatura4);
         asignaturaCarreraDao.create(asignaturaCarrera);
 
-
+//////////////////////////////////////////////////////////////////////////////////
         //Crear bases de preguntas
 
+        BDPreguntas preguntas1 = new BDPreguntas("Primer parcial",false,universidad1,asignatura1);
+        preguntas1.setUsuario(user4);
+        getBDPreguntasDao().create(preguntas1);
 
-        Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
+        BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial()",false,universidad1,asignatura3);
+        preguntas1.setUsuario(user4);
+        getBDPreguntasDao().create(preguntas2);
+
+        BDPreguntas preguntas3 = new BDPreguntas("Examen final",false,universidad1,asignatura2);
+        preguntas1.setUsuario(user4);
+        getBDPreguntasDao().create(preguntas3);
+
+
+        BDPreguntas preguntas4 = new BDPreguntas("Primer parcial",false,universidad7,asignatura2);
+        preguntas1.setUsuario(user1);
+        getBDPreguntasDao().create(preguntas4);
+
+
+        Pregunta pregunta1 = new Pregunta("¿Que es un arbol binario?",false);
+        pregunta1.setBdPreguntas(preguntas1);
+        Respuesta respuesta1 = new Respuesta("a) un arbol compuesto por 0s y 1s",false,false);
+        respuesta1.setPregunta(pregunta1);
+        Respuesta respuesta2 = new Respuesta("b) una estructura jerarquica compuesta por una raiz y como mucho dos hijos",true,false);
+        respuesta2.setPregunta(pregunta1);
+        Respuesta respuesta3 = new Respuesta("c) un arbol representado en formato digital",false,false);
+        respuesta3.setPregunta(pregunta1);
+        Respuesta respuesta4 = new Respuesta("d) una estructura de datos simple",false,false);
+        respuesta4.setPregunta(pregunta1);
+
+
+
+        Pregunta pregunta2 = new Pregunta("¿que es un ABB?",false);
+        pregunta2.setBdPreguntas(preguntas1);
+        Respuesta respuesta5 = new Respuesta("a) es una estructura de datos abstracta ordenada de izquierda a derecha",true,false);
+        respuesta5.setPregunta(pregunta2);
+        Respuesta respuesta6 = new Respuesta("b) esas siglas componen un concepto que no existe",false,false);
+        respuesta6.setPregunta(pregunta2);
+        Respuesta respuesta7 = new Respuesta("c) es una estructura de datos abstracta muy ineficiente",false,false);
+        respuesta7.setPregunta(pregunta2);
+        Respuesta respuesta8 = new Respuesta("d) es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel",false,false);
+        respuesta8.setPregunta(pregunta2);
+
+        Pregunta pregunta3 = new Pregunta("¿Que estructura de datos abstracta es mas eficiente para las inserciones?",false);
+        pregunta3.setBdPreguntas(preguntas1);
+        Respuesta respuesta9 = new Respuesta("a) un vector",false,false);
+        respuesta9.setPregunta(pregunta3);
+        Respuesta respuesta10 = new Respuesta("b) un arbol binario",false,false);
+        respuesta10.setPregunta(pregunta3);
+        Respuesta respuesta11 = new Respuesta("c) un lista enlazada simple",true,false);
+        respuesta11.setPregunta(pregunta3);
+        Respuesta respuesta12 = new Respuesta("d) cualquier estructur de datos",false,false);
+        respuesta12.setPregunta(pregunta3);
+
+
+        Pregunta pregunta4 = new Pregunta("¿Cual fue la principal aprtacion de Von Neuman a la computacion?",false);
+        pregunta4.setBdPreguntas(preguntas2);
+        Respuesta respuesta13 = new Respuesta("a) el programa almacenado en memoria",true,false);
+        respuesta13.setPregunta(pregunta4);
+        Respuesta respuesta14 = new Respuesta("b) memoria principal en los computadores",false,false);
+        respuesta14.setPregunta(pregunta4);
+        Respuesta respuesta15 = new Respuesta("c) computadores con mayor memoria secundaria",true,false);
+        respuesta15.setPregunta(pregunta4);
+        Respuesta respuesta16 = new Respuesta("d) paralelizacion de computo de procesos",false,false);
+        respuesta16.setPregunta(pregunta4);
+
+
+        Pregunta pregunta5 = new Pregunta("¿Cual es el principal problema de la recursion?",false);
+        pregunta5.setBdPreguntas(preguntas2);
+        Respuesta respuesta17 = new Respuesta("a) problemas largos compuestos por muchas instrucciones",false,false);
+        respuesta17.setPregunta(pregunta5);
+        Respuesta respuesta18 = new Respuesta("b) inverision grande en timepo para diseñar el algoritmo",false,false);
+        respuesta18.setPregunta(pregunta5);
+        Respuesta respuesta19 = new Respuesta("c) Muchas llamdas se quedan en espera",true,false);
+        respuesta19.setPregunta(pregunta5);
+        Respuesta respuesta20 = new Respuesta("d) No existe ningun inconveniente en la recursion",false,false);
+        respuesta20.setPregunta(pregunta5);
+
+
+
+
+        Pregunta pregunta6 = new Pregunta("¿Cual es el paradigma de programacion que mas se usa hoy en dia?",false);
+        pregunta6.setBdPreguntas(preguntas3);
+        Respuesta respuesta21 = new Respuesta("a) Programacion imperativa",false,false);
+        respuesta21.setPregunta(pregunta6);
+        Respuesta respuesta22 = new Respuesta("b) Programacion recursiva",false,false);
+        respuesta22.setPregunta(pregunta6);
+        Respuesta respuesta23 = new Respuesta("c) Programacion logica",false,false);
+        respuesta23.setPregunta(pregunta6);
+        Respuesta respuesta24 = new Respuesta("d) Programacion orientada a objetos",true,false);
+        respuesta24.setPregunta(pregunta6);
+
+
+        Pregunta pregunta7 = new Pregunta("¿Que significa el termino layering?",false);
+        pregunta7.setBdPreguntas(preguntas4);
+        Respuesta respuesta25 = new Respuesta("a) Herencia de atributos y metodos",true,false);
+        respuesta25.setPregunta(pregunta7);
+        Respuesta respuesta26 = new Respuesta("b) ese termino no existe en programacion",false,false);
+        respuesta26.setPregunta(pregunta7);
+        Respuesta respuesta27 = new Respuesta("c) es copir valores por referencia",false,false);
+        respuesta27.setPregunta(pregunta7);
+        Respuesta respuesta28 = new Respuesta("d) sirve para destruir objetos en lenguajes de alto nivel",false,false);
+        respuesta28.setPregunta(pregunta7);
+
+
+
+
+
     }
 
     /**
