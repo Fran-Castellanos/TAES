@@ -35,10 +35,10 @@ public class FachadaPartida {
      * @param respuestaId Respuesta del usuario.
      * @return True si la respuesta es correcta, false, si es incorrecta.
      */
-    public boolean comprobarPregunta(int respuestaId) {
+    public void comprobarPregunta(int respuestaId) {
         Juego j = Juego.getInstance();
         j.pararCronometro();
-        return j.comprobarRespuesta(respuestaId);
+        j.comprobarRespuesta(respuestaId);
 
 
     }
