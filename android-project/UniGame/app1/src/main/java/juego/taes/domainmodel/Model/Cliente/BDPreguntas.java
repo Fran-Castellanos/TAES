@@ -49,7 +49,7 @@ public class BDPreguntas {
     private boolean enServidor;
 
     @DatabaseField(columnName= IDSINCRONIZACION, unique = true, useGetSet = true)
-    private int idSincronizacion;
+    private Integer idSincronizacion;
 
     @DatabaseField(columnName= FECHASINCRONIZACION, useGetSet = true)
     private Date fechaSincronizacion;
@@ -113,11 +113,11 @@ public class BDPreguntas {
         this.enServidor = enServidor;
     }
 
-    public int getIdSincronizacion() {
+    public Integer getIdSincronizacion() {
         return idSincronizacion;
     }
 
-    public void setIdSincronizacion(int idSincronizacion) {
+    public void setIdSincronizacion(Integer idSincronizacion) {
         this.idSincronizacion = idSincronizacion;
     }
 

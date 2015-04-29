@@ -471,21 +471,23 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         BDPreguntas preguntas1 = new BDPreguntas("Primer parcial",false,universidad1,asignatura1);
         preguntas1.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas1, "preguntas");
         getBDPreguntasDao().create(preguntas1);
 
-        BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial()",false,universidad1,asignatura3);
-        preguntas1.setUsuario(user4);
+        BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial",false,universidad1,asignatura3);
+        preguntas2.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas2, "preguntas");
         getBDPreguntasDao().create(preguntas2);
 
         BDPreguntas preguntas3 = new BDPreguntas("Examen final",false,universidad1,asignatura2);
-        preguntas1.setUsuario(user4);
+        preguntas3.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas3, "preguntas");
         getBDPreguntasDao().create(preguntas3);
 
-
         BDPreguntas preguntas4 = new BDPreguntas("Primer parcial",false,universidad7,asignatura2);
-        preguntas1.setUsuario(user1);
+        preguntas4.setUsuario(user1);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntas4, "preguntas");
         getBDPreguntasDao().create(preguntas4);
-
 
         Pregunta pregunta1 = new Pregunta("¿Que es un arbol binario?",false);
         pregunta1.setBdPreguntas(preguntas1);
