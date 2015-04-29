@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -29,6 +30,7 @@ public class ListaPreguntas extends Activity {
 
     private ListView lv;
     private TextView txt;
+    private Button btn_crear_pregunta;
 
 
     @Override
@@ -36,13 +38,24 @@ public class ListaPreguntas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_preguntas);
 
+        //Evento al pulsar el botón crear
+        btn_crear_pregunta = (Button) findViewById(R.id.btn_crear_pregunta);
+        btn_crear_pregunta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaPreguntas.this, CrearPregunta.class);
+                startActivity(intent);
+            }
+        });
+
         txt= (TextView)findViewById(R.id.txt_title1);
         txt.setText((String)Comunicador.getObject());
-        lv=(ListView) findViewById(R.id.lv_preguntas);
 
+
+        lv=(ListView) findViewById(R.id.lv_preguntas);
         //Creamos el adaptador para el ListView donde pasaremos las preguntas que serán listadas
         //si es una base de datos local SQlite se recomienda AdaptadorCursorDB y que sea instanciada en OnCreate() ¿Recomendable usar true en newView?
-        AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, (List<Pregunta>) BolsaPregunta.getInstance().getBDPreguntas().getPreguntas());
+        AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, new ArrayList<Pregunta>(BolsaPregunta.getInstance().getBDPreguntas().getPreguntas()));
         lv.setAdapter(adapter);
 
         //Evento para las pulsaciones en los items de la lista
@@ -53,13 +66,7 @@ public class ListaPreguntas extends Activity {
                 Comunicador.setObject(opcion);
 
                 Intent intent;
-
-                //Creamos la pregunta
-                if(opcion.equals(getString(R.string.btn_add_question))){
-                    intent = new Intent(ListaPreguntas.this, CrearPregunta.class);
-                }else{//Modificamos la pregunta
-                    intent = new Intent(ListaPreguntas.this, CrearPregunta.class);
-                }
+                intent = new Intent(ListaPreguntas.this, EditarPregunta.class);
 
                 startActivity(intent);
             }

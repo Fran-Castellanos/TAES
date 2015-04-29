@@ -43,7 +43,6 @@ public class AdaptadorListaPreguntas extends BaseAdapter {
     public AdaptadorListaPreguntas(Context context, List<Pregunta> datos){
         this.context=context;
         preguntas=datos;
-
     }
 
     //Inflamos el elemento de la lista con los datos que queremos
@@ -66,7 +65,7 @@ public class AdaptadorListaPreguntas extends BaseAdapter {
             holder= (ViewHolder)item.getTag();
         }
 
-        holder.txt.setText(preguntas.get(position).getId());
+        holder.txt.setText(preguntas.get(position).getContenido());
 
 
         return item;

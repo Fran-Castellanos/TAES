@@ -28,6 +28,19 @@
                     android:onClick="Confirmar_Cambios"
                     android:id="@+id/confirmarbutton" />
 
+                <Button
+                    android:id="@+id/btn_crear_pregunta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/lv_default_dessign"
+                    android:gravity="center_horizontal"
+                    android:padding="5dip"
+                    android:paddingBottom="@dimen/margin_topbot_list_item"
+                    android:paddingTop="@dimen/margin_topbot_list_item"
+                    android:text="Añadir Pregunta"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/text_size_lista" />
+
                 <TextView
                     android:id="@+id/txt_title1"
                     android:textColor="@color/Black"
