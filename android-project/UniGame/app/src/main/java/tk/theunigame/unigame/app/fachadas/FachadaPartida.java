@@ -1,6 +1,9 @@
 package tk.theunigame.unigame.app.fachadas;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
 import tk.theunigame.unigame.app.logica_juego.juego.IModoJuego;
@@ -32,12 +35,13 @@ public class FachadaPartida {
     /**
      * Comprueba si la respuesta del usuario respecto de una pregunta es correcta o no.
      *
-     * @param respuestaId Respuesta del usuario.
+     * @param respuestaPos Respuesta del usuario.
      * @return True si la respuesta es correcta, false, si es incorrecta.
      */
-    public void comprobarPregunta(int respuestaId) {
+    public void comprobarPregunta(int respuestaPos) {
         Juego j = Juego.getInstance();
         j.pararCronometro();
+        int respuestaId = j.getPreguntaActual().getRespuestasList().get(respuestaPos).getId();
         j.comprobarRespuesta(respuestaId);
 
 

@@ -5,7 +5,9 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
 import juego.taes.domainmodel.Data.Dao.PreguntaDao;
@@ -120,6 +122,17 @@ public class Pregunta {
 
     public ForeignCollection<Respuesta> getRespuestas() {
         return respuestas;
+    }
+
+
+    public List<Respuesta> getRespuestasList(){
+        List<Respuesta> respuestaLista = new ArrayList<Respuesta>();
+        for(Respuesta r : respuestas)
+        {
+            respuestaLista.add(r);
+        }
+
+        return respuestaLista;
     }
 
     public void setRespuestas(ForeignCollection<Respuesta> respuestas) {

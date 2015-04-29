@@ -59,7 +59,7 @@ public class FachadaPregunta {
 
 
 
-    public void crearPreguntas(Context c, List<BDPreguntas> bolsas)
+    public void cargarPreguntas(Context c, List<BDPreguntas> bolsas)
     {
         Juego j = Juego.getInstance();
         List<Integer> numPreguntasBolsa = new ArrayList<Integer>();

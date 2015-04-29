@@ -12,6 +12,6 @@ public interface OnJuegoListener {
     public void onJuegoHaAcabado(int acertadas, int falladas, int comodinesUsados);
     public void onPreguntaHaCambiado(Pregunta pregunta);
     //Se enviará true si se ha acertado en caso contrario la respuesta no es correcta;
-    public void onPreguntaRespondida(boolean acertado);
+    public void onPreguntaRespondida(int correcta);
     public void onComodinUsado(Pregunta p, String mensaje);
 }
