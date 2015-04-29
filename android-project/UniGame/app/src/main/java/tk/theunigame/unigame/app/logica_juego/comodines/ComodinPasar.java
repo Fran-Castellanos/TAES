@@ -31,9 +31,10 @@ public class ComodinPasar extends Comodin {
     public Pregunta usarComodin()throws Exception
     {
         Juego j = Juego.getInstance();
-        p = j.siguientePregunta();
-
         consumirComodin();
+        j.siguientePregunta();
+
+
 
         return p;
     }
