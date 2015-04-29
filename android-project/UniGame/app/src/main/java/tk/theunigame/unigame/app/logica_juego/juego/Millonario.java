@@ -15,6 +15,7 @@ import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin50;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
+import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
 
 /**
@@ -24,13 +25,13 @@ public class Millonario extends JuegoSimple {
 
 
     List<Comodin> comodines;
-
+    OnJuegoListener listener;
 
 
     public Millonario()
     {
         comodines = new ArrayList<Comodin>();
-
+        listener = null;
     }
 
 
@@ -44,10 +45,15 @@ public class Millonario extends JuegoSimple {
 
 
     @Override
-    public Pregunta usarComodin(Comodin comodin) throws Exception {
+    public void usarComodin(Comodin comodin) throws Exception {
         Juego j = Juego.getInstance();
         j.sumarComodinUsado();
-        return comodin.usarComodin();
+        if(listener != null)
+            listener.onComodinUsado(comodin.usarComodin(), comodin.getNombre());
+        else
+            throw new Exception("No se ha podido enviar evento en usarComodin");
+
+        comodin.usarComodin();
     }
 
 

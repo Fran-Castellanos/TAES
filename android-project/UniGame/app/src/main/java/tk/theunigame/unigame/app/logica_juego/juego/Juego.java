@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.logica_juego.juego;
+﻿package tk.theunigame.unigame.app.logica_juego.juego;
 
 import android.content.Context;
 
@@ -19,7 +19,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
  * Created by Paco on 23/04/2015.
  */
 public class Juego implements OnTiempoListener {
-    private static Juego ourInstance = null;
+    private static Juego ourInstance = new Juego();
     TemporizadorTimerTask cronometro;
     private List<Pregunta> preguntas;
     private int turno;
@@ -31,8 +31,10 @@ public class Juego implements OnTiempoListener {
     private IModoJuego modojuego;
 
 
-    private Juego() {
-        turno = 0;
+
+    public void init()
+    {
+        turno = -1;
         tiempo_pregunta = 30;
         numPreguntas = 20;
         cronometro = new TemporizadorTimerTask();
@@ -40,13 +42,20 @@ public class Juego implements OnTiempoListener {
         estadisticas = new Estadisticas();
         listenerTiempo = null;
         listener = null;
+        preguntas = new ArrayList<Pregunta>();
+    }
 
+
+    private Juego() {
+       init();
 
     }
 
     public static Juego getInstance() {
         return ourInstance;
     }
+
+
 
     public void setTiempoMax(int tiempo) throws Exception {
 
@@ -93,18 +102,12 @@ public class Juego implements OnTiempoListener {
         preguntas = pr;
     }
 
-    public void init() {
-        preguntas = new ArrayList<Pregunta>();
-        tiempo_pregunta = 30;
-        numPreguntas = 20;
-        turno = 0;
-    }
 
     public void setModojuego(ModoJuego modo) {
         modojuego = JuegoFactory.getJuego(modo);
     }
 
-    public boolean comprobarRespuesta(int res) {
+    public void comprobarRespuesta(int resId) {
         Pregunta p = preguntas.get(turno);
         boolean result = false;
         List<Respuesta> respuestasList = new ArrayList<Respuesta>();
@@ -112,8 +115,8 @@ public class Juego implements OnTiempoListener {
         Collection<Respuesta> respuestasCol = p.getRespuestas();
         int i = 0;
         for (Respuesta r : respuestasCol) {
-            if (i == turno) {
-                result = r.getId() == res;
+            if (r.getEsCorrecta()) {
+                result = r.getId() == resId;
                 break;
             }
             ++i;
@@ -122,18 +125,20 @@ public class Juego implements OnTiempoListener {
             estadisticas.sumarAcertadas();
         else
             estadisticas.sumarFalladas();
-        return result;
+        if (listener!=null)
+            listener.onPreguntaRespondida(result);
 
     }
 
-    public Pregunta siguientePregunta() {
+    public void siguientePregunta() {
 
         if (++turno >= numPreguntas) {
             if (listener != null)
                 listener.onJuegoHaAcabado(estadisticas.getAcertadas(), estadisticas.getFalladas(), estadisticas.getComodinesUsados());
         }
+            if(listener!=null)
+                listener.onPreguntaHaCambiado(preguntas.get(turno));
 
-        return preguntas.get(turno);
     }
 
     public Pregunta getPreguntaActual() {
