@@ -156,6 +156,7 @@ public class Juego implements OnTiempoListener {
 
     @Override
     public void onTiempoFinalizado(TemporizadorTimerTask object) {
+        estadisticas.sumarFalladas();
         listener.onTiempoFinalizado("¡Tiempo agotado!");
     }
 
