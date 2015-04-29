@@ -1,5 +1,7 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
+import juego.taes.domainmodel.Data.DatabaseHelper;
+import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.presentacion.util.DialogLogin;
@@ -32,6 +34,9 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DatabaseManager manager = new DatabaseManager();
+        manager.getHelper(this).getWritableDatabase();
 
         btn_loggin = (Button) findViewById(R.id.btn_login);
         btn_loggin.setOnClickListener(new View.OnClickListener() {
