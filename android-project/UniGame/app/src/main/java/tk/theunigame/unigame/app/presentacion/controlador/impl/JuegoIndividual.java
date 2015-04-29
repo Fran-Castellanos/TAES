@@ -181,7 +181,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         //TODO
     }
 
-  
+
 
     @Override
     public void onComodinUsado(Pregunta p, String mensaje) {
