@@ -32,10 +32,7 @@ public class ComodinPasar extends Comodin {
     {
         Juego j = Juego.getInstance();
         consumirComodin();
-        j.siguientePregunta();
-
-
-
+        j.preguntaComodinPasar();
         return p;
     }
 
