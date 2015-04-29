@@ -167,7 +167,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     @Override
     public void onPreguntaHaCambiado(Pregunta pregunta) {
-        
+        //TODO
     }
 
     @Override
