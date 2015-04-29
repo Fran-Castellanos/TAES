@@ -180,10 +180,3 @@ public class Juego implements OnTiempoListener {
         estadisticas.sumarComodinesUsados();
     }
 }
-
-
-
-
-
-
-

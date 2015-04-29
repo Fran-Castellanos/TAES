@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import juego.taes.domainmodel.Data.DatabaseManager;
 import tk.theunigame.unigame.R;
 
 
@@ -24,6 +25,9 @@ public class LoginMain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_login);
+
+        DatabaseManager manager = new DatabaseManager();
+        manager.getHelper(this).getWritableDatabase();
 
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
