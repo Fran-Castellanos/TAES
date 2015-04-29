@@ -11,4 +11,5 @@ public interface OnJuegoListener {
     public void onTiempoHaCambiado(int tiempo);
     public void onJuegoHaAcabado(int acertadas, int falladas, int comodinesUsados);
     public void onPreguntaHaCambiado(Pregunta pregunta);
+    public void onComodinUsado(Pregunta p, String mensaje);
 }
