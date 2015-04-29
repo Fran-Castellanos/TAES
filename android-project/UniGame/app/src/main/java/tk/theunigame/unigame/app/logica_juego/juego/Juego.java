@@ -19,7 +19,7 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnTiempoListener;
  * Created by Paco on 23/04/2015.
  */
 public class Juego implements OnTiempoListener {
-    private static Juego ourInstance = null;
+    private static Juego ourInstance = new Juego();
     TemporizadorTimerTask cronometro;
     private List<Pregunta> preguntas;
     private int turno;
@@ -53,6 +53,8 @@ public class Juego implements OnTiempoListener {
     public static Juego getInstance() {
         return ourInstance;
     }
+
+
 
     public void setTiempoMax(int tiempo) throws Exception {
 
