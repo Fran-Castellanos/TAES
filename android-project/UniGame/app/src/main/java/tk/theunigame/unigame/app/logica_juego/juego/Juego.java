@@ -31,8 +31,9 @@ public class Juego implements OnTiempoListener {
     private IModoJuego modojuego;
 
 
-    private Juego() {
-        turno = 0;
+    public void init()
+    {
+        turno = -1;
         tiempo_pregunta = 30;
         numPreguntas = 20;
         cronometro = new TemporizadorTimerTask();
@@ -40,7 +41,12 @@ public class Juego implements OnTiempoListener {
         estadisticas = new Estadisticas();
         listenerTiempo = null;
         listener = null;
+        preguntas = new ArrayList<Pregunta>();
+    }
 
+
+    private Juego() {
+       init();
 
     }
 
@@ -93,12 +99,6 @@ public class Juego implements OnTiempoListener {
         preguntas = pr;
     }
 
-    public void init() {
-        preguntas = new ArrayList<Pregunta>();
-        tiempo_pregunta = 30;
-        numPreguntas = 20;
-        turno = 0;
-    }
 
     public void setModojuego(ModoJuego modo) {
         modojuego = JuegoFactory.getJuego(modo);
