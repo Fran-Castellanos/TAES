@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin50;
+import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
+import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
@@ -39,6 +42,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     private FachadaRespuesta respuestaFachada;
     private FachadaPregunta preguntaFachada;
     private FachadaPartida fachadaPartida;
+
+    private Pregunta pregunta;
 
     private EIDANSWER id_answer_selected;
 
@@ -77,8 +82,35 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         cmd_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    //Pregunta pfachadaPartida.usarComodin(Comodin50.getInstance());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
+        cmd_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    fachadaPartida.usarComodin(ComodinPasar.getInstance());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        cmd_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    fachadaPartida.usarComodin(ComodinCambiarPregunta.getInstance());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        fachadaPartida.inicializarPartida();
     }
 
     //Evento a realizar cuando se seleccione una respuesta de los cuatros botones
