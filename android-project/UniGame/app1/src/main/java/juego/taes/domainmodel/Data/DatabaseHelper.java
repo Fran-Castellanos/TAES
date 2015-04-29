@@ -575,8 +575,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-////////////////////////////////////////////////////////////////////////////////////
-        Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate");
+
     }
 
     /**
