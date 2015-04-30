@@ -46,7 +46,7 @@ public class GestionarDB extends Activity {
                 Intent intent = new Intent(GestionarDB.this, ListaUniversidades.class);
                 Class<?> destino= null;
                 try {
-                    destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturasCrearDB");
+                    destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturasSinCB");
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
