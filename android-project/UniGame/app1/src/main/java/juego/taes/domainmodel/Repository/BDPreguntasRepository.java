@@ -6,6 +6,7 @@ import com.j256.ormlite.dao.CloseableIterable;
 import com.j256.ormlite.dao.CloseableIterator;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -124,9 +125,10 @@ public class BDPreguntasRepository {
         try {
 
             QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
-            builder.where().eq(BDPreguntas.ASIGNATURA,idAsig);
-            builder.where().and();
-            builder.where().eq(BDPreguntas.UNIVERSIDAD,idUni);
+            Where<BDPreguntas, Integer> con1= builder.where();
+            con1.eq(BDPreguntas.ASIGNATURA,idAsig);
+            con1.and();
+            con1.eq(BDPreguntas.UNIVERSIDAD,idUni);
             builder.orderBy(BDPreguntas.NOMBRE,true);
             return builder.query();
 
@@ -145,7 +147,11 @@ public class BDPreguntasRepository {
             for(Asignatura a : asignaturas)
                 listaAsignaturas.add(a.getId());
             QueryBuilder<BDPreguntas,Integer> builder2 = dao.queryBuilder();
-            builder2.where().in(BDPreguntas.ASIGNATURA, listaAsignaturas);
+            Where<BDPreguntas, Integer> where = builder2.where();
+            where.in(BDPreguntas.ASIGNATURA, listaAsignaturas);
+            where.and();
+            where.eq(BDPreguntas.UNIVERSIDAD, idUni);
+            //TODO Falta relacionar con la and universidad
             builder2.orderBy(BDPreguntas.NOMBRE,true);
             return builder2.query();
 

@@ -65,7 +65,7 @@ public class ListaAsignaturasSinCB extends Activity {
                         carrera, (Asignatura)parent.getAdapter().getItem(position), destino);
 
                 //Lanzamos la actividad
-                Intent intent = new Intent(ListaAsignaturasSinCB.this, ListaBasesDatos.class);
+                Intent intent = new Intent(ListaAsignaturasSinCB.this, ListaBasesDatosSinCB.class);
                 startActivity(intent);
 
             }
