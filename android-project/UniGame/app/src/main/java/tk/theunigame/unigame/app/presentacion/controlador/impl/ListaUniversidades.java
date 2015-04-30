@@ -26,6 +26,7 @@ public class ListaUniversidades extends Activity {
 
     private ListView lv;
     FachadaUniversidad fachadaUniversidad;
+    Class<?> destino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class ListaUniversidades extends Activity {
         setContentView(R.layout.activity_lista_universidades);
 
         fachadaUniversidad= new FachadaUniversidad();
+        destino = null;
+
         //Creamos el adaptador para el ListView
         List<Universidad> universidades = fachadaUniversidad.obtenerUniversidades(this);
         AdaptadorListaUniversidades adapter= new AdaptadorListaUniversidades(this, universidades);
@@ -42,9 +45,10 @@ public class ListaUniversidades extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 FachadaComunicador fachadaComunicador = new FachadaComunicador();
-                Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
+                if(destino == null)
+                    destino = fachadaComunicador.RecibirDestinoPosicionFinal();
+
                 fachadaComunicador.ComunicarUniversidad((Universidad)parent.getAdapter().getItem(position), destino);
                 Intent intent= new Intent(ListaUniversidades.this, ListaCarreras.class);
                 startActivity(intent);

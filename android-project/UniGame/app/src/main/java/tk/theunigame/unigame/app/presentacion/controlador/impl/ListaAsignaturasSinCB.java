@@ -1,15 +1,11 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,13 +17,12 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaAsignatura;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
-import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturas;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturasSinCB;
 
 /**
  * Created by John on 09/04/2015.
  */
-public class ListaAsignaturasCrearDB extends Activity {
+public class ListaAsignaturasSinCB extends Activity {
 
     private ListView lv;
     private TextView txt;
@@ -41,7 +36,7 @@ public class ListaAsignaturasCrearDB extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_asignaturas_crear_db);
+        setContentView(R.layout.activity_lista_asignaturas_sin_button);
 
         //Instanciamos elementos de la vista
         txt= (TextView) findViewById(R.id.txt_title2);
@@ -70,7 +65,7 @@ public class ListaAsignaturasCrearDB extends Activity {
                         carrera, (Asignatura)parent.getAdapter().getItem(position), destino);
 
                 //Lanzamos la actividad
-                Intent intent = new Intent(ListaAsignaturasCrearDB.this, ListaBasesDatos.class);
+                Intent intent = new Intent(ListaAsignaturasSinCB.this, ListaBasesDatos.class);
                 startActivity(intent);
 
             }
