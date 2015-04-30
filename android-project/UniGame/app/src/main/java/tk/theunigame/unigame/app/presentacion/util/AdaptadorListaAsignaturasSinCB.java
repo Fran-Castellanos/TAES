@@ -62,12 +62,7 @@ public class AdaptadorListaAsignaturasSinCB extends BaseAdapter {
         if(item==null) {
             LayoutInflater inflater = LayoutInflater.from(context);
             holder= new ViewHolder();
-            if(position != 0) {
-                item = inflater.inflate(R.layout.list_item_checkbox, null);
-
-            }else {
-                item = inflater.inflate(R.layout.list_item_default, null);
-            }
+            item = inflater.inflate(R.layout.list_item_default, null);
 
             holder.txt= (TextView)item.findViewById(R.id.txt_listitem_default);
 

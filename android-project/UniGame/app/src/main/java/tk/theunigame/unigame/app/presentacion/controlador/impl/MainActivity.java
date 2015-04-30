@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View v) {
                 Class<?> destino = null;
                 try {
-                    destino = Class.forName("JuegoIndividual");
+                    destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturas");
                 } catch (ClassNotFoundException e) {
                     new RuntimeException();
                 }

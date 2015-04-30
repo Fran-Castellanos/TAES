@@ -30,6 +30,7 @@ public class ListaCarreras extends Activity {
     private Universidad universidad;
     private FachadaCarrera fachadaCarrera;
     private FachadaComunicador fachadaComunicador;
+    private Class<?> destino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class ListaCarreras extends Activity {
         //Cargamos la información
         universidad = fachadaComunicador.RecibirUniversidadPosicion0();
         txt.setText(universidad.getNombre());
+        destino = null;
 
         //Creamos el adaptador para el ListView
         ArrayList<Carrera> carreras = fachadaCarrera.obtenerCarreras(this, universidad);
@@ -56,9 +58,12 @@ public class ListaCarreras extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
-                fachadaComunicador.ComunicarUniversidadCarrera(universidad, (Carrera)parent.getAdapter().getItem(position), destino);
-                Intent intent= new Intent(ListaCarreras.this, ListaAsignaturas.class);
+                //Si retorna de la activity podemos perder la referencia al destino. Así aseguramos su permanencia
+                if(destino == null)
+                    destino = fachadaComunicador.RecibirDestinoPosicionFinal();
+
+                fachadaComunicador.ComunicarUniversidadCarrera(universidad, (Carrera)parent.getAdapter().getItem(position), null);
+                Intent intent= new Intent(ListaCarreras.this, destino);
                 startActivity(intent);
             }
         });

@@ -9,7 +9,6 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar"
          >
-
         <activity android:name=".app.presentacion.controlador.impl.LoginMain"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
@@ -75,6 +74,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_juego_individual">
+        </activity>
+        <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturasCrearDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_dbs">
         </activity>
 
     </application>
