@@ -21,6 +21,7 @@ import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
+import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatosSinCB;
 
 /**
  * Created by John on 09/04/2015.
@@ -29,7 +30,6 @@ public class ListaBasesDatosSinCB extends Activity {
 
     private ListView lv;
     private TextView txt;
-    private Button btn;
 
     private FachadaComunicador fachadaComunicador;
     private FachadaBDPreguntas fachadaBasesDatos;
@@ -37,6 +37,7 @@ public class ListaBasesDatosSinCB extends Activity {
     private Universidad universidad;
     private Carrera carrera;
     private Asignatura asignatura;
+    private Class<?> destino;
 
     private Boolean[] posicionAsig;
 
@@ -48,7 +49,6 @@ public class ListaBasesDatosSinCB extends Activity {
         //Instanciamos elementos de la interfaz
         txt= (TextView) findViewById(R.id.txt_title2);
         lv=(ListView) findViewById(R.id.lv_bases_datos);
-        btn = (Button) findViewById(R.id.btn_confirmar);
 
         //Instanciamos las fachadas
         fachadaComunicador = new FachadaComunicador();
@@ -62,22 +62,17 @@ public class ListaBasesDatosSinCB extends Activity {
 
         //Creamos el adaptador para el ListView
         ArrayList<BDPreguntas> bdPreguntas= fachadaBasesDatos.obtenerBasesDatos(this, universidad, carrera, asignatura);//Recibimos la lista de preguntas
-        BaseAdapter adapter= new AdaptadorListaBasesDatos(this, bdPreguntas);
+        BaseAdapter adapter= new AdaptadorListaBasesDatosSinCB(this, bdPreguntas);
         lv.setAdapter(adapter);
 
         //Instanciamos Listeners
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaBasesDatosSinCB.this, JuegoIndividual.class);
-                startActivity(intent);
-            }
-        });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //Comunicador.setObject(parent.getAdapt         er().getItem(position));
+                fachadaComunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura,null);
+                Intent intent = new Intent(ListaBasesDatosSinCB.this, CrearDB.class);
+                startActivity(intent);
+                //Comunicador.setObject(parent.getAdapter().getItem(position));
                 //Intent intent = new Intent(ListaBasesDatos.this, ListaUniversidades.class);
                 //startActivity(intent);
             }

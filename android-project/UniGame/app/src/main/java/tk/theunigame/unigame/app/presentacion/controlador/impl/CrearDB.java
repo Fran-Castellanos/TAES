@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import juego.taes.domainmodel.Model.Cliente.*;
 import tk.theunigame.unigame.R;
@@ -19,15 +21,14 @@ import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 
 
 public class CrearDB extends Activity {
-
-    private FachadaComunicador comunicador;
     private Universidad universidad;
     private Carrera carrera;
     private Asignatura asignatura;
-    private FachadaBDPreguntas fachadaBD = new FachadaBDPreguntas();
+    private FachadaBDPreguntas fachadaBD;
+    private FachadaComunicador fachadaComunicador;
 
-    private Button btn_university, btn_carrer;
-    private EditText etxt_subject, etxt_name_db;
+    private TextView txt_subject,txt_university, txt_carrer;
+    private EditText etxt_name_db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,75 +36,30 @@ public class CrearDB extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_db);
 
-        btn_university = (Button) findViewById(R.id.btn_university);
-        btn_carrer = (Button) findViewById(R.id.btn_carrer);
-        etxt_subject = (EditText) findViewById(R.id.etxt_subject);
-        etxt_name_db = (EditText) findViewById(R.id.etxt_carrer);
+        //Recuperamos elementos de la interfaz
+        txt_university = (TextView) findViewById(R.id.txt_university);
+        txt_carrer = (TextView) findViewById(R.id.txt_carrer);
+        txt_subject = (TextView) findViewById(R.id.txt_subject);
+        etxt_name_db = (EditText) findViewById(R.id.etxt_name_db);
 
+        //Instanciamos las fachadas
+        fachadaComunicador = new FachadaComunicador();
+        fachadaBD = new FachadaBDPreguntas();
 
-
-        btn_university.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Class<?> destino = null;
-                try {
-                    destino = Class.forName("ListaUniversidades");
-                } catch (ClassNotFoundException e) {
-                    new RuntimeException();
-                }
-                Intent intent= new Intent(CrearDB.this, ListaUniversidades.class);
-                comunicador.ComunicarDestino(destino);
-                startActivity(intent);
-            }
-        });
-
-/*
-        btn_carrer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Class<?> destino = null;
-                try {
-                    destino = Class.forName("ListaCarreras");
-                } catch (ClassNotFoundException e) {
-                    new RuntimeException();
-                }
-                Intent intent= new Intent(MainActivity.this, ListaUniversidades.class);
-                comunicador.ComunicarDestino(destino);
-                startActivity(intent);
-            }
-        });
-        */
-
+        //Cargamos los datos
+        universidad = fachadaComunicador.RecibirUniversidadPosicion0();
+        carrera = fachadaComunicador.RecibirCarreraPosicion1();
+        asignatura = fachadaComunicador.RecibirAsignaturaPosicion2();
     }
-
 
     public void Crear_BD(View v){
-        String nombreBD= ((EditText)findViewById(R.id.etxt_name_db)).getText().toString();
-        universidad = comunicador.RecibirUniversidadPosicion0();
-        carrera = comunicador.RecibirCarreraPosicion1();
-        asignatura = comunicador.RecibirAsignaturaPosicion2();
+        String nombreBD= etxt_name_db.getText().toString();
+
         //comunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura,comunicador.RecibirDestinoPosicionFinal());
         fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad);
-    }
-
-
-    public void selectUniversidad(View v)
-    {
-        View view = findViewById(btn_university.getId());
-        view.setBackgroundResource(R.drawable.btn_selected_answer_default);
-
-
-
-        Intent intent= new Intent(CrearDB.this, ListaUniversidades.class);
+        //Haga lo que tenga que hacer
+        Intent intent = new Intent(CrearDB.this, GestionarDB.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-    }
-
-
-    public void selectCarrera(View v)
-    {
-        View view = findViewById(btn_carrer.getId());
-        view.setBackgroundResource(R.drawable.btn_selected_answer_default);
-
-
     }
 }
