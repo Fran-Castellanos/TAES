@@ -38,4 +38,21 @@ public enum EIDANSWER {
 
         return salida;
     }
+
+    public static EIDANSWER getById(int id) {
+        EIDANSWER salida;
+        switch (id){
+            case 0: salida= A;
+                break;
+            case 1: salida= B;
+                break;
+            case 2: salida= C;
+                break;
+            case 3: salida= D;
+                break;
+            default: throw new RuntimeException("No se ha introducido un Id Botón válido");
+        }
+
+        return salida;
+    }
 }

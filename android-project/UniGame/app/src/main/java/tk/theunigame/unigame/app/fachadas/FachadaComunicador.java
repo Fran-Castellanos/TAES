@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
+import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
@@ -43,6 +44,12 @@ public class FachadaComunicador {
     //Recupera una universidad enviada en la posición 0
     public Universidad RecibirUniversidadPosicion0(){
         return (Universidad)((Object[])Comunicador.getObject())[0];
+    }
+
+    //Recupera una pregunta enviada en la posición 0
+    public Pregunta RecibirPregunta(){
+        Pregunta pregunt = (Pregunta) Comunicador.getObject();
+        return pregunt;
     }
 
     //Recupera una carrera enviada en la posición 1

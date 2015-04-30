@@ -15,12 +15,19 @@
             <ImageView
                 android:id="@+id/imageView"
                 style="@style/img_main_logo" />
-
+            <TextView
+                android:id="@+id/txt_title1"
+                android:textColor="@color/Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="10sp"/>
             <Button
                 android:id="@+id/btn_crear_db"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/lv_default_dessign"
+                android:background="@drawable/button_design"
                 android:gravity="center_horizontal"
                 android:padding="5dip"
                 android:paddingBottom="@dimen/margin_topbot_list_item"
@@ -28,6 +35,14 @@
                 android:text="Crear Bolsa Preguntas"
                 android:textColor="@color/Black"
                 android:textSize="@dimen/text_size_lista" />
+            <TextView
+                android:id="@+id/txt_title2"
+                android:textColor="@color/Black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
 
             <LinearLayout
                 style="@style/ll_main_container"

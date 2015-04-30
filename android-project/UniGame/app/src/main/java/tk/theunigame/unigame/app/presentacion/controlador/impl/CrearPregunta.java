@@ -1,6 +1,7 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +76,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-        //Obtenemos el contenido de los texbox
+        /*//Obtenemos el contenido de los texbox
         contenido.add(etxt_a.getText().toString());
         contenido.add(etxt_b.getText().toString());
         contenido.add(etxt_c.getText().toString());
@@ -94,6 +95,10 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
         preguntaFachada.respuestaCorrecta(pregunta,id_answer_selected.getId());
 
         //Añadimos las preguntas a la BD
-        BolsaPregunta.getInstance().InsertarPregunta(pregunta);
+        BolsaPregunta.getInstance().InsertarPregunta(pregunta);*/
+        //Haga lo que tenga que hacer
+        Intent intent = new Intent(CrearPregunta.this, ListaPreguntas.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }

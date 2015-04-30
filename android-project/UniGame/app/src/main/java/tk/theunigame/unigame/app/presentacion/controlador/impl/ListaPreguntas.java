@@ -62,8 +62,7 @@ public class ListaPreguntas extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String opcion = (String)parent.getAdapter().getItem(position);
-                Comunicador.setObject(opcion);
+                Comunicador.setObject((Pregunta)parent.getAdapter().getItem(position));
 
                 Intent intent;
                 intent = new Intent(ListaPreguntas.this, EditarPregunta.class);
