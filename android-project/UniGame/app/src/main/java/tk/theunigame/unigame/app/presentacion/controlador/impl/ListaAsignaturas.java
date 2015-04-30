@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,13 +29,14 @@ import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturas;
  */
 public class ListaAsignaturas extends Activity {
 
-    private Context c;
     private ListView lv;
     private TextView txt;
+    private Button btn;
     private Universidad universidad;
     private Carrera carrera;
     private Boolean[] posicionAsig;
     private ArrayList<Asignatura> asignaturas;
+    private ArrayList<Asignatura> asignaturasConsulta;
 
     private FachadaComunicador fachadaComunicador;
     private FachadaAsignatura fachadaAsignatura;
@@ -45,7 +48,8 @@ public class ListaAsignaturas extends Activity {
 
         //Instanciamos elementos de la vista
         txt= (TextView) findViewById(R.id.txt_title2);
-        c=this;
+        btn = (Button) findViewById(R.id.btn_confirmar);
+        lv = (ListView) findViewById(R.id.lv_asignaturas);
 
         //Instanciamos las fachadas
         fachadaComunicador = new FachadaComunicador();
@@ -57,51 +61,49 @@ public class ListaAsignaturas extends Activity {
         txt.setText(carrera.getNombre());
 
         asignaturas = new ArrayList<>();
+        asignaturasConsulta = fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera);
         //Creamos el adaptador para el ListView
-        AdaptadorListaAsignaturas adapter= new AdaptadorListaAsignaturas(this, fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera));
-
-        posicionAsig = new Boolean[adapter.getAsignaturasCantidad()];
-        for(int i = 0 ; i<posicionAsig.length; i++){
-            posicionAsig[i]=false;
-        }
-
-        lv=(ListView) findViewById(R.id.lv_asignaturas);
+        BaseAdapter adapter= new AdaptadorListaAsignaturas(this, asignaturasConsulta);
         lv.setAdapter(adapter);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //Asignamos listener
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-                    //Cargamos las asignaturas a enviar
-                    for(int i = 0 ; i<posicionAsig.length; i++){
-                        if(posicionAsig[i])
-                            asignaturas.add(((AdaptadorListaAsignaturas)parent.getAdapter()).getAsignatura(i));
-                    }
+            public void onClick(View v) {
 
-                    if(asignaturas.size() > 0) {
-                        Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
-                        //Enviamos las asignaturas a traves de la fachada
-                        fachadaComunicador.ComunicarUniversidadCarreraAsignaturas(universidad,
-                                carrera, asignaturas, destino);
+                //Cargamos las asignaturas a enviar
+                for(int i = 0 ; i<posicionAsig.length; i++){
+                    if(posicionAsig[i])
+                        asignaturas.add(asignaturasConsulta.get(i));
+                }
 
-                        //Lanzamos la actividad
-                        Intent intent = new Intent(ListaAsignaturas.this, ListaBasesDatos.class);
-                        startActivity(intent);
-                    }else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-                        builder.setMessage("Seleccione una o mas asignaturas").
-                                setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        builder.create().show();
-                    }
+                if(asignaturas.size() > 0) {
+                    Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
+                    //Enviamos las asignaturas a traves de la fachada
+                    fachadaComunicador.ComunicarUniversidadCarreraAsignaturas(universidad,
+                            carrera, asignaturas, destino);
 
+                    //Lanzamos la actividad
+                    Intent intent = new Intent(ListaAsignaturas.this, ListaBasesDatos.class);
+                    startActivity(intent);
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                    builder.setMessage("Seleccione una o mas asignaturas").
+                            setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.create().show();
                 }
             }
         });
+
+        posicionAsig = new Boolean[asignaturasConsulta.size()];
+        for(int i = 0 ; i<posicionAsig.length; i++){
+            posicionAsig[i]=false;
+        }
     }
 
     @Override

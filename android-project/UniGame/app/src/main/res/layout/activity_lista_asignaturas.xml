@@ -26,7 +26,19 @@
             </LinearLayout>
             <LinearLayout
                 style="@style/ll_main_container">
-
+                <Button
+                    android:id="@+id/btn_confirmar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/lv_default_dessign"
+                    android:gravity="center"
+                    android:paddingRight="5dip"
+                    android:paddingLeft="5dip"
+                    android:paddingBottom="9dip"
+                    android:paddingTop="9dip"
+                    android:text="@string/btn_confirmar"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/text_size_lista" />
                 <ListView
                     style="@style/lv_default"
                     android:id="@+id/lv_asignaturas">

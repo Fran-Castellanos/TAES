@@ -19,7 +19,8 @@ import tk.theunigame.unigame.R;
  * Este clase será modoficada en función de los valores que se quieran mostrar
  * a través de la consulta a la base de datos remota
  */
-public class AdaptadorListaAsignaturas extends BaseAdapter {
+public class AdaptadorListaAsignaturasSinCB extends BaseAdapter {
+
     private ArrayList<Asignatura> asignaturas;
     private Context context;
 
@@ -44,11 +45,10 @@ public class AdaptadorListaAsignaturas extends BaseAdapter {
 
     //Elemento utilizado para reutilización de instancias
     static class ViewHolder {
-        CheckBox chkBox;
         TextView txt;
     }
 
-    public AdaptadorListaAsignaturas(Context context, ArrayList<Asignatura> datos){
+    public AdaptadorListaAsignaturasSinCB(Context context, ArrayList<Asignatura> datos){
         this.context=context;
         this.asignaturas=datos;
     }
@@ -62,9 +62,13 @@ public class AdaptadorListaAsignaturas extends BaseAdapter {
         if(item==null) {
             LayoutInflater inflater = LayoutInflater.from(context);
             holder= new ViewHolder();
-            item = inflater.inflate(R.layout.list_item_checkbox, null);
+            if(position != 0) {
+                item = inflater.inflate(R.layout.list_item_checkbox, null);
 
-            holder.chkBox = (CheckBox) item.findViewById(R.id.chk_listitem_default);
+            }else {
+                item = inflater.inflate(R.layout.list_item_default, null);
+            }
+
             holder.txt= (TextView)item.findViewById(R.id.txt_listitem_default);
 
             //Almacenamos el elemento en como un tag de la View
@@ -75,7 +79,6 @@ public class AdaptadorListaAsignaturas extends BaseAdapter {
         }
 
         holder.txt.setText(asignaturas.get(position).getNombre());
-        holder.chkBox.setTag(position);
 
         return item;
     }
