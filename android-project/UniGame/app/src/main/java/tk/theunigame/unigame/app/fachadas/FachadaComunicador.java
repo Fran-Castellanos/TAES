@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
+import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
@@ -31,6 +32,11 @@ public class FachadaComunicador {
         Comunicador.setObject(new Object[]{u, c, datos});
     }
 
+    public void ComunicarBDPreguntas(ArrayList<BDPreguntas> bdPreguntas, Class<?> destino) {
+        Comunicador.setObject(new Object[]{bdPreguntas, destino});
+    }
+
+
     //Prepara una universidad, carrera y asignatura para ser recibida por otra activity
     public void ComunicarUniversidadCarreraAsignatura(Universidad u, Carrera c, Asignatura a, Class<?> datos){
         Comunicador.setObject(new Object[]{u, c, a, datos});
@@ -40,6 +46,7 @@ public class FachadaComunicador {
     public void ComunicarUniversidadCarreraAsignaturas(Universidad u, Carrera c, ArrayList<Asignatura> a, Class<?> datos){
         Comunicador.setObject(new Object[]{u, c, a, datos});
     }
+
 
     //Recupera una universidad enviada en la posición 0
     public Universidad RecibirUniversidadPosicion0(){
@@ -70,5 +77,10 @@ public class FachadaComunicador {
     //Recupera un aray de asignaturas enviada en la posición 2
     public Class<?> RecibirDestinoPosicionFinal(){
         return (Class<?>)((Object[])Comunicador.getObject())[((Object[])Comunicador.getObject()).length-1];
+    }
+
+
+    public ArrayList<BDPreguntas> RecibirBDPreguntasPosicion0() {
+        return (ArrayList<BDPreguntas>)((Object[])Comunicador.getObject())[0];
     }
 }

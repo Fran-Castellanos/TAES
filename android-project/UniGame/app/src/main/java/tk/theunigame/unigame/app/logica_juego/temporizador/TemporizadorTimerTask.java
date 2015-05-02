@@ -23,7 +23,7 @@ public class TemporizadorTimerTask {
     private List<OnTiempoListener> listeners;
 
     public TemporizadorTimerTask(){
-        tiempo = 60;
+        tiempo = 30;
         listeners = new ArrayList<>();
         initHandler();
     }
@@ -86,8 +86,7 @@ public class TemporizadorTimerTask {
     //Reinicia la cuenta
     public void Reiniciar() {
         tiempo = tiempoSet;
-        for(OnTiempoListener l: listeners)
-            l.onReiniciar(this);
+
     }
 
     //Introduce un listener en el objeto

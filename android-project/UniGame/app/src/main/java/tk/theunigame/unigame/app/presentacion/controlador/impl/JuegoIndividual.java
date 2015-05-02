@@ -132,9 +132,10 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
         //Cargamos los datos
 
-        //bdPreguntases = comunicador.Re
+        bdPreguntases = comunicador.RecibirBDPreguntasPosicion0();
         fachadaPregunta.cargarPreguntas(this, bdPreguntases);
         fachadaPartida.inicializarPartida();
+        fachadaPartida.siguientePregunta();
     }
 
     //Evento a realizar cuando se seleccione una respuesta de los cuatros botones

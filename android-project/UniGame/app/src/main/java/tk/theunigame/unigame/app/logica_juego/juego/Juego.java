@@ -36,7 +36,6 @@ public class Juego implements OnTiempoListener {
     {
         turno = -1;
         tiempo_pregunta = 30;
-        numPreguntas = 20;
         cronometro = new TemporizadorTimerTask();
         cronometro.setOnTiempoListener(this);
         estadisticas = new Estadisticas();

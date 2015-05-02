@@ -1,6 +1,7 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +46,9 @@ public class ListaUniversidades extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProgressDialog dialog = ProgressDialog.show(ListaUniversidades.this, "",
+                        "Cargando...", true);
+
                 FachadaComunicador fachadaComunicador = new FachadaComunicador();
                 if(destino == null)
                     destino = fachadaComunicador.RecibirDestinoPosicionFinal();
@@ -52,6 +56,7 @@ public class ListaUniversidades extends Activity {
                 fachadaComunicador.ComunicarUniversidad((Universidad)parent.getAdapter().getItem(position), destino);
                 Intent intent= new Intent(ListaUniversidades.this, ListaCarreras.class);
                 startActivity(intent);
+                dialog.cancel();
             }
         });
     }

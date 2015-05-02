@@ -2,6 +2,7 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -70,7 +71,8 @@ public class ListaAsignaturas extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProgressDialog dialog = ProgressDialog.show(ListaAsignaturas.this, "",
+                        "Cargando...", true);
                 //Cargamos las asignaturas a enviar
                 for(int i = 0 ; i<posicionAsig.length; i++){
                     if(posicionAsig[i])
@@ -88,7 +90,7 @@ public class ListaAsignaturas extends Activity {
                     startActivity(intent);
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                    builder.setMessage("Seleccione una o mas asignaturas").
+                    builder.setMessage("Seleccione una o más asignaturas").
                             setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -97,6 +99,9 @@ public class ListaAsignaturas extends Activity {
                     });
                     builder.create().show();
                 }
+
+                dialog.cancel();
+
             }
         });
 

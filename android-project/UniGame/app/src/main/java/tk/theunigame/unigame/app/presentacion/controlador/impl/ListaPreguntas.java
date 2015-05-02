@@ -1,6 +1,7 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,12 +63,15 @@ public class ListaPreguntas extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProgressDialog dialog = ProgressDialog.show(ListaPreguntas.this, "",
+                        "Cargando...", true);
                 Comunicador.setObject((Pregunta)parent.getAdapter().getItem(position));
 
                 Intent intent;
                 intent = new Intent(ListaPreguntas.this, EditarPregunta.class);
 
                 startActivity(intent);
+                dialog.cancel();
             }
         });
     }

@@ -1,6 +1,7 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,8 +36,11 @@ public class LoginMain extends Activity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog dialog = ProgressDialog.show(LoginMain.this, "",
+                        "Iniciando sesión...", true);
                 Intent intent = new Intent(LoginMain.this, MainActivity.class);
                 startActivity(intent);
+                dialog.cancel();
             }
         });
     }
