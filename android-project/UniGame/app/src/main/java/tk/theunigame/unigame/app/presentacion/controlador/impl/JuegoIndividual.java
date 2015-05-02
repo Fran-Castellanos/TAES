@@ -28,6 +28,7 @@ import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
+import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
@@ -135,6 +136,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         bdPreguntases = comunicador.RecibirBDPreguntasPosicion0();
         fachadaPregunta.cargarPreguntas(this, bdPreguntases);
         fachadaPartida.inicializarPartida();
+        Juego j = Juego.getInstance();
+        j.setOnJuegoListener(this);
         fachadaPartida.siguientePregunta();
     }
 

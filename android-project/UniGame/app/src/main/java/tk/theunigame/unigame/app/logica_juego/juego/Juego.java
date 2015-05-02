@@ -41,12 +41,14 @@ public class Juego implements OnTiempoListener {
         estadisticas = new Estadisticas();
         listenerTiempo = null;
         listener = null;
-        preguntas = new ArrayList<Pregunta>();
+
     }
 
 
     private Juego() {
         init();
+        preguntas = new ArrayList<Pregunta>();
+        numPreguntas=20;
 
     }
 
