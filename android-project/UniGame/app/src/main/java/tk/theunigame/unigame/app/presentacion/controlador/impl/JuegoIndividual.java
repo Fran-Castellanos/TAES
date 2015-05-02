@@ -204,8 +204,9 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     @Override
     public void onPreguntaHaCambiado(Pregunta pregunta) {
         //this.pregunta = pregunta;
+
         txt_question.setText(pregunta.getContenido());
-        List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestas();
+        List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestasList();
         txt_a.setText(l.get(0).getContenido());
         txt_b.setText(l.get(1).getContenido());
         txt_c.setText(l.get(2).getContenido());
