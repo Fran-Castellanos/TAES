@@ -23,7 +23,9 @@ public class TemporizadorTimerTask {
     private List<OnTiempoListener> listeners;
 
     public TemporizadorTimerTask(){
-        tiempo = 30;
+        tiempoSet = 30;
+        tiempo = tiempoSet;
+
         listeners = new ArrayList<>();
         initHandler();
     }
@@ -42,10 +44,11 @@ public class TemporizadorTimerTask {
                 tiempo--;
                 for(OnTiempoListener l: listeners)
                     l.onTiempoHaCambiado(meTimer);
-                if(tiempo == 0){
+                if(tiempo <= 0){
                     Parar();
                     for(OnTiempoListener l: listeners)
                         l.onTiempoFinalizado(meTimer);
+                    tiempo=0;
                 }
             }
         };

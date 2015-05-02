@@ -40,7 +40,6 @@
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:textStyle="bold"
-                        android:text="30"
                         android:textColor="#222"
                     />
                 </LinearLayout>

@@ -137,15 +137,17 @@ public class Juego implements OnTiempoListener {
     }
 
     public void siguientePregunta() {
-
-        //cronometro.Reiniciar();
+        cronometro.Parar();
+        cronometro.Reiniciar();
         if (++turno >= numPreguntas) {
             if (listener != null)
-                listener.onJuegoHaAcabado(estadisticas.getAcertadas(), estadisticas.getFalladas(), estadisticas.getComodinesUsados());
+                listener.onJuegoHaAcabado(estadisticas);
+        }else {
+            if (listener != null) {
+                listener.onPreguntaHaCambiado(preguntas.get(turno));
+                cronometro.Continuar();
+            }
         }
-        if(listener!=null)
-            listener.onPreguntaHaCambiado(preguntas.get(turno));
-       // cronometro.Continuar();
     }
 
     public Pregunta getPreguntaActual() {

@@ -3,6 +3,7 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
@@ -31,6 +32,7 @@ import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
+import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
 import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
@@ -189,21 +191,47 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+                fachadaPartida.siguientePregunta();
             }
         });
         builder.create().show();
 
-        fachadaPartida.siguientePregunta();
+
     }
 
     @Override
     public void onTiempoHaCambiado(int tiempo) {
-        txt_tiempo.setText(tiempo);
+        txt_tiempo.setText("" + tiempo);
     }
 
     @Override
-    public void onJuegoHaAcabado(int acertadas, int falladas, int comodinesUsados) {
-        //TODO
+    public void onJuegoHaAcabado(Estadisticas estadisticas) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¡Ha acabado la partida!").
+                setTitle("Fin de partida").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+
+                //Lanzamos la actividad
+                Intent intent = new Intent(JuegoIndividual.this, EstadisticasPartida.class);
+                startActivity(intent);
+            }
+        });
+        builder.create().show();
+
+        FachadaComunicador fachadaComunicador = new FachadaComunicador();
+        Class<?> destino = null;
+        try {
+            destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.EstadisticasPartida");
+        } catch (ClassNotFoundException e) {
+            new RuntimeException();
+        }
+        comunicador.ComunicarDestino(destino);
+
+        //Enviamos las bdPreguntas a traves de la fachada
+        fachadaComunicador.ComunicarEstadisticas(estadisticas, destino);
     }
 
     @Override
@@ -216,11 +244,20 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         txt_b.setText(l.get(1).getContenido());
         txt_c.setText(l.get(2).getContenido());
         txt_d.setText(l.get(3).getContenido());
+
     }
 
     @Override
     public void onPreguntaRespondida(int correcta) {
         //TODO
+        if(id_answer_selected.getButtonId() == correcta)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
 

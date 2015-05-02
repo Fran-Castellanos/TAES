@@ -32,7 +32,8 @@
                     android:clickable="true"
                     android:text="@string/btn_login"
                     android:textStyle="bold"
-                    android:textColor="@color/black_overlay" />
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20dp"/>
 
                 <Button
                     android:id="@+id/individual_mode"
@@ -45,7 +46,8 @@
                     android:clickable="true"
                     android:text="@string/individual_mode"
                     android:textStyle="bold"
-                    android:textColor="@color/black_overlay" />
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20dp"/>
 
                 <Button
                     android:id="@+id/tournament_mode"
@@ -58,7 +60,8 @@
                     android:clickable="true"
                     android:text="@string/tournament_mode"
                     android:textStyle="bold"
-                    android:textColor="@color/black_overlay" />
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20dp"/>
 
                 <Button
                     android:id="@+id/download_questions"
@@ -71,7 +74,8 @@
                     android:clickable="true"
                     android:text="@string/download_questions"
                     android:textStyle="bold"
-                    android:textColor="@color/black_overlay" />
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20dp"/>
 
                 <Button
                     android:id="@+id/use_questions"
@@ -84,7 +88,8 @@
                     android:clickable="true"
                     android:text="@string/use_questions"
                     android:textStyle="bold"
-                    android:textColor="@color/black_overlay" />
+                    android:textColor="@color/black_overlay"
+                    android:textSize="20dp"/>
             </LinearLayout>
             <RelativeLayout
                 style="@style/rl_main_bottom">
