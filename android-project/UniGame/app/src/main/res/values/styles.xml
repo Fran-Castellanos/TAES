@@ -76,6 +76,25 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <!-- Estilos de de Representación de los TextBox respuestas -->
+    <style name="txt_show_answer">
+        <item name="android:textColor">#000</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.8</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:paddingLeft">15sp</item>
+        <item name="android:paddingRight">15sp</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:maxLines">1</item>
+
+    </style>
+
     <!-- Configuración de los botones para seleccionar la respuesta correcta  -->
     <style name="btn_show_correct_answer">
         <item name="android:layout_width">0dip</item>

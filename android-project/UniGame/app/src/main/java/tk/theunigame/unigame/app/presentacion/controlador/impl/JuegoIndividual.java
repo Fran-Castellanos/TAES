@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -80,6 +83,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         txt_b = (TextView)findViewById(R.id.txt_answer_b);
         txt_c = (TextView)findViewById(R.id.txt_answer_c);
         txt_d = (TextView)findViewById(R.id.txt_answer_d);
+
+
         txt_question = (TextView) findViewById(R.id.txt_question);
         txt_tiempo = (TextView)findViewById(R.id.txt_tiempo);
 

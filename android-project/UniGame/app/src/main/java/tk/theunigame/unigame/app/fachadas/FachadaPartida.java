@@ -70,6 +70,7 @@ public class FachadaPartida {
         Juego juego = Juego.getInstance();
         juego.reiniciarCronometro();
         juego.siguientePregunta();
+
     }
 
 

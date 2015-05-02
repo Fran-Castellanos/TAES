@@ -33,13 +33,15 @@
                         android:layout_marginRight="5dp"
                         android:textStyle="bold"
                         android:text="@string/txt_tiempo_nombre"
+                        android:textColor="#222"
                     />
                     <TextView
                         android:id="@+id/txt_tiempo"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:textStyle="bold"
-                        android:text="60"
+                        android:text="30"
+                        android:textColor="#222"
                     />
                 </LinearLayout>
             </LinearLayout>
@@ -65,6 +67,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+
+
+
                 <TextView
                     android:id="@+id/txt_question"
                     android:layout_width="match_parent"
@@ -76,42 +81,70 @@
                     android:textColor="#000"
                     android:padding="15sp" />
 
+
+
                 <LinearLayout
                     style="@style/ll_show_answer">
+
+                    <HorizontalScrollView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8">
+
+
                     <TextView
                         android:id="@+id/txt_answer_a"
-                        android:textColor="#000"
-                        style="@style/etxt_show_answer"/>
+                        style="@style/txt_show_answer"
+                        />
+                    </HorizontalScrollView>
+
                     <Button
                         android:id="@+id/btn_edit_answer_a"
                         style="@style/btn_show_correct_answer_playing"/>
+
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">
+                    <HorizontalScrollView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8">
+
                     <TextView
                         android:id="@+id/txt_answer_b"
-                        android:textColor="#000"
-                        style="@style/etxt_show_answer"/>
+                        style="@style/txt_show_answer"/>
+                    </HorizontalScrollView>
                     <Button
                         android:id="@+id/btn_edit_answer_b"
                         style="@style/btn_show_correct_answer_playing"/>
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">
+                    <HorizontalScrollView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8">
+
+
                     <TextView
                         android:id="@+id/txt_answer_c"
-                        android:textColor="#000"
-                        style="@style/etxt_show_answer"/>
+                        style="@style/txt_show_answer"/>
+                    </HorizontalScrollView>
                     <Button
                         android:id="@+id/btn_edit_answer_c"
                         style="@style/btn_show_correct_answer_playing"/>
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">
+                    <HorizontalScrollView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8">
+
                     <TextView
                         android:id="@+id/txt_answer_d"
-                        android:textColor="#000"
-                        style="@style/etxt_show_answer"/>
+                        style="@style/txt_show_answer"/>
+                </HorizontalScrollView>
                     <Button
                         android:id="@+id/btn_edit_answer_d"
                         style="@style/btn_show_correct_answer_playing"/>
