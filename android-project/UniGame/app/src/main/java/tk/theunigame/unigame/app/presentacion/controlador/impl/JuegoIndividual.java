@@ -134,8 +134,9 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         //Cargamos los datos
 
         bdPreguntases = comunicador.RecibirBDPreguntasPosicion0();
-        fachadaPregunta.cargarPreguntas(this, bdPreguntases);
         fachadaPartida.inicializarPartida();
+        fachadaPregunta.cargarPreguntas(this, bdPreguntases);
+
         Juego j = Juego.getInstance();
         j.setOnJuegoListener(this);
         fachadaPartida.siguientePregunta();
