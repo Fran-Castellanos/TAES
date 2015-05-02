@@ -265,14 +265,14 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     @Override
     public void onPreguntaRespondida(int correcta) {
         View view = findViewById(id_answer_selected.getButtonId());
-        //TODO
-        if(correcta>0)
+        int id = id_answer_selected.getId();
+        if(id == correcta)
         {
-            view.setBackgroundResource(R.drawable.btn_selected_answer_default);
+            view.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
         }
         else
         {
-            view.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
+            view.setBackgroundResource(R.drawable.btn_selected_answer_default);
         }
     }
 
