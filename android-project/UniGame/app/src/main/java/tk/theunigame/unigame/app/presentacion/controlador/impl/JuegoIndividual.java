@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -60,6 +62,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     private Timer timer;
     private TimerTask timerTask;
+    Handler handler;
 
     private Universidad universidad;
     private ArrayList<Asignatura> asignaturas;
@@ -138,8 +141,15 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
             }
         });
 
-        //Cargamos los datos
+        //Instanciamos el handler
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg){
+                fachadaPartida.siguientePregunta();
+            }
+        };
 
+        //Cargamos los datos
         bdPreguntases = comunicador.RecibirBDPreguntasPosicion0();
         fachadaPartida.inicializarPartida();
         fachadaPregunta.cargarPreguntas(this, bdPreguntases);
@@ -162,8 +172,13 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
 
         fachadaPartida.comprobarPregunta(id_answer_selected.getId());
-        //2 segundos espera
-        fachadaPartida.siguientePregunta();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fachadaPartida.siguientePregunta();
+            }
+        }, 2000);
     }
 
     //Evento a realizar para confirmar los cambios
@@ -249,14 +264,15 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     @Override
     public void onPreguntaRespondida(int correcta) {
+        View view = findViewById(id_answer_selected.getButtonId());
         //TODO
-        if(id_answer_selected.getButtonId() == correcta)
+        if(correcta>0)
         {
-
+            view.setBackgroundResource(R.drawable.btn_selected_answer_default);
         }
         else
         {
-
+            view.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
         }
     }
 
