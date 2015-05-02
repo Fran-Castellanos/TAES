@@ -107,8 +107,10 @@ public class PreguntaRepository {
         try {
 
             QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
-            builder.selectRaw("select * from "+ Pregunta.TABLA +" where " + Pregunta.BD + " = " + bolsaId + " ORDER BY RAND() LIMIT 1");
-            return builder.queryForFirst();
+            builder.where().eq(Pregunta.BD, bolsaId);
+            builder.orderByRaw("RANDOM()");
+            Pregunta preg = builder.queryForFirst();
+            return preg;
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
