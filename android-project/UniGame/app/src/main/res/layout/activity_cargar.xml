@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ll_main_horizontal"
+    tools:context=".app.presentacion.controlador.impl.Cargar">
+
+
+    <RelativeLayout
+        style="@style/rl_main_left">
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/rl_main_central">
+        <LinearLayout
+            style="@style/ll_main_central_vertical">
+            <RelativeLayout
+                style="@style/rl_main_top">
+            </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                style="@style/img_main_logo"/>
+            <LinearLayout
+                android:orientation="vertical"
+                style="@style/ll_main_container">
+
+
+
+            </LinearLayout>
+            <RelativeLayout
+                style="@style/rl_main_bottom">
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/rl_main_right">
+    </RelativeLayout>
+
+
+</LinearLayout>

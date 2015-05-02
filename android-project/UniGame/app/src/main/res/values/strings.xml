@@ -15,6 +15,7 @@
     <string name="title_activity_dbs">Bases de Datos</string>
     <string name="title_activity_juego_individual">Individual</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_cargar">Cargando...</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
