@@ -162,11 +162,19 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     //Evento a realizar cuando se seleccione una respuesta de los cuatros botones
     @Override
     public void onClick(View v) {
+
+        btn_a.setClickable(false);
+        btn_b.setClickable(false);
+        btn_c.setClickable(false);
+        btn_d.setClickable(false);
+
         //TODO COntrolar bien los colores
         if(id_answer_selected != null && (v.getId() != id_answer_selected.getButtonId())){
             View view = findViewById(id_answer_selected.getButtonId());
             view.setBackgroundResource(R.drawable.etxt_edit_answer);
         }
+
+
 
         id_answer_selected = EIDANSWER.getByButtonId(v.getId());
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
@@ -177,8 +185,13 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
             @Override
             public void run() {
                 fachadaPartida.siguientePregunta();
+                btn_a.setClickable(true);
+                btn_b.setClickable(true);
+                btn_c.setClickable(true);
+                btn_d.setClickable(true);
             }
         }, 2000);
+
     }
 
     //Evento a realizar para confirmar los cambios
@@ -236,7 +249,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         });
         builder.create().show();
 
-        FachadaComunicador fachadaComunicador = new FachadaComunicador();
+
         Class<?> destino = null;
         try {
             destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.EstadisticasPartida");
@@ -246,7 +259,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         comunicador.ComunicarDestino(destino);
 
         //Enviamos las bdPreguntas a traves de la fachada
-        fachadaComunicador.ComunicarEstadisticas(estadisticas, destino);
+        comunicador.ComunicarEstadisticas(estadisticas, destino);
     }
 
     @Override
@@ -264,6 +277,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     @Override
     public void onPreguntaRespondida(int correcta) {
+
         View view = findViewById(id_answer_selected.getButtonId());
         int id = id_answer_selected.getId();
         if(id == correcta)
@@ -274,6 +288,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         {
             view.setBackgroundResource(R.drawable.btn_selected_answer_default);
         }
+
+        fachadaPartida.apagarCronometro();
     }
 
 
@@ -282,4 +298,35 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     public void onComodinUsado(Pregunta p, String mensaje) {
         //TODO
     }
-}
+
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Está seguro de querer abandonar la partida?").
+                setTitle("Salir de la partida").setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                fachadaPartida.apagarCronometro();
+                //Lanzamos la actividad
+                Intent intent = new Intent(JuegoIndividual.this, MainActivity.class);
+                startActivity(intent);
+            }
+        }).setNegativeButton("Seguir jugando", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+
+            }
+        });
+        builder.create().show();
+
+
+
+
+        }
+    }

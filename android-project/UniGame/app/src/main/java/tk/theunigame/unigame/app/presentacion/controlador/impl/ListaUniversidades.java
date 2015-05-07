@@ -28,6 +28,7 @@ public class ListaUniversidades extends Activity {
     private ListView lv;
     FachadaUniversidad fachadaUniversidad;
     Class<?> destino;
+    FachadaComunicador fachadaComunicador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class ListaUniversidades extends Activity {
 
         fachadaUniversidad= new FachadaUniversidad();
         destino = null;
+        fachadaComunicador = new FachadaComunicador();
 
         //Creamos el adaptador para el ListView
         List<Universidad> universidades = fachadaUniversidad.obtenerUniversidades(this);
@@ -49,7 +51,7 @@ public class ListaUniversidades extends Activity {
                 ProgressDialog dialog = ProgressDialog.show(ListaUniversidades.this, "",
                         "Cargando...", true);
 
-                FachadaComunicador fachadaComunicador = new FachadaComunicador();
+
                 if(destino == null)
                     destino = fachadaComunicador.RecibirDestinoPosicionFinal();
 
@@ -59,6 +61,15 @@ public class ListaUniversidades extends Activity {
                 dialog.cancel();
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        fachadaComunicador.volverAtras();
+
+        super.onBackPressed();
     }
 
 }

@@ -87,4 +87,9 @@ public class FachadaPartida {
     public void setOnJuegoListenerToJuego(OnJuegoListener listener){
         Juego.getInstance().setOnJuegoListener(listener);
     }
+
+    public void apagarCronometro() {
+        Juego j = Juego.getInstance();
+        j.pararCronometro();
+    }
 }

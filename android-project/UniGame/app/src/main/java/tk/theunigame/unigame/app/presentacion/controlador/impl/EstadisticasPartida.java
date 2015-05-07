@@ -1,6 +1,8 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -62,6 +64,34 @@ public class EstadisticasPartida extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Desea volver al menú principal?").
+                setTitle("Salir").setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+
+                //Lanzamos la actividad
+                Intent intent = new Intent(EstadisticasPartida.this, MainActivity.class);
+                startActivity(intent);
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+
+            }
+        });
+        builder.create().show();
+
     }
 
 }

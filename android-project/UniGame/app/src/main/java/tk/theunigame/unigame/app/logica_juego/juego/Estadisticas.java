@@ -62,10 +62,13 @@ public class Estadisticas {
     public void calcularNota()
     {
         nota = ((double)acertadas/numPreguntas) * 10.0;
+
     }
 
     public double getNota() {
-        return nota;
+        double n = Math.round(nota * 100);
+        n = n/100;
+        return n;
     }
 
 }

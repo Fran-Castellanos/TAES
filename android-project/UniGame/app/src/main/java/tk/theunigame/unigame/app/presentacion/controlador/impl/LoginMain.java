@@ -46,4 +46,11 @@ public class LoginMain extends Activity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+
+
+        super.onBackPressed();
+    }
+
 }

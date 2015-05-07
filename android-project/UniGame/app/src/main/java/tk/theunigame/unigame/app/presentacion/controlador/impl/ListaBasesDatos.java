@@ -150,4 +150,12 @@ public class ListaBasesDatos extends Activity {
             posicionAsig[(Integer)chkBox.getTag()]=false;
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        fachadaComunicador.volverAtras();
+        super.onBackPressed();
+    }
+
 }

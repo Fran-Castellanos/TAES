@@ -18,6 +18,7 @@ import java.util.List;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaPreguntas;
@@ -33,11 +34,15 @@ public class ListaPreguntas extends Activity {
     private TextView txt;
     private Button btn_crear_pregunta;
 
+    private FachadaComunicador comunicador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_preguntas);
+
+
+        comunicador = new FachadaComunicador();
 
         //Evento al pulsar el botón crear
         btn_crear_pregunta = (Button) findViewById(R.id.btn_crear_pregunta);
@@ -50,7 +55,7 @@ public class ListaPreguntas extends Activity {
         });
 
         txt= (TextView)findViewById(R.id.txt_title1);
-        txt.setText((String)Comunicador.getObject());
+        //txt.setText((String)Comunicador.getObject());
 
 
         lv=(ListView) findViewById(R.id.lv_preguntas);
@@ -65,7 +70,20 @@ public class ListaPreguntas extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ProgressDialog dialog = ProgressDialog.show(ListaPreguntas.this, "",
                         "Cargando...", true);
-                Comunicador.setObject((Pregunta)parent.getAdapter().getItem(position));
+
+
+                Class<?> destino=null;
+
+                try {
+                    destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.EditarPreguntaPregunta");
+                } catch (ClassNotFoundException e) {
+                    new RuntimeException();
+                }
+
+                comunicador.ComunicarDestino(destino);
+
+
+                comunicador.ComunicarPregunta((Pregunta)parent.getAdapter().getItem(position), destino);
 
                 Intent intent;
                 intent = new Intent(ListaPreguntas.this, EditarPregunta.class);
@@ -88,4 +106,12 @@ public class ListaPreguntas extends Activity {
     {
         BolsaPregunta.getInstance().EliminarPregunta(p);
     }
+
+    @Override
+    public void onBackPressed() {
+
+        comunicador.volverAtras();
+        super.onBackPressed();
+    }
+
 }
