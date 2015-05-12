@@ -22,53 +22,45 @@ public class PreguntaRepository {
     private DatabaseHelper db;
     private PreguntaDao dao;
 
-    public PreguntaRepository(Context ctx)
-    {
+    public PreguntaRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
             dao = db.getPreguntaDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(Pregunta pregunta)
-    {
+    public int create(Pregunta pregunta) throws SQLException {
         try {
             return dao.create(pregunta);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int update(Pregunta pregunta)
-    {
+    public int update(Pregunta pregunta) throws SQLException {
         try {
             return dao.update(pregunta);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
-    public int delete(Pregunta pregunta)
-    {
+    public int delete(Pregunta pregunta) throws SQLException {
         try {
             return dao.delete(pregunta);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public List<Pregunta> getAll()
-    {
+    public List<Pregunta> getAll() throws SQLException {
         try {
 
             QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
@@ -77,35 +69,28 @@ public class PreguntaRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Pregunta getById(int id)
-    {
+    public Pregunta getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public int refresh(Pregunta preg)
-    {
+    public int refresh(Pregunta preg) throws SQLException {
         try {
             return dao.refresh(preg);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public Pregunta getRandomByBolsa(int bolsaId)
-    {
+    public Pregunta getRandomByBolsa(int bolsaId) throws SQLException {
         try {
 
             QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
@@ -117,14 +102,12 @@ public class PreguntaRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
 
-    public List<Pregunta> getAllByBDPregunta(int bolsaId)
-    {
+    public List<Pregunta> getAllByBDPregunta(int bolsaId) throws SQLException {
         try {
 
             QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
@@ -134,8 +117,7 @@ public class PreguntaRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 }

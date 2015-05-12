@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
@@ -39,7 +40,7 @@ public class BajarDB extends Activity{
         setContentView(R.layout.activity_bajar_db);
     }
 
-    public void Bajar_BD(View v){
+    public void Bajar_BD(View v) throws SQLException {
 
         String nombreuni= ((EditText)findViewById(R.id.etxt_university)).getText().toString();
         String nombreasig = ((EditText)findViewById(R.id.etxt_subject)).getText().toString();

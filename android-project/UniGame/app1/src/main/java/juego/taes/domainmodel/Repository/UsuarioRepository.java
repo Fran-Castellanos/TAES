@@ -21,15 +21,14 @@ public class UsuarioRepository {
     private DatabaseHelper db;
     private UsuarioDao dao;
 
-    public UsuarioRepository(Context ctx)
-    {
+    public UsuarioRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
             dao = db.getUsuarioDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
@@ -43,40 +42,32 @@ public class UsuarioRepository {
         }
     }
 
-    public int update(Usuario usuario)
-    {
+    public int update(Usuario usuario) throws SQLException {
         try {
             return dao.update(usuario);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
-    public int delete(Usuario usuario)
-    {
+    public int delete(Usuario usuario) throws SQLException {
         try {
             return dao.delete(usuario);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int refresh(Usuario us)
-    {
+    public int refresh(Usuario us) throws SQLException {
         try {
             return dao.refresh(us);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public List<Usuario> getAll()
-    {
+    public List<Usuario> getAll() throws SQLException {
         try {
             QueryBuilder<Usuario,Integer> builder = dao.queryBuilder();
             builder.orderBy(Usuario.NOMBRE,true);
@@ -84,23 +75,20 @@ public class UsuarioRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Usuario getById(int id)
-    {
+    public Usuario getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Usuario getByNick(String nick){
+    public Usuario getByNick(String nick) throws SQLException {
         try {
             List<Usuario> usuarios = dao.queryForEq(Usuario.NICK,nick);
             if(usuarios != null && usuarios.size() == 1)
@@ -108,7 +96,7 @@ public class UsuarioRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
         return null;
     }

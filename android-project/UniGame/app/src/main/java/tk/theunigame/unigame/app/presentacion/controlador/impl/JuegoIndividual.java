@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -152,7 +153,11 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         //Cargamos los datos
         bdPreguntases = comunicador.RecibirBDPreguntasPosicion0();
         fachadaPartida.inicializarPartida();
-        fachadaPregunta.cargarPreguntas(this, bdPreguntases);
+        try {
+            fachadaPregunta.cargarPreguntas(this, bdPreguntases);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         Juego j = Juego.getInstance();
         j.setOnJuegoListener(this);

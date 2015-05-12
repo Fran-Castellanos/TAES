@@ -18,58 +18,49 @@ public class CommentsRepository {
     private DatabaseHelperExample db;
     Dao<Comment, Integer> commentsDao;
 
-    public CommentsRepository(Context ctx)
-    {
+    public CommentsRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             //db = dbManager.getHelper(ctx);
             commentsDao = db.getCommentsDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(Comment comment)
-    {
+    public int create(Comment comment) throws SQLException {
         try {
             return commentsDao.create(comment);
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
-    public int update(Comment comment)
-    {
+    public int update(Comment comment) throws SQLException {
         try {
             return commentsDao.update(comment);
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
-    public int delete(Comment comment)
-    {
+    public int delete(Comment comment) throws SQLException {
         try {
             return commentsDao.delete(comment);
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public List<Comment> getAll()
-    {
+    public List<Comment> getAll() throws SQLException {
         try {
             return commentsDao.queryForAll();
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 }

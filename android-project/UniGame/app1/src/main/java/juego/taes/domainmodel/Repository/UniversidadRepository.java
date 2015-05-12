@@ -21,65 +21,54 @@ public class UniversidadRepository {
     private DatabaseHelper db;
     private UniversidadDao dao;
 
-    public UniversidadRepository(Context ctx)
-    {
+    public UniversidadRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
             dao = db.getUniversidadDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(Universidad universidad)
-    {
+    public int create(Universidad universidad) throws SQLException {
         try {
             return dao.create(universidad);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int update (Universidad universidad)
-    {
+    public int update (Universidad universidad) throws SQLException {
         try {
             return dao.update(universidad);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int delete(Universidad universidad)
-    {
+    public int delete(Universidad universidad) throws SQLException {
         try {
             return dao.delete(universidad);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int refresh(Universidad univ)
-    {
+    public int refresh(Universidad univ) throws SQLException {
         try {
             return dao.refresh(univ);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public List<Universidad> getAll()
-    {
+    public List<Universidad> getAll() throws SQLException {
         try {
 
             QueryBuilder<Universidad,Integer> builder = dao.queryBuilder();
@@ -88,19 +77,16 @@ public class UniversidadRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Universidad getById(int id)
-    {
+    public Universidad getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 }

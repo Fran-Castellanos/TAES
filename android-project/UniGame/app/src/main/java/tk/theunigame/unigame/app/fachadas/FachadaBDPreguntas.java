@@ -3,6 +3,7 @@ import android.content.Context;
 
 import com.j256.ormlite.dao.ForeignCollection;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,7 @@ public class FachadaBDPreguntas {
 
     private BDPreguntasRepository bd;
 
-    public BDPreguntas recuperarBDPreguntas(Context c, int id)
-    {
+    public BDPreguntas recuperarBDPreguntas(Context c, int id) throws SQLException {
         bd = new BDPreguntasRepository(c);
         return bd.getById(id);
     }
@@ -31,13 +31,12 @@ public class FachadaBDPreguntas {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public void crearBaseDatos(String nombre,Context c, Asignatura a, Universidad u)
-    {
+    public void crearBaseDatos(String nombre,Context c, Asignatura a, Universidad u) throws SQLException {
         bd = new BDPreguntasRepository(c);
         bd.create((new BDPreguntas(nombre,false,u,a)));
     }
 
-    public void crearBDdelServidor(String nombre,Context c, Asignatura a, Universidad u, List<Pregunta> preguntas){
+    public void crearBDdelServidor(String nombre,Context c, Asignatura a, Universidad u, List<Pregunta> preguntas) throws SQLException {
         bd = new BDPreguntasRepository(c);
         bd.create((new BDPreguntas(nombre,true,u,a,preguntas)));
     }
@@ -50,14 +49,12 @@ public class FachadaBDPreguntas {
      * @param asignaturas
      * @return
      */
-    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas)
-    {
+    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas) throws SQLException {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
         return (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
     }
 
-    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, Asignatura asignatura)
-    {
+    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, Asignatura asignatura) throws SQLException {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
         return (ArrayList<BDPreguntas>) repository.getByAsignaturaYUniversidad(asignatura.getId(), universidad.getId());
     }
@@ -66,8 +63,7 @@ public class FachadaBDPreguntas {
      * @param context
      * @return Devuelve la lista de BD registradas
      */
-    public List<BDPreguntas> obtenerBasesTodasDatos(Context context)
-    {
+    public List<BDPreguntas> obtenerBasesTodasDatos(Context context) throws SQLException {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
         return repository.getAll();
     }

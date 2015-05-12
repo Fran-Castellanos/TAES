@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
@@ -62,7 +63,11 @@ public class ListaAsignaturas extends Activity {
         txt.setText(carrera.getNombre());
 
         asignaturas = new ArrayList<>();
-        asignaturasConsulta = fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera);
+        try {
+            asignaturasConsulta = fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //Creamos el adaptador para el ListView
         BaseAdapter adapter= new AdaptadorListaAsignaturas(this, asignaturasConsulta);
         lv.setAdapter(adapter);

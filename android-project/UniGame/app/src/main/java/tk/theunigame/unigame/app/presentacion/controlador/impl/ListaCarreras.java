@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Carrera;
@@ -51,7 +52,12 @@ public class ListaCarreras extends Activity {
         destino = null;
 
         //Creamos el adaptador para el ListView
-        ArrayList<Carrera> carreras = fachadaCarrera.obtenerCarreras(this, universidad);
+        ArrayList<Carrera> carreras = null;
+        try {
+            carreras = fachadaCarrera.obtenerCarreras(this, universidad);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         BaseAdapter adapter= new AdaptadorListaCarreras(this, carreras);
         lv=(ListView) findViewById(R.id.lv_carreras);
         lv.setAdapter(adapter);

@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,12 @@ public class ListaUniversidades extends Activity {
         fachadaComunicador = new FachadaComunicador();
 
         //Creamos el adaptador para el ListView
-        List<Universidad> universidades = fachadaUniversidad.obtenerUniversidades(this);
+        List<Universidad> universidades = null;
+        try {
+            universidades = fachadaUniversidad.obtenerUniversidades(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         AdaptadorListaUniversidades adapter= new AdaptadorListaUniversidades(this, universidades);
         lv=(ListView) findViewById(R.id.lv_universidades);
         lv.setAdapter(adapter);

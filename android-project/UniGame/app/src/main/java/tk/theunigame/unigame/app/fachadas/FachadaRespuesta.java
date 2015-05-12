@@ -5,6 +5,7 @@ import android.content.Context;
 import com.j256.ormlite.dao.BaseForeignCollection;
 import com.j256.ormlite.dao.ForeignCollection;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -30,8 +31,7 @@ public class FachadaRespuesta {
         return respuestas;
     }
 
-    public Respuesta recuperarRespuesta(Context c, int id)
-    {
+    public Respuesta recuperarRespuesta(Context c, int id) throws SQLException {
         RespuestaRepository respuesta = new RespuestaRepository(c);
         return respuesta.getById(id);
     }

@@ -2,6 +2,7 @@ package tk.theunigame.unigame.app.fachadas;
 
 import android.content.Context;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import juego.taes.domainmodel.Repository.CarreraRepository;
 public class FachadaCarrera {
 
     //Devolverá las carreras que oferte la universidad pasada por parámetro
-    public ArrayList<Carrera> obtenerCarreras(Context context, Universidad universidad){
+    public ArrayList<Carrera> obtenerCarreras(Context context, Universidad universidad) throws SQLException {
         CarreraRepository repository = new CarreraRepository(context);
         return (ArrayList<Carrera>)repository.getByUniversidad(universidad.getId());
     }

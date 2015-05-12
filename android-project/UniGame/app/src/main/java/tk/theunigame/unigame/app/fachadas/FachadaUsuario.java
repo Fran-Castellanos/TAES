@@ -2,6 +2,9 @@ package tk.theunigame.unigame.app.fachadas;
 
 import juego.taes.domainmodel.Model.Cliente.Sexo;
 import android.content.Context;
+
+import java.sql.SQLException;
+
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 import juego.taes.domainmodel.Repository.UsuarioRepository;
 
@@ -16,8 +19,7 @@ public class FachadaUsuario {
     {}
 
 
-    public Usuario loguear(Context c, String nick, String pass)
-    {
+    public Usuario loguear(Context c, String nick, String pass) throws SQLException {
         UsuarioRepository usu_rep = new UsuarioRepository(c);
         Usuario usu = usu_rep.getByNick(nick);
 

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -56,7 +57,12 @@ public class GestionarDB extends Activity {
         });
 
         //Creamos el adaptador para el ListView
-        List<BDPreguntas> bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
+        List<BDPreguntas> bdpreguntasguardadas = null;
+        try {
+            bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //Creamos el adaptador para el ListView
         BaseAdapter adapter= new AdaptadorListaGestionarPreguntas(this, bdpreguntasguardadas);
 

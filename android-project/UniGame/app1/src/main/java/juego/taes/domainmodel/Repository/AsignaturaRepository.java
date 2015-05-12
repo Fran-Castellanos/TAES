@@ -25,8 +25,7 @@ public class AsignaturaRepository {
     private AsignaturaDao dao;
     private AsignaturaCarreraDao asignaturaCarreraDao;
 
-    public AsignaturaRepository(Context ctx)
-    {
+    public AsignaturaRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
@@ -35,79 +34,65 @@ public class AsignaturaRepository {
 
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(Asignatura asig)
-    {
+    public int create(Asignatura asig) throws SQLException {
         try {
             return dao.create(asig);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+           throw e;
         }
-        return 0;
     }
 
-    public int update(Asignatura asig)
-    {
+    public int update(Asignatura asig) throws SQLException {
         try {
             return dao.update(asig);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int delete(Asignatura asig)
-    {
+    public int delete(Asignatura asig) throws SQLException {
         try {
             return dao.delete(asig);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int refresh(Asignatura asig)
-    {
+    public int refresh(Asignatura asig) throws SQLException {
         try {
             return dao.refresh(asig);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public List<Asignatura> getAll()
-    {
+    public List<Asignatura> getAll() throws SQLException {
         try {
             return dao.queryForAll();
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Asignatura getById(int id)
-    {
+    public Asignatura getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public List<Asignatura> getByCarrera( int carreraId)
-    {
+    public List<Asignatura> getByCarrera( int carreraId) throws SQLException {
         try {
             QueryBuilder<AsignaturaCarrera, Integer> builder = asignaturaCarreraDao.queryBuilder();
             builder.where().eq(AsignaturaCarrera.CARRERA, carreraId);
@@ -116,9 +101,7 @@ public class AsignaturaRepository {
         }
         catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
-
     }
 }

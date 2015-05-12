@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLException;
+
 import juego.taes.domainmodel.Model.Cliente.*;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
@@ -57,7 +59,7 @@ public class CrearDB extends Activity {
         txt_subject.setText(asignatura.getNombre());
     }
 
-    public void Crear_BD(View v){
+    public void Crear_BD(View v) throws SQLException {
         String nombreBD= etxt_name_db.getText().toString();
 
         //comunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura,comunicador.RecibirDestinoPosicionFinal());

@@ -2,6 +2,8 @@ package tk.theunigame.unigame.app.logica_juego.bolsaPreguntas;
 import android.content.Context;
 
 import com.j256.ormlite.dao.ForeignCollection;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -100,8 +102,7 @@ public class BolsaPregunta {
         }
     }
 
-    public void RegistrarCambios(Context cont)
-    {
+    public void RegistrarCambios(Context cont) throws SQLException {
         //Repositorys
         BDPreguntasRepository bDRepository = new BDPreguntasRepository(cont);
         bDRepository.GuardarCambios(pBDPreguntas,preguntas_creadas,preguntas_modificadas,preguntas_eliminadas);

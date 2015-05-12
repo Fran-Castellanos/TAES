@@ -25,8 +25,7 @@ public class CarreraRepository {
     private CarreraDao dao;
     private CarreraUniversidadDao carreraUniversidadDao;
 
-    public CarreraRepository(Context ctx)
-    {
+    public CarreraRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
@@ -35,56 +34,46 @@ public class CarreraRepository {
 
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(Carrera carrera)
-    {
+    public int create(Carrera carrera) throws SQLException {
         try {
             return dao.create(carrera);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int update(Carrera carrera)
-    {
+    public int update(Carrera carrera) throws SQLException {
         try {
             return dao.update(carrera);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
-    public int delete(Carrera carrera)
-    {
+    public int delete(Carrera carrera) throws SQLException {
         try {
             return dao.delete(carrera);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int refresh(Carrera carrera)
-    {
+    public int refresh(Carrera carrera) throws SQLException {
         try {
             return dao.refresh(carrera);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public List<Carrera> getAll()
-    {
+    public List<Carrera> getAll() throws SQLException {
         try {
 
             QueryBuilder<Carrera,Integer> builder = dao.queryBuilder();
@@ -93,23 +82,20 @@ public class CarreraRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Carrera getById(int id){
+    public Carrera getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public List<Carrera> getByUniversidad(int id)
-    {
+    public List<Carrera> getByUniversidad(int id) throws SQLException {
         try {
 
             QueryBuilder<CarreraUniversidad,Integer> builder = carreraUniversidadDao.queryBuilder();
@@ -122,8 +108,7 @@ public class CarreraRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 }

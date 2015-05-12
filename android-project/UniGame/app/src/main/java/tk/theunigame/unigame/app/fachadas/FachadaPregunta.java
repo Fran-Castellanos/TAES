@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.j256.ormlite.dao.ForeignCollection;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -59,8 +60,7 @@ public class FachadaPregunta {
 
 
 
-    public void cargarPreguntas(Context c, List<BDPreguntas> bolsas)
-    {
+    public void cargarPreguntas(Context c, List<BDPreguntas> bolsas) throws SQLException {
         Juego j = Juego.getInstance();
         List<Integer> numPreguntasBolsa = new ArrayList<Integer>();
         List<Double> ranks;

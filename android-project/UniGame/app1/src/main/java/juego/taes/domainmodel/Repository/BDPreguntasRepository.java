@@ -34,8 +34,7 @@ public class BDPreguntasRepository {
     private BDPreguntasDao dao;
     private PreguntaDao preguntaDao;
 
-    public BDPreguntasRepository(Context ctx)
-    {
+    public BDPreguntasRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
@@ -44,58 +43,48 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(BDPreguntas bd)
-    {
+    public int create(BDPreguntas bd) throws SQLException {
         try {
             return dao.create(bd);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int update(BDPreguntas bd)
-    {
+    public int update(BDPreguntas bd) throws SQLException {
         try {
             return dao.update(bd);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int delete(BDPreguntas bd)
-    {
+    public int delete(BDPreguntas bd) throws SQLException {
         try {
             return dao.delete(bd);
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int refresh(BDPreguntas bd)
-    {
+    public int refresh(BDPreguntas bd) throws SQLException {
         try {
             return dao.refresh(bd);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public List<BDPreguntas> getAll()
-    {
+    public List<BDPreguntas> getAll() throws SQLException {
         try {
 
             QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
@@ -104,24 +93,20 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public BDPreguntas getById(int id)
-    {
+    public BDPreguntas getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public List<BDPreguntas> getByAsignaturaYUniversidad(int idAsig, int idUni)
-    {
+    public List<BDPreguntas> getByAsignaturaYUniversidad(int idAsig, int idUni) throws SQLException {
         try {
 
             QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
@@ -134,14 +119,12 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
     //Devuelve una lista de BDPreguntas en fución de una universidad y una lista de asignaturas
-    public List<BDPreguntas> getByAsignaturasYUniversidad(List<Asignatura> asignaturas, int idUni)
-    {
+    public List<BDPreguntas> getByAsignaturasYUniversidad(List<Asignatura> asignaturas, int idUni) throws SQLException {
         try {
             List<Integer> listaAsignaturas = new ArrayList<>();
             for(Asignatura a : asignaturas)
@@ -157,12 +140,11 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public List<BDPreguntas> getByAsignatura(int idAsig){
+    public List<BDPreguntas> getByAsignatura(int idAsig) throws SQLException {
         try {
 
             QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
@@ -172,11 +154,11 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;}
+        }
 
-    public List<BDPreguntas> getByUsuario(int idUsuario){
+    public List<BDPreguntas> getByUsuario(int idUsuario) throws SQLException {
         try {
 
             QueryBuilder<BDPreguntas,Integer> builder = dao.queryBuilder();
@@ -186,13 +168,12 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;}
+}
 
     //Modificar una bd
-    public void GuardarCambios(BDPreguntas bd, List<Pregunta> creadas, List<Pregunta> modificadas, List<Pregunta> eliminadas)
-    {
+    public void GuardarCambios(BDPreguntas bd, List<Pregunta> creadas, List<Pregunta> modificadas, List<Pregunta> eliminadas) throws SQLException {
         try {
 
             dao.update(bd);
@@ -212,7 +193,7 @@ public class BDPreguntasRepository {
 
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
 
     }

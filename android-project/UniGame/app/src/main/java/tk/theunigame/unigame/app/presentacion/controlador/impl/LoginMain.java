@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import java.sql.SQLException;
+
 import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 import tk.theunigame.unigame.R;
@@ -88,7 +90,12 @@ public class LoginMain extends Activity {
                 String user = et_usuario.getText().toString();
                 String pass = et_password.getText().toString();
 
-                Usuario usu = fachadaUsuario.loguear(c, user, pass);
+                Usuario usu = null;
+                try {
+                    usu = fachadaUsuario.loguear(c, user, pass);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 if(usu == null)
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(c);

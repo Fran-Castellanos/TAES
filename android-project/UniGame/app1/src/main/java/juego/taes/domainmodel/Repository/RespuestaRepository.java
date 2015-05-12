@@ -18,82 +18,68 @@ public class RespuestaRepository {
     private DatabaseHelper db;
     private RespuestaDao dao;
 
-    public RespuestaRepository(Context ctx)
-    {
+    public RespuestaRepository(Context ctx) throws SQLException {
         try {
             DatabaseManager dbManager = new DatabaseManager();
             db = dbManager.getHelper(ctx);
             dao = db.getRespuestaDao();
         } catch (SQLException e) {
             // TODO: Exception Handling
-            e.printStackTrace();
+            throw e;
         }
 
     }
 
-    public int create(Respuesta respuesta)
-    {
+    public int create(Respuesta respuesta) throws SQLException {
         try {
             return dao.create(respuesta);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int update(Respuesta respuesta)
-    {
+    public int update(Respuesta respuesta) throws SQLException {
         try {
             return dao.update(respuesta);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int delete(Respuesta respuesta)
-    {
+    public int delete(Respuesta respuesta) throws SQLException {
         try {
             return dao.delete(respuesta);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
-    public int refresh(Respuesta resp)
-    {
+    public int refresh(Respuesta resp) throws SQLException {
         try {
             return dao.refresh(resp);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
-
-        return 0;
     }
 
-    public List<Respuesta> getAll()
-    {
+    public List<Respuesta> getAll() throws SQLException {
         try {
             return dao.queryForAll();
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public Respuesta getById(int id)
-    {
+    public Respuesta getById(int id) throws SQLException {
         try {
             return dao.queryForId(id);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 }

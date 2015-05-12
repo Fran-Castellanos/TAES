@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
@@ -51,7 +52,11 @@ public class ListaAsignaturasSinCB extends Activity {
         carrera = fachadaComunicador.RecibirCarreraPosicion1();
         txt.setText(carrera.getNombre());
 
-        asignaturasConsulta = fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera);
+        try {
+            asignaturasConsulta = fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //Creamos el adaptador para el ListView
         BaseAdapter adapter= new AdaptadorListaAsignaturasSinCB(this, asignaturasConsulta);
         lv.setAdapter(adapter);

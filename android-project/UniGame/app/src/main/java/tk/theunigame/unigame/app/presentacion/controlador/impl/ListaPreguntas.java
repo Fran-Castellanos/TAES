@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,8 +103,7 @@ public class ListaPreguntas extends Activity {
     }
 
     //Confirmar los cambios de la BDPreguntas
-    public void Confirmar_Cambios(View v)
-    {
+    public void Confirmar_Cambios(View v) throws SQLException {
         BolsaPregunta.getInstance().RegistrarCambios(this);
 
         Intent intent = new Intent(ListaPreguntas.this, GestionarDB.class);
