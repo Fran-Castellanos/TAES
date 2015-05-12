@@ -3,6 +3,7 @@
     package="tk.theunigame.unigame" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
