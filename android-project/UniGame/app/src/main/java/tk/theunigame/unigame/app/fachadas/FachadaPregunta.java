@@ -27,7 +27,7 @@ public class FachadaPregunta {
 
     public void indicarRespuestas(Pregunta pregunta, ArrayList<Respuesta> respuestas)
     {
-        pregunta.setRespuestas((ForeignCollection<Respuesta>)respuestas);
+        pregunta.setRespuestas(respuestas);
     }
 
     public void respuestaCorrecta(Pregunta pregunta, int IDrespuestaCorrecta)

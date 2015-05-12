@@ -38,23 +38,23 @@ public class Comodin50 extends Comodin {
         p = j.getPreguntaActual();
         Pregunta result=new Pregunta(p.getContenido(),false);
         try{
-        ForeignCollection<Respuesta> respuestasCollection = p.getRespuestas();
 
+            List<Respuesta> respuestasCollection = p.getRespuestas();
 
-        int eliminadas=0;
-        ForeignCollection<Respuesta> resp50= (ForeignCollection<Respuesta>) new ArrayList<Respuesta>();
-        int numEliminadas = (int)Math.floor(resp50.size()/2);
+            int eliminadas=0;
+            List<Respuesta> resp50= new ArrayList<Respuesta>();
+            int numEliminadas = (int)Math.floor(resp50.size()/2);
 
-        Random r = new Random();
-        ArrayList<Integer> aleatorios = new ArrayList<Integer>();
-        int a;
-        while(eliminadas < numEliminadas)
-        {
-            a = r.nextInt(resp50.size());  // Entre 0 y num de respuestasCollection
-            if(!aleatorios.contains(a) && !esCorrecta(respuestasCollection,a)) {
-                aleatorios.add(a);
-                ++eliminadas;
-            }
+            Random r = new Random();
+            ArrayList<Integer> aleatorios = new ArrayList<Integer>();
+            int a;
+            while(eliminadas < numEliminadas)
+            {
+                a = r.nextInt(resp50.size());  // Entre 0 y num de respuestasCollection
+                if(!aleatorios.contains(a) && !esCorrecta(respuestasCollection,a)) {
+                    aleatorios.add(a);
+                    ++eliminadas;
+                }
 
         }
 

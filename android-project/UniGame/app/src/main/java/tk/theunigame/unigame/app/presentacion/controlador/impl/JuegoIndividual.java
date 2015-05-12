@@ -267,7 +267,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         //this.pregunta = pregunta;
 
         txt_question.setText(pregunta.getContenido());
-        List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestasList();
+        List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestas();
         txt_a.setText(l.get(0).getContenido());
         txt_b.setText(l.get(1).getContenido());
         txt_c.setText(l.get(2).getContenido());

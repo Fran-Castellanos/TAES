@@ -37,7 +37,7 @@ public class FachadaBDPreguntas {
         bd.create((new BDPreguntas(nombre,false,u,a)));
     }
 
-    public void crearBDdelServidor(String nombre,Context c, Asignatura a, Universidad u, ForeignCollection<Pregunta> preguntas){
+    public void crearBDdelServidor(String nombre,Context c, Asignatura a, Universidad u, List<Pregunta> preguntas){
         bd = new BDPreguntasRepository(c);
         bd.create((new BDPreguntas(nombre,true,u,a,preguntas)));
     }

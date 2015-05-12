@@ -41,7 +41,8 @@ public class FachadaPartida {
     public void comprobarPregunta(int respuestaPos) {
         Juego j = Juego.getInstance();
         j.pararCronometro();
-        int respuestaId = j.getPreguntaActual().getRespuestasList().get(respuestaPos).getId();
+
+        int respuestaId = j.getPreguntaActual().getRespuestas().get(respuestaPos).getId();
         j.comprobarRespuesta(respuestaId);
 
 

@@ -50,14 +50,16 @@ public class BajarDB extends Activity{
             bdPreguntasList = respositorio.getByAsignaturaYUniversidad(asignatura.getId(),universidad.getId());//Esto lo hace en local, habria que hacer una conexion con el servidor
             for(int i=0; i<bdPreguntasList.size(); ++i){
                 //Como esto lo hace localmente, las BD se duplicaran
-                fachada.crearBDdelServidor(bdPreguntasList.get(i).getNombre(),this,bdPreguntasList.get(i).getAsignatura(),bdPreguntasList.get(i).getUniversidad(),bdPreguntasList.get(i).getPreguntas());
+                fachada.crearBDdelServidor(bdPreguntasList.get(i).getNombre(),this,bdPreguntasList.get(i).getAsignatura(),
+                        bdPreguntasList.get(i).getUniversidad(),bdPreguntasList.get(i).getPreguntas());
             }
         }
         else if(nombreasig!="" && nombreuni=="" ){
             bdPreguntasList = respositorio.getByAsignatura(asignatura.getId());//Esto lo hace en local, habria que hacer una conexion con el servidor
             for(int i=0; i<bdPreguntasList.size(); ++i){
                 //Como esto lo hace localmente, las BD se duplicaran
-                fachada.crearBDdelServidor(bdPreguntasList.get(i).getNombre(),this,bdPreguntasList.get(i).getAsignatura(),bdPreguntasList.get(i).getUniversidad(),bdPreguntasList.get(i).getPreguntas());
+                fachada.crearBDdelServidor(bdPreguntasList.get(i).getNombre(),this,bdPreguntasList.get(i).getAsignatura(),
+                        bdPreguntasList.get(i).getUniversidad(),bdPreguntasList.get(i).getPreguntas());
 
             }
         }

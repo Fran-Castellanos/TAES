@@ -5,6 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -88,12 +89,12 @@ public class BDPreguntas {
         this.asignatura = asignatura;
     }
 
-    public BDPreguntas(String nombre, boolean enServidor, Universidad universidad, Asignatura asignatura,ForeignCollection<Pregunta> preguntas) {
+    public BDPreguntas(String nombre, boolean enServidor, Universidad universidad, Asignatura asignatura, List<Pregunta> preguntas) {
         this.nombre = nombre;
         this.enServidor = enServidor;
         this.universidad = universidad;
         this.asignatura = asignatura;
-        this.preguntas = preguntas;
+        this.preguntasList = preguntas;
     }
 
     public int getId() {
@@ -169,6 +170,9 @@ public class BDPreguntas {
     }
 
     public List<Pregunta> getPreguntas() {
+        if(preguntasList == null)
+            preguntasList = new ArrayList(preguntas);
+
         return preguntasList;
     }
 
