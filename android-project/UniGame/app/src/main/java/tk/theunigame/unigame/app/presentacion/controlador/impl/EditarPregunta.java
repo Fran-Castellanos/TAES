@@ -99,14 +99,9 @@ public class EditarPregunta extends Activity implements View.OnClickListener
 
     public void Modificar_Click(View v)
     {
-        //Recibire la pregunta tanto para obtener la respuesta correcta indicada por el usuario
-        //Como para obtener el resto de datos
-        //Luego haré la modificación en la bolsa de preguntas
-        //BolsaPregunta.getInstance().ModificarPreguntaInsertada(pregunta);
-        //Haga lo que tenga que hacer
         preguntarecuperada.setContenido(etxt_question.getText().toString());
 
-        List<Respuesta> recuperadas = new ArrayList<Respuesta>(preguntarecuperada.getRespuestas());
+        List<Respuesta> recuperadas = preguntarecuperada.getRespuestas();
 
         //Poner a false
         for(Respuesta x : recuperadas)
@@ -142,6 +137,7 @@ public class EditarPregunta extends Activity implements View.OnClickListener
             i++;
         }
 
+        preguntarecuperada.setRespuestas(recuperadas);
         BolsaPregunta.getInstance().ModificarPreguntaInsertada(preguntarecuperada);
 
         Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);

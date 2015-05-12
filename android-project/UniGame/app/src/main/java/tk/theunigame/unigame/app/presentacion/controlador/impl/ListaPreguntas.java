@@ -105,6 +105,11 @@ public class ListaPreguntas extends Activity {
     public void Confirmar_Cambios(View v)
     {
         BolsaPregunta.getInstance().RegistrarCambios(this);
+
+        Intent intent = new Intent(ListaPreguntas.this, GestionarDB.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+
         //Log.d("CambiosConfirmados", "Funcion");
     }
 
