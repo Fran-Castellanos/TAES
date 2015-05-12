@@ -59,13 +59,11 @@ public class ListaAsignaturasSinCB extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Class<?> destino = fachadaComunicador.RecibirDestinoPosicionFinal();
                 //Enviamos las asignaturas a traves de la fachada
-                fachadaComunicador.ComunicarUniversidadCarreraAsignatura(universidad,
-                        carrera, (Asignatura)parent.getAdapter().getItem(position), destino);
+                fachadaComunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,(Asignatura)parent.getAdapter().getItem(position),null);
 
                 //Lanzamos la actividad
-                Intent intent = new Intent(ListaAsignaturasSinCB.this, ListaBasesDatosSinCB.class);
+                Intent intent = new Intent(ListaAsignaturasSinCB.this, CrearDB.class);
                 startActivity(intent);
 
             }
