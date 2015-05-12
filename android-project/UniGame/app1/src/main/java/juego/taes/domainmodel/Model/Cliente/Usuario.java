@@ -34,7 +34,7 @@ public class Usuario {
 
 
     //Atributos de la base de datos
-    @DatabaseField(columnName=ID, id=true, useGetSet = true)
+    @DatabaseField(columnName=ID, generatedId=true, useGetSet = true)
     private int id;
 
     @DatabaseField(columnName= NICK, canBeNull = false, unique=true, useGetSet = true)

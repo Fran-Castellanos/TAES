@@ -34,15 +34,13 @@ public class UsuarioRepository {
 
     }
 
-    public int create(Usuario usuario)
-    {
+    public int create(Usuario usuario) throws SQLException {
         try {
             return dao.create(usuario);
         } catch (SQLException e) {
             //TODO GESTION DE ERRORES
-            e.printStackTrace();
+            throw e;
         }
-        return 0;
     }
 
     public int update(Usuario usuario)
