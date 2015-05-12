@@ -31,7 +31,7 @@ public class PreguntaDao extends BaseDaoImpl<Pregunta,Integer> implements IPregu
     {
         int resultado = super.create(preg);
 
-        for(Respuesta resp : respuestaDao) {
+        for(Respuesta resp :  preg.getRespuestas()) {
             resp.setPregunta(preg);
             respuestaDao.create(resp);
         }
@@ -45,7 +45,7 @@ public class PreguntaDao extends BaseDaoImpl<Pregunta,Integer> implements IPregu
     {
         int resultado = super.update(preg);
 
-        for(Respuesta resp : respuestaDao)
+        for(Respuesta resp : preg.getRespuestas())
         {
             resp.setPregunta(preg);
             respuestaDao.update(resp);
@@ -58,7 +58,7 @@ public class PreguntaDao extends BaseDaoImpl<Pregunta,Integer> implements IPregu
     @Override
     public int delete(Pregunta preg) throws SQLException
     {
-        for(Respuesta resp : respuestaDao)
+        for(Respuesta resp :  preg.getRespuestas())
             respuestaDao.delete(resp);
 
         return super.delete(preg);
