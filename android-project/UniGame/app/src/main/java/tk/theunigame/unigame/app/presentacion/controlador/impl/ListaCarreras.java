@@ -72,5 +72,10 @@ public class ListaCarreras extends Activity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
 
+        fachadaComunicador.volverAtras();
+        super.onBackPressed();
+    }
 }

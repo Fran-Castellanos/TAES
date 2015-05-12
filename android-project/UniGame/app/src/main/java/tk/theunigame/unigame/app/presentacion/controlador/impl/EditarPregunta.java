@@ -42,6 +42,9 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_pregunta);
 
+        fachadaComunicador = new FachadaComunicador();
+        id_answer_selected = EIDANSWER.A;
+
         etxt_question = (EditText)findViewById(R.id.etxt_question);
 
         etxt_a = (EditText)findViewById(R.id.etxt_edit_answer_a);
@@ -60,7 +63,8 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         btn_d.setOnClickListener(this);
 
         //Obtengo el objeto pregunta y la lista de respuestas
-        preguntarecuperada = (Pregunta) Comunicador.getObject();
+        preguntarecuperada = fachadaComunicador.RecibirPregunta();
+
         respuestasrecuperadas= new ArrayList<Respuesta>(preguntarecuperada.getRespuestas());
 
         //Actualizo los textView
@@ -143,5 +147,13 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        fachadaComunicador.volverAtras();
+        super.onBackPressed();
     }
 }
