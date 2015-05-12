@@ -50,6 +50,11 @@ public class CrearDB extends Activity {
         universidad = fachadaComunicador.RecibirUniversidadPosicion0();
         carrera = fachadaComunicador.RecibirCarreraPosicion1();
         asignatura = fachadaComunicador.RecibirAsignaturaPosicion2();
+
+        //Cambiamos los text_View
+        txt_university.setText(universidad.getNombre());
+        txt_carrer.setText(carrera.getNombre());
+        txt_subject.setText(asignatura.getNombre());
     }
 
     public void Crear_BD(View v){
