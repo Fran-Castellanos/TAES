@@ -37,8 +37,7 @@
                         style="@style/etxt_show_answer"/>
                     <Button
                         android:id="@+id/btn_edit_answer_a"
-                        style="@style/btn_show_correct_answer"
-                        android:background="@drawable/btn_selected_answer_pressed"/>
+                        style="@style/btn_show_correct_answer"/>
                 </LinearLayout>
                 <LinearLayout
                     style="@style/ll_show_answer">

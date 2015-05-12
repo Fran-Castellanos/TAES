@@ -77,4 +77,11 @@ public class ListaAsignaturasSinCB extends Activity {
         super.onResume();
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        fachadaComunicador.volverAtras();
+        super.onBackPressed();
+    }
 }

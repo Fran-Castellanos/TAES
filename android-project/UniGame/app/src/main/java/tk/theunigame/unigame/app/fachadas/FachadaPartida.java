@@ -70,6 +70,7 @@ public class FachadaPartida {
         Juego juego = Juego.getInstance();
         juego.reiniciarCronometro();
         juego.siguientePregunta();
+
     }
 
 
@@ -85,5 +86,10 @@ public class FachadaPartida {
 
     public void setOnJuegoListenerToJuego(OnJuegoListener listener){
         Juego.getInstance().setOnJuegoListener(listener);
+    }
+
+    public void apagarCronometro() {
+        Juego j = Juego.getInstance();
+        j.pararCronometro();
     }
 }

@@ -79,4 +79,10 @@ public class MainActivity extends FragmentActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+
+        setContentView(R.layout.activity_main);
+        super.onBackPressed();
+    }
 }

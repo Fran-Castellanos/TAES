@@ -22,5 +22,10 @@ public class Cargar extends Activity {
                 "Cargando...", true);
     }
 
+    @Override
+    public void onBackPressed() {
 
+        setContentView(R.layout.activity_cargar);
+        super.onBackPressed();
+    }
 }

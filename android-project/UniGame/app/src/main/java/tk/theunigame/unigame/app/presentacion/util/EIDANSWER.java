@@ -19,7 +19,7 @@ public enum EIDANSWER {
     //Devuelve el valor de la Id
     public int getId(){return id;}
 
-    //Devuelve el id del batón
+    //Devuelve el id del botón
     public int getButtonId(){return b_id;}
 
     public static EIDANSWER getByButtonId(int id) {

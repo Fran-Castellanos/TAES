@@ -1,5 +1,8 @@
 package tk.theunigame.unigame.app.presentacion.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by John on 22/04/2015.
  */
@@ -12,5 +15,22 @@ public class Comunicador {
 
     public static void setObject(Object obj) {
         object = obj;
+        listaComunicadores.add(obj);
     }
+
+    public static Object getObjectAnterior()
+    {
+        int L = listaComunicadores.size()-1;
+        if(L>0)
+            listaComunicadores.remove(listaComunicadores.get(L));
+        L = listaComunicadores.size()-1;
+        if(L>0)
+            object = listaComunicadores.get(L);
+        else
+            object = null;
+
+        return object;
+    }
+
+    private static List<Object> listaComunicadores = new ArrayList<Object>();
 }

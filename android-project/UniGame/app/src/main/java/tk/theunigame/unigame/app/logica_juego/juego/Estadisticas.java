@@ -11,21 +11,28 @@ public class Estadisticas {
     //Comodines usados
     private int comodines;
 
+    private int numPreguntas;
+
+    private double nota;
+
     public Estadisticas()
     {
         acertadas=0;
         falladas=0;
         comodines=0;
+        numPreguntas=0;
     }
 
     public void sumarAcertadas()
     {
-        ++acertadas;
+        ++acertadas; ++numPreguntas;
+        calcularNota();
     }
 
     public void sumarFalladas()
     {
-        ++falladas;
+        ++falladas;++numPreguntas;
+        calcularNota();
     }
 
     public int getAcertadas()
@@ -38,6 +45,11 @@ public class Estadisticas {
         return falladas;
     }
 
+    public int getNumPreguntas()
+    {
+        return numPreguntas;
+    }
+
     public void sumarComodinesUsados()
     {
         ++comodines;
@@ -47,4 +59,17 @@ public class Estadisticas {
     }
 
 
+    public void calcularNota()
+    {
+        nota = ((double)acertadas/numPreguntas) * 10.0;
+
+    }
+
+    public double getNota() {
+        double n = Math.round(nota * 100);
+        n = n/100;
+        return n;
+    }
+
 }
+

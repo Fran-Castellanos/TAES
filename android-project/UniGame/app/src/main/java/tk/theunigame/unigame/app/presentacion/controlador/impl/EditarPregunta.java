@@ -7,11 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
+import com.j256.ormlite.dao.EagerForeignCollection;
+import com.j256.ormlite.dao.ForeignCollection;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
+import juego.taes.domainmodel.Repository.PreguntaRepository;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
@@ -37,6 +42,7 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_pregunta);
 
+        fachadaComunicador = new FachadaComunicador();
         id_answer_selected = EIDANSWER.A;
 
         etxt_question = (EditText)findViewById(R.id.etxt_question);
@@ -57,7 +63,8 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         btn_d.setOnClickListener(this);
 
         //Obtengo el objeto pregunta y la lista de respuestas
-        preguntarecuperada = (Pregunta) Comunicador.getObject();
+        preguntarecuperada = fachadaComunicador.RecibirPregunta();
+
         respuestasrecuperadas= new ArrayList<Respuesta>(preguntarecuperada.getRespuestas());
 
         //Actualizo los textView
@@ -72,6 +79,9 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         {
             if(respuestasrecuperadas.get(i).getEsCorrecta()) {
                 id_answer_selected = EIDANSWER.getById(i);
+                View v = findViewById(id_answer_selected.getButtonId());
+                v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
+                break;
             }
         }
     }
@@ -94,8 +104,56 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         //Luego haré la modificación en la bolsa de preguntas
         //BolsaPregunta.getInstance().ModificarPreguntaInsertada(pregunta);
         //Haga lo que tenga que hacer
+        preguntarecuperada.setContenido(etxt_question.getText().toString());
+
+        List<Respuesta> recuperadas = new ArrayList<Respuesta>(preguntarecuperada.getRespuestas());
+
+        //Poner a false
+        for(Respuesta x : recuperadas)
+        {
+            x.setEsCorrecta(false);
+        }
+
+        int i=0;
+        for(Respuesta x : recuperadas)
+        {
+            switch (i) {
+                case 0:
+                    if(id_answer_selected.getId() == 0)
+                        x.setEsCorrecta(true);
+                    x.setContenido(etxt_a.getText().toString());
+                    break;
+                case 1:
+                    if(id_answer_selected.getId() == 1)
+                        x.setEsCorrecta(true);
+                    x.setContenido(etxt_b.getText().toString());
+                    break;
+                case 2:
+                    if(id_answer_selected.getId() == 2)
+                        x.setEsCorrecta(true);
+                    x.setContenido(etxt_c.getText().toString());
+                    break;
+                case 3:
+                    if(id_answer_selected.getId() == 3)
+                        x.setEsCorrecta(true);
+                    x.setContenido(etxt_d.getText().toString());
+                    break;
+            }
+            i++;
+        }
+
+        BolsaPregunta.getInstance().ModificarPreguntaInsertada(preguntarecuperada);
+
         Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        fachadaComunicador.volverAtras();
+        super.onBackPressed();
     }
 }

@@ -8,6 +8,7 @@ import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
+import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 
@@ -55,8 +56,7 @@ public class FachadaComunicador {
 
     //Recupera una pregunta enviada en la posición 0
     public Pregunta RecibirPregunta(){
-        Pregunta pregunt = (Pregunta) Comunicador.getObject();
-        return pregunt;
+        return (Pregunta)((Object[])Comunicador.getObject())[0];
     }
 
     //Recupera una carrera enviada en la posición 1
@@ -83,4 +83,30 @@ public class FachadaComunicador {
     public ArrayList<BDPreguntas> RecibirBDPreguntasPosicion0() {
         return (ArrayList<BDPreguntas>)((Object[])Comunicador.getObject())[0];
     }
+
+    public void ComunicarEstadisticas(Estadisticas estadisticas, Class<?> destino) {
+        Comunicador.setObject(new Object[]{estadisticas, destino});
+    }
+
+    public Estadisticas RecibirEstadisticasPosicion0() {
+        return (Estadisticas)((Object[])Comunicador.getObject())[0];
+
+    }
+
+    public void volverAtras()
+    {
+        Comunicador.getObjectAnterior();
+    }
+
+
+    public void ComunicarPregunta(Pregunta pregunta, Class<?> destino) {
+        Comunicador.setObject(new Object[]{pregunta, destino});
+    }
+
+    public Pregunta RecibirPreguntaPosicion0()
+    {
+        return (Pregunta)((Object[])Comunicador.getObject())[0];
+    }
+
+
 }

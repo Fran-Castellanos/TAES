@@ -77,4 +77,10 @@ public class GestionarDB extends Activity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+        comunicador.volverAtras();
+        super.onBackPressed();
+    }
 }

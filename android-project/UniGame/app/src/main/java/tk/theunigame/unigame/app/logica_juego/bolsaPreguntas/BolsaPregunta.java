@@ -10,11 +10,11 @@ import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 
 public class BolsaPregunta {
 
-    private List<Pregunta> preguntas_eliminadas;
-    private List<Pregunta> preguntas_modificadas;
-    private List<Pregunta> preguntas_creadas;
+    private ArrayList<Pregunta> preguntas_eliminadas;
+    private ArrayList<Pregunta> preguntas_modificadas;
+    private ArrayList<Pregunta> preguntas_creadas;
     private BDPreguntas pBDPreguntas;
-    private List<Pregunta> pPreguntas;
+    private ArrayList<Pregunta> pPreguntas;
 
     /**********************************************************************************************/
     private static BolsaPregunta sInstance = null;//Objeto session
@@ -37,9 +37,27 @@ public class BolsaPregunta {
         return sInstance;
     }
     /**********************************************************************************************/
+    public ArrayList<Pregunta> DevolverPreguntasEnBD()
+    {
+        return pPreguntas;
+    }
+    public ArrayList<Pregunta> DevolverPreguntasCreadas()
+    {
+        return preguntas_creadas;
+    }
+    public ArrayList<Pregunta> DevolverPreguntasModificadas()
+    {
+        return preguntas_modificadas;
+    }
+    public ArrayList<Pregunta> DevolverPreguntasBorradas()
+    {
+        return preguntas_eliminadas;
+    }
+
     public void SetBDPreguntas(BDPreguntas bd)
     {
         pBDPreguntas = bd;
+        pPreguntas = new ArrayList<Pregunta>(bd.getPreguntas());
     }
     public BDPreguntas getBDPreguntas()
     {

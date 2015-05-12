@@ -3,6 +3,7 @@
     package="tk.theunigame.unigame" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -24,11 +25,18 @@
             android:screenOrientation="portrait"
             android:label="@string/title_activity_cargar">
         </activity>
+
         <activity
             android:name=".app.presentacion.controlador.impl.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_main">
+        </activity>
+        <activity
+            android:name=".app.presentacion.controlador.impl.Registry"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="@string/title_registry">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.GestionarDB"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -39,6 +47,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_crear_db">
+        </activity>
+        <activity android:name=".app.presentacion.controlador.impl.EstadisticasPartida"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_estadisticas_partida">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.BajarDB"
             android:configChanges="orientation|keyboardHidden|screenSize"

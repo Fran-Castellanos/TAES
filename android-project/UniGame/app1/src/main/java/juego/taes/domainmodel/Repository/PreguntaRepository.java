@@ -2,6 +2,7 @@ package juego.taes.domainmodel.Repository;
 
 import android.content.Context;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import juego.taes.domainmodel.Data.Dao.PreguntaDao;
 import juego.taes.domainmodel.Data.DatabaseHelper;
 import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
+import juego.taes.domainmodel.Model.Cliente.Respuesta;
 
 /**
  * Created by Pedro on 21/04/2015.
@@ -107,6 +109,7 @@ public class PreguntaRepository {
         try {
 
             QueryBuilder<Pregunta,Integer> builder = dao.queryBuilder();
+
             builder.where().eq(Pregunta.BD, bolsaId);
             builder.orderByRaw("RANDOM()");
             Pregunta preg = builder.queryForFirst();
@@ -135,5 +138,4 @@ public class PreguntaRepository {
         }
         return null;
     }
-
 }

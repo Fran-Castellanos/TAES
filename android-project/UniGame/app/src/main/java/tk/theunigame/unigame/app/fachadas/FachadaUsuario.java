@@ -21,9 +21,15 @@ public class FachadaUsuario {
         UsuarioRepository usu_rep = new UsuarioRepository(c);
         Usuario usu = usu_rep.getByNick(nick);
 
+        if(usu == null)
+            return null;
 
 
-        throw new RuntimeException("Not implemented yet");
+        if(usu.getLoginOffline())
+            return usu;
+        else
+            return null;
+
     }
 
 

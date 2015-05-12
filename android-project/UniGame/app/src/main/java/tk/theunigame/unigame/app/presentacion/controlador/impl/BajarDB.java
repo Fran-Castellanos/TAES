@@ -67,4 +67,14 @@ public class BajarDB extends Activity{
         //else
         // no hara nada, pues no ha introducido ningun campo
     }
+
+
+    @Override
+    public void onBackPressed() {
+
+        comunicador.volverAtras();
+        super.onBackPressed();
+    }
+
+
 }
