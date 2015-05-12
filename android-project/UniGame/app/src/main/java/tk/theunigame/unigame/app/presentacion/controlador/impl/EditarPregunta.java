@@ -141,7 +141,6 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         BolsaPregunta.getInstance().ModificarPreguntaInsertada(preguntarecuperada);
 
         Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
 
     }

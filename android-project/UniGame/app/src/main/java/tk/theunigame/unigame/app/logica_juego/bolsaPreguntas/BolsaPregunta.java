@@ -55,6 +55,13 @@ public class BolsaPregunta {
     {
         return preguntas_eliminadas;
     }
+    public ArrayList<Pregunta> DevolverListadoPreguntas()
+    {
+        ArrayList<Pregunta> pregts = new ArrayList<Pregunta>();
+        pregts.addAll(pPreguntas);
+        pregts.addAll(preguntas_creadas);
+        return pregts;
+    }
 
     public void SetBDPreguntas(BDPreguntas bd)
     {

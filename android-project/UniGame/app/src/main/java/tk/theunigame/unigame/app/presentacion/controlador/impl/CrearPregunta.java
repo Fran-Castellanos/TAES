@@ -105,7 +105,6 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
         //Haga lo que tenga que hacer
         Intent intent = new Intent(CrearPregunta.this, ListaPreguntas.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 

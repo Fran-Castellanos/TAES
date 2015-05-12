@@ -62,14 +62,9 @@ public class ListaPreguntas extends Activity {
         lv=(ListView) findViewById(R.id.lv_preguntas);
         //Creamos el adaptador para el ListView donde pasaremos las preguntas que serán listadas
         //si es una base de datos local SQlite se recomienda AdaptadorCursorDB y que sea instanciada en OnCreate() ¿Recomendable usar true en newView?
-        /*ArrayList <Pregunta> preguntas = BolsaPregunta.getInstance().DevolverPreguntasEnBD();
+        ArrayList <Pregunta> preguntas = BolsaPregunta.getInstance().DevolverListadoPreguntas();
 
-        for(Pregunta x : BolsaPregunta.getInstance().DevolverPreguntasCreadas())
-        {
-            preguntas.add(x);
-        }*/
-
-        AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, BolsaPregunta.getInstance().DevolverPreguntasCreadas());
+        AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, preguntas);
         lv.setAdapter(adapter);
 
         //Evento para las pulsaciones en los items de la lista
@@ -106,7 +101,7 @@ public class ListaPreguntas extends Activity {
     public void Confirmar_Cambios(View v) throws SQLException {
         BolsaPregunta.getInstance().RegistrarCambios(this);
 
-        Intent intent = new Intent(ListaPreguntas.this, GestionarDB.class);
+        Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
