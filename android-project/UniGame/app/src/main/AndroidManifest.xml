@@ -25,11 +25,18 @@
             android:screenOrientation="portrait"
             android:label="@string/title_activity_cargar">
         </activity>
+
         <activity
             android:name=".app.presentacion.controlador.impl.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_main">
+        </activity>
+        <activity
+            android:name=".app.presentacion.controlador.impl.Registry"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="@string/title_registry">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.GestionarDB"
             android:configChanges="orientation|keyboardHidden|screenSize"

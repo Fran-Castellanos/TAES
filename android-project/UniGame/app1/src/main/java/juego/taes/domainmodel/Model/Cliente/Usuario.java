@@ -32,6 +32,7 @@ public class Usuario {
     public static final String SEXO ="sexo";
     public static final String LOGINOFFLINE="login_offline";
 
+
     //Atributos de la base de datos
     @DatabaseField(columnName=ID, id=true, useGetSet = true)
     private int id;
