@@ -44,6 +44,29 @@
                     android:textSize="@dimen/text_size_lista" />
 
                 <TextView
+                    android:id="@+id/txt_title09"
+                    android:textColor="@color/Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="2sp"/>
+
+                <Button
+                    android:id="@+id/btn_confirmar_cambios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_design"
+                    android:gravity="center_horizontal"
+                    android:padding="5dip"
+                    android:paddingBottom="@dimen/margin_topbot_list_item"
+                    android:paddingTop="@dimen/margin_topbot_list_item"
+                    android:text="Confirmar Cambios"
+                    android:onClick="Confirmar_Cambios"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/text_size_lista" />
+
+                <TextView
                     android:id="@+id/txt_title1"
                     android:textColor="@color/Black"
                     android:layout_width="match_parent"
