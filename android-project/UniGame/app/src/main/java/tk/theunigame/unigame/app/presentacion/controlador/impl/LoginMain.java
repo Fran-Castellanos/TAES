@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
@@ -30,6 +32,7 @@ public class LoginMain extends Activity {
     private Button btn_registrar;
     private EditText et_usuario, et_password;
     private FachadaUsuario fachadaUsuario;
+    private RadioButton rb_offline;
 
     private Context c;
 
@@ -48,6 +51,30 @@ public class LoginMain extends Activity {
 
         et_usuario = (EditText) findViewById(R.id.username);
         et_password = (EditText) findViewById(R.id.password);
+        rb_offline = (RadioButton) findViewById(R.id.modoOFFLINE);
+
+        et_password.setEnabled(false);
+        et_password.setVisibility(View.INVISIBLE);
+
+        rb_offline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(et_password.getVisibility() == View.VISIBLE){ //Modo online -> offline
+                   et_password.setEnabled(false);
+                   et_password.setVisibility(View.INVISIBLE);
+                   rb_offline.setChecked(false);
+
+               }
+                else //Modo offline -> online
+               {
+                   et_password.setEnabled(true);
+                   et_password.setVisibility(View.VISIBLE);
+                   rb_offline.setChecked(true);
+               }
+
+            }
+        });
+
         c = this;
 
         btn_login.setOnClickListener(new View.OnClickListener() {

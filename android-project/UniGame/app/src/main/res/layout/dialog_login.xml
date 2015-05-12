@@ -57,6 +57,16 @@
             android:textSize="20dp"/>
     </LinearLayout>
 
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/modoOFFLINE"
+        android:layout_gravity="left"
+        android:textSize="15dp"
+        android:text = "Modo sin conexión"
+        android:layout_marginTop="10dp"
+        />
+
         <TextView
             android:layout_marginTop="30dp"
             android:theme="@style/Widget.AppCompat.TextView.SpinnerItem"
@@ -80,4 +90,7 @@
             android:textSize="20dp"
             />
     </LinearLayout>
+
+
+
 </LinearLayout>
