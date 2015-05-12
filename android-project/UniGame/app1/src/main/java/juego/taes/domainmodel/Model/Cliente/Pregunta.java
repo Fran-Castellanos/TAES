@@ -63,6 +63,9 @@ public class Pregunta {
     @ForeignCollectionField(eager=false, foreignFieldName = Respuesta.PREGUNTA_CAMPO)
     private ForeignCollection<Respuesta> respuestas;
 
+    //Lista de respuestas interna
+    private List<Respuesta> respuestasList;
+
     public Pregunta() {
         // ORMLite needs a no-arg constructor
     }
@@ -120,23 +123,16 @@ public class Pregunta {
         this.fechaSincronizacion = fechaSincronizacion;
     }
 
-    public ForeignCollection<Respuesta> getRespuestas() {
-        return respuestas;
+    public List<Respuesta> getRespuestas(){
+
+        if(respuestasList == null)
+            respuestasList = new ArrayList(respuestas);
+
+            return respuestasList;
     }
 
-
-    public List<Respuesta> getRespuestasList(){
-        List<Respuesta> respuestaLista = new ArrayList<Respuesta>();
-        for(Respuesta r : respuestas)
-        {
-            respuestaLista.add(r);
-        }
-
-        return respuestaLista;
-    }
-
-    public void setRespuestas(ForeignCollection<Respuesta> respuestas) {
-        this.respuestas = respuestas;
+    public void setRespuestas(List<Respuesta> respuestas) {
+        this.respuestasList = respuestas;
     }
 
     public BDPreguntas getBdPreguntas() {

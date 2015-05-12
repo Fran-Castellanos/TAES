@@ -6,6 +6,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
+import java.util.List;
 
 import juego.taes.domainmodel.Data.Dao.AsignaturaDao;
 import juego.taes.domainmodel.Data.Dao.BDPreguntasDao;
@@ -72,6 +73,9 @@ public class BDPreguntas {
 
     @ForeignCollectionField(eager=false, foreignFieldName = Pregunta.BD_CAMPO)
     private ForeignCollection<Pregunta> preguntas;
+
+    //Lista de preguntas utilizada para evitar llamadas innecesarias
+    private List<Pregunta> preguntasList;
 
     public BDPreguntas() {
         // ORMLite needs a no-arg constructor
@@ -164,12 +168,12 @@ public class BDPreguntas {
         this.universidad = universidad;
     }
 
-    public ForeignCollection<Pregunta> getPreguntas() {
-        return preguntas;
+    public List<Pregunta> getPreguntas() {
+        return preguntasList;
     }
 
-    public void setPreguntas(ForeignCollection<Pregunta> preguntas) {
-        this.preguntas = preguntas;
+    public void setPreguntas(List<Pregunta> preguntas) {
+        this.preguntasList = preguntas;
     }
 
     @Override
