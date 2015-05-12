@@ -34,12 +34,16 @@ public class FachadaUsuario {
 
 
     public int registrarse(Context c, String nick, String nombre, String apellidos, Sexo sexo) throws Exception {
+        if(nick.isEmpty() || nombre.isEmpty() || apellidos.isEmpty()) throw new Exception("Error en el registro");
+
+
         UsuarioRepository usu_rep = new UsuarioRepository(c);
         Usuario usu = new Usuario();
         usu.setNick(nick);
         usu.setNombre(nombre);
         usu.setApellidos(apellidos);
         usu.setSexo(sexo);
+        usu.setLoginOffline(true);
 
         try {
             return usu_rep.create(usu);

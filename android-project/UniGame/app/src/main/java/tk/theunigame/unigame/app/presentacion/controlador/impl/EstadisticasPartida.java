@@ -61,6 +61,7 @@ public class EstadisticasPartida extends Activity {
             public void onClick(View v) {
                 //Lanzamos la actividad
                 Intent intent = new Intent(EstadisticasPartida.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
         });

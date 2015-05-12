@@ -8,6 +8,7 @@ import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
+import juego.taes.domainmodel.Model.Cliente.Usuario;
 import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
@@ -108,5 +109,15 @@ public class FachadaComunicador {
         return (Pregunta)((Object[])Comunicador.getObject())[0];
     }
 
+
+    public Usuario RecibirUsuario()
+    {
+        return Comunicador.getUsuario();
+    }
+
+    public void ComunicarUsuario(Usuario usuario)
+    {
+        Comunicador.setUsuario(usuario);
+    }
 
 }

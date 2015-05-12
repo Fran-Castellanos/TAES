@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import juego.taes.domainmodel.Model.Cliente.Sexo;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.util.SystemUiHider;
@@ -24,6 +28,7 @@ public class MainActivity extends FragmentActivity {
     private Button btn_tournament_mode;
     private Button btn_download_questions;
     private Button btn_use_questions;
+    private TextView tv_login;
 
     private FachadaComunicador comunicador;
 
@@ -33,6 +38,14 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         comunicador = new FachadaComunicador();
+        tv_login = (TextView) findViewById(R.id.tv_login);
+
+        String sexo = "a";
+        if(comunicador.RecibirUsuario().getSexo() == Sexo.HOMBRE)
+        {
+            sexo = "o";
+        }
+        tv_login.setText("Bienvenid" + sexo + ", " + comunicador.RecibirUsuario().getNick());
 
         //Instanciamos los listener
         btn_individual_mode=(Button)findViewById(R.id.individual_mode);

@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import juego.taes.domainmodel.Data.DatabaseManager;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 import tk.theunigame.unigame.R;
+import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaUsuario;
 
 
@@ -32,6 +33,7 @@ public class LoginMain extends Activity {
     private Button btn_registrar;
     private EditText et_usuario, et_password;
     private FachadaUsuario fachadaUsuario;
+    private FachadaComunicador comunicador;
     private RadioButton rb_offline;
 
     private Context c;
@@ -44,6 +46,9 @@ public class LoginMain extends Activity {
         DatabaseManager manager = new DatabaseManager();
         manager.getHelper(this).getWritableDatabase();
 
+        comunicador = new FachadaComunicador();
+        c = this;
+
         fachadaUsuario = new FachadaUsuario();
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
@@ -53,8 +58,7 @@ public class LoginMain extends Activity {
         et_password = (EditText) findViewById(R.id.password);
         rb_offline = (RadioButton) findViewById(R.id.modoOFFLINE);
 
-        et_password.setEnabled(false);
-        et_password.setVisibility(View.INVISIBLE);
+
 
         rb_offline.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,20 +66,19 @@ public class LoginMain extends Activity {
                if(et_password.getVisibility() == View.VISIBLE){ //Modo online -> offline
                    et_password.setEnabled(false);
                    et_password.setVisibility(View.INVISIBLE);
-                   rb_offline.setChecked(false);
+                   rb_offline.setChecked(true);
 
                }
                 else //Modo offline -> online
                {
                    et_password.setEnabled(true);
                    et_password.setVisibility(View.VISIBLE);
-                   rb_offline.setChecked(true);
+                   rb_offline.setChecked(false);
                }
 
             }
         });
 
-        c = this;
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +104,7 @@ public class LoginMain extends Activity {
                     builder.create().show();
                 }else
                 {
+                    comunicador.ComunicarUsuario(usu);
                     Intent intent = new Intent(LoginMain.this, MainActivity.class);
                     startActivity(intent);
                 }

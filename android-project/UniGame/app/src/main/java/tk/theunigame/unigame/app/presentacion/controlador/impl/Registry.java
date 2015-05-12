@@ -82,6 +82,8 @@ public class Registry extends Activity {
                         "Registrando usuario...", true);
 
 
+
+
                  AlertDialog.Builder builder = new AlertDialog.Builder(c);
                 boolean correcto = true;
                 try {
@@ -101,16 +103,20 @@ public class Registry extends Activity {
                     builder.create().show();
                 }
                 else
-                { builder.setMessage("¡Se ha creado la cuenta de usuario!").
+                {
+
+                    builder.setMessage("¡Se ha creado la cuenta de usuario!").
                         setTitle("Usuario registrado").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                        Intent intent = new Intent(Registry.this, LoginMain.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
                     }
                 });
                     builder.create().show();
-                    Intent intent = new Intent(Registry.this, MainActivity.class);
-                    startActivity(intent);
+
                 }
                 dialog.cancel();
 
