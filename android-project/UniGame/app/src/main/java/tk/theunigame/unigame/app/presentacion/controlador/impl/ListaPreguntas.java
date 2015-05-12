@@ -109,8 +109,6 @@ public class ListaPreguntas extends Activity {
         Intent intent = new Intent(ListaPreguntas.this, GestionarDB.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-
-        //Log.d("CambiosConfirmados", "Funcion");
     }
 
     //Eliminar pregunta de una BD

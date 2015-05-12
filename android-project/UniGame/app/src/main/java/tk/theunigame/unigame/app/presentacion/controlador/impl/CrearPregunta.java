@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import java.util.ArrayList;
+import java.util.List;
+
 import juego.taes.domainmodel.Model.Cliente.*;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.*;
@@ -76,26 +78,31 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-        /*//Obtenemos el contenido de los texbox
-        contenido.add(etxt_a.getText().toString());
-        contenido.add(etxt_b.getText().toString());
-        contenido.add(etxt_c.getText().toString());
-        contenido.add(etxt_d.getText().toString());
+        List<Respuesta> respuestas = new ArrayList<Respuesta>();
 
-        //Creamos la pregunta
-        pregunta = preguntaFachada.crearPregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString());
+        Pregunta pregunta1 = new Pregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString(),false);
+        pregunta1.setBdPreguntas(BolsaPregunta.getInstance().getBDPreguntas());
 
-        //Creamos las respuestas
-        respuestas = respuestaFachada.crearRespuestas(pregunta,contenido);
 
-        //Indicamos a la pregunta sus respuestas
-        preguntaFachada.indicarRespuestas(pregunta,respuestas);
+        Respuesta respuesta1 = new Respuesta(etxt_a.getText().toString(),false,false);
+        respuesta1.setPregunta(pregunta1);
+        Respuesta respuesta2 = new Respuesta(etxt_b.getText().toString(),true,false);
+        respuesta2.setPregunta(pregunta1);
+        Respuesta respuesta3 = new Respuesta(etxt_c.getText().toString(),false,false);
+        respuesta3.setPregunta(pregunta1);
+        Respuesta respuesta4 = new Respuesta(etxt_d.getText().toString(),false,false);
+        respuesta4.setPregunta(pregunta1);
 
-        //indicamos la respuesta correcta
-        preguntaFachada.respuestaCorrecta(pregunta,id_answer_selected.getId());
+        respuestas.add(respuesta1);
+        respuestas.add(respuesta2);
+        respuestas.add(respuesta3);
+        respuestas.add(respuesta4);
+
+        pregunta1.setRespuestas(respuestas);
 
         //Añadimos las preguntas a la BD
-        BolsaPregunta.getInstance().InsertarPregunta(pregunta);*/
+        BolsaPregunta.getInstance().InsertarPregunta(pregunta1);
+
         //Haga lo que tenga que hacer
         Intent intent = new Intent(CrearPregunta.this, ListaPreguntas.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -107,7 +114,6 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
     public void onBackPressed() {
 
         super.onBackPressed();
-
     }
 
 }
