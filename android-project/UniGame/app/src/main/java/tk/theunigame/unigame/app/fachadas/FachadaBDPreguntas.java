@@ -12,6 +12,7 @@ import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
+import juego.taes.domainmodel.Model.Cliente.Usuario;
 import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 
 /**
@@ -31,9 +32,13 @@ public class FachadaBDPreguntas {
         throw new RuntimeException("Not implemented yet");
     }
 
-    public void crearBaseDatos(String nombre,Context c, Asignatura a, Universidad u) throws SQLException {
+    public void crearBaseDatos(String nombre,Context c, Asignatura a, Universidad u, Usuario usu) throws SQLException
+    {
+        BDPreguntas preguntas1 = new BDPreguntas(nombre,false,u,a);
+        preguntas1.setUsuario(usu);
+
         bd = new BDPreguntasRepository(c);
-        bd.create((new BDPreguntas(nombre,false,u,a)));
+        bd.create(preguntas1);
     }
 
     public void crearBDdelServidor(String nombre,Context c, Asignatura a, Universidad u, List<Pregunta> preguntas) throws SQLException {

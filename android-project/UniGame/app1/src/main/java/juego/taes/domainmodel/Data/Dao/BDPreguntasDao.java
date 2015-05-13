@@ -30,6 +30,7 @@ public class BDPreguntasDao extends BaseDaoImpl<BDPreguntas,Integer> implements 
     @Override
     public int create(BDPreguntas bd) throws SQLException {
 
+        this.assignEmptyForeignCollection(bd,BDPreguntas.PREGUNTAS_CAMPO);
         //Crear la bolsa
         int res = super.create(bd);
         //Crear las preguntas

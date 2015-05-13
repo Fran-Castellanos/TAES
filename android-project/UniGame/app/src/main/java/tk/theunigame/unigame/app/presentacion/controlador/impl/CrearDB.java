@@ -26,6 +26,7 @@ public class CrearDB extends Activity {
     private Universidad universidad;
     private Carrera carrera;
     private Asignatura asignatura;
+    private Usuario usuario;
     private FachadaBDPreguntas fachadaBD;
     private FachadaComunicador fachadaComunicador;
 
@@ -52,6 +53,8 @@ public class CrearDB extends Activity {
         universidad = fachadaComunicador.RecibirUniversidadPosicion0();
         carrera = fachadaComunicador.RecibirCarreraPosicion1();
         asignatura = fachadaComunicador.RecibirAsignaturaPosicion2();
+        usuario = fachadaComunicador.RecibirUsuario();
+
 
         //Cambiamos los text_View
         txt_university.setText(universidad.getNombre());
@@ -63,9 +66,9 @@ public class CrearDB extends Activity {
         String nombreBD= etxt_name_db.getText().toString();
 
         //comunicador.ComunicarUniversidadCarreraAsignatura(universidad,carrera,asignatura,comunicador.RecibirDestinoPosicionFinal());
-        fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad);
+        fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad,usuario);
         //Haga lo que tenga que hacer
-        Intent intent = new Intent(CrearDB.this, GestionarDB.class);
+        Intent intent = new Intent(CrearDB.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

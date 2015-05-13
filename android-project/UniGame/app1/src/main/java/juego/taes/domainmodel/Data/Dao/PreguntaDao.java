@@ -29,6 +29,7 @@ public class PreguntaDao extends BaseDaoImpl<Pregunta,Integer> implements IPregu
     @Override
     public int create(Pregunta preg) throws SQLException
     {
+        this.assignEmptyForeignCollection(preg,Pregunta.RESPUESTAS_CAMPO);
         int resultado = super.create(preg);
 
         for(Respuesta resp :  preg.getRespuestas()) {

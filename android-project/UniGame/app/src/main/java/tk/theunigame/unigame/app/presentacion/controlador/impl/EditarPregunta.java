@@ -22,6 +22,7 @@ import juego.taes.domainmodel.Repository.PreguntaRepository;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.logica_juego.bolsaPreguntas.BolsaPregunta;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 
