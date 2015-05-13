@@ -98,6 +98,7 @@
         <activity android:name="tk.theunigame.unigame.app.presentacion.controlador.impl.JuegoIndividual"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
+
             android:label="@string/title_activity_juego_individual">
         </activity>
         <activity android:name=".app.presentacion.controlador.impl.ListaAsignaturasSinCB"

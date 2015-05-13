@@ -2,17 +2,15 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Scroller;
 import android.widget.TextView;
 
 import java.sql.SQLException;
@@ -28,18 +26,19 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Respuesta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
-import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
-import tk.theunigame.unigame.app.fachadas.FachadaRespuesta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
 import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
 import tk.theunigame.unigame.app.logica_juego.juego.Juego;
-import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 import tk.theunigame.unigame.app.presentacion.util.EIDANSWER;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
+
+
+import android.support.v4.app.FragmentActivity;
 
 
 /**
@@ -48,10 +47,10 @@ import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class JuegoIndividual extends Activity implements View.OnClickListener, OnJuegoListener {
+public class JuegoIndividual extends FragmentActivity implements View.OnClickListener, OnJuegoListener {
 
     //OnTiempoListener
-    private TextView txt_a, txt_b, txt_c, txt_d, txt_question;
+    private TextView txt_a, txt_b, txt_c, txt_d, txt_question, txt_turno;
     private TextView txt_tiempo;
     private Button btn_a, btn_b, btn_c, btn_d;
     private ImageButton cmd_1, cmd_2, cmd_3;
@@ -90,6 +89,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         txt_c = (TextView)findViewById(R.id.txt_answer_c);
         txt_d = (TextView)findViewById(R.id.txt_answer_d);
 
+        txt_turno = (TextView) findViewById(R.id.txt_title1);
+
 
         txt_question = (TextView) findViewById(R.id.txt_question);
         txt_tiempo = (TextView)findViewById(R.id.txt_tiempo);
@@ -111,6 +112,8 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         btn_c.setOnClickListener(this);
         btn_d.setOnClickListener(this);
         fachadaPartida.setOnJuegoListenerToJuego(this);
+
+
         cmd_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,21 +150,16 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
             @Override
             public void handleMessage(Message msg){
                 fachadaPartida.siguientePregunta();
+
             }
         };
 
-        //Cargamos los datos
-        bdPreguntases = comunicador.RecibirBDPreguntasPosicion0();
-        fachadaPartida.inicializarPartida();
-        try {
-            fachadaPregunta.cargarPreguntas(this, bdPreguntases);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 
         Juego j = Juego.getInstance();
         j.setOnJuegoListener(this);
         fachadaPartida.siguientePregunta();
+        txt_turno.setText("Pregunta " + (fachadaPartida.getTurno()+1) + " de " + fachadaPartida.getNumPreguntas());
     }
 
     //Evento a realizar cuando se seleccione una respuesta de los cuatros botones
@@ -189,11 +187,15 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                fachadaPartida.siguientePregunta();
+                Intent i = new Intent(getApplicationContext(), JuegoIndividual.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.transicion_left_in, R.anim.transicion_left_out);
+
                 btn_a.setClickable(true);
                 btn_b.setClickable(true);
                 btn_c.setClickable(true);
                 btn_d.setClickable(true);
+
             }
         }, 2000);
 
@@ -204,6 +206,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         boolean correcto= false;
         //Comprobar si es correco
         View view = findViewById(id_answer_selected.getButtonId());
+
         if(!correcto) {
             //Cmabio de color de la respuesta incorrecta a btn_selected_answer_default
             view.setBackgroundResource(R.drawable.btn_selected_answer_default);
@@ -217,17 +220,14 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     //Acción a realizar cuando se acabe el tiempo
     @Override
     public void onTiempoFinalizado(String mensaje) {
-        //TODO Comprobar si la ejecución de AlertDialog comparte hilo
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(mensaje).
-                setTitle("Tiempo Agotado").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                fachadaPartida.siguientePregunta();
-            }
-        });
-        builder.create().show();
+
+        AlertaDialogo ad = new AlertaDialogo();
+        ad.setMensaje("");
+        ad.setTitulo("Tiempo Agotado");
+        ad.setBoton1("OK");
+        ad.setDestino(JuegoIndividual.class);
+
+        ad.show(getSupportFragmentManager(), "FragmentAlert");
 
 
     }
@@ -239,20 +239,15 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
 
     @Override
     public void onJuegoHaAcabado(Estadisticas estadisticas) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        fachadaPartida.apagarCronometro();
 
-        builder.setMessage("¡Ha acabado la partida!").
-                setTitle("Fin de partida").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+        AlertaDialogo ad = new AlertaDialogo();
+        ad.setMensaje("¡Ha acabado la partida!");
+        ad.setTitulo("Fin de partida");
+        ad.setBoton1("OK");
+        ad.setDestino(EstadisticasPartida.class);
+        ad.show(getSupportFragmentManager(), "FragmentAlert");
 
-                //Lanzamos la actividad
-                Intent intent = new Intent(JuegoIndividual.this, EstadisticasPartida.class);
-                startActivity(intent);
-            }
-        });
-        builder.create().show();
 
 
         Class<?> destino = null;
@@ -278,12 +273,20 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
         txt_c.setText(l.get(2).getContenido());
         txt_d.setText(l.get(3).getContenido());
 
+        btn_a.setBackgroundResource(R.drawable.etxt_edit_answer);
+        btn_b.setBackgroundResource(R.drawable.etxt_edit_answer);
+        btn_c.setBackgroundResource(R.drawable.etxt_edit_answer);
+        btn_d.setBackgroundResource(R.drawable.etxt_edit_answer);
+
+
+
     }
 
     @Override
     public void onPreguntaRespondida(int correcta) {
 
         View view = findViewById(id_answer_selected.getButtonId());
+
         int id = id_answer_selected.getId();
         if(id == correcta)
         {
@@ -294,7 +297,7 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
             view.setBackgroundResource(R.drawable.btn_selected_answer_default);
         }
 
-        fachadaPartida.apagarCronometro();
+
     }
 
 
@@ -308,29 +311,14 @@ public class JuegoIndividual extends Activity implements View.OnClickListener, O
     @Override
     public void onBackPressed() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setMessage("¿Está seguro de querer abandonar la partida?").
-                setTitle("Salir de la partida").setPositiveButton("Salir", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                fachadaPartida.apagarCronometro();
-                //Lanzamos la actividad
-                Intent intent = new Intent(JuegoIndividual.this, MainActivity.class);
-                startActivity(intent);
-            }
-        }).setNegativeButton("Seguir jugando", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-
-            }
-        });
-        builder.create().show();
-
-
+        AlertaDialogo ad = new AlertaDialogo();
+        ad.setMensaje("¿Está seguro de querer abandonar la partida?");
+        ad.setTitulo("Salir de la partida");
+        ad.setBoton1("Salir");
+        ad.setBoton2("Seguir jugando");
+        ad.setDestino(MainActivity.class);
+        ad.setFlags(true);
+        ad.show(getSupportFragmentManager(), "FragmentAlert");
 
 
         }

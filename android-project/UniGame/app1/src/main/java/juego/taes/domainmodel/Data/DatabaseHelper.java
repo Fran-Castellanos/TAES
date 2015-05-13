@@ -21,7 +21,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 12;
 
     //Daos utilizados
     private AsignaturaDao asignaturaDao = null;
@@ -489,106 +489,110 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         getBDPreguntasDao().assignEmptyForeignCollection(preguntas4, BDPreguntas.PREGUNTAS_CAMPO);
         getBDPreguntasDao().create(preguntas4);*/
 
-        Pregunta pregunta1 = new Pregunta("¿Que es un arbol binario?",false);
-        pregunta1.setBdPreguntas(preguntas1);
-        getPreguntaDao().assignEmptyForeignCollection(pregunta1, Pregunta.RESPUESTAS_CAMPO);
-        getPreguntaDao().create(pregunta1);
-
-
-        Respuesta respuesta1 = new Respuesta("a) un arbol compuesto por 0s y 1s",false,false);
-        respuesta1.setPregunta(pregunta1);
-        getRespuestaDao().create(respuesta1);
-        Respuesta respuesta2 = new Respuesta("b) una estructura jerarquica compuesta por una raiz y como mucho dos hijos",true,false);
-        respuesta2.setPregunta(pregunta1);
-        getRespuestaDao().create(respuesta2);
-        Respuesta respuesta3 = new Respuesta("c) un arbol representado en formato digital",false,false);
-        respuesta3.setPregunta(pregunta1);
-        getRespuestaDao().create(respuesta3);
-        Respuesta respuesta4 = new Respuesta("d) una estructura de datos simple",false,false);
-        respuesta4.setPregunta(pregunta1);
-        getRespuestaDao().create(respuesta4);
 
 
 
 
-
-        /*Pregunta pregunta2 = new Pregunta("¿que es un ABB?",false);
-        pregunta2.setBdPreguntas(preguntas1);
-        Respuesta respuesta5 = new Respuesta("a) es una estructura de datos abstracta ordenada de izquierda a derecha",true,false);
-        respuesta5.setPregunta(pregunta2);
-        Respuesta respuesta6 = new Respuesta("b) esas siglas componen un concepto que no existe",false,false);
-        respuesta6.setPregunta(pregunta2);
-        Respuesta respuesta7 = new Respuesta("c) es una estructura de datos abstracta muy ineficiente",false,false);
-        respuesta7.setPregunta(pregunta2);
-        Respuesta respuesta8 = new Respuesta("d) es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel",false,false);
-        respuesta8.setPregunta(pregunta2);
-
-        Pregunta pregunta3 = new Pregunta("¿Que estructura de datos abstracta es mas eficiente para las inserciones?",false);
-        pregunta3.setBdPreguntas(preguntas1);
-        Respuesta respuesta9 = new Respuesta("a) un vector",false,false);
-        respuesta9.setPregunta(pregunta3);
-        Respuesta respuesta10 = new Respuesta("b) un arbol binario",false,false);
-        respuesta10.setPregunta(pregunta3);
-        Respuesta respuesta11 = new Respuesta("c) un lista enlazada simple",true,false);
-        respuesta11.setPregunta(pregunta3);
-        Respuesta respuesta12 = new Respuesta("d) cualquier estructur de datos",false,false);
-        respuesta12.setPregunta(pregunta3);
+//////////////////////////////////////////////////////////////////////////////////
+        //Crear preguntas y añadirlas a la base de preguntas
 
 
-        Pregunta pregunta4 = new Pregunta("¿Cual fue la principal aprtacion de Von Neuman a la computacion?",false);
-        pregunta4.setBdPreguntas(preguntas2);
-        Respuesta respuesta13 = new Respuesta("a) el programa almacenado en memoria",true,false);
-        respuesta13.setPregunta(pregunta4);
-        Respuesta respuesta14 = new Respuesta("b) memoria principal en los computadores",false,false);
-        respuesta14.setPregunta(pregunta4);
-        Respuesta respuesta15 = new Respuesta("c) computadores con mayor memoria secundaria",true,false);
-        respuesta15.setPregunta(pregunta4);
-        Respuesta respuesta16 = new Respuesta("d) paralelizacion de computo de procesos",false,false);
-        respuesta16.setPregunta(pregunta4);
+        String p1 = "¿Que es un arbol binario?";
+        String[] resp1 = {"Un arbol compuesto por 0s y 1s",
+                        "Una estructura jerarquica compuesta por una raiz y como mucho dos hijos",
+                        "Un arbol representado en formato digital",
+                        "Una estructura de datos simple"};
+
+        Boolean [] sol1 = {false, true, false, false};
+        generarPregunta(preguntas1, p1, resp1, sol1);
 
 
-        Pregunta pregunta5 = new Pregunta("¿Cual es el principal problema de la recursion?",false);
-        pregunta5.setBdPreguntas(preguntas2);
-        Respuesta respuesta17 = new Respuesta("a) problemas largos compuestos por muchas instrucciones",false,false);
-        respuesta17.setPregunta(pregunta5);
-        Respuesta respuesta18 = new Respuesta("b) inverision grande en timepo para diseñar el algoritmo",false,false);
-        respuesta18.setPregunta(pregunta5);
-        Respuesta respuesta19 = new Respuesta("c) Muchas llamdas se quedan en espera",true,false);
-        respuesta19.setPregunta(pregunta5);
-        Respuesta respuesta20 = new Respuesta("d) No existe ningun inconveniente en la recursion",false,false);
-        respuesta20.setPregunta(pregunta5);
+        String p2 = "¿Que es un ABB?";
+        String[] resp2 = {"Es una estructura de datos abstracta ordenada de izquierda a derecha",
+                        "Es una estructura de datos abstracta muy ineficiente",
+                        "Es un concepto que no existe",
+                        "es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel"};
+
+        Boolean [] sol2 = {true, false, false, false};
+
+        generarPregunta(preguntas1, p2, resp2, sol2);
 
 
 
+        String p3 = "¿Que estructura de datos abstracta es mas eficiente para las inserciones?";
+        String[] resp3 = {"Un vector",
+                        "Un arbol binario",
+                        "Una lista enlazada simple",
+                        "Cualquier estructura de datos"};
 
-        Pregunta pregunta6 = new Pregunta("¿Cual es el paradigma de programacion que mas se usa hoy en dia?",false);
-        pregunta6.setBdPreguntas(preguntas3);
-        Respuesta respuesta21 = new Respuesta("a) Programacion imperativa",false,false);
-        respuesta21.setPregunta(pregunta6);
-        Respuesta respuesta22 = new Respuesta("b) Programacion recursiva",false,false);
-        respuesta22.setPregunta(pregunta6);
-        Respuesta respuesta23 = new Respuesta("c) Programacion logica",false,false);
-        respuesta23.setPregunta(pregunta6);
-        Respuesta respuesta24 = new Respuesta("d) Programacion orientada a objetos",true,false);
-        respuesta24.setPregunta(pregunta6);
+        Boolean [] sol3 = {false, false, true, false};
+        generarPregunta(preguntas1, p3, resp3, sol3);
 
 
-        Pregunta pregunta7 = new Pregunta("¿Que significa el termino layering?",false);
-        pregunta7.setBdPreguntas(preguntas4);
-        Respuesta respuesta25 = new Respuesta("a) Herencia de atributos y metodos",true,false);
-        respuesta25.setPregunta(pregunta7);
-        Respuesta respuesta26 = new Respuesta("b) ese termino no existe en programacion",false,false);
-        respuesta26.setPregunta(pregunta7);
-        Respuesta respuesta27 = new Respuesta("c) es copir valores por referencia",false,false);
-        respuesta27.setPregunta(pregunta7);
-        Respuesta respuesta28 = new Respuesta("d) sirve para destruir objetos en lenguajes de alto nivel",false,false);
-        respuesta28.setPregunta(pregunta7);*/
+                String p4 = "¿Cuál fue la principal aportacion de Von Neuman a la computacion?";
+        String[] resp4 = {"El programa almacenado en memoria",
+                "Memoria principal en los computadores",
+                "Computadores con mayor memoria secundaria",
+                "Paralelización de cómputo de procesos"};
+
+        Boolean [] sol4 = {true, false, false, false};
+        generarPregunta(preguntas1, p4, resp4, sol4);
+
+
+        String p5 = "¿Cuál es el principal problema de la recursión?";
+        String[] resp5 = {"Problemas largos compuestos por muchas instrucciones",
+                "Inversión grande en tiempo para diseñar el algoritmo",
+                "Muchas llamadas se quedan en espera",
+                "No existe ningun inconveniente en la recursión"};
+
+        Boolean [] sol5 = {false, false, true, false};
+        generarPregunta(preguntas1, p5, resp5,sol5);
 
 
 
+
+        String p6 = "¿Que significa el termino layering?";
+        String[] resp6 = {"Herencia de atributos y métodos",
+                "Ese término no existe en programación",
+                "Es copiar valores por referencia",
+                "Sirve para destruir objetos en lenguajes de alto nivel"};
+
+        Boolean [] sol6 = {true, false, false, false};
+        generarPregunta(preguntas1, p6, resp6,sol6);
+
+
+
+        String p7 = "¿Cuál es el paradigma de programación que más se usa hoy en dia?";
+        String[] resp7 = {"Programación imperativa",
+                "Programación recursiva",
+                "Programación lógica",
+                "Programación orientada a objetos"};
+
+        Boolean [] sol7 = {false, false, false, true};
+        generarPregunta(preguntas1, p7, resp7, sol7);
 
 
     }
+
+
+
+    public void generarPregunta(BDPreguntas bd, String preg, String[] respuestas, Boolean [] sol) throws SQLException {
+        Pregunta pregunta = new Pregunta(preg,false);
+        pregunta.setBdPreguntas(bd);
+
+        getPreguntaDao().assignEmptyForeignCollection(pregunta, Pregunta.RESPUESTAS_CAMPO);
+        getPreguntaDao().create(pregunta);
+
+        int i = 0;
+        for(String r : respuestas)
+        {
+            Respuesta respuesta = new Respuesta(r,sol[i++],false);
+            respuesta.setPregunta(pregunta);
+            getRespuestaDao().create(respuesta);
+        }
+
+    }
+
 
     /**
      * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached

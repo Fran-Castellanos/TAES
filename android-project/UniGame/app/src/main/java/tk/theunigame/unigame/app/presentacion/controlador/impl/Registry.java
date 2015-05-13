@@ -84,6 +84,9 @@ public class Registry extends Activity {
 
 
 
+
+
+
                  AlertDialog.Builder builder = new AlertDialog.Builder(c);
                 boolean correcto = true;
                 try {

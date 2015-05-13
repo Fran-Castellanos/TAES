@@ -9,17 +9,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.support.v4.app.FragmentActivity;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
+
 
 /**
  * Created by Paco on 02/05/2015.
  */
-public class EstadisticasPartida extends Activity {
+public class EstadisticasPartida extends FragmentActivity {
 
     TextView txtNumPreguntas, txt_numCorrectas, txt_numIncorrectas, txt_nota;
     Button btn_finPartida;
@@ -71,27 +73,15 @@ public class EstadisticasPartida extends Activity {
     @Override
     public void onBackPressed() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertaDialogo ad = new AlertaDialogo();
+        ad.setMensaje("¿Desea volver al menú principal?");
+        ad.setTitulo("Salir");
+        ad.setBoton1("Sí");
+        ad.setBoton2("No");
+        ad.setDestino(MainActivity.class);
+        ad.setFlags(true);
+        ad.show(getSupportFragmentManager(), "FragmentAlert");
 
-        builder.setMessage("¿Desea volver al menú principal?").
-                setTitle("Salir").setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-
-                //Lanzamos la actividad
-                Intent intent = new Intent(EstadisticasPartida.this, MainActivity.class);
-                startActivity(intent);
-            }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-
-            }
-        });
-        builder.create().show();
 
     }
 

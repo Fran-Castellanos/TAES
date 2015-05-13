@@ -10,6 +10,7 @@ import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
+import tk.theunigame.unigame.app.presentacion.controlador.impl.JuegoIndividual;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 import tk.theunigame.unigame.app.presentacion.util.IActivityListaDatos;
 
@@ -119,5 +120,7 @@ public class FachadaComunicador {
     {
         Comunicador.setUsuario(usuario);
     }
+
+
 
 }

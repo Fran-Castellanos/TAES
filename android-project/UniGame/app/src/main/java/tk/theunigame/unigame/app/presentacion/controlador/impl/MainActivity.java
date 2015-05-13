@@ -52,8 +52,7 @@ public class MainActivity extends FragmentActivity {
         btn_individual_mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
-                        "Cargando...", true);
+
                 Class<?> destino = null;
 
                 try {
@@ -64,29 +63,27 @@ public class MainActivity extends FragmentActivity {
                 Intent intent= new Intent(MainActivity.this, ListaUniversidades.class);
                 comunicador.ComunicarDestino(destino);
                 startActivity(intent);
-                dialog.cancel();
+
             }
         });
         btn_download_questions=(Button)findViewById(R.id.download_questions);
         btn_download_questions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
-                        "Cargando...", true);
+
                 Intent intent= new Intent(MainActivity.this, BajarDB.class);
                 startActivity(intent);
-                dialog.cancel();
+
             }
         });
         btn_use_questions= (Button)findViewById(R.id.use_questions);
         btn_use_questions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "",
-                        "Cargando...", true);
+
                 Intent intent= new Intent(MainActivity.this, GestionarDB.class);
                 startActivity(intent);
-                dialog.cancel();
+
             }
         });
     }

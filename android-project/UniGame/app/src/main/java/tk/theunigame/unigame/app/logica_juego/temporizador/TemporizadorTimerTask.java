@@ -20,13 +20,14 @@ public class TemporizadorTimerTask {
     private TimerTask timerTask;
     private int tiempo;
     private int tiempoSet;
-    private List<OnTiempoListener> listeners;
+    private OnTiempoListener listener;
 
     public TemporizadorTimerTask(){
         tiempoSet = 30;
         tiempo = tiempoSet;
 
-        listeners = new ArrayList<>();
+        //listeners = new ArrayList<>();
+        listener = null;
         initHandler();
     }
 
@@ -42,12 +43,14 @@ public class TemporizadorTimerTask {
             @Override
             public void handleMessage(Message msg) {
                 tiempo--;
-                for(OnTiempoListener l: listeners)
-                    l.onTiempoHaCambiado(meTimer);
-                if(tiempo <= 0){
+                //for(OnTiempoListener l: listeners)
+                if(listener!=null )
+                    listener.onTiempoHaCambiado(meTimer);
+                if(tiempo == 0){
                     Parar();
-                    for(OnTiempoListener l: listeners)
-                        l.onTiempoFinalizado(meTimer);
+                    //for(OnTiempoListener l: listeners)
+                    if(listener!=null )
+                        listener.onTiempoFinalizado(meTimer);
                     tiempo=0;
                 }
             }
@@ -59,10 +62,17 @@ public class TemporizadorTimerTask {
     public void Parar() {
         if(timer!=null) {
             timer.cancel();
+
+            //timerTask.cancel();
+
+
             timer=null;
+            timerTask=null;
+
         }
-        for(OnTiempoListener l: listeners)
-            l.onParar(this);
+        //for(OnTiempoListener l: listeners)
+        if(listener!=null )
+            listener.onParar(this);
     }
 
     //Continua la cuenta
@@ -82,19 +92,23 @@ public class TemporizadorTimerTask {
             //el valor de la vista
             timer.schedule(timerTask, 0, 1000);
         }
-        for(OnTiempoListener l: listeners)
-            l.onContinuar(this);
+        //for(OnTiempoListener l: listeners)
+        if(listener!=null )
+            listener.onContinuar(this);
     }
 
     //Reinicia la cuenta
     public void Reiniciar() {
         tiempo = tiempoSet;
+        Continuar();
 
     }
 
     //Introduce un listener en el objeto
     public void setOnTiempoListener(OnTiempoListener listener){
-        this.listeners.add(listener);
+        if(this.listener!=null)
+            Parar();
+        this.listener = listener;
     }
 
     //Devuelve el valor del tiempo

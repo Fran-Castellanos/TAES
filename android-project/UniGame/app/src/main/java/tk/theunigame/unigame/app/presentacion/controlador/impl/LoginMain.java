@@ -2,12 +2,13 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import juego.taes.domainmodel.Model.Cliente.Usuario;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaUsuario;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 
 
 /**
@@ -28,7 +30,7 @@ import tk.theunigame.unigame.app.fachadas.FachadaUsuario;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class LoginMain extends Activity {
+public class LoginMain extends FragmentActivity {
 
     private Button btn_login;
     private Button btn_cancel;
@@ -85,8 +87,6 @@ public class LoginMain extends Activity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(LoginMain.this, "",
-                        "Iniciando sesión...", true);
                 String user = et_usuario.getText().toString();
                 String pass = et_password.getText().toString();
 
@@ -98,35 +98,29 @@ public class LoginMain extends Activity {
                 }
                 if(usu == null)
                 {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                    AlertaDialogo ad = new AlertaDialogo();
+                    ad.setMensaje("El nombre de usuario o la contraseña no son correctos");
+                    ad.setTitulo("Inicio de sesión denegado");
+                    ad.setBoton1("OK");
+                    ad.setFlags(true);
+                    ad.show(getSupportFragmentManager(), "FragmentAlert");
 
-                    builder.setMessage("El nombre de usuario o la contraseña no son correctos").
-                            setTitle("Inicio de sesión denegado").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    builder.create().show();
                 }else
                 {
                     comunicador.ComunicarUsuario(usu);
                     Intent intent = new Intent(LoginMain.this, MainActivity.class);
                     startActivity(intent);
                 }
-                dialog.cancel();
             }
         });
 
         btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(LoginMain.this, "",
-                        "Preparando formulario de registro...", true);
+
                 Intent intent = new Intent(LoginMain.this, Registry.class);
                 startActivity(intent);
-                dialog.cancel();
+
             }
         });
 

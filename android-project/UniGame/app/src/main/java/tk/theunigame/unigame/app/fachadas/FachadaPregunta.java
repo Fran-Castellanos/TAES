@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
@@ -84,8 +85,11 @@ public class FachadaPregunta {
             }
 
             Pregunta p = pregunta.getRandomByBolsa(bolsas.get(indice).getId());
-            if(!preguntas.contains(p))
+
+
+            if(!buscarPregunta(p.getId(), preguntas))
             {
+                desordenarRespuestas(p);
                 preguntas.add(p);
                 ++n;
             }
@@ -95,6 +99,37 @@ public class FachadaPregunta {
 
     }
 
+
+    private boolean buscarPregunta(int id, List<Pregunta> lista)
+    {
+        for(Pregunta p : lista)
+        {
+            if(p.getId() == id)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void desordenarRespuestas(Pregunta p)
+    {
+        List<Respuesta> respuestasNuevas = new ArrayList<Respuesta>();
+
+        List<Respuesta> respuestas = p.getRespuestas();
+
+        int cogidos = 0;
+        int L = respuestas.size();
+        while(cogidos < L)
+        {
+            Random randomGenerator = new Random();
+            int randomInt = randomGenerator.nextInt(L-cogidos);
+            respuestasNuevas.add(respuestas.get(randomInt));
+            respuestas.remove(randomInt);
+           ++cogidos;
+        }
+
+        p.setRespuestas(respuestasNuevas);
+    }
 
 
 

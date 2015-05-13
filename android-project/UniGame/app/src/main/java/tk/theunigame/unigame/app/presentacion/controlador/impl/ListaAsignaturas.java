@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,11 +26,12 @@ import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaAsignatura;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaAsignaturas;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 
 /**
  * Created by John on 09/04/2015.
  */
-public class ListaAsignaturas extends Activity {
+public class ListaAsignaturas extends FragmentActivity {
 
     private ListView lv;
     private TextView txt;
@@ -76,8 +78,7 @@ public class ListaAsignaturas extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(ListaAsignaturas.this, "",
-                        "Cargando...", true);
+
                 //Cargamos las asignaturas a enviar
                 for(int i = 0 ; i<posicionAsig.length; i++){
                     if(posicionAsig[i])
@@ -94,18 +95,14 @@ public class ListaAsignaturas extends Activity {
                     Intent intent = new Intent(ListaAsignaturas.this, ListaBasesDatos.class);
                     startActivity(intent);
                 }else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                    builder.setMessage("Seleccione una o más asignaturas").
-                            setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.create().show();
+                    AlertaDialogo ad = new AlertaDialogo();
+                    ad.setMensaje("Seleccione una o más asignaturas");
+                    ad.setTitulo("Información");
+                    ad.setBoton1("OK");
+
+                    ad.show(getSupportFragmentManager(), "FragmentAlert");
                 }
 
-                dialog.cancel();
 
             }
         });

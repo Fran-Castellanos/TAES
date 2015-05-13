@@ -71,10 +71,6 @@ public class ListaPreguntas extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProgressDialog dialog = ProgressDialog.show(ListaPreguntas.this, "",
-                        "Cargando...", true);
-
-
                 Class<?> destino=null;
 
                 try {
@@ -92,7 +88,6 @@ public class ListaPreguntas extends Activity {
                 intent = new Intent(ListaPreguntas.this, EditarPregunta.class);
 
                 startActivity(intent);
-                dialog.cancel();
             }
         });
     }

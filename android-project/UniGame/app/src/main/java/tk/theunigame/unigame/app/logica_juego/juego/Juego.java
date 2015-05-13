@@ -32,28 +32,40 @@ public class Juego implements OnTiempoListener {
 
 
 
-    public void init()
+    public void reiniciarPartida()
     {
         turno = -1;
-        tiempo_pregunta = 30;
-        cronometro = new TemporizadorTimerTask();
-        cronometro.setOnTiempoListener(this);
+        preguntas = new ArrayList<Pregunta>();
+        numPreguntas=20;
+
         estadisticas = new Estadisticas();
-        listenerTiempo = null;
-        listener = null;
+
+        tiempo_pregunta = 30;
 
     }
 
 
     private Juego() {
-        init();
+
+        turno = -1;
         preguntas = new ArrayList<Pregunta>();
         numPreguntas=20;
-
+        cronometro = new TemporizadorTimerTask();
+        cronometro.setOnTiempoListener(this);
+        estadisticas = new Estadisticas();
+        listenerTiempo = null;
+        listener = null;
+        tiempo_pregunta = 30;
     }
 
     public static Juego getInstance() {
         return ourInstance;
+    }
+
+
+    public int getTurno()
+    {
+        return turno;
     }
 
 
@@ -137,7 +149,6 @@ public class Juego implements OnTiempoListener {
     }
 
     public void siguientePregunta() {
-        cronometro.Parar();
         cronometro.Reiniciar();
         if (++turno >= numPreguntas) {
             if (listener != null)
@@ -145,7 +156,6 @@ public class Juego implements OnTiempoListener {
         }else {
             if (listener != null) {
                 listener.onPreguntaHaCambiado(preguntas.get(turno));
-                cronometro.Continuar();
             }
         }
     }

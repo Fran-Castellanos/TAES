@@ -65,8 +65,7 @@ public class ListaCarreras extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProgressDialog dialog = ProgressDialog.show(ListaCarreras.this, "",
-                        "Cargando...", true);
+
                 //Si retorna de la activity podemos perder la referencia al destino. Así aseguramos su permanencia
                 if(destino == null)
                     destino = fachadaComunicador.RecibirDestinoPosicionFinal();
@@ -74,7 +73,7 @@ public class ListaCarreras extends Activity {
                 fachadaComunicador.ComunicarUniversidadCarrera(universidad, (Carrera)parent.getAdapter().getItem(position), null);
                 Intent intent= new Intent(ListaCarreras.this, destino);
                 startActivity(intent);
-                dialog.cancel();
+
             }
         });
     }

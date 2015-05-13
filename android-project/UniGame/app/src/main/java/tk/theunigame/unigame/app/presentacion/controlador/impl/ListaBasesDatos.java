@@ -2,10 +2,13 @@ package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
+//import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -24,15 +27,17 @@ import juego.taes.domainmodel.Model.Cliente.Universidad;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaBDPreguntas;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
+import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaBasesDatos;
 import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaDefault;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 import tk.theunigame.unigame.app.presentacion.util.Comunicador;
 
 /**
  * Created by John on 09/04/2015.
  */
-public class ListaBasesDatos extends Activity {
+public class ListaBasesDatos extends FragmentActivity {
 
     private ListView lv;
     private TextView txt;
@@ -82,8 +87,7 @@ public class ListaBasesDatos extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog = ProgressDialog.show(ListaBasesDatos.this, "",
-                        "Cargando...", true);
+
 
                 Class<?> destino = null;
                 //Cargamos las bolsas de preguntas a enviar
@@ -93,6 +97,8 @@ public class ListaBasesDatos extends Activity {
                 }
 
                 if(bdPreguntas.size() > 0) {
+                    //ProgressDialog dialog = ProgressDialog.show(ListaBasesDatos.this, "",
+                    //        "Cargando...", true);
                     try {
                         destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.JuegoIndividual");
                     } catch (ClassNotFoundException e) {
@@ -103,38 +109,44 @@ public class ListaBasesDatos extends Activity {
 
                     //Enviamos las bdPreguntas a traves de la fachada
                     fachadaComunicador.ComunicarBDPreguntas(bdPreguntas, destino);
+                    FachadaPartida partida = new FachadaPartida();
+                    partida.inicializarPartida();
+
+                    FachadaPregunta fachadaPregunta = new FachadaPregunta();
+                    try {
+                        fachadaPregunta.cargarPreguntas(getApplicationContext(), bdPreguntas);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
                     //Lanzamos la actividad
                     Intent intent = new Intent(ListaBasesDatos.this, JuegoIndividual.class);
                     startActivity(intent);
+                    //dialog.cancel();
                 }else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                    builder.setMessage("Seleccione una o más bolsas de preguntas").
-                            setTitle("Información").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.create().show();
+                    AlertaDialogo ad = new AlertaDialogo();
+                    ad.setMensaje("Seleccione una o más bolsas de preguntas");
+                    ad.setTitulo("Información");
+                    ad.setBoton1("OK");
+                    ad.show(getSupportFragmentManager(), "FragmentAlert");
                 }
 
 
-                dialog.cancel();
+
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProgressDialog dialog = ProgressDialog.show(ListaBasesDatos.this, "",
-                        "Cargando...", true);
+                // ProgressDialog dialog = ProgressDialog.show(ListaBasesDatos.this, "",
+                        //"Cargando...", true);
 
 
                 //Comunicador.setObject(parent.getAdapt         er().getItem(position));
                 //Intent intent = new Intent(ListaBasesDatos.this, ListaUniversidades.class);
                 //startActivity(intent);
 
-                dialog.cancel();
+                //dialog.cancel();
             }
         });
 

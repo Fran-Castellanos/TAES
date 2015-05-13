@@ -54,9 +54,6 @@ public class ListaUniversidades extends Activity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProgressDialog dialog = ProgressDialog.show(ListaUniversidades.this, "",
-                        "Cargando...", true);
-
 
                 if(destino == null)
                     destino = fachadaComunicador.RecibirDestinoPosicionFinal();
@@ -64,7 +61,6 @@ public class ListaUniversidades extends Activity {
                 fachadaComunicador.ComunicarUniversidad((Universidad)parent.getAdapter().getItem(position), destino);
                 Intent intent= new Intent(ListaUniversidades.this, ListaCarreras.class);
                 startActivity(intent);
-                dialog.cancel();
             }
         });
     }

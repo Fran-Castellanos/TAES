@@ -11,6 +11,7 @@ import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
 
+
 /**
  * Created by Paco on 21/04/2015.
  */
@@ -20,7 +21,7 @@ public class FachadaPartida {
      * Constructor por defecto de la fachadaPartida
      */
     public FachadaPartida() {
-        inicializarPartida();
+
     }
 
     /**
@@ -28,9 +29,23 @@ public class FachadaPartida {
      */
     public void inicializarPartida() {
         Juego j = Juego.getInstance();
-        j.init();
+        j.reiniciarPartida();
     }
 
+
+
+
+    public int getTurno()
+    {
+        Juego j = Juego.getInstance();
+        return j.getTurno();
+    }
+
+    public int getNumPreguntas()
+    {
+        Juego j = Juego.getInstance();
+        return j.getNumPreguntas();
+    }
 
     /**
      * Comprueba si la respuesta del usuario respecto de una pregunta es correcta o no.
@@ -69,7 +84,6 @@ public class FachadaPartida {
     public void siguientePregunta() {
 
         Juego juego = Juego.getInstance();
-        juego.reiniciarCronometro();
         juego.siguientePregunta();
 
     }

@@ -36,7 +36,7 @@
     <string name="btn_add_question">Añadir pregunta</string>
     <string name="btn_confirmar_respuesta">Confirmar</string>
     <string name="txt_universities">Universidades</string>
-    <string name="txt_juego_individual">Individual</string>
+    <string name="txt_juego_individual"></string>
     <string name="txt_carrer">Carrera</string>
     <string name="txt_subject">Asignatura</string>
     <string name="txt_dbs">Bases de Datos</string>
