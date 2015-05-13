@@ -17,63 +17,16 @@
             <ImageView
                 android:id="@+id/imageView"
                 style="@style/img_main_logo"/>
+
+            <TextView
+                android:id="@+id/txt_title2"
+                android:gravity="center"
+                style="@style/txt_titlePreguntas"/>
+
             <LinearLayout
                 android:orientation="vertical"
                 style="@style/ll_main_container">
 
-                <TextView
-                    android:id="@+id/txt_title0"
-                    android:textColor="@color/Black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="10sp"/>
-
-                <Button
-                    android:id="@+id/btn_crear_pregunta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_design"
-                    android:gravity="center_horizontal"
-                    android:padding="5dip"
-                    android:paddingBottom="@dimen/margin_topbot_list_item"
-                    android:paddingTop="@dimen/margin_topbot_list_item"
-                    android:text="Añadir Pregunta"
-                    android:textColor="@color/Black"
-                    android:textSize="@dimen/text_size_lista" />
-
-                <TextView
-                    android:id="@+id/txt_title09"
-                    android:textColor="@color/Black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="2sp"/>
-
-                <Button
-                    android:id="@+id/btn_confirmar_cambios"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_design"
-                    android:gravity="center_horizontal"
-                    android:padding="5dip"
-                    android:paddingBottom="@dimen/margin_topbot_list_item"
-                    android:paddingTop="@dimen/margin_topbot_list_item"
-                    android:text="Confirmar Cambios"
-                    android:onClick="Confirmar_Cambios"
-                    android:textColor="@color/Black"
-                    android:textSize="@dimen/text_size_lista" />
-
-                <TextView
-                    android:id="@+id/txt_title1"
-                    android:textColor="@color/Black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
                 <ListView
                     android:layout_weight="0.8"
                     android:layout_width="match_parent"
@@ -81,6 +34,33 @@
                     android:id="@+id/lv_preguntas"
                     style="@style/lv_default">
                 </ListView>
+                    <Button
+                        android:id="@+id/btn_crear_pregunta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:padding="5dip"
+                        android:background="@drawable/button_design"
+                        android:paddingBottom="@dimen/margin_topbot_list_item"
+                        android:paddingTop="@dimen/margin_topbot_list_item"
+                        android:text="Añadir Pregunta"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="@dimen/text_size_lista" />
+                    <Button
+                        android:id="@+id/btn_confirmar_cambios"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@drawable/button_design"
+                        android:gravity="center"
+                        android:padding="5dip"
+                        android:paddingBottom="@dimen/margin_topbot_list_item"
+                        android:paddingTop="@dimen/margin_topbot_list_item"
+                        android:text="Confirmar Cambios"
+                        android:onClick="Confirmar_Cambios"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="@dimen/text_size_lista" />
 
             </LinearLayout>
             <RelativeLayout

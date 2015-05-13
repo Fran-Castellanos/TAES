@@ -1,4 +1,4 @@
-package juego.taes.domainmodel.Data;
+﻿package juego.taes.domainmodel.Data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +21,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
+
     private static final int DATABASE_VERSION = 12;
+
 
     //Daos utilizados
     private AsignaturaDao asignaturaDao = null;

@@ -39,7 +39,6 @@ public class FachadaComunicador {
         Comunicador.setObject(new Object[]{bdPreguntas, destino});
     }
 
-
     //Prepara una universidad, carrera y asignatura para ser recibida por otra activity
     public void ComunicarUniversidadCarreraAsignatura(Universidad u, Carrera c, Asignatura a, Class<?> datos){
         Comunicador.setObject(new Object[]{u, c, a, datos});

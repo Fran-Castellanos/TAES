@@ -1,6 +1,8 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -97,6 +99,25 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         v.setBackgroundResource(R.drawable.btn_selected_answer_pressed);
     }
 
+    public void Eliminar_Click(View v)
+    {
+        BolsaPregunta.getInstance().EliminarPregunta(preguntarecuperada);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¡Eliminación Completada!").
+                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                        Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
+                        startActivity(intent);
+                    }
+                });
+        builder.create().show();
+
+    }
+
     public void Modificar_Click(View v)
     {
         preguntarecuperada.setContenido(etxt_question.getText().toString());
@@ -140,8 +161,18 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         preguntarecuperada.setRespuestas(recuperadas);
         BolsaPregunta.getInstance().ModificarPreguntaInsertada(preguntarecuperada);
 
-        Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¡Modificación Completada!").
+                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                        Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
+                        startActivity(intent);
+                    }
+                });
+        builder.create().show();
 
     }
 

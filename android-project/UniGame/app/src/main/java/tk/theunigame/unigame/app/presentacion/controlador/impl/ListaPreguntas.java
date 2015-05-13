@@ -1,7 +1,10 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,8 +36,10 @@ import tk.theunigame.unigame.app.presentacion.util.Constantes;
 public class ListaPreguntas extends Activity {
 
     private ListView lv;
-    private TextView txt;
+    private TextView txt,txt2;
     private Button btn_crear_pregunta;
+    private Context context;
+    private ArrayList <Pregunta> preguntas;
 
     private FachadaComunicador comunicador;
 
@@ -42,8 +48,12 @@ public class ListaPreguntas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_preguntas);
 
+        //Instanciamo elementos de la vista
+        txt2 = (TextView) findViewById(R.id.txt_title2);
+        txt2.setText("Bolsa de Preguntas\n" + BolsaPregunta.getInstance().getBDPreguntas().getNombre());
 
         comunicador = new FachadaComunicador();
+        context = this;
 
         //Evento al pulsar el botón crear
         btn_crear_pregunta = (Button) findViewById(R.id.btn_crear_pregunta);
@@ -56,13 +66,12 @@ public class ListaPreguntas extends Activity {
         });
 
         txt= (TextView)findViewById(R.id.txt_title1);
-        //txt.setText((String)Comunicador.getObject());
 
 
         lv=(ListView) findViewById(R.id.lv_preguntas);
         //Creamos el adaptador para el ListView donde pasaremos las preguntas que serán listadas
         //si es una base de datos local SQlite se recomienda AdaptadorCursorDB y que sea instanciada en OnCreate() ¿Recomendable usar true en newView?
-        ArrayList <Pregunta> preguntas = BolsaPregunta.getInstance().DevolverListadoPreguntas();
+        preguntas = BolsaPregunta.getInstance().DevolverListadoPreguntas();
 
         AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, preguntas);
         lv.setAdapter(adapter);
@@ -93,25 +102,91 @@ public class ListaPreguntas extends Activity {
     }
 
     //Confirmar los cambios de la BDPreguntas
-    public void Confirmar_Cambios(View v) throws SQLException {
-        BolsaPregunta.getInstance().RegistrarCambios(this);
+    public void Confirmar_Cambios(View v) throws SQLException{
 
-        Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-    }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Boolean cambiado = false;
+        String texto = BolsaPregunta.getInstance().getCambiosRealizados();
 
-    //Eliminar pregunta de una BD
-    public void eliminarPregunta(Pregunta p)
-    {
-        BolsaPregunta.getInstance().EliminarPregunta(p);
+        try {
+            BolsaPregunta.getInstance().RegistrarCambios(this);
+            cambiado = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (cambiado) {
+            builder.setMessage("Cambios Realizados\n"+texto).
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+
+                    Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                }
+            });
+            builder.create().show();
+        }
+        else
+        {
+            builder.setMessage("¡Fallo al registrar!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                            //Vacio la Bolsa Preguntas
+                            BolsaPregunta.getInstance().VaciarBD();
+
+                            Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                        }
+                    });
+            builder.create().show();
+        }
     }
 
     @Override
     public void onBackPressed() {
 
+    if(BolsaPregunta.getInstance().hayCambios()) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Desea confirmar los cambios en la bolsa \"" + BolsaPregunta.getInstance().getBDPreguntas().getNombre() + "\" antes de salir?").
+                setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        View v = new View(context);
+                        try {
+                            Confirmar_Cambios(v);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                //Vacio la Bolsa Preguntas
+                BolsaPregunta.getInstance().VaciarBD();
+
+                Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
+        builder.create().show();
+    }
+    else
+    {
         comunicador.volverAtras();
         super.onBackPressed();
     }
+  }
 
 }

@@ -1,4 +1,4 @@
-package tk.theunigame.unigame.app.presentacion.controlador.impl;
+﻿package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -81,6 +81,7 @@ public class EstadisticasPartida extends FragmentActivity {
         ad.setDestino(MainActivity.class);
         ad.setFlags(true);
         ad.show(getSupportFragmentManager(), "FragmentAlert");
+
 
 
     }
