@@ -1,12 +1,10 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
-import android.app.Activity;
+
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +16,7 @@ import juego.taes.domainmodel.Model.Cliente.Sexo;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaUsuario;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 
 
 /**
@@ -26,7 +25,7 @@ import tk.theunigame.unigame.app.fachadas.FachadaUsuario;
  *
  * @see tk.theunigame.unigame.util.SystemUiHider
  */
-public class Registry extends Activity {
+public class Registry extends FragmentActivity {
 
     private Button btn_registry;
     private Button btn_cancel;
@@ -78,16 +77,17 @@ public class Registry extends Activity {
                 String nick = et_username.getText().toString();
                 String nombre = et_nombre.getText().toString();
                 String apellidos = et_apellidos.getText().toString();
-                ProgressDialog dialog = ProgressDialog.show(Registry.this, "",
-                        "Registrando usuario...", true);
+
+
+
+                AlertaDialogo ad = new AlertaDialogo();
 
 
 
 
 
 
-
-                 AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                AlertDialog.Builder builder = new AlertDialog.Builder(c);
                 boolean correcto = true;
                 try {
                    fachadaUsuario.registrarse(c,nick,nombre,apellidos,s);
@@ -95,33 +95,26 @@ public class Registry extends Activity {
                     correcto = false;
                 }
                 if(!correcto) {
-                    builder.setMessage("No se ha podido crear la cuenta de usuario").
-                            setTitle("Registro de usuario denegado").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
+                    ad.setMensaje("No se ha podido crear la cuenta de usuario");
+                    ad.setTitulo("Registro de usuario denegado");
+                    ad.setBoton1("OK");
 
-                    builder.create().show();
+                    ad.setFlags(true);
+                    ad.show(getSupportFragmentManager(), "FragmentAlert");
+
                 }
                 else
                 {
-
-                    builder.setMessage("¡Se ha creado la cuenta de usuario!").
-                        setTitle("Usuario registrado").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        Intent intent = new Intent(Registry.this, LoginMain.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
-                    }
-                });
-                    builder.create().show();
+                    ad.setMensaje("¡Se ha creado la cuenta de usuario!");
+                    ad.setTitulo("Operación completada");
+                    ad.setBoton1("OK");
+                    ad.setFlags(true);
+                    ad.setDestino(LoginMain.class);
+                    ad.setFlags(true);
+                    ad.show(getSupportFragmentManager(), "FragmentAlert");
 
                 }
-                dialog.cancel();
+
 
             }
 

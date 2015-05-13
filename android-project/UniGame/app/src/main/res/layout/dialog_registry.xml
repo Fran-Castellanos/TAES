@@ -10,7 +10,8 @@
         android:text="@string/title_activity_registry"
         android:gravity="center"
         android:textSize="45sp"
-        android:background="#FFFFBB33"/>
+        android:textColor="@color/black_overlay"
+        android:background="@drawable/login_design"/>
     <EditText
         android:id="@+id/username"
         android:inputType="textEmailAddress"
