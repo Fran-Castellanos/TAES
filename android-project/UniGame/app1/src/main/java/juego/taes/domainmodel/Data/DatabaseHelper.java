@@ -1,4 +1,4 @@
-﻿package juego.taes.domainmodel.Data;
+package juego.taes.domainmodel.Data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -501,9 +501,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         String p1 = "¿Que es un arbol binario?";
         String[] resp1 = {"Un arbol compuesto por 0s y 1s",
-                        "Una estructura jerarquica compuesta por una raiz y como mucho dos hijos",
-                        "Un arbol representado en formato digital",
-                        "Una estructura de datos simple"};
+                "Una estructura jerarquica compuesta por una raiz y como mucho dos hijos",
+                "Un arbol representado en formato digital",
+                "Una estructura de datos simple"};
 
         Boolean [] sol1 = {false, true, false, false};
         generarPregunta(preguntas1, p1, resp1, sol1);
@@ -511,9 +511,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         String p2 = "¿Que es un ABB?";
         String[] resp2 = {"Es una estructura de datos abstracta ordenada de izquierda a derecha",
-                        "Es una estructura de datos abstracta muy ineficiente",
-                        "Es un concepto que no existe",
-                        "es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel"};
+                "Es una estructura de datos abstracta muy ineficiente",
+                "Es un concepto que no existe",
+                "es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel"};
 
         Boolean [] sol2 = {true, false, false, false};
 
@@ -523,15 +523,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
         String p3 = "¿Que estructura de datos abstracta es mas eficiente para las inserciones?";
         String[] resp3 = {"Un vector",
-                        "Un arbol binario",
-                        "Una lista enlazada simple",
-                        "Cualquier estructura de datos"};
+                "Un arbol binario",
+                "Una lista enlazada simple",
+                "Cualquier estructura de datos"};
 
         Boolean [] sol3 = {false, false, true, false};
         generarPregunta(preguntas1, p3, resp3, sol3);
 
 
-                String p4 = "¿Cuál fue la principal aportacion de Von Neuman a la computacion?";
+        String p4 = "¿Cuál fue la principal aportacion de Von Neuman a la computacion?";
         String[] resp4 = {"El programa almacenado en memoria",
                 "Memoria principal en los computadores",
                 "Computadores con mayor memoria secundaria",
