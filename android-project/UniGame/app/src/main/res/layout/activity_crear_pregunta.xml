@@ -12,6 +12,10 @@
 
             <RelativeLayout style="@style/rl_main_top"></RelativeLayout>
 
+            <ImageView
+                android:id="@+id/imageView"
+                style="@style/img_main_logo" />
+
             <LinearLayout
                 style="@style/ll_main_container"
                 android:orientation="vertical">
@@ -63,7 +67,6 @@
                         android:id="@+id/btn_edit_answer_d"
                         style="@style/btn_show_correct_answer"/>
                 </LinearLayout>
-
                 <Button
                     android:id="@+id/use_questions"
                     android:layout_width="match_parent"
@@ -73,7 +76,7 @@
                     android:layout_weight="0.1"
                     android:background="@drawable/button_design"
                     android:clickable="true"
-                    android:text="@string/btn_create"
+                    android:text="Crear"
                     android:onClick="Crear_Click"
                     android:textColor="@color/black_overlay" />
                 <Button
@@ -88,6 +91,8 @@
                     android:text="Cancelar Creación"
                     android:onClick="Cancelar_Click"
                     android:textColor="@color/black_overlay" />
+
+
             </LinearLayout>
 
             <RelativeLayout style="@style/rl_main_bottom"></RelativeLayout>

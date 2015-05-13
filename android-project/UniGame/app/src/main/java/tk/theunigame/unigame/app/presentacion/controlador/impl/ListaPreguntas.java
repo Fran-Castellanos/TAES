@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,9 +36,10 @@ import tk.theunigame.unigame.app.presentacion.util.Constantes;
 public class ListaPreguntas extends Activity {
 
     private ListView lv;
-    private TextView txt;
+    private TextView txt,txt2;
     private Button btn_crear_pregunta;
     private Context context;
+    private ArrayList <Pregunta> preguntas;
 
     private FachadaComunicador comunicador;
 
@@ -46,6 +48,9 @@ public class ListaPreguntas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_preguntas);
 
+        //Instanciamo elementos de la vista
+        txt2 = (TextView) findViewById(R.id.txt_title2);
+        txt2.setText("Bolsa de Preguntas\n" + BolsaPregunta.getInstance().getBDPreguntas().getNombre());
 
         comunicador = new FachadaComunicador();
         context = this;
@@ -61,13 +66,12 @@ public class ListaPreguntas extends Activity {
         });
 
         txt= (TextView)findViewById(R.id.txt_title1);
-        //txt.setText((String)Comunicador.getObject());
 
 
         lv=(ListView) findViewById(R.id.lv_preguntas);
         //Creamos el adaptador para el ListView donde pasaremos las preguntas que serán listadas
         //si es una base de datos local SQlite se recomienda AdaptadorCursorDB y que sea instanciada en OnCreate() ¿Recomendable usar true en newView?
-        ArrayList <Pregunta> preguntas = BolsaPregunta.getInstance().DevolverListadoPreguntas();
+        preguntas = BolsaPregunta.getInstance().DevolverListadoPreguntas();
 
         AdaptadorListaPreguntas adapter= new AdaptadorListaPreguntas(this, preguntas);
         lv.setAdapter(adapter);
@@ -148,12 +152,6 @@ public class ListaPreguntas extends Activity {
                     });
             builder.create().show();
         }
-    }
-
-    //Eliminar pregunta de una BD
-    public void eliminarPregunta(Pregunta p)
-    {
-        BolsaPregunta.getInstance().EliminarPregunta(p);
     }
 
     @Override
