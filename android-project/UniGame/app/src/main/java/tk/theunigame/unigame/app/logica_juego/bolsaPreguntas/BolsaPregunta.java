@@ -119,4 +119,27 @@ public class BolsaPregunta {
         preguntas_eliminadas.clear();
         preguntas_modificadas.clear();
     }
+
+    public void VaciarBD(){
+        //Vaciar el contenido de las listas una vez registrado en la BD
+        preguntas_creadas.clear();
+        preguntas_eliminadas.clear();
+        preguntas_modificadas.clear();
+    }
+
+    public Boolean hayCambios()
+    {
+        if(preguntas_creadas.size()>0 || preguntas_eliminadas.size()>0 || preguntas_modificadas.size()>0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public String getCambiosRealizados()
+    {
+        return "Creadas: "+preguntas_creadas.size()+
+                "\nModificadas: "+preguntas_modificadas.size()+
+                "\nEliminadas: "+preguntas_eliminadas.size();
+    }
 }

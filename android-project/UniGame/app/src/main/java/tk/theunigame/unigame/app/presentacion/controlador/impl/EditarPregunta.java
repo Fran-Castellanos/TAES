@@ -1,6 +1,8 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -140,9 +142,24 @@ public class EditarPregunta extends Activity implements View.OnClickListener
         preguntarecuperada.setRespuestas(recuperadas);
         BolsaPregunta.getInstance().ModificarPreguntaInsertada(preguntarecuperada);
 
-        Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¡Modificación Completada!").
+                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
 
+                        Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
+                        startActivity(intent);
+                    }
+                });
+        builder.create().show();
+
+    }
+
+    public void Cancelar_Click(View v)
+    {
+        onBackPressed();
     }
 
     @Override

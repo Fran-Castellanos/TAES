@@ -1,6 +1,8 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -78,34 +80,78 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     public void Crear_Click(View v){
 
-        List<Respuesta> respuestas = new ArrayList<Respuesta>();
+        if(CamposRellenos(((EditText) findViewById(R.id.etxt_question)).getText().toString(),
+                etxt_a.getText().toString(),etxt_b.getText().toString(),
+                etxt_c.getText().toString(),etxt_d.getText().toString())) {
 
-        Pregunta pregunta1 = new Pregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString(),false);
-        pregunta1.setBdPreguntas(BolsaPregunta.getInstance().getBDPreguntas());
+            List<Respuesta> respuestas = new ArrayList<Respuesta>();
+
+            Pregunta pregunta1 = new Pregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString(), false);
+            pregunta1.setBdPreguntas(BolsaPregunta.getInstance().getBDPreguntas());
 
 
-        Respuesta respuesta1 = new Respuesta(etxt_a.getText().toString(),false,false);
-        respuesta1.setPregunta(pregunta1);
-        Respuesta respuesta2 = new Respuesta(etxt_b.getText().toString(),true,false);
-        respuesta2.setPregunta(pregunta1);
-        Respuesta respuesta3 = new Respuesta(etxt_c.getText().toString(),false,false);
-        respuesta3.setPregunta(pregunta1);
-        Respuesta respuesta4 = new Respuesta(etxt_d.getText().toString(),false,false);
-        respuesta4.setPregunta(pregunta1);
+            Respuesta respuesta1 = new Respuesta(etxt_a.getText().toString(), false, false);
+            respuesta1.setPregunta(pregunta1);
+            Respuesta respuesta2 = new Respuesta(etxt_b.getText().toString(), false, false);
+            respuesta2.setPregunta(pregunta1);
+            Respuesta respuesta3 = new Respuesta(etxt_c.getText().toString(), false, false);
+            respuesta3.setPregunta(pregunta1);
+            Respuesta respuesta4 = new Respuesta(etxt_d.getText().toString(), false, false);
+            respuesta4.setPregunta(pregunta1);
 
-        respuestas.add(respuesta1);
-        respuestas.add(respuesta2);
-        respuestas.add(respuesta3);
-        respuestas.add(respuesta4);
+            respuestas.add(respuesta1);
+            respuestas.add(respuesta2);
+            respuestas.add(respuesta3);
+            respuestas.add(respuesta4);
 
-        pregunta1.setRespuestas(respuestas);
+            respuestas.get(id_answer_selected.getId()).setEsCorrecta(true);
 
-        //Añadimos las preguntas a la BD
-        BolsaPregunta.getInstance().InsertarPregunta(pregunta1);
+            pregunta1.setRespuestas(respuestas);
 
-        //Haga lo que tenga que hacer
-        Intent intent = new Intent(CrearPregunta.this, ListaPreguntas.class);
-        startActivity(intent);
+            //Añadimos las preguntas a la BD
+            BolsaPregunta.getInstance().InsertarPregunta(pregunta1);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¡Creación Completada!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                            //Haga lo que tenga que hacer
+                            Intent intent = new Intent(CrearPregunta.this, ListaPreguntas.class);
+                            startActivity(intent);
+                        }
+                    });
+            builder.create().show();
+        }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Introduce todos los campos").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            builder.create().show();
+        }
+    }
+
+    public void Cancelar_Click(View v)
+    {
+        onBackPressed();
+    }
+
+    public boolean CamposRellenos(String pregunta,String res1,String res2,String res3,String res4)
+    {
+        boolean comprobacion = false;
+        if(!pregunta.equals("") && !res1.equals("") && !res2.equals("") && !res3.equals("") && !res4.equals(""))
+        {
+            comprobacion = true;
+        }
+     return comprobacion;
     }
 
 

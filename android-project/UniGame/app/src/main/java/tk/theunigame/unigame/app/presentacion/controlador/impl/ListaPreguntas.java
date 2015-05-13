@@ -1,7 +1,10 @@
 package tk.theunigame.unigame.app.presentacion.controlador.impl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +37,7 @@ public class ListaPreguntas extends Activity {
     private ListView lv;
     private TextView txt;
     private Button btn_crear_pregunta;
+    private Context context;
 
     private FachadaComunicador comunicador;
 
@@ -44,6 +48,7 @@ public class ListaPreguntas extends Activity {
 
 
         comunicador = new FachadaComunicador();
+        context = this;
 
         //Evento al pulsar el botón crear
         btn_crear_pregunta = (Button) findViewById(R.id.btn_crear_pregunta);
@@ -98,12 +103,51 @@ public class ListaPreguntas extends Activity {
     }
 
     //Confirmar los cambios de la BDPreguntas
-    public void Confirmar_Cambios(View v) throws SQLException {
-        BolsaPregunta.getInstance().RegistrarCambios(this);
+    public void Confirmar_Cambios(View v) throws SQLException{
 
-        Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Boolean cambiado = false;
+        String texto = BolsaPregunta.getInstance().getCambiosRealizados();
+
+        try {
+            BolsaPregunta.getInstance().RegistrarCambios(this);
+            cambiado = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (cambiado) {
+            builder.setMessage("Cambios Realizados\n"+texto).
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+
+                    Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                }
+            });
+            builder.create().show();
+        }
+        else
+        {
+            builder.setMessage("¡Fallo al registrar!").
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                            //Vacio la Bolsa Preguntas
+                            BolsaPregunta.getInstance().VaciarBD();
+
+                            Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                        }
+                    });
+            builder.create().show();
+        }
     }
 
     //Eliminar pregunta de una BD
@@ -115,8 +159,41 @@ public class ListaPreguntas extends Activity {
     @Override
     public void onBackPressed() {
 
+    if(BolsaPregunta.getInstance().hayCambios()) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("¿Desea confirmar los cambios en la bolsa \"" + BolsaPregunta.getInstance().getBDPreguntas().getNombre() + "\" antes de salir?").
+                setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        View v = new View(context);
+                        try {
+                            Confirmar_Cambios(v);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                //Vacio la Bolsa Preguntas
+                BolsaPregunta.getInstance().VaciarBD();
+
+                Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
+        builder.create().show();
+    }
+    else
+    {
         comunicador.volverAtras();
         super.onBackPressed();
     }
+  }
 
 }
