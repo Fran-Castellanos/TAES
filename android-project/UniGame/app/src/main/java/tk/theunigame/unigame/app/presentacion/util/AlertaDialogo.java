@@ -1,5 +1,6 @@
 package tk.theunigame.unigame.app.presentacion.util;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -7,8 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
 
 /**
@@ -16,6 +19,7 @@ import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
  */
 public class AlertaDialogo extends DialogFragment {
 
+    private boolean salir = false;
     private String mensaje;
     private Class<?> destino;
     private String titulo;
@@ -23,6 +27,11 @@ public class AlertaDialogo extends DialogFragment {
     private String boton2;
     private boolean flags;
 
+
+    public void Salir()
+    {
+        salir = true;
+    }
     public void setMensaje(String m)
     {
         mensaje = m;
@@ -67,13 +76,19 @@ public class AlertaDialogo extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
-                    //Lanzamos la actividad
-                    if (destino != null) {
-                        Intent intent = new Intent(getActivity(), destino);
-                        if (flags)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
+                    if (salir) {
+                        System.exit(0);
 
+
+                    } else {
+                        //Lanzamos la actividad
+                        if (destino != null) {
+                            Intent intent = new Intent(getActivity(), destino);
+                            if (flags)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+
+                        }
                     }
                 }
             }).setNegativeButton(boton2, new DialogInterface.OnClickListener() {

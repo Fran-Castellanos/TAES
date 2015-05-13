@@ -11,7 +11,7 @@ import juego.taes.domainmodel.Model.Cliente.Usuario;
 public class Comunicador {
     private static Object object= null;
     private static Usuario usuario = null;
-
+    private static List<Object> listaComunicadores = new ArrayList<Object>();
     public static Object getObject() {
         return object;
     }
@@ -31,6 +31,11 @@ public class Comunicador {
         usuario = usu;
     }
 
+    public static void limpiarHistoria()
+    {
+        listaComunicadores.clear();
+        object = null;
+    }
     public static Object getObjectAnterior()
     {
         int L = listaComunicadores.size()-1;
@@ -45,5 +50,5 @@ public class Comunicador {
         return object;
     }
 
-    private static List<Object> listaComunicadores = new ArrayList<Object>();
+
 }

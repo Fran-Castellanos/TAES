@@ -63,6 +63,7 @@ public class LoginMain extends FragmentActivity {
         rb_offline = (RadioButton) findViewById(R.id.modoOFFLINE);
 
 
+        rb_offline.setChecked(false);
 
         rb_offline.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +110,7 @@ public class LoginMain extends FragmentActivity {
                 {
                     comunicador.ComunicarUsuario(usu);
                     Intent intent = new Intent(LoginMain.this, MainActivity.class);
+                    finish();
                     startActivity(intent);
                 }
             }

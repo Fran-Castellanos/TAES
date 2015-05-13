@@ -13,6 +13,7 @@ import org.w3c.dom.Text;
 import juego.taes.domainmodel.Model.Cliente.Sexo;
 import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
+import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
 import tk.theunigame.unigame.util.SystemUiHider;
 
 
@@ -38,6 +39,10 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         comunicador = new FachadaComunicador();
+        comunicador.limpiarHistoria();
+
+
+
         tv_login = (TextView) findViewById(R.id.tv_login);
 
         String sexo = "a";
@@ -92,7 +97,16 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
 
-        setContentView(R.layout.activity_main);
-        super.onBackPressed();
+        AlertaDialogo ad = new AlertaDialogo();
+        ad.setMensaje("¿Está seguro de querer salir del juego?");
+        ad.setTitulo("Salir");
+        ad.setBoton1("Sí");
+        ad.setBoton2("No");
+        ad.setDestino(MainActivity.class);
+        ad.Salir();
+        ad.setFlags(true);
+        ad.show(getSupportFragmentManager(), "FragmentAlert");
+
+
     }
 }

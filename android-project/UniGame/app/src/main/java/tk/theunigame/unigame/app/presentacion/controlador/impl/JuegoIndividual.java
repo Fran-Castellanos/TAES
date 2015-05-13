@@ -72,6 +72,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
     private Pregunta pregunta;
 
     private EIDANSWER id_answer_selected;
+    private Runnable r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +146,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
             }
         });
 
+
         //Instanciamos el handler
         handler = new Handler(){
             @Override
@@ -158,6 +160,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
 
         Juego j = Juego.getInstance();
         j.setOnJuegoListener(this);
+
         fachadaPartida.siguientePregunta();
         txt_turno.setText("Pregunta " + (fachadaPartida.getTurno()+1) + " de " + fachadaPartida.getNumPreguntas());
     }
@@ -184,20 +187,25 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
 
         fachadaPartida.comprobarPregunta(id_answer_selected.getId());
 
-        handler.postDelayed(new Runnable() {
+
+
+        r=new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(getApplicationContext(), JuegoIndividual.class);
-                startActivity(i);
-                overridePendingTransition(R.anim.transicion_left_in, R.anim.transicion_left_out);
-
+                if(fachadaPartida.getTurno()+1 < fachadaPartida.getNumPreguntas()) {
+                    Intent i = new Intent(getApplicationContext(), JuegoIndividual.class);
+                    startActivity(i);
+                    overridePendingTransition(R.anim.transicion_left_in, R.anim.transicion_left_out);
+                }
                 btn_a.setClickable(true);
                 btn_b.setClickable(true);
                 btn_c.setClickable(true);
                 btn_d.setClickable(true);
 
             }
-        }, 2000);
+        };
+
+        handler.postDelayed(r, 2000);
 
     }
 
@@ -239,6 +247,8 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
 
     @Override
     public void onJuegoHaAcabado(Estadisticas estadisticas) {
+        if(r!=null) handler.removeCallbacks(r);
+
         fachadaPartida.apagarCronometro();
 
         AlertaDialogo ad = new AlertaDialogo();

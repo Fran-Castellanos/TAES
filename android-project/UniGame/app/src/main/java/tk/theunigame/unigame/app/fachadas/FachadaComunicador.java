@@ -30,6 +30,10 @@ public class FachadaComunicador {
         Comunicador.setObject(new Object[]{u, datos});
     }
 
+    public void limpiarHistoria()
+    {
+        Comunicador.limpiarHistoria();
+    }
     //Prepara universidad y carrera para ser recibida por otra activity
     public void ComunicarUniversidadCarrera(Universidad u, Carrera c, Class<?> datos){
         Comunicador.setObject(new Object[]{u, c, datos});
