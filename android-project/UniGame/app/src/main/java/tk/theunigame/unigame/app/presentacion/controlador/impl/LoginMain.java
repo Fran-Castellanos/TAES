@@ -22,6 +22,7 @@ import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaUsuario;
 import tk.theunigame.unigame.app.presentacion.util.AlertaDialogo;
+import tk.theunigame.unigame.app.presentacion.util.IniciarAsyncDB;
 
 
 /**
@@ -47,8 +48,9 @@ public class LoginMain extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_login);
 
-        DatabaseManager manager = new DatabaseManager();
-        manager.getHelper(this).getWritableDatabase();
+        //DatabaseManager manager = new DatabaseManager();
+        //manager.getHelper(this).getWritableDatabase();
+        IniciarAsyncDB.iniciarDB(this);
 
         comunicador = new FachadaComunicador();
         c = this;
