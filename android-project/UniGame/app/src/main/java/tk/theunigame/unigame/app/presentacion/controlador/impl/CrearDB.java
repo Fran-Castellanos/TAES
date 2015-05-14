@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,12 +33,27 @@ public class CrearDB extends Activity {
 
     private TextView txt_subject,txt_university, txt_carrer;
     private EditText etxt_name_db;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_db);
+
+
+
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+
+        imageView.setClickable(true);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //Recuperamos elementos de la interfaz
         txt_university = (TextView) findViewById(R.id.txt_university);

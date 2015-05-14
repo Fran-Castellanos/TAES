@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.sql.SQLException;
@@ -33,17 +34,33 @@ public class BajarDB extends Activity{
     private FachadaComunicador comunicador;
     private BDPreguntasRepository respositorio;
     private FachadaBDPreguntas fachada;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bajar_db);
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+
+        imageView.setClickable(true);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
     }
 
     public void Bajar_BD(View v) throws SQLException {
 
         String nombreuni= ((EditText)findViewById(R.id.etxt_university)).getText().toString();
         String nombreasig = ((EditText)findViewById(R.id.etxt_subject)).getText().toString();
+
+
         universidad = comunicador.RecibirUniversidadPosicion0();
         asignatura = comunicador.RecibirAsignaturaPosicion2();
 

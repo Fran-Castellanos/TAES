@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,12 +52,26 @@ public class EliminarDB extends FragmentActivity {
     private Boolean[] posicionAsig;
     private List<BDPreguntas> bdPreguntasConsulta;
     private ArrayList<BDPreguntas> bdPreguntas;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eliminar_bases_datos);
+
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+
+        imageView.setClickable(true);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         //Instanciamos elementos de la interfaz
         lv=(ListView) findViewById(R.id.lv_bases_datos);
