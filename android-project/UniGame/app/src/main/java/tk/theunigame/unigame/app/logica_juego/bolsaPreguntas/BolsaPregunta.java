@@ -59,6 +59,7 @@ public class BolsaPregunta {
     {
         ArrayList<Pregunta> pregts = new ArrayList<Pregunta>();
         pregts.addAll(pPreguntas);
+        pregts.removeAll(preguntas_eliminadas);
         pregts.addAll(preguntas_creadas);
         return pregts;
     }

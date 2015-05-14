@@ -42,6 +42,7 @@
                 android:background="@drawable/button_design"
                 android:gravity="center_horizontal"
                 android:padding="5dip"
+                android:layout_marginTop="4dp"
                 android:paddingBottom="@dimen/margin_topbot_list_item"
                 android:paddingTop="@dimen/margin_topbot_list_item"
                 android:text="Eliminar Bolsas Preguntas"
