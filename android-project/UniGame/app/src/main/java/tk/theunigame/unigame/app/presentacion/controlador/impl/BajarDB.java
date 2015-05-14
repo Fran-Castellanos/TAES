@@ -75,7 +75,7 @@ public class BajarDB extends Activity{
     @Override
     public void onBackPressed() {
 
-        comunicador.volverAtras();
+
         super.onBackPressed();
     }
 
