@@ -90,14 +90,7 @@ public class GestionarDB extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GestionarDB.this, EliminarDB.class);
-                Class<?> destino= null;
-                try {
-                    destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.EliminarDB");
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                comunicador.ComunicarBDPreguntas((ArrayList<BDPreguntas>)bdpreguntasguardadas,destino);
-                comunicador.ComunicarDestino(destino);
+                comunicador.ComunicarBDPreguntas((ArrayList<BDPreguntas>)bdpreguntasguardadas,null);
                 startActivity(intent);
             }
         });

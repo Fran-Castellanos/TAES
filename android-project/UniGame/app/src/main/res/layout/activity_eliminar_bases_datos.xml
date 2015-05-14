@@ -19,7 +19,7 @@
                 <TextView
                     android:id="@+id/txt_title1"
                     style="@style/txt_title"
-                    android:text="@string/txt_individual_mode"/>
+                    android:text="Borrar Bolsas Preguntas"/>
 
             </LinearLayout>
             <LinearLayout
@@ -34,14 +34,15 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_eliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/lv_default_dessign"
+                android:background= "@drawable/button_design"
                 android:gravity="center"
                 android:paddingRight="5dip"
                 android:paddingLeft="5dip"
                 android:paddingBottom="9dip"
+                android:layout_marginTop="10dp"
+                android:onClick="eliminar_BD"
                 android:paddingTop="9dip"
                 android:text="Eliminar Bolsas"
                 android:textColor="@color/Black"

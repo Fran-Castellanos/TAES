@@ -118,4 +118,21 @@ public class FachadaBDPreguntas {
         return bases;
 
     }
+
+    public void eliminarBDPreguntas(ArrayList<BDPreguntas> bds, Context c) throws SQLException
+    {
+        try
+        {
+            bd = new BDPreguntasRepository(c);
+
+            for(BDPreguntas x : bds)
+            {
+                bd.delete(x);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw e;
+        }
+    }
 }

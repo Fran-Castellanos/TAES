@@ -42,61 +42,89 @@ public class EliminarDB extends FragmentActivity {
 
     private ListView lv;
     private TextView txt;
-    private Button btn;
+    private Button btn_eliminar;
 
     private FachadaComunicador fachadaComunicador;
+    private FachadaBDPreguntas fachadaBDPreguntas;
 
 
     private Boolean[] posicionAsig;
-    private List<BDPreguntas> bdPreguntas,bdPreguntasConsulta;
+    private List<BDPreguntas> bdPreguntasConsulta;
+    private ArrayList<BDPreguntas> bdPreguntas;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eliminar_bases_datos);
 
         //Instanciamos elementos de la interfaz
         lv=(ListView) findViewById(R.id.lv_bases_datos);
-        btn = (Button) findViewById(R.id.btn_eliminar);
 
         //Inicializamos las fachadas
+        bdPreguntas = new ArrayList<BDPreguntas>();
         fachadaComunicador = new FachadaComunicador();
+        fachadaBDPreguntas = new FachadaBDPreguntas();
 
+        //Cargamos el Adapter
         bdPreguntasConsulta = fachadaComunicador.RecibirBDPreguntasPosicion0();
-
         BaseAdapter adapter= new AdaptadorListaBasesDatos(this, bdPreguntasConsulta);
         lv.setAdapter(adapter);
-
-        //Instanciamos Listeners
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Cargamos las bolsas de preguntas a enviar
-                for (int i = 0; i < posicionAsig.length; i++) {
-                    if (posicionAsig[i])
-                        bdPreguntas.add(bdPreguntasConsulta.get(i));
-                }
-
-                if (bdPreguntas.size() > 0) {
-
-                    //Lanzamos la actividad
-                    Intent intent = new Intent(EliminarDB.this, GestionarDB.class);
-                    startActivity(intent);
-                } else {
-                    AlertaDialogo ad = new AlertaDialogo();
-                    ad.setMensaje("Seleccione una o más bolsas de preguntas");
-                    ad.setTitulo("Información");
-                    ad.setBoton1("OK");
-                    ad.show(getSupportFragmentManager(), "FragmentAlert");
-                }
-            }
-        });
 
         //Iniciamos los elementos del Array de los checkbox
         posicionAsig = new Boolean[adapter.getCount()];
         for(int i = 0 ; i<posicionAsig.length; i++){
             posicionAsig[i]=false;
+        }
+    }
+
+    public void eliminar_BD(View v)
+    {
+        //Cargamos las bolsas de preguntas a enviar
+        for (int i = 0; i < posicionAsig.length; i++)
+        {
+            if (posicionAsig[i])
+                bdPreguntas.add(bdPreguntasConsulta.get(i));
+        }
+
+        if (bdPreguntas.size() > 0)
+        {
+            //Eliminamos de BD
+            try
+            {
+                fachadaBDPreguntas.eliminarBDPreguntas(bdPreguntas,this);
+            } catch (SQLException e)
+            {
+                AlertaDialogo ad = new AlertaDialogo();
+                ad.setMensaje("Se ha producido un fallo al borrar");
+                ad.setTitulo("Información");
+                ad.setBoton1("OK");
+                ad.show(getSupportFragmentManager(), "FragmentAlert");
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Bolsas Eliminadas: " + bdPreguntas.size()).
+                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                            //Lanzamos la actividad
+                            Intent intent = new Intent(EliminarDB.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+
+                        }
+                    });
+            builder.create().show();
+        }
+        else
+        {
+            AlertaDialogo ad = new AlertaDialogo();
+            ad.setMensaje("Seleccione una o más bolsas de preguntas");
+            ad.setTitulo("Información");
+            ad.setBoton1("OK");
+            ad.show(getSupportFragmentManager(), "FragmentAlert");
         }
     }
 
@@ -109,7 +137,6 @@ public class EliminarDB extends FragmentActivity {
         else
             posicionAsig[(Integer)chkBox.getTag()]=false;
     }
-
 
     @Override
     public void onBackPressed() {
