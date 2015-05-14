@@ -90,7 +90,7 @@ public class GestionarDB extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GestionarDB.this, EliminarDB.class);
-                comunicador.ComunicarBDPreguntas((ArrayList<BDPreguntas>)bdpreguntasguardadas,null);
+                comunicador.ComunicarBDPreguntas((ArrayList<BDPreguntas>)bdpreguntasguardadas,EliminarDB.class);
                 startActivity(intent);
             }
         });

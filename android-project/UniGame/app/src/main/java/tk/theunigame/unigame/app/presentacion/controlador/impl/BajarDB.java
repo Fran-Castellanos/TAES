@@ -41,16 +41,6 @@ public class BajarDB extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bajar_db);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-
-        imageView.setClickable(true);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
 
     }

@@ -83,6 +83,11 @@ public class MainActivity extends FragmentActivity {
             }
         });
         btn_download_questions=(Button)findViewById(R.id.download_questions);
+
+        btn_download_questions.setVisibility(View.INVISIBLE);
+        btn_download_questions.setEnabled(false);
+
+
         btn_download_questions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -44,17 +44,6 @@ public class CrearDB extends Activity {
 
 
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-
-        imageView.setClickable(true);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
         //Recuperamos elementos de la interfaz
         txt_university = (TextView) findViewById(R.id.txt_university);
         txt_carrer = (TextView) findViewById(R.id.txt_carrer);

@@ -61,16 +61,7 @@ public class EliminarDB extends FragmentActivity {
         setContentView(R.layout.activity_eliminar_bases_datos);
 
 
-        imageView = (ImageView) findViewById(R.id.imageView);
 
-        imageView.setClickable(true);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
 
         //Instanciamos elementos de la interfaz
