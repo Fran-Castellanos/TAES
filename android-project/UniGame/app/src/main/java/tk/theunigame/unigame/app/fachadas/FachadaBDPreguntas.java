@@ -56,7 +56,25 @@ public class FachadaBDPreguntas {
      */
     public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas) throws SQLException {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
-        return (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
+        ArrayList<BDPreguntas> bd =  (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
+        ArrayList <Integer> bdvacios = new ArrayList<Integer>();
+        int i = 0;
+        for(BDPreguntas b : bd)
+        {
+            if(b.getPreguntas().size()==0)
+                bdvacios.add(i);
+
+            ++i;
+        }
+
+        i = bdvacios.size()-1;
+        while(i>=0)
+        {
+            bd.remove((int)bdvacios.get(i));
+            --i;
+        }
+
+        return bd;
     }
 
     public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, Asignatura asignatura) throws SQLException {

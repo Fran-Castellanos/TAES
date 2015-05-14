@@ -192,10 +192,16 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         r=new Runnable() {
             @Override
             public void run() {
+                int turno = fachadaPartida.getTurno();
+                int numPreguntas = fachadaPartida.getNumPreguntas();
                 if(fachadaPartida.getTurno()+1 < fachadaPartida.getNumPreguntas()) {
                     Intent i = new Intent(getApplicationContext(), JuegoIndividual.class);
                     startActivity(i);
                     overridePendingTransition(R.anim.transicion_left_in, R.anim.transicion_left_out);
+                }
+                else
+                {
+                    fachadaPartida.siguientePregunta();
                 }
                 btn_a.setClickable(true);
                 btn_b.setClickable(true);
@@ -224,6 +230,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
             //Acción a realizar si es correcta la respuesta
         }
     }
+
 
     //Acción a realizar cuando se acabe el tiempo
     @Override
