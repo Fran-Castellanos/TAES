@@ -58,6 +58,11 @@
             android:screenOrientation="portrait"
             android:label="@string/title_activity_bajar_db">
         </activity>
+        <activity android:name=".app.presentacion.controlador.impl.EliminarDB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="Eliminar DB">
+        </activity>
         <activity android:name=".app.presentacion.controlador.impl.ListaBasesDatos"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"

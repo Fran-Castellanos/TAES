@@ -85,7 +85,8 @@ public class FachadaComunicador {
     }
 
 
-    public ArrayList<BDPreguntas> RecibirBDPreguntasPosicion0() {
+    public ArrayList<BDPreguntas> RecibirBDPreguntasPosicion0()
+    {
         return (ArrayList<BDPreguntas>)((Object[])Comunicador.getObject())[0];
     }
 

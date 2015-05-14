@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
@@ -26,9 +27,10 @@ import tk.theunigame.unigame.app.presentacion.util.AdaptadorListaGestionarPregun
 public class GestionarDB extends Activity {
 
     private ListView lv;
-    private Button btn_crear_db;
+    private Button btn_crear_db, delete_questions;
     private FachadaBDPreguntas fachadaBDPreguntas;
     private FachadaComunicador comunicador;
+    private List<BDPreguntas> bdpreguntasguardadas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class GestionarDB extends Activity {
         });
 
         //Creamos el adaptador para el ListView
-        List<BDPreguntas> bdpreguntasguardadas = null;
+        bdpreguntasguardadas = null;
         try {
             bdpreguntasguardadas = fachadaBDPreguntas.obtenerBasesTodasDatos(this);
         } catch (SQLException e) {
@@ -78,6 +80,24 @@ public class GestionarDB extends Activity {
                 BolsaPregunta.getInstance().SetBDPreguntas((BDPreguntas)parent.getAdapter().getItem(position));
                 intent= new Intent(GestionarDB.this, ListaPreguntas.class);
 
+                startActivity(intent);
+            }
+        });
+
+        //Instanciamos elementos db
+        delete_questions = (Button) findViewById(R.id.delete_questions);
+        delete_questions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GestionarDB.this, EliminarDB.class);
+                Class<?> destino= null;
+                try {
+                    destino = Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.EliminarDB");
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                comunicador.ComunicarBDPreguntas((ArrayList<BDPreguntas>)bdpreguntasguardadas,destino);
+                comunicador.ComunicarDestino(destino);
                 startActivity(intent);
             }
         });
