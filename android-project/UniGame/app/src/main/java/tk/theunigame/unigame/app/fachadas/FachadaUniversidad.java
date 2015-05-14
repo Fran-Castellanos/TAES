@@ -2,6 +2,7 @@ package tk.theunigame.unigame.app.fachadas;
 
 import android.content.Context;
 
+import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ public class FachadaUniversidad {
 
 
     public List<Universidad> obtenerUniversidades(Context context) throws SQLException {
-        UniversidadRepository repository = new UniversidadRepository(context);
-        return  repository.getAll();
+
+        return  getUniversidades(context);
     }
 
 
@@ -28,15 +29,41 @@ public class FachadaUniversidad {
      * @return Lista de todas las universidades.
      * @throws Exception
      */
-    public List<Universidad> getUniversidades(Context c) throws Exception {
+    public List<Universidad> getUniversidades(Context c) throws SQLException {
 
         List<Universidad> universidades;
+        UniversidadRepository uni= new UniversidadRepository(c);
+        universidades = uni.getAll();
         try {
-            UniversidadRepository uni= new UniversidadRepository(c);
-            universidades = uni.getAll();
 
-        }catch(Exception e){
-            throw  new Exception("No se han obtenido universidades"+e.getMessage());
+
+            ArrayList<Integer> aBorrar = new ArrayList<Integer>();
+
+            FachadaCarrera car = new FachadaCarrera();
+
+            int i = 0;
+            for(Universidad univ : universidades)
+            {
+                if(car.getCarreras(c,univ.getId()).size() == 0)
+                {
+                    aBorrar.add(i);
+                }
+                ++i;
+            }
+
+            i = aBorrar.size()-1;
+
+            while(i>=0)
+            {
+                universidades.remove((int)aBorrar.get(i));
+                --i;
+            }
+
+
+        }catch(SQLException e){
+            throw  e;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return  universidades;
     }

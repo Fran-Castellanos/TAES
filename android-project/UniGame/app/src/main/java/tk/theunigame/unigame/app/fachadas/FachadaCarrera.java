@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import juego.taes.domainmodel.Repository.CarreraRepository;
@@ -18,9 +19,12 @@ public class FachadaCarrera {
 
     //Devolverá las carreras que oferte la universidad pasada por parámetro
     public ArrayList<Carrera> obtenerCarreras(Context context, Universidad universidad) throws SQLException {
-        CarreraRepository repository = new CarreraRepository(context);
-        return (ArrayList<Carrera>)repository.getByUniversidad(universidad.getId());
+
+        return (ArrayList<Carrera>)getCarreras(context, universidad.getId());
     }
+
+    public FachadaCarrera()
+    {}
 
 
     /**
@@ -30,7 +34,7 @@ public class FachadaCarrera {
      * @return Lista de carreras de la Universidad.
      * @throws Exception
      */
-    public List<Carrera> getCarreras(Context c, int idUniversidad) throws Exception {
+    public List<Carrera> getCarreras(Context c, int idUniversidad) throws SQLException {
         List<Carrera> carreras;
 
         try{
@@ -38,8 +42,30 @@ public class FachadaCarrera {
             CarreraRepository car= new CarreraRepository(c);
             carreras = car.getByUniversidad(idUniversidad);
 
-        }catch(Exception e){
-            throw  new Exception("No se han obtenido carreras para la Universidad"+e.getMessage());
+            FachadaAsignatura asig = new FachadaAsignatura();
+            ArrayList<Integer> aBorrar = new ArrayList<Integer>();
+            int i = 0;
+            for(Carrera carrera : carreras)
+            {
+
+                if( asig.getAsignaturas(c,carrera.getId()).size() == 0)
+                {
+                    aBorrar.add(i);
+                }
+                ++i;
+            }
+
+            i = aBorrar.size()-1;
+
+            while(i>=0)
+            {
+                carreras.remove((int)aBorrar.get(i));
+                --i;
+            }
+
+
+        }catch(SQLException e){
+            throw  new SQLException("No se han obtenido carreras para la Universidad"+e.getMessage());
         }
         return  carreras;
     }
