@@ -125,16 +125,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
                             startActivity(intent);
                         }
-                    }).setOnKeyListener(new DialogInterface.OnKeyListener() {
-
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-
-                    return true;
-
-
-                }
-            });
+                    });
             builder.create().show();
         }
         else

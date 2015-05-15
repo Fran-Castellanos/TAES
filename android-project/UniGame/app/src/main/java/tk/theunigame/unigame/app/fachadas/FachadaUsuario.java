@@ -35,8 +35,8 @@ public class FachadaUsuario {
     }
 
 
-    public int registrarse(Context c, String nick, String nombre, String apellidos, Sexo sexo) throws Exception {
-        if(nick.isEmpty() || nombre.isEmpty() || apellidos.isEmpty()) throw new Exception("Error en el registro");
+    public int registrarse(Context c, String nick, String nombre, String apellidos, Sexo sexo) throws Exception, RuntimeException {
+        if(nick.isEmpty() || nombre.isEmpty() || apellidos.isEmpty()) throw new RuntimeException("");
 
 
         UsuarioRepository usu_rep = new UsuarioRepository(c);

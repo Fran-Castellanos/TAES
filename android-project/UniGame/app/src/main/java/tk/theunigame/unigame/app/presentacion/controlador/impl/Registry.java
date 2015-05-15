@@ -89,13 +89,18 @@ public class Registry extends FragmentActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(c);
                 boolean correcto = true;
+                String mensaje = "";
                 try {
                    fachadaUsuario.registrarse(c,nick,nombre,apellidos,s);
-                }catch (Exception e) {
+                }catch(RuntimeException r) {
+                    correcto = false;
+                    mensaje = "Debe completar todos los campos.";
+                }catch(Exception e) {
+                    mensaje = "No se ha podido crear la cuenta de usuario. Pruebe con otro nombre de usuario.";
                     correcto = false;
                 }
                 if(!correcto) {
-                    ad.setMensaje("No se ha podido crear la cuenta de usuario");
+                    ad.setMensaje(mensaje);
                     ad.setTitulo("Registro de usuario denegado");
                     ad.setBoton1("OK");
 
