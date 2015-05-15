@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -95,7 +96,7 @@ public class ListaPreguntas extends Activity {
 
                 Intent intent;
                 intent = new Intent(ListaPreguntas.this, EditarPregunta.class);
-
+                finish();
                 startActivity(intent);
             }
         });
@@ -118,13 +119,21 @@ public class ListaPreguntas extends Activity {
         if (cambiado) {
             builder.setMessage("Cambios Realizados\n"+texto).
                     setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            BolsaPregunta.getInstance().VaciarBD();
+                            Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            finish();
+                            startActivity(intent);
+                        }
+                    }).setOnKeyListener(new DialogInterface.OnKeyListener() {
 
-                    Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                    return true;
                 }
             });
             builder.create().show();
@@ -177,6 +186,7 @@ public class ListaPreguntas extends Activity {
 
                 Intent intent = new Intent(ListaPreguntas.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                finish();
                 startActivity(intent);
             }
         });

@@ -10,7 +10,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 
+import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.logica_juego.juego.Juego;
 import tk.theunigame.unigame.app.presentacion.controlador.impl.MainActivity;
 
@@ -26,6 +28,7 @@ public class AlertaDialogo extends DialogFragment {
     private String boton1;
     private String boton2;
     private boolean flags;
+    private boolean transicion;
 
 
     public void Salir()
@@ -52,6 +55,13 @@ public class AlertaDialogo extends DialogFragment {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    public void setTransicion(boolean t)
+    {
+
+        transicion = t;
+    }
+
 
     public void setFlags(boolean f)
     {flags = f;}
@@ -86,6 +96,8 @@ public class AlertaDialogo extends DialogFragment {
                             Intent intent = new Intent(getActivity(), destino);
                             if (flags)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            if(transicion)
+                                getActivity().overridePendingTransition(R.anim.transicion_left_in, R.anim.transicion_left_out);
                             startActivity(intent);
 
                         }
@@ -97,9 +109,23 @@ public class AlertaDialogo extends DialogFragment {
                     dialog.cancel();
 
                 }
+            }).setOnKeyListener(new DialogInterface.OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                    return true;
+
+
+                }
             });
+
         }
 
         return builder.create();
     }
+
+
+
+
 }

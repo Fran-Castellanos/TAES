@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,7 +87,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
             List<Respuesta> respuestas = new ArrayList<Respuesta>();
 
-            Pregunta pregunta1 = new Pregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString(), false);
+            final Pregunta pregunta1 = new Pregunta(((EditText) findViewById(R.id.etxt_question)).getText().toString(), false);
             pregunta1.setBdPreguntas(BolsaPregunta.getInstance().getBDPreguntas());
 
 
@@ -120,9 +121,20 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
                             //Haga lo que tenga que hacer
                             Intent intent = new Intent(CrearPregunta.this, ListaPreguntas.class);
+                            finish();
+
                             startActivity(intent);
                         }
-                    });
+                    }).setOnKeyListener(new DialogInterface.OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                    return true;
+
+
+                }
+            });
             builder.create().show();
         }
         else
@@ -134,7 +146,16 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
-                    });
+                    }).setOnKeyListener(new DialogInterface.OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+
+                    return true;
+
+
+                }
+            });
             builder.create().show();
         }
     }
@@ -157,7 +178,7 @@ public class CrearPregunta extends Activity implements View.OnClickListener{
 
     @Override
     public void onBackPressed() {
-
+        finish();
         super.onBackPressed();
     }
 

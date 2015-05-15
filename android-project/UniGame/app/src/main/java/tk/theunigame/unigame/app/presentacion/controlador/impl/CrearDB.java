@@ -74,6 +74,7 @@ public class CrearDB extends Activity {
         fachadaBD.crearBaseDatos(nombreBD,this,asignatura,universidad,usuario);
         //Haga lo que tenga que hacer
         Intent intent = new Intent(CrearDB.this, MainActivity.class);
+        finish();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
@@ -83,6 +84,7 @@ public class CrearDB extends Activity {
     public void onBackPressed() {
 
         fachadaComunicador.volverAtras();
+        finish();
         super.onBackPressed();
     }
 }

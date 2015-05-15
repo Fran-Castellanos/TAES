@@ -241,7 +241,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         ad.setTitulo("Tiempo Agotado");
         ad.setBoton1("OK");
         ad.setDestino(JuegoIndividual.class);
-
+        ad.setTransicion(true);
         ad.show(getSupportFragmentManager(), "FragmentAlert");
 
 
@@ -262,6 +262,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         ad.setMensaje("¡Ha acabado la partida!");
         ad.setTitulo("Fin de partida");
         ad.setBoton1("OK");
+        ad.setTransicion(true);
         ad.setDestino(EstadisticasPartida.class);
         ad.show(getSupportFragmentManager(), "FragmentAlert");
 
@@ -335,6 +336,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         ad.setBoton2("Seguir jugando");
         ad.setDestino(MainActivity.class);
         ad.setFlags(true);
+
         ad.show(getSupportFragmentManager(), "FragmentAlert");
 
 

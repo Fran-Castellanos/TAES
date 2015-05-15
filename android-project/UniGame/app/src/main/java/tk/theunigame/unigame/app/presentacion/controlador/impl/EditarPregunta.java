@@ -112,6 +112,7 @@ public class EditarPregunta extends Activity implements View.OnClickListener
                         dialog.cancel();
 
                         Intent intent = new Intent(EditarPregunta.this, ListaPreguntas.class);
+                        finish();
                         startActivity(intent);
                     }
                 });
@@ -181,6 +182,7 @@ public class EditarPregunta extends Activity implements View.OnClickListener
     public void onBackPressed() {
 
         fachadaComunicador.volverAtras();
+        finish();
         super.onBackPressed();
     }
 }

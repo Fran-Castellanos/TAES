@@ -64,6 +64,7 @@ public class EstadisticasPartida extends FragmentActivity {
                 //Lanzamos la actividad
                 Intent intent = new Intent(EstadisticasPartida.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                finish();
                 startActivity(intent);
             }
         });
@@ -72,6 +73,7 @@ public class EstadisticasPartida extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+
 
         AlertaDialogo ad = new AlertaDialogo();
         ad.setMensaje("¿Desea volver al menú principal?");

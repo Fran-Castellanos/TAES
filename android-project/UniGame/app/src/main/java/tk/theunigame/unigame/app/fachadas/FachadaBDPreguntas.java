@@ -22,6 +22,25 @@ public class FachadaBDPreguntas {
 
     private BDPreguntasRepository bd;
 
+    public void eliminarBDPreguntas(ArrayList<BDPreguntas> bds, Context c) throws SQLException
+    {
+        try
+        {
+            bd = new BDPreguntasRepository(c);
+
+            for(BDPreguntas x : bds)
+            {
+                bd.delete(x);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw e;
+        }
+    }
+
+
+
     public BDPreguntas recuperarBDPreguntas(Context c, int id) throws SQLException {
         bd = new BDPreguntasRepository(c);
         return bd.getById(id);
@@ -58,6 +77,7 @@ public class FachadaBDPreguntas {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
         ArrayList<BDPreguntas> bd =  (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
         ArrayList <Integer> bdvacios = new ArrayList<Integer>();
+        /*
         int i = 0;
         for(BDPreguntas b : bd)
         {
@@ -73,7 +93,7 @@ public class FachadaBDPreguntas {
             bd.remove((int)bdvacios.get(i));
             --i;
         }
-
+*/
         return bd;
     }
 
@@ -135,22 +155,5 @@ public class FachadaBDPreguntas {
         }
         return bases;
 
-    }
-
-    public void eliminarBDPreguntas(ArrayList<BDPreguntas> bds, Context c) throws SQLException
-    {
-        try
-        {
-            bd = new BDPreguntasRepository(c);
-
-            for(BDPreguntas x : bds)
-            {
-                bd.delete(x);
-            }
-        }
-        catch (SQLException e)
-        {
-            throw e;
-        }
     }
 }
