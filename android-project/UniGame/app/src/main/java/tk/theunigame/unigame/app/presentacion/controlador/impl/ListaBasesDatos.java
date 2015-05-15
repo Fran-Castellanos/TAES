@@ -76,7 +76,7 @@ public class ListaBasesDatos extends FragmentActivity {
         //Creamos el adaptador para el ListView
         bdPreguntas = new ArrayList<>();
         try {
-            bdPreguntasConsulta= fachadaBasesDatos.obtenerBasesDatos(this, universidad, carrera, asignaturas);//Recibimos la lista de preguntas
+            bdPreguntasConsulta= fachadaBasesDatos.obtenerBasesDatosNoVacias(this, universidad, carrera, asignaturas);//Recibimos la lista de preguntas
         } catch (SQLException e) {
             e.printStackTrace();
         }

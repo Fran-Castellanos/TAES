@@ -13,6 +13,7 @@ import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import juego.taes.domainmodel.Model.Cliente.Usuario;
+import juego.taes.domainmodel.Repository.AsignaturaRepository;
 import juego.taes.domainmodel.Repository.BDPreguntasRepository;
 
 /**
@@ -65,6 +66,18 @@ public class FachadaBDPreguntas {
         bd.create((new BDPreguntas(nombre,true,u,a,preguntas)));
     }
 
+
+    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas) throws SQLException {
+
+        return getBasesDatos(context,universidad,carrera,asignaturas,true);
+    }
+
+
+    public ArrayList<BDPreguntas> obtenerBasesDatosNoVacias(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas) throws SQLException {
+
+        return getBasesDatos(context,universidad,carrera,asignaturas,false);
+    }
+
     /**
      * Devuelve las asignaturas de una carrera en una universidad
      * @param context
@@ -73,27 +86,32 @@ public class FachadaBDPreguntas {
      * @param asignaturas
      * @return
      */
-    public ArrayList<BDPreguntas> obtenerBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas) throws SQLException {
+    public ArrayList<BDPreguntas> getBasesDatos(Context context, Universidad universidad, Carrera carrera, ArrayList<Asignatura> asignaturas, boolean mostrarVacios) throws SQLException {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
-        ArrayList<BDPreguntas> bd =  (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>)asignaturas, universidad.getId());
-        ArrayList <Integer> bdvacios = new ArrayList<Integer>();
-        /*
+        ArrayList<BDPreguntas> bd = (ArrayList<BDPreguntas>) repository.getByAsignaturasYUniversidad((List<Asignatura>) asignaturas, universidad.getId());
+        ArrayList<Integer> bdvacios = new ArrayList<Integer>();
         int i = 0;
+        if (!mostrarVacios){
+
+            for (BDPreguntas b : bd) {
+                if (b.getPreguntas().size() == 0)
+                    bdvacios.add(i);
+
+                ++i;
+            }
+
+            i = bdvacios.size() - 1;
+            while (i >= 0) {
+                bd.remove((int) bdvacios.get(i));
+                --i;
+            }
+        }
+
+
         for(BDPreguntas b : bd)
         {
-            if(b.getPreguntas().size()==0)
-                bdvacios.add(i);
-
-            ++i;
+            b.setNombre(b.getNombre() + " (" + b.getPreguntas().size() + " preg.)");
         }
-
-        i = bdvacios.size()-1;
-        while(i>=0)
-        {
-            bd.remove((int)bdvacios.get(i));
-            --i;
-        }
-*/
         return bd;
     }
 
@@ -108,7 +126,16 @@ public class FachadaBDPreguntas {
      */
     public List<BDPreguntas> obtenerBasesTodasDatos(Context context) throws SQLException {
         BDPreguntasRepository repository = new BDPreguntasRepository(context);
-        return repository.getAll();
+        List<BDPreguntas> bd =  repository.getAll();
+
+        AsignaturaRepository asig = new AsignaturaRepository(context);
+        for(BDPreguntas b : bd)
+        {
+
+            b.setNombre(asig.getById(b.getAsignatura().getId()).getNombre() + "-" + b.getNombre() + " (" + b.getPreguntas().size() + " preg.)");
+        }
+        
+        return bd;
     }
 
     /**

@@ -44,7 +44,7 @@ public class FachadaUniversidad {
             int i = 0;
             for(Universidad univ : universidades)
             {
-                if(car.getCarreras(c,univ.getId()).size() == 0)
+                if(car.getCarreras(c,univ.getId(),false).size() == 0)
                 {
                     aBorrar.add(i);
                 }

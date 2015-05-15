@@ -66,7 +66,7 @@ public class ListaAsignaturas extends FragmentActivity {
 
         asignaturas = new ArrayList<>();
         try {
-            asignaturasConsulta = fachadaAsignatura.obtenerAsignaturas(this, universidad, carrera);
+            asignaturasConsulta = fachadaAsignatura.obtenerAsignaturasNoVacias(this, universidad, carrera);
         } catch (SQLException e) {
             e.printStackTrace();
         }

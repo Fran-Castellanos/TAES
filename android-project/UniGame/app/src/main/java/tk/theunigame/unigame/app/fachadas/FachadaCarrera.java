@@ -20,7 +20,7 @@ public class FachadaCarrera {
     //Devolverá las carreras que oferte la universidad pasada por parámetro
     public ArrayList<Carrera> obtenerCarreras(Context context, Universidad universidad) throws SQLException {
 
-        return (ArrayList<Carrera>)getCarreras(context, universidad.getId());
+        return (ArrayList<Carrera>)getCarreras(context, universidad.getId(),true);
     }
 
     public FachadaCarrera()
@@ -34,7 +34,7 @@ public class FachadaCarrera {
      * @return Lista de carreras de la Universidad.
      * @throws Exception
      */
-    public List<Carrera> getCarreras(Context c, int idUniversidad) throws SQLException {
+    public List<Carrera> getCarreras(Context c, int idUniversidad, boolean mostrarVacios) throws SQLException {
         List<Carrera> carreras;
 
         try{
@@ -48,7 +48,7 @@ public class FachadaCarrera {
             for(Carrera carrera : carreras)
             {
 
-                if( asig.getAsignaturas(c,carrera.getId()).size() == 0)
+                if( asig.getAsignaturas(c,carrera.getId(),mostrarVacios).size() == 0)
                 {
                     aBorrar.add(i);
                 }
@@ -69,5 +69,14 @@ public class FachadaCarrera {
         }
         return  carreras;
     }
+
+
+
+    //Devolverá las carreras que oferte la universidad pasada por parámetro
+    public ArrayList<Carrera> obtenerCarrerasNoVacias(Context context, Universidad universidad) throws SQLException {
+
+        return (ArrayList<Carrera>)getCarreras(context, universidad.getId(),false);
+    }
+
 
 }
