@@ -56,7 +56,7 @@ public class FachadaCarrera {
                     listaAsignaturas = asig.getByCarrera(carrera.getId());
                 else
                     listaAsignaturas = fachadaAsignatura.getAsignaturas(c,carrera.getId(),mostrarTodos);
-                
+
                 if(listaAsignaturas.size() == 0)
                 {
                     aBorrar.add(i);
