@@ -43,14 +43,14 @@ public class Comodin50 extends Comodin {
 
             int eliminadas=0;
             List<Respuesta> resp50= new ArrayList<Respuesta>();
-            int numEliminadas = (int)Math.floor(resp50.size()/2);
+            int numEliminadas = (int)Math.floor(respuestasCollection.size()/2);
 
             Random r = new Random();
             ArrayList<Integer> aleatorios = new ArrayList<Integer>();
             int a;
             while(eliminadas < numEliminadas)
             {
-                a = r.nextInt(resp50.size());  // Entre 0 y num de respuestasCollection
+                a = r.nextInt(respuestasCollection.size());  // Entre 0 y num de respuestasCollection
                 if(!aleatorios.contains(a) && !esCorrecta(respuestasCollection,a)) {
                     aleatorios.add(a);
                     ++eliminadas;
@@ -74,6 +74,9 @@ public class Comodin50 extends Comodin {
         }catch (Exception ex){
             throw new Exception("No se pudo usar comodin 50%"+ex.getMessage());
         }
+
+        j.getPreguntaActual().setRespuestas(result.getRespuestas());
+
         return result;
     }
 

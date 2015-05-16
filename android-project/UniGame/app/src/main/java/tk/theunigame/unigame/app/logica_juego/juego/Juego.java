@@ -44,6 +44,10 @@ public class Juego implements OnTiempoListener {
 
     }
 
+    public OnJuegoListener getListenerOnJuego()
+    {
+        return listener;
+    }
 
     private Juego() {
 
@@ -144,7 +148,16 @@ public class Juego implements OnTiempoListener {
 
     public Pregunta preguntaComodinPasar()
     {
-        return preguntas.get(++turno);
+        if(turno<numPreguntas) {
+            preguntas.remove(turno);
+            --numPreguntas;
+        }
+        else
+        if(listener!=null)
+        {
+            listener.onJuegoHaAcabado(estadisticas);
+        }
+        return preguntas.get(turno);
 
     }
 
@@ -197,5 +210,11 @@ public class Juego implements OnTiempoListener {
 
     public void sumarComodinUsado() {
         estadisticas.sumarComodinesUsados();
+    }
+
+    public void cambiarPregunta() {
+        Pregunta p = preguntas.get(preguntas.size()-1);
+        preguntas.set(preguntas.size()-1, preguntas.get(turno));
+        preguntas.set(turno,p);
     }
 }

@@ -29,6 +29,7 @@ import tk.theunigame.unigame.R;
 import tk.theunigame.unigame.app.fachadas.FachadaComunicador;
 import tk.theunigame.unigame.app.fachadas.FachadaPartida;
 import tk.theunigame.unigame.app.fachadas.FachadaPregunta;
+import tk.theunigame.unigame.app.logica_juego.comodines.Comodin50;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinCambiarPregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.ComodinPasar;
 import tk.theunigame.unigame.app.logica_juego.juego.Estadisticas;
@@ -107,6 +108,33 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         cmd_2 = (ImageButton) findViewById(R.id.comodin2);
         cmd_3 = (ImageButton) findViewById(R.id.comodin3);
 
+        if(Comodin50.getInstance().quedanComodines()) {
+            cmd_1.setEnabled(true);
+            cmd_1.setVisibility(View.VISIBLE);
+        }else
+        {
+            cmd_1.setEnabled(false);
+            cmd_1.setVisibility(View.INVISIBLE);
+        }
+
+        if(ComodinPasar.getInstance().quedanComodines()) {
+            cmd_2.setEnabled(true);
+            cmd_2.setVisibility(View.VISIBLE);
+        }else
+        {
+            cmd_2.setEnabled(false);
+            cmd_2.setVisibility(View.INVISIBLE);
+        }
+
+        if(ComodinCambiarPregunta.getInstance().quedanComodines()) {
+            cmd_3.setEnabled(true);
+            cmd_3.setVisibility(View.VISIBLE);
+        }else
+        {
+            cmd_3.setEnabled(false);
+            cmd_3.setVisibility(View.INVISIBLE);
+        }
+
         //Añadimos los listener
         btn_a.setOnClickListener(this);
         btn_b.setOnClickListener(this);
@@ -118,8 +146,16 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         cmd_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cmd_1.setEnabled(false);
+                cmd_1.setVisibility(View.INVISIBLE);
+
                 try {
-                    //Pregunta pfachadaPartida.usarComodin(Comodin50.getInstance());
+
+                    fachadaPartida.usarComodin(Comodin50.getInstance());
+                    Pregunta p = Juego.getInstance().getPreguntaActual();
+
+                    onPreguntaHaCambiado(p);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -128,8 +164,14 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         cmd_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cmd_2.setEnabled(false);
+                cmd_2.setVisibility(View.INVISIBLE);
                 try {
                     fachadaPartida.usarComodin(ComodinPasar.getInstance());
+                    Pregunta p = Juego.getInstance().getPreguntaActual();
+
+                    txt_turno.setText("Pregunta " + (fachadaPartida.getTurno()+1) + " de " + fachadaPartida.getNumPreguntas());
+                    onPreguntaHaCambiado(p);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -138,8 +180,13 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         cmd_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cmd_3.setEnabled(false);
+                cmd_3.setVisibility(View.INVISIBLE);
                 try {
                     fachadaPartida.usarComodin(ComodinCambiarPregunta.getInstance());
+                    Pregunta p = Juego.getInstance().getPreguntaActual();
+
+                    onPreguntaHaCambiado(p);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -173,6 +220,11 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         btn_b.setClickable(false);
         btn_c.setClickable(false);
         btn_d.setClickable(false);
+
+        cmd_1.setEnabled(false);
+        cmd_2.setEnabled(false);
+        cmd_3.setEnabled(false);
+
 
         //TODO COntrolar bien los colores
         if(id_answer_selected != null && (v.getId() != id_answer_selected.getButtonId())){
@@ -286,6 +338,7 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
 
         txt_question.setText(pregunta.getContenido());
         List<Respuesta> l = (List<Respuesta>)pregunta.getRespuestas();
+
         txt_a.setText(l.get(0).getContenido());
         txt_b.setText(l.get(1).getContenido());
         txt_c.setText(l.get(2).getContenido());
@@ -296,7 +349,25 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         btn_c.setBackgroundResource(R.drawable.etxt_edit_answer);
         btn_d.setBackgroundResource(R.drawable.etxt_edit_answer);
 
+        if(l.get(0).getContenido()!="")
+            btn_a.setClickable(true);
+        else
+            btn_a.setClickable(false);
 
+        if(l.get(1).getContenido()!="")
+            btn_b.setClickable(true);
+        else
+            btn_b.setClickable(false);
+
+        if(l.get(2).getContenido()!="")
+            btn_c.setClickable(true);
+        else
+            btn_c.setClickable(false);
+
+        if(l.get(3).getContenido()!="")
+            btn_d.setClickable(true);
+        else
+            btn_d.setClickable(false);
 
     }
 

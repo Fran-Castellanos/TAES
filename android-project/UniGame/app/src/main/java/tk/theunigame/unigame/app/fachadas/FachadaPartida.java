@@ -6,8 +6,12 @@ import java.util.Collection;
 
 import juego.taes.domainmodel.Model.Cliente.Pregunta;
 import tk.theunigame.unigame.app.logica_juego.comodines.Comodin;
+import tk.theunigame.unigame.app.logica_juego.comodines.ModoJuego;
 import tk.theunigame.unigame.app.logica_juego.juego.IModoJuego;
 import tk.theunigame.unigame.app.logica_juego.juego.Juego;
+import tk.theunigame.unigame.app.logica_juego.juego.JuegoFactory;
+import tk.theunigame.unigame.app.logica_juego.juego.JuegoSimple;
+import tk.theunigame.unigame.app.logica_juego.juego.Millonario;
 import tk.theunigame.unigame.app.presentacion.util.Listener.OnJuegoListener;
 
 
@@ -30,7 +34,14 @@ public class FachadaPartida {
     public void inicializarPartida() {
         Juego j = Juego.getInstance();
         j.reiniciarPartida();
+        try {
+            j.initComodines();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        j.setModojuego(ModoJuego.MILLONARIO);
     }
+
 
 
 

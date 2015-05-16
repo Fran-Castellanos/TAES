@@ -49,6 +49,42 @@
         <item name="android:src">@drawable/ug_250px</item>
     </style>
 
+
+    <style name="img_comodin_50">
+        <item name="android:layout_margin">5dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">@drawable/comodin50</item>
+    </style>
+
+    <style name="img_comodin_pasar">
+        <item name="android:layout_margin">5dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">@drawable/comodinpasar</item>
+    </style>
+
+
+    <style name="img_comodin_cambiar">
+        <item name="android:layout_margin">5dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">@drawable/cambiar</item>
+    </style>
+
+
     <style name="ll_main_container">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dip</item>

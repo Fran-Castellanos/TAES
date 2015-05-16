@@ -38,20 +38,20 @@ public class Millonario extends JuegoSimple {
     @Override
     public void initComodines()
     {
+        comodines = new ArrayList<Comodin>();
         comodines.add(Comodin50.getInstance());
         comodines.add(ComodinPasar.getInstance());
         comodines.add(ComodinCambiarPregunta.getInstance());
+
+        Comodin50.getInstance().setCantidad(1);
+        ComodinPasar.getInstance().setCantidad(1);
+        ComodinCambiarPregunta.getInstance().setCantidad(1);
     }
 
 
     @Override
     public void usarComodin(Comodin comodin) throws Exception {
         Juego j = Juego.getInstance();
-        j.sumarComodinUsado();
-        if(listener != null)
-            listener.onComodinUsado(comodin.usarComodin(), comodin.getNombre());
-        else
-            throw new Exception("No se ha podido enviar evento en usarComodin");
 
         comodin.usarComodin();
     }

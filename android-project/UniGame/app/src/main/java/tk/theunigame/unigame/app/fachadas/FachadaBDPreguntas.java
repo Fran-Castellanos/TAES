@@ -134,7 +134,7 @@ public class FachadaBDPreguntas {
 
             b.setNombre(asig.getById(b.getAsignatura().getId()).getNombre() + "-" + b.getNombre() + " (" + b.getPreguntas().size() + " preg.)");
         }
-        
+
         return bd;
     }
 
