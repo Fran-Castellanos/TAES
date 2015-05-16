@@ -74,7 +74,7 @@ public class FachadaPregunta {
 
         ranks = calcularRangos(numPreguntasBolsa);
         int n = 0;
-        while (n<j.getNumPreguntas())
+        while (n<=j.getNumPreguntas())
         {
             double random = Math.random();
             int indice=0;

@@ -16,6 +16,7 @@
     <string name="title_activity_juego_individual">Individual</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_cargar">Cargando...</string>
+    <string name="txt_comodines">Comodines disponibles:</string>
 
     <string name="title_activity_estadisticas_partida">Resultado</string>
     <string name="end">Terminar partida</string>

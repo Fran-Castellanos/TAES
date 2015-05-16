@@ -28,8 +28,9 @@ public class ComodinCambiarPregunta extends Comodin {
     public Pregunta usarComodin()throws Exception{
 
         Juego j = Juego.getInstance();
-        p = j.getPreguntas().get(j.getNumPreguntas());
 
+
+        j.cambiarPregunta();
         consumirComodin();
 
         return p;
