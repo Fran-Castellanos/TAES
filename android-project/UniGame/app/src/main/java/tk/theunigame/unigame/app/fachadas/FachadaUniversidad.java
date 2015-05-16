@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
+import juego.taes.domainmodel.Repository.CarreraRepository;
 import juego.taes.domainmodel.Repository.UniversidadRepository;
 
 
@@ -19,9 +21,14 @@ public class FachadaUniversidad {
 
     public List<Universidad> obtenerUniversidades(Context context) throws SQLException {
 
-        return  getUniversidades(context);
+        return  getUniversidades(context, true);
     }
 
+
+    public List<Universidad> obtenerUniversidadesNoVacios(Context context) throws SQLException {
+
+        return  getUniversidades(context, false);
+    }
 
     /**
      * Devuelve lista de todas las universidades.
@@ -29,22 +36,28 @@ public class FachadaUniversidad {
      * @return Lista de todas las universidades.
      * @throws Exception
      */
-    public List<Universidad> getUniversidades(Context c) throws SQLException {
+    public List<Universidad> getUniversidades(Context c, boolean mostrarTodos) throws SQLException {
 
         List<Universidad> universidades;
         UniversidadRepository uni= new UniversidadRepository(c);
         universidades = uni.getAll();
+
         try {
 
 
             ArrayList<Integer> aBorrar = new ArrayList<Integer>();
 
             FachadaCarrera car = new FachadaCarrera();
-
+            CarreraRepository carreraR = new CarreraRepository(c);
+            List<Carrera> carreras = null;
             int i = 0;
             for(Universidad univ : universidades)
             {
-                if(car.getCarreras(c,univ.getId(),false).size() == 0)
+                if(mostrarTodos)
+                    carreras = carreraR.getByUniversidad(univ.getId());
+                else
+                    carreras = car.getCarreras(c,univ.getId(),mostrarTodos);
+                if(carreras.size() == 0)
                 {
                     aBorrar.add(i);
                 }

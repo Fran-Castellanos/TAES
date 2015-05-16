@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
@@ -51,13 +52,20 @@ public class ListaCarreras extends Activity {
         txt.setText(universidad.getNombre());
         destino = null;
 
+        Class<?> d = fachadaComunicador.RecibirDestinoPosicionFinal();
         //Creamos el adaptador para el ListView
         ArrayList<Carrera> carreras = null;
         try {
-            carreras = fachadaCarrera.obtenerCarreras(this, universidad);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            if (d.equals(Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturasSinCB"))) {
+                carreras = fachadaCarrera.obtenerCarreras(this, universidad);
+            }else
+                carreras = fachadaCarrera.obtenerCarrerasNoVacias(this, universidad);
+        }catch (SQLException e1) {
+            e1.printStackTrace();
+        }catch (Exception e2)
+        {
         }
+
         BaseAdapter adapter= new AdaptadorListaCarreras(this, carreras);
         lv=(ListView) findViewById(R.id.lv_carreras);
         lv.setAdapter(adapter);

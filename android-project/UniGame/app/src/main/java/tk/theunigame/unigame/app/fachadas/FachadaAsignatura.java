@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
+import juego.taes.domainmodel.Model.Cliente.BDPreguntas;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
 import juego.taes.domainmodel.Repository.AsignaturaRepository;
@@ -34,33 +35,29 @@ public class FachadaAsignatura {
         AsignaturaRepository asig = new AsignaturaRepository(c);
         asignaturas = asig.getByCarrera(idCarrera);
         try {
-
-
-
             FachadaBDPreguntas bd = new FachadaBDPreguntas();
             ArrayList<Integer> aBorrar = new ArrayList<Integer>();
+            List<BDPreguntas> listaBD = null;
 
-
-            if(!mostrarTodos){
-                int i = 0;
-                for(Asignatura asignatura : asignaturas)
+            int i = 0;
+            for(Asignatura asignatura : asignaturas)
+            {
+                listaBD = bd.getBDPreguntasTodasUnis(c, asignatura.getId());
+                if( !mostrarTodos && listaBD.size() == 0)
                 {
-
-                    if( bd.getBDPreguntasTodasUnis(c, asignatura.getId()).size() == 0)
-                    {
-                        aBorrar.add(i);
-                    }
-                    ++i;
+                    aBorrar.add(i);
                 }
-
-                i = aBorrar.size()-1;
-
-                while(i>=0)
-                {
-                    asignaturas.remove((int)aBorrar.get(i));
-                    --i;
-                }
+                ++i;
             }
+
+            i = aBorrar.size()-1;
+
+            while(i>=0)
+            {
+                asignaturas.remove((int)aBorrar.get(i));
+                --i;
+            }
+
 
         }catch(SQLException e){
             throw  new SQLException("No se han obtenido asignaturas para la carrera"+e.getMessage());

@@ -523,7 +523,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Asignatura asignatura7 = new Asignatura();
         asignatura7.setNombre("Diseño Grafico 1");
         asignatura7.setId(7);
-        getAsignaturaDao().create(asignatura7);
+        getAsignaturaDao(). create(asignatura7);
 
         asignaturaCarrera.setId(0);
         asignaturaCarrera.setCarrera(carrera15);

@@ -35,18 +35,29 @@ public class ListaUniversidades extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_universidades);
-
+        fachadaComunicador = new FachadaComunicador();
         fachadaUniversidad= new FachadaUniversidad();
         destino = null;
-        fachadaComunicador = new FachadaComunicador();
 
+        Class<?> d = fachadaComunicador.RecibirDestinoPosicionFinal();
         //Creamos el adaptador para el ListView
         List<Universidad> universidades = null;
         try {
-            universidades = fachadaUniversidad.obtenerUniversidades(this);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            if (d.equals(Class.forName("tk.theunigame.unigame.app.presentacion.controlador.impl.ListaAsignaturasSinCB"))) {
+                universidades = fachadaUniversidad.obtenerUniversidades(this);
+            }else
+                universidades = fachadaUniversidad.obtenerUniversidadesNoVacios(this);
+        }catch (SQLException e1) {
+                e1.printStackTrace();
+        }catch (Exception e2)
+        {
+
         }
+
+
+
+
+
         AdaptadorListaUniversidades adapter= new AdaptadorListaUniversidades(this, universidades);
         lv=(ListView) findViewById(R.id.lv_universidades);
         lv.setAdapter(adapter);

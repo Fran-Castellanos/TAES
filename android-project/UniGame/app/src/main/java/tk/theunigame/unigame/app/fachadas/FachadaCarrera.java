@@ -9,6 +9,7 @@ import java.util.List;
 import juego.taes.domainmodel.Model.Cliente.Asignatura;
 import juego.taes.domainmodel.Model.Cliente.Carrera;
 import juego.taes.domainmodel.Model.Cliente.Universidad;
+import juego.taes.domainmodel.Repository.AsignaturaRepository;
 import juego.taes.domainmodel.Repository.CarreraRepository;
 
 
@@ -34,7 +35,7 @@ public class FachadaCarrera {
      * @return Lista de carreras de la Universidad.
      * @throws Exception
      */
-    public List<Carrera> getCarreras(Context c, int idUniversidad, boolean mostrarVacios) throws SQLException {
+    public List<Carrera> getCarreras(Context c, int idUniversidad, boolean mostrarTodos) throws SQLException {
         List<Carrera> carreras;
 
         try{
@@ -42,13 +43,21 @@ public class FachadaCarrera {
             CarreraRepository car= new CarreraRepository(c);
             carreras = car.getByUniversidad(idUniversidad);
 
-            FachadaAsignatura asig = new FachadaAsignatura();
+
+            FachadaAsignatura fachadaAsignatura = new FachadaAsignatura();
+            AsignaturaRepository asig = new AsignaturaRepository(c);
+
             ArrayList<Integer> aBorrar = new ArrayList<Integer>();
             int i = 0;
+            List<Asignatura> listaAsignaturas = null;
             for(Carrera carrera : carreras)
             {
-
-                if( asig.getAsignaturas(c,carrera.getId(),mostrarVacios).size() == 0)
+                if(mostrarTodos)
+                    listaAsignaturas = asig.getByCarrera(carrera.getId());
+                else
+                    listaAsignaturas = fachadaAsignatura.getAsignaturas(c,carrera.getId(),mostrarTodos);
+                
+                if(listaAsignaturas.size() == 0)
                 {
                     aBorrar.add(i);
                 }
