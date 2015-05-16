@@ -23,7 +23,7 @@ public class TemporizadorTimerTask {
     private OnTiempoListener listener;
 
     public TemporizadorTimerTask(){
-        tiempoSet = 30;
+        tiempoSet = 60;
         tiempo = tiempoSet;
 
         //listeners = new ArrayList<>();

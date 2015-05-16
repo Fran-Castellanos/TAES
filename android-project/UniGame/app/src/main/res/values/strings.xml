@@ -14,7 +14,7 @@
     <string name="title_activity_asignaturas">Asignaturas</string>
     <string name="title_activity_dbs">Bases de Datos</string>
     <string name="title_activity_juego_individual">Individual</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Inicio de sesión</string>
     <string name="title_activity_cargar">Cargando...</string>
     <string name="txt_comodines">Comodines disponibles:</string>
 
@@ -48,6 +48,7 @@
     <string name="hint_id_password">Contraseña</string>
     <string name="btn_confirmar">Confirmar</string>
     <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_salir">Salir</string>
     <string name="btn_login">Inicia sesión</string>
 
     <string name="title_activity_registry">¡Regístrate!</string>

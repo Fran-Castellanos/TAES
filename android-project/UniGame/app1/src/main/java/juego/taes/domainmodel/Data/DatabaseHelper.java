@@ -22,7 +22,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 23;
 
 
     //Daos utilizados
@@ -541,6 +541,29 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         asignaturaCarrera.setAsignatura(asignatura8);
         getAsignaturaCarreraDao().create(asignaturaCarrera);
 
+
+
+        Asignatura asignatura9 = new Asignatura();
+        asignatura9.setNombre("Intr. Macroeconomía");
+        asignatura9.setId(9);
+        getAsignaturaDao(). create(asignatura9);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera6);
+        asignaturaCarrera.setAsignatura(asignatura9);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
+
+
+        Asignatura asignatura10 = new Asignatura();
+        asignatura10.setNombre("Economía Mundial");
+        asignatura10.setId(10);
+        getAsignaturaDao(). create(asignatura10);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera6);
+        asignaturaCarrera.setAsignatura(asignatura10);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
+
 //////////////////////////////////////////////////////////////////////////////////
         //Crear bases de preguntas
 
@@ -556,6 +579,23 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         getBDPreguntasDao().assignEmptyForeignCollection(preguntasFilosofiaDerecho, BDPreguntas.PREGUNTAS_CAMPO);
         getBDPreguntasDao().create(preguntasFilosofiaDerecho);
 
+
+        BDPreguntas preguntasMacroeconomia = new BDPreguntas("Preguntas",false,universidad1,asignatura9);
+        preguntasMacroeconomia.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntasMacroeconomia, BDPreguntas.PREGUNTAS_CAMPO);
+        getBDPreguntasDao().create(preguntasMacroeconomia);
+
+
+        BDPreguntas preguntasEconomiaMundial = new BDPreguntas("testEconomiaMundial",false,universidad1,asignatura10);
+        preguntasEconomiaMundial.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntasEconomiaMundial, BDPreguntas.PREGUNTAS_CAMPO);
+        getBDPreguntasDao().create(preguntasEconomiaMundial);
+
+
+        BDPreguntas preguntasEconomiaMundial2 = new BDPreguntas("más tests",false,universidad1,asignatura10);
+        preguntasEconomiaMundial2.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntasEconomiaMundial2, BDPreguntas.PREGUNTAS_CAMPO);
+        getBDPreguntasDao().create(preguntasEconomiaMundial2);
 
 
         /*BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial",false,universidad1,asignatura3);
@@ -729,7 +769,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-        String p7FD = "Completa la falacia de la afirmación del consecuente: si 'p->q', si se da 'q'...";
+        String p7FD = "Completa la falacia de la afirmación del consecuente:\n si 'p->q', si se da 'q'...";
         String[] resp7FD = {"Entonces p",
                 "Entonces z",
                 "Entonces ¬p",
@@ -750,6 +790,217 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Boolean [] sol8FD = {true, false, false, false};
 
         generarPregunta(preguntasFilosofiaDerecho, p8FD, resp8FD, sol8FD);
+
+
+        //****************** INTRODUCCION A MACROECONOMIA*******************************
+
+        String p1IM = "El supuesto 'ceteris paribus' NO significa...";
+        String[] resp1IM = {"Que siempre hay pares de variables que se muevan a la vez",
+                "El resto permanece constante",
+                "Dado todo lo demás",
+                "Que se puede analizar el efecto cuando cambia una sóla variable"};
+
+        Boolean [] sol1IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p1IM, resp1IM, sol1IM);
+
+
+
+
+        String p2IM = "Indica la afirmación falsa respecto a la Frontera de Posibilidades de Producción (FPP)";
+        String[] resp2IM = {"Para aumentar la produccion de un bien tenemos que renunciar a parte del otro bien",
+                "Todas asignaciones eficientes son factibles",
+                "Las asignaciones eficientes se encuentran sobre la FPP",
+                "Las asignaciones factibles se encuentran sobre o por debajo de la FPP"};
+
+        Boolean [] sol2IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p2IM, resp2IM, sol2IM);
+
+
+
+        String p3IM = "¿Qué factores no favorecen al crecimiento a largo plazo?";
+        String[] resp3IM = {"Una tasa de fertilidad muy elevada",
+                "La difusión de nuevas tecnologías",
+                "La acumulación del capital humano",
+                "Todos los anteriores favorecen el crecimiento a largo plazo"};
+
+        Boolean [] sol3IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p3IM, resp3IM, sol3IM);
+
+
+
+
+
+        String p4IM = "La identidad ahorro-inversión en economía abierta implica que...";
+        String[] resp4IM = {"El ahorro nacional más las entradas netas de capital siempre es igual a la inversión de la economía",
+                "Las entradas netas de capitales siempre son iguales a cero",
+                "El ahorro nacional siempre es igual a la inversión de la economía",
+                "El déficit del presupuesto público es igual a las entradas netas de capital del extranjero"};
+
+        Boolean [] sol4IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p4IM, resp4IM, sol4IM);
+
+
+
+
+        String p5IM = "¿Cuáles de las siguientes organizaciones no es un intermediario financiero?";
+        String[] resp5IM = {"Una agencia de viajes",
+                "Un banco",
+                "Una compañía de seguros",
+                "Un fondo de inversión"};
+
+        Boolean [] sol5IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p5IM, resp5IM, sol5IM);
+
+
+
+
+        String p6IM = "El Banco Central puede incrementar el nivel de precios realizando en el mercado abierto operaciones de...";
+        String[] resp6IM = {"Compra y reduciendo la tasa de descuento",
+                "Venta y elevando la tasa de descuento",
+                "Venta y reduciendo la tasa de descuento",
+                "Compra y elevando la tasa de descuento"};
+
+        Boolean [] sol6IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p6IM, resp6IM, sol6IM);
+
+
+
+        String p7IM = "¿Qué causa de desempleo NO está asociada con una tasa de salarios por encima del salario de equilibrio?";
+        String[] resp7IM = {"La búsqueda de empleo",
+                "Los sindicatos",
+                "Los salarios de eficiencia",
+                "Las leyes de salario mínimo"};
+
+        Boolean [] sol7IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p7IM, resp7IM, sol7IM);
+
+
+
+        String p8IM = "Si el tipo de cambio real de Estados Unidos se aprecia, las exportaciones de Estados Unidos...";
+        String[] resp8IM = {"Se reducen y sus importaciones aumentan",
+                "Aumentan y sus importaciones se reducen",
+                "Y las importaciones aumentan",
+                "Y las importaciones se reducen"};
+
+        Boolean [] sol8IM = {true, false, false, false};
+
+        generarPregunta(preguntasMacroeconomia, p8IM, resp8IM, sol8IM);
+
+
+
+        //************ECONOMIA MUNDIAL************************************************
+
+        String p1EM = "Un aumento del tipo de cambio del dólar frente al euro se corresponde con...";
+        String[] resp1EM = {"Una apreciación del dólar o del euro, depende",
+                "Una apreciación del dólar",
+                "Una apreciación del euro",
+                "Ninguna de las anteriores"};
+
+        Boolean [] sol1EM = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial, p1EM, resp1EM, sol1EM);
+
+
+
+        String p2EM = "Para realizar pronósticos sobre la evolución del tipo de cambio de mercado de una moneda, se suele utilizar...";
+        String[] resp2EM = {"El valor de su tipo de cambio con paridad de poder adquisitivo frente al dólar",
+                "El valor de su tipo de cambio efectivo real frente al dólar",
+                "El valor de su tipo de cambio nominal frente al dólar",
+                "El valor de su tipo de cambio efectivo nominal frente al dólar"};
+
+        Boolean [] sol2EM = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial, p2EM, resp2EM, sol2EM);
+
+
+
+        String p3EM = "El coeficiente de apertura externa de una economía se define como:";
+        String[] resp3EM = {"La suma de exportaciones e importaciones como porcentaje del PIB",
+                "El saldo comercial de un país como porcentaje del PIB",
+                "La inversa de la recaudación arancelaria de un país como porcentaje del PIB",
+                "Los aranceles promedio de un país"};
+
+        Boolean [] sol3EM = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial, p3EM, resp3EM, sol3EM);
+
+
+
+        String p4EM = "Entre los siguientes factores, no suele dar lugar a una depreciación de la moneda de una economía...";
+        String[] resp4EM = {"La venta de divisas extranjeras por parte del banco central",
+                "Un repunte significativo de la inflación",
+                "Un débil crecimiento económico",
+                "Una reducción de los tipos de interés oficiales"};
+
+        Boolean [] sol4EM = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial, p4EM, resp4EM, sol4EM);
+
+
+
+        String p5EM = "Una mejora de la posición de inversión internacional neta de un país en un año indica que en dicho año...";
+        String[] resp5EM = {"Sus activos externos aumentaron más que sus pasivos externos",
+                "Sus pasivos externos aumentaron más que sus activos externos",
+                "El valor de sus pasivos externos excedía al de sus activos externos",
+                "El valor de sus activos externos excedía al de sus pasivos externos"};
+
+        Boolean [] sol5EM = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial, p5EM, resp5EM, sol5EM);
+
+
+
+        String p1EM2 = "La apreciación de la moneda de una economía suele implicar ceteris paribus:";
+        String[] resp1EM2 = {"Una caída de la inflación",
+                "Una mejora del saldo público",
+                "Un empeoramiento del saldo público",
+                "Una mejora o empeoramiento del saldo público, en función de la elasticidad-precio que presenten exportaciones e importaciones"};
+
+        Boolean [] sol1EM2 = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial2, p1EM2, resp1EM2, sol1EM2);
+
+
+        String p2EM2 = "¿Cuál de estas circunstancias no es compatible con un aumento de la competitividad-precio de un país?";
+        String[] resp2EM2 = {"Una depreciación efectiva nominal menor que el aumento de los precios relativos",
+                "Una depreciación efectiva nominal mayor que el aumento de los precios relativos",
+                "Una depreciación efectiva nominal menor que el descenso de los precios relativos",
+                "Una depreciación efectiva nominal mayor que el descenso de los precios relativos"};
+
+        Boolean [] sol2EM2 = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial2, p2EM2, resp2EM2, sol2EM2);
+
+
+
+        String p3EM2 = "Son circunstancias que dan lugar a variaciones en el tipo de cambio efectivo nominal de una moneda...";
+        String[] resp3EM2 = {"Las modificaciones en los tipos de cambio bilaterales nominales de la moneda",
+                "Las modificaciones en los precios relativos de la economía",
+                "Tanto las modificaciones en los tipos de cambio bilaterales nominales de la moneda como en los precios relativos de la economía ",
+                "Ninguno de los anteriores"};
+
+        Boolean [] sol3EM2 = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial2, p3EM2, resp3EM2, sol3EM2);
+
+
+        String p4EM2 = "Si durante un año la magnitud del ahorro interno ha superado la de la inversión productiva en un país, ello se reflejará en:";
+        String[] resp4EM2 = {"Una disminución de la posición deudora o un aumento de la posición acredora, depende",
+                "Una disminución de la posición deudora exclusivamente",
+                "Un aumento de la posición acreedora exclusivamente",
+                "Este hecho no altera la posición dudora o acreedora de un país, que es una magnitud tipo stock"};
+
+        Boolean [] sol4EM2 = {true, false, false, false};
+
+        generarPregunta(preguntasEconomiaMundial2, p4EM2, resp4EM2, sol4EM2);
+
 
     }
 

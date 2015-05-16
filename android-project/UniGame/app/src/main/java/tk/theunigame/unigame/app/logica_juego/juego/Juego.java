@@ -40,7 +40,7 @@ public class Juego implements OnTiempoListener {
 
         estadisticas = new Estadisticas();
 
-        tiempo_pregunta = 30;
+        tiempo_pregunta = 60;
 
     }
 
@@ -59,7 +59,7 @@ public class Juego implements OnTiempoListener {
         estadisticas = new Estadisticas();
         listenerTiempo = null;
         listener = null;
-        tiempo_pregunta = 30;
+        tiempo_pregunta = 60;
     }
 
     public static Juego getInstance() {
