@@ -66,6 +66,21 @@ public class BolsaPregunta {
 
     public void SetBDPreguntas(BDPreguntas bd)
     {
+        String s = bd.getNombre();
+        int i = 0;
+        while(s.charAt(i)!='-')
+        {
+            ++i;
+        }
+        ++i;
+        int j = s.length()-1;
+        while(s.charAt(j)!='(')
+        {
+            --j;
+        }
+        --j;
+        bd.setNombre(s.substring(i,j));
+
         pBDPreguntas = bd;
         pPreguntas = new ArrayList<Pregunta>(bd.getPreguntas());
     }
