@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -85,17 +86,27 @@ public class JuegoIndividual extends FragmentActivity implements View.OnClickLis
         fachadaPregunta = new FachadaPregunta();
         comunicador = new FachadaComunicador();
 
+
+
         //Instanciamos los TextView
         txt_a = (TextView)findViewById(R.id.txt_answer_a);
         txt_b = (TextView)findViewById(R.id.txt_answer_b);
         txt_c = (TextView)findViewById(R.id.txt_answer_c);
         txt_d = (TextView)findViewById(R.id.txt_answer_d);
 
-        txt_turno = (TextView) findViewById(R.id.txt_title1);
-
-
         txt_question = (TextView) findViewById(R.id.txt_question);
         txt_tiempo = (TextView)findViewById(R.id.txt_tiempo);
+
+        txt_turno = (TextView) findViewById(R.id.txt_title1);
+
+        txt_a.setMovementMethod(new ScrollingMovementMethod());
+        txt_b.setMovementMethod(new ScrollingMovementMethod());
+        txt_c.setMovementMethod(new ScrollingMovementMethod());
+        txt_d.setMovementMethod(new ScrollingMovementMethod());
+        txt_question.setMovementMethod(new ScrollingMovementMethod());
+
+
+
 
         //Instanciamos los Botones
         btn_a = (Button)findViewById(R.id.btn_edit_answer_a);

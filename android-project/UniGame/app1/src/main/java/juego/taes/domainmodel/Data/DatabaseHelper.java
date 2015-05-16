@@ -22,7 +22,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 20;
 
 
     //Daos utilizados
@@ -314,7 +314,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         getCarreraUniversidadDao().create(carreraUniversidad);
 
         Carrera carrera2 = new Carrera();
-        carrera2.setNombre("Ingenieria Informatica");
+        carrera2.setNombre("Ingeniería Informática");
         carrera2.setId(2);
         carreraDao.create(carrera2);
 
@@ -334,7 +334,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carreraUniversidadDao.create(carreraUniversidad);
 
         Carrera carrera4 = new Carrera();
-        carrera4.setNombre("Ingenieria Industrial");
+        carrera4.setNombre("Ingeniería Industrial");
         carrera4.setId(4);
         carreraDao.create(carrera4);
 
@@ -344,7 +344,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carreraUniversidadDao.create(carreraUniversidad);
 
         Carrera carrera5 = new Carrera();
-        carrera5.setNombre("Ingenieria Quimica");
+        carrera5.setNombre("Ingeniería Química");
         carrera5.setId(5);
         carreraDao.create(carrera5);  //Ingenieria
 
@@ -374,7 +374,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carreraUniversidadDao.create(carreraUniversidad);
 
         Carrera carrera8 = new Carrera();
-        carrera8.setNombre("Traduccion e Interpretacion");
+        carrera8.setNombre("Traducción e Interpretación");
         carrera8.setId(8);
         carreraDao.create(carrera8);
 
@@ -414,7 +414,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carreraUniversidadDao.create(carreraUniversidad);
 
         Carrera carrera12 = new Carrera();
-        carrera12.setNombre("Ingeneria Aeronautica");
+        carrera12.setNombre("Ingenería Aeronáutica");
         carrera12.setId(12);
         carreraDao.create(carrera12);
 
@@ -491,7 +491,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         asignaturaCarreraDao.create(asignaturaCarrera);
 
         Asignatura asignatura4 = new Asignatura();
-        asignatura4.setNombre("MacroEconomia");
+        asignatura4.setNombre("STI");
         asignatura4.setId(4);
         asignaturaDao.create(asignatura4);
 
@@ -511,7 +511,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         getAsignaturaCarreraDao().create(asignaturaCarrera);
 
         Asignatura asignatura6 = new Asignatura();
-        asignatura6.setNombre("Formulacion 1");
+        asignatura6.setNombre("Formulación 1");
         asignatura6.setId(6);
         getAsignaturaDao().create(asignatura6);
 
@@ -521,13 +521,24 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         getAsignaturaCarreraDao().create(asignaturaCarrera);
 
         Asignatura asignatura7 = new Asignatura();
-        asignatura7.setNombre("Diseño Grafico 1");
+        asignatura7.setNombre("Diseño Gráfico 1");
         asignatura7.setId(7);
         getAsignaturaDao(). create(asignatura7);
 
         asignaturaCarrera.setId(0);
         asignaturaCarrera.setCarrera(carrera15);
         asignaturaCarrera.setAsignatura(asignatura7);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
+
+
+        Asignatura asignatura8 = new Asignatura();
+        asignatura8.setNombre("Filosofía del derecho");
+        asignatura8.setId(8);
+        getAsignaturaDao(). create(asignatura8);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera1);
+        asignaturaCarrera.setAsignatura(asignatura8);
         getAsignaturaCarreraDao().create(asignaturaCarrera);
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -537,6 +548,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         preguntas1.setUsuario(user4);
         getBDPreguntasDao().assignEmptyForeignCollection(preguntas1, BDPreguntas.PREGUNTAS_CAMPO);
         getBDPreguntasDao().create(preguntas1);
+
+
+
+        BDPreguntas preguntasFilosofiaDerecho = new BDPreguntas("Simulación control",false,universidad1,asignatura8);
+        preguntasFilosofiaDerecho.setUsuario(user4);
+        getBDPreguntasDao().assignEmptyForeignCollection(preguntasFilosofiaDerecho, BDPreguntas.PREGUNTAS_CAMPO);
+        getBDPreguntasDao().create(preguntasFilosofiaDerecho);
+
+
 
         /*BDPreguntas preguntas2 = new BDPreguntas("Segundo parcial",false,universidad1,asignatura3);
         preguntas2.setUsuario(user4);
@@ -561,21 +581,21 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         //Crear preguntas y añadirlas a la base de preguntas
 
 
-        String p1 = "¿Que es un arbol binario?";
-        String[] resp1 = {"Un arbol compuesto por 0s y 1s",
-                "Una estructura jerarquica compuesta por una raiz y como mucho dos hijos",
-                "Un arbol representado en formato digital",
+        String p1 = "¿Qué es un árbol binario?";
+        String[] resp1 = {"Un árbol compuesto por 0s y 1s",
+                "Una estructura jerárquica compuesta por una raíz y como mucho dos hijos",
+                "Un árbol representado en formato digital",
                 "Una estructura de datos simple"};
 
         Boolean [] sol1 = {false, true, false, false};
         generarPregunta(preguntas1, p1, resp1, sol1);
 
 
-        String p2 = "¿Que es un ABB?";
+        String p2 = "¿Qué es un ABB?";
         String[] resp2 = {"Es una estructura de datos abstracta ordenada de izquierda a derecha",
                 "Es una estructura de datos abstracta muy ineficiente",
                 "Es un concepto que no existe",
-                "es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel"};
+                "Es un tipo de datos predefinido por el sistema en los lenguajes de alto nivel"};
 
         Boolean [] sol2 = {true, false, false, false};
 
@@ -583,9 +603,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-        String p3 = "¿Que estructura de datos abstracta es mas eficiente para las inserciones?";
+        String p3 = "¿Qué estructura de datos abstracta es más eficiente para las inserciones?";
         String[] resp3 = {"Un vector",
-                "Un arbol binario",
+                "Un árbol binario",
                 "Una lista enlazada simple",
                 "Cualquier estructura de datos"};
 
@@ -593,7 +613,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         generarPregunta(preguntas1, p3, resp3, sol3);
 
 
-        String p4 = "¿Cuál fue la principal aportacion de Von Neuman a la computacion?";
+        String p4 = "¿Cuál fue la principal aportacion de Von Neuman a la computación?";
         String[] resp4 = {"El programa almacenado en memoria",
                 "Memoria principal en los computadores",
                 "Computadores con mayor memoria secundaria",
@@ -607,7 +627,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         String[] resp5 = {"Problemas largos compuestos por muchas instrucciones",
                 "Inversión grande en tiempo para diseñar el algoritmo",
                 "Muchas llamadas se quedan en espera",
-                "No existe ningun inconveniente en la recursión"};
+                "No existe ningún inconveniente en la recursión"};
 
         Boolean [] sol5 = {false, false, true, false};
         generarPregunta(preguntas1, p5, resp5,sol5);
@@ -615,7 +635,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-        String p6 = "¿Que significa el termino layering?";
+        String p6 = "¿Qué significa el término layering?";
         String[] resp6 = {"Herencia de atributos y métodos",
                 "Ese término no existe en programación",
                 "Es copiar valores por referencia",
@@ -626,7 +646,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-        String p7 = "¿Cuál es el paradigma de programación que más se usa hoy en dia?";
+        String p7 = "¿Cuál es el paradigma de programación que más se usa hoy en día?";
         String[] resp7 = {"Programación imperativa",
                 "Programación recursiva",
                 "Programación lógica",
@@ -635,6 +655,101 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         Boolean [] sol7 = {false, false, false, true};
         generarPregunta(preguntas1, p7, resp7, sol7);
 
+
+
+
+        //******************** FILOSOFIA DEL DERECHO**************************
+
+        String p1FD = "Señale la modalidad correlativa del concepto de libertad.";
+        String[] resp1FD = {"No-derecho",
+                "Sujeción",
+                "Incompetencia",
+                "Inmunidad"};
+
+        Boolean [] sol1FD = {true, false, false, false};
+        generarPregunta(preguntasFilosofiaDerecho, p1FD, resp1FD, sol1FD);
+
+
+        String p2FD = "La modalidad correlativa del concepto de poder...";
+        String[] resp2FD = {"Es sujeción",
+                "Es incompetencia",
+                "Es inmunidad",
+                "Es no-derecho"};
+
+        Boolean [] sol2FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p2FD, resp2FD, sol2FD);
+
+
+
+        String p3FD = "La modalidad correlativa del concepto de inmunidad...";
+        String[] resp3FD = {"Es incompetencia",
+                "Es no-derecho",
+                "Es derecho en sentido fuerte",
+                "Es sujeción"};
+
+        Boolean [] sol3FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p3FD, resp3FD, sol3FD);
+
+
+        String p4FD = "¿A qué sentido de responsabilidad hace referencia la siguente frase? Los neuro-deterministas afirman que los seres humanos no son responsables de sus actos.";
+        String[] resp4FD = {"Responsabilidad como reprochabilidad moral o jurídica",
+                "Resposabilidad como factor causal",
+                "Responsabilidad como ajuste entre principios y reglas",
+                "Responsabilidad como conjunto de deberes derivados de rol o cargo"};
+
+        Boolean [] sol4FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p4FD, resp4FD, sol4FD);
+
+
+
+        String p5FD = "¿Cuál de las siguientes fuentes de derecho son fuentes-acto?";
+        String[] resp5FD = {"La ley y los pactos internacionales",
+                "La costumbre jurídica",
+                "La doctrina",
+                "Ninguna de las anteriores"};
+
+        Boolean [] sol5FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p5FD, resp5FD, sol5FD);
+
+
+
+        String p6FD = "Quien es parte de un proceso, se encuentra en una situación de...";
+        String[] resp6FD = {"Sujeción",
+                "Poder",
+                "Inmunidad",
+                "Libertad"};
+
+        Boolean [] sol6FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p6FD, resp6FD, sol6FD);
+
+
+
+        String p7FD = "Completa la falacia de la afirmación del consecuente: si 'p->q', si se da 'q'...";
+        String[] resp7FD = {"Entonces p",
+                "Entonces z",
+                "Entonces ¬p",
+                "Entonces ¬q"};
+
+        Boolean [] sol7FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p7FD, resp7FD, sol7FD);
+
+
+
+        String p8FD = "¿Qué caracteriza a la sanción civil?";
+        String[] resp8FD = {"Beneficio al demandante",
+                "Se ingresa en el erario publico",
+                "Se reclama de oficio",
+                "Beneficio al demandado"};
+
+        Boolean [] sol8FD = {true, false, false, false};
+
+        generarPregunta(preguntasFilosofiaDerecho, p8FD, resp8FD, sol8FD);
 
     }
 

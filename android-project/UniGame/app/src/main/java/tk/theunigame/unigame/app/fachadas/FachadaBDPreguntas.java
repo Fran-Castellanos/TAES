@@ -94,7 +94,7 @@ public class FachadaBDPreguntas {
         if (!mostrarVacios){
 
             for (BDPreguntas b : bd) {
-                if (b.getPreguntas().size() <= 2)
+                if (b.getPreguntas().size() <= 0)
                     bdvacios.add(i);
 
                 ++i;

@@ -43,7 +43,7 @@ public class Comodin50 extends Comodin {
 
             int eliminadas=0;
             List<Respuesta> resp50= new ArrayList<Respuesta>();
-            int numEliminadas = (int)Math.floor(respuestasCollection.size()/2);
+            int numEliminadas = (int)Math.round(respuestasCollection.size()/2);
 
             Random r = new Random();
             ArrayList<Integer> aleatorios = new ArrayList<Integer>();
