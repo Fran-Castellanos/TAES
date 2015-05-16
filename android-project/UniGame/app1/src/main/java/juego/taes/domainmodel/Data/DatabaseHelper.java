@@ -22,7 +22,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "localdb.db";
     // any time you make changes to your database objects, you may have to increase the database version
 
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 16;
 
 
     //Daos utilizados
@@ -215,7 +215,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         universidadDao.create(universidad3);
 
         Universidad universidad4 = new Universidad();
-        universidad4.setNombre("Universidad Publica de Valencia");
+        universidad4.setNombre("Universidad Politecnica de Valencia");
         universidad4.setSiglas("UPV");
         universidad4.setId(4);
         universidadDao.create(universidad4);
@@ -423,6 +423,38 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         carreraUniversidad.setUniversidad(universidad1);
         carreraUniversidadDao.create(carreraUniversidad);
 
+        /**********************************************************/
+
+        Carrera carrera13 = new Carrera();
+        carrera13.setNombre("Farmacia");
+        carrera13.setId(13);
+        carreraDao.create(carrera13);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera13);
+        carreraUniversidad.setUniversidad(universidad3);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera14 = new Carrera();
+        carrera14.setNombre("Medicina");
+        carrera14.setId(14);
+        carreraDao.create(carrera14);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera14);
+        carreraUniversidad.setUniversidad(universidad2);
+        carreraUniversidadDao.create(carreraUniversidad);
+
+        Carrera carrera15 = new Carrera();
+        carrera15.setNombre("Ingenieria Civil");
+        carrera15.setId(15);
+        carreraDao.create(carrera15);
+
+        carreraUniversidad.setId(0);
+        carreraUniversidad.setCarrera(carrera15);
+        carreraUniversidad.setUniversidad(universidad4);
+        carreraUniversidadDao.create(carreraUniversidad);
+
         /////////////////////////////////////////////////////////////////////
 
         //Asignaturas
@@ -467,6 +499,36 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         asignaturaCarrera.setCarrera(carrera2);
         asignaturaCarrera.setAsignatura(asignatura4);
         asignaturaCarreraDao.create(asignaturaCarrera);
+/***************************************************************************************/
+        Asignatura asignatura5 = new Asignatura();
+        asignatura5.setNombre("Anatomia");
+        asignatura5.setId(5);
+        getAsignaturaDao().create(asignatura5);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera14);
+        asignaturaCarrera.setAsignatura(asignatura5);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
+
+        Asignatura asignatura6 = new Asignatura();
+        asignatura6.setNombre("Formulacion 1");
+        asignatura6.setId(6);
+        getAsignaturaDao().create(asignatura6);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera13);
+        asignaturaCarrera.setAsignatura(asignatura6);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
+
+        Asignatura asignatura7 = new Asignatura();
+        asignatura7.setNombre("Diseño Grafico 1");
+        asignatura7.setId(7);
+        getAsignaturaDao().create(asignatura7);
+
+        asignaturaCarrera.setId(0);
+        asignaturaCarrera.setCarrera(carrera15);
+        asignaturaCarrera.setAsignatura(asignatura7);
+        getAsignaturaCarreraDao().create(asignaturaCarrera);
 
 //////////////////////////////////////////////////////////////////////////////////
         //Crear bases de preguntas
